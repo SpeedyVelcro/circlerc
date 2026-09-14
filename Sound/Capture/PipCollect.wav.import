@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/PipCollect.wav-2282676d7d84f91510e9192c7e775521.sample"
+type="AudioStreamWAV"
+uid="uid://braw0ha4geuyt"
+path="res://.godot/imported/PipCollect.wav-2282676d7d84f91510e9192c7e775521.sample"
 
 [deps]
 
 source_file="res://Sound/Capture/PipCollect.wav"
-dest_files=[ "res://.import/PipCollect.wav-2282676d7d84f91510e9192c7e775521.sample" ]
+dest_files=["res://.godot/imported/PipCollect.wav-2282676d7d84f91510e9192c7e775521.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

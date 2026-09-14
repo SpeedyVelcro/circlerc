@@ -26,7 +26,7 @@ func save_profile():
 	# Save dictionary to file
 	var file = File.new()
 	file.open(PROFILE_PATH, File.WRITE)
-	file.store_string(to_json(dict))
+	file.store_string(JSON.new().stringify(dict))
 	file.close()
 
 func load_profile():
@@ -35,7 +35,9 @@ func load_profile():
 	if file.file_exists(PROFILE_PATH):
 		# Get dictionary from file
 		file.open(PROFILE_PATH, File.READ)
-		var dict = parse_json(file.get_as_text())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		var dict = test_json_conv.get_data()
 		file.close()
 		# Get info out of dictionary
 		# Levels unlocked

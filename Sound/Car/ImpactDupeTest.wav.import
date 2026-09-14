@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ImpactDupeTest.wav-33079590f4e2e9e54e35f6a860d449f3.sample"
+type="AudioStreamWAV"
+uid="uid://bm0rr7w0qihgh"
+path="res://.godot/imported/ImpactDupeTest.wav-33079590f4e2e9e54e35f6a860d449f3.sample"
 
 [deps]
 
 source_file="res://Sound/Car/ImpactDupeTest.wav"
-dest_files=[ "res://.import/ImpactDupeTest.wav-33079590f4e2e9e54e35f6a860d449f3.sample" ]
+dest_files=["res://.godot/imported/ImpactDupeTest.wav-33079590f4e2e9e54e35f6a860d449f3.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -2,13 +2,13 @@
 
 extends CanvasLayer
 
-onready var visibility_node = get_node("CenterContainer")
-onready var level_title_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/LevelTitle")
-onready var time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/Time")
-onready var best_time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious/BestTime")
-onready var record_previous_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious")
-onready var record_new_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew")
-export var input_allowed = false
+@onready var visibility_node = get_node("CenterContainer")
+@onready var level_title_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/LevelTitle")
+@onready var time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/Time")
+@onready var best_time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious/BestTime")
+@onready var record_previous_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious")
+@onready var record_new_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew")
+@export var input_allowed = false
 var level_number = 0
 var time_cent = 0
 var best_time_cent = 0
@@ -59,7 +59,7 @@ func quit():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
 
 func retry():
-	SceneTransition.instant(get_tree().get_current_scene().get_filename())
+	SceneTransition.instant(get_tree().get_current_scene().get_scene_file_path())
 
 func next_level():
 	emit_signal("next_level")

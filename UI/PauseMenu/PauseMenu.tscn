@@ -2,10 +2,10 @@
 
 [ext_resource path="res://UI/PauseMenu/PauseMenu.gd" type="Script" id=2]
 [ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=6]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="FontFile" id=7]
 
 [node name="PauseMenu" type="CanvasLayer"]
-pause_mode = 2
+process_mode = 3
 layer = 100
 script = ExtResource( 2 )
 
@@ -34,11 +34,11 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="Visual/CenterContainer"]
-margin_left = 540.0
-margin_top = 210.0
-margin_right = 740.0
-margin_bottom = 510.0
-rect_min_size = Vector2( 200, 300 )
+offset_left = 540.0
+offset_top = 210.0
+offset_right = 740.0
+offset_bottom = 510.0
+custom_minimum_size = Vector2( 200, 300 )
 theme = ExtResource( 6 )
 __meta__ = {
 "_editor_description_": ""
@@ -47,33 +47,33 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Visual/CenterContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 24.0
-margin_top = 24.0
-margin_right = -24.0
-margin_bottom = -24.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 7 )
+offset_right = 152.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource( 7 )
 text = "Paused"
 align = 1
 autowrap = true
 
 [node name="ReferenceRect" type="ReferenceRect" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 28.0
-margin_right = 152.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 24 )
+offset_top = 28.0
+offset_right = 152.0
+offset_bottom = 52.0
+custom_minimum_size = Vector2( 0, 24 )
 
 [node name="ButtonResume" type="Button" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 56.0
-margin_right = 152.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 88.0
+custom_minimum_size = Vector2( 0, 32 )
 theme = ExtResource( 6 )
 text = "Resume"
 __meta__ = {
@@ -81,16 +81,16 @@ __meta__ = {
 }
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 92.0
-margin_right = 152.0
-margin_bottom = 116.0
-rect_min_size = Vector2( 0, 24 )
+offset_top = 92.0
+offset_right = 152.0
+offset_bottom = 116.0
+custom_minimum_size = Vector2( 0, 24 )
 
 [node name="ButtonRestart" type="Button" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 120.0
-margin_right = 152.0
-margin_bottom = 152.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 120.0
+offset_right = 152.0
+offset_bottom = 152.0
+custom_minimum_size = Vector2( 0, 32 )
 theme = ExtResource( 6 )
 text = "Restart"
 __meta__ = {
@@ -98,16 +98,16 @@ __meta__ = {
 }
 
 [node name="ReferenceRect3" type="ReferenceRect" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 156.0
-margin_right = 152.0
-margin_bottom = 180.0
-rect_min_size = Vector2( 0, 24 )
+offset_top = 156.0
+offset_right = 152.0
+offset_bottom = 180.0
+custom_minimum_size = Vector2( 0, 24 )
 
 [node name="ButtonQuit" type="Button" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 184.0
-margin_right = 152.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 184.0
+offset_right = 152.0
+offset_bottom = 216.0
+custom_minimum_size = Vector2( 0, 32 )
 theme = ExtResource( 6 )
 text = "Quit to Menu"
 __meta__ = {
@@ -115,9 +115,9 @@ __meta__ = {
 }
 
 [node name="ReferenceRect4" type="ReferenceRect" parent="Visual/CenterContainer/Panel/VBoxContainer"]
-margin_top = 220.0
-margin_right = 152.0
-margin_bottom = 252.0
+offset_top = 220.0
+offset_right = 152.0
+offset_bottom = 252.0
 size_flags_vertical = 3
 [connection signal="pressed" from="Visual/CenterContainer/Panel/VBoxContainer/ButtonResume" to="." method="_on_ButtonResume_pressed"]
 [connection signal="pressed" from="Visual/CenterContainer/Panel/VBoxContainer/ButtonRestart" to="." method="_on_ButtonRestart_pressed"]

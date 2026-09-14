@@ -1,9 +1,9 @@
 # Player.gd
 
 class_name Player
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var steering_broken = false # If true, straight steer is inaccessible
+@export var steering_broken = false # If true, straight steer is inaccessible
 var throttle = 0 # Integer. 0 is stationary. Positive picks from forward_speed
 		# array, negative from reverse speed.
 var acceleration = 480
@@ -21,7 +21,7 @@ var turn_velocity = 0
 var velocity = Vector2(0, 0)
 var speed = 0
 var drag = 1.8
-onready var loop_resource = preload("res://Entity/Player/Loop/Loop.tscn")
+@onready var loop_resource = preload("res://Entity/Player/Loop/Loop.tscn")
 var loop
 var max_health = 100
 var health = max_health
@@ -49,7 +49,7 @@ signal throttle_stop
 
 func _ready():
 	emit_signal("health_changed", health, max_health)
-	$MotorAudio.set_volume_db(linear2db(0.0))
+	$MotorAudio.set_volume_db(linear_to_db(0.0))
 	if steering_broken:
 		steer(-1) # Just so you don't start straight
 
@@ -66,7 +66,7 @@ func _process(_delta):
 	var vol = (abs(speed) - 20.0) / 230.0
 	vol = clamp(vol, 0.0, 1.0)
 	var pitch  = vol * (motor_max_pitch - motor_min_pitch) + motor_min_pitch
-	$MotorAudio.set_volume_db(linear2db(vol))
+	$MotorAudio.set_volume_db(linear_to_db(vol))
 	$MotorAudio.set_pitch_scale(pitch)
 
 func _physics_process(delta):
@@ -121,11 +121,11 @@ func _physics_process(delta):
 	
 	# Update steering graphic
 	if steering < -0.33:
-		$AnimatedSprite.play("left")
+		$AnimatedSprite2D.play("left")
 	elif steering > 0.33:
-		$AnimatedSprite.play("right")
+		$AnimatedSprite2D.play("right")
 	else:
-		$AnimatedSprite.play("straight")
+		$AnimatedSprite2D.play("straight")
 	
 	# Update loop according to speed
 	if speed > 0 and loop == null and not interpolating_steering:
@@ -148,18 +148,18 @@ func _physics_process(delta):
 		infinite_inertia) # Infinite inertia, must be false
 	
 	# Push props that have been collided with
-	for i in get_slide_count():
+	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() is RigidBody2D:
 			var impulse = collision.get_normal() * -1 * push_power * velocity.length()
 			var offset = collision.get_position() - collision.get_collider().get_global_position()
-			collision.get_collider().apply_impulse(offset, impulse)
+			collision.get_collider().apply_impulse(impulse, offset)
 			if collision.get_collider().is_in_group("enemy"):
 				pass # TODO: stop its movement for a second
 	velocity = Vector2()
 	
 	# Collision
-	if get_slide_count() > 0:
+	if get_slide_collision_count() > 0:
 		# Loop is now inaccurate so cancel
 		cancel_loop()
 		# Take damage
@@ -195,7 +195,7 @@ func start_loop():
 	# Create loop
 	if loop != null:
 		cancel_loop()
-	loop = loop_resource.instance()
+	loop = loop_resource.instantiate()
 	get_parent().add_child(loop)
 	loop.set_global_position(loop_pos)
 	# Set its values
@@ -203,9 +203,9 @@ func start_loop():
 	loop.radius = turn_radius
 	loop.direction = target_steering
 	# Hook up
-	connect("loop_cancel", loop, "_on_Player_loop_cancel")
-	connect("loop_advance", loop, "_on_Player_loop_advance")
-	loop.connect("complete", self, "_on_Loop_complete")
+	connect("loop_cancel", Callable(loop, "_on_Player_loop_cancel"))
+	connect("loop_advance", Callable(loop, "_on_Player_loop_advance"))
+	loop.connect("complete", Callable(self, "_on_Loop_complete"))
 
 func cancel_loop():
 	if loop != null:
@@ -213,9 +213,9 @@ func cancel_loop():
 		forget_loop()
 
 func forget_loop():
-	disconnect("loop_cancel", loop, "_on_Player_loop_cancel")
-	disconnect("loop_advance", loop, "_on_Player_loop_advance")
-	loop.disconnect("complete", self, "_on_Loop_complete")
+	disconnect("loop_cancel", Callable(loop, "_on_Player_loop_cancel"))
+	disconnect("loop_advance", Callable(loop, "_on_Player_loop_advance"))
+	loop.disconnect("complete", Callable(self, "_on_Loop_complete"))
 	loop = null
 
 func steer(direction):

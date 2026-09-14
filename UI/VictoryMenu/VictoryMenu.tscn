@@ -1,23 +1,23 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Font/PressStart2P/PressStart2Tiny.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Font/PressStart2P/PressStart2PMedium.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Font/PressStart2P/PressStart2Tiny.tres" type="FontFile" id=2]
+[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="FontFile" id=3]
+[ext_resource path="res://Font/PressStart2P/PressStart2PMedium.tres" type="FontFile" id=4]
 [ext_resource path="res://UI/VictoryMenu/VictoryMenu.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fly_in"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("CenterContainer:rect_position")
+tracks/0/path = NodePath("CenterContainer:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 720 ), Vector2( 0, 0 ) ]
 }
@@ -28,8 +28,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 0.2 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
@@ -40,8 +40,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0.2 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -52,8 +52,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -64,8 +64,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array( 0 ),
+"transitions": PackedFloat32Array( 1 ),
 "update": 1,
 "values": [ true ]
 }
@@ -88,40 +88,40 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 720.0
-margin_bottom = 720.0
+offset_top = 720.0
+offset_bottom = 720.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
-margin_left = 400.0
-margin_top = 59.0
-margin_right = 880.0
-margin_bottom = 659.0
-rect_min_size = Vector2( 480, 600 )
+offset_left = 400.0
+offset_top = 59.0
+offset_right = 880.0
+offset_bottom = 659.0
+custom_minimum_size = Vector2( 480, 600 )
 theme = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 30.0
-margin_top = 30.0
-margin_right = -30.0
-margin_bottom = -30.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer"]
-margin_right = 420.0
-margin_bottom = 540.0
+offset_right = 420.0
+offset_bottom = 540.0
 
 [node name="Title" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_right = 420.0
-margin_bottom = 67.0
-custom_fonts/font = ExtResource( 4 )
+offset_right = 420.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource( 4 )
 text = "Level Complete!"
 align = 1
 autowrap = true
@@ -130,31 +130,31 @@ __meta__ = {
 }
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 71.0
-margin_right = 420.0
-margin_bottom = 87.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 71.0
+offset_right = 420.0
+offset_bottom = 87.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="LevelTitle" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 91.0
-margin_right = 420.0
-margin_bottom = 115.0
-custom_fonts/font = ExtResource( 3 )
+offset_top = 91.0
+offset_right = 420.0
+offset_bottom = 115.0
+theme_override_fonts/font = ExtResource( 3 )
 text = "Level X"
 align = 1
 autowrap = true
 
 [node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 119.0
-margin_right = 420.0
-margin_bottom = 135.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 119.0
+offset_right = 420.0
+offset_bottom = 135.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="TimeHeader" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 139.0
-margin_right = 420.0
-margin_bottom = 155.0
-custom_fonts/font = ExtResource( 2 )
+offset_top = 139.0
+offset_right = 420.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "Time:"
 align = 1
 autowrap = true
@@ -163,10 +163,10 @@ __meta__ = {
 }
 
 [node name="Time" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 159.0
-margin_right = 420.0
-margin_bottom = 175.0
-custom_fonts/font = ExtResource( 2 )
+offset_top = 159.0
+offset_right = 420.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "00:00:00"
 align = 1
 autowrap = true
@@ -175,20 +175,20 @@ __meta__ = {
 }
 
 [node name="ReferenceRect4" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 179.0
-margin_right = 420.0
-margin_bottom = 195.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 179.0
+offset_right = 420.0
+offset_bottom = 195.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="RecordPrevious" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 199.0
-margin_right = 420.0
-margin_bottom = 235.0
+offset_top = 199.0
+offset_right = 420.0
+offset_bottom = 235.0
 
 [node name="BestTimeHeader" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious"]
-margin_right = 420.0
-margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
+offset_right = 420.0
+offset_bottom = 16.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "Best Time:"
 align = 1
 autowrap = true
@@ -197,10 +197,10 @@ __meta__ = {
 }
 
 [node name="BestTime" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious"]
-margin_top = 20.0
-margin_right = 420.0
-margin_bottom = 36.0
-custom_fonts/font = ExtResource( 2 )
+offset_top = 20.0
+offset_right = 420.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource( 2 )
 text = "00:00:00"
 align = 1
 autowrap = true
@@ -210,63 +210,63 @@ __meta__ = {
 
 [node name="RecordNew" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 239.0
-margin_right = 420.0
-margin_bottom = 263.0
+offset_top = 239.0
+offset_right = 420.0
+offset_bottom = 263.0
 
 [node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew"]
-margin_right = 420.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.176471, 1, 0.172549, 1 )
+offset_right = 420.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource( 3 )
+theme_override_colors/font_color = Color( 0.176471, 1, 0.172549, 1 )
 text = "New Record!"
 align = 1
 autowrap = true
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 239.0
-margin_right = 420.0
-margin_bottom = 496.0
+offset_top = 239.0
+offset_right = 420.0
+offset_bottom = 496.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
-margin_top = 500.0
-margin_right = 420.0
-margin_bottom = 540.0
-rect_min_size = Vector2( 0, 40 )
+offset_top = 500.0
+offset_right = 420.0
+offset_bottom = 540.0
+custom_minimum_size = Vector2( 0, 40 )
 
 [node name="QuitButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 112.0
-margin_bottom = 40.0
+offset_right = 112.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "Quit"
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 116.0
-margin_right = 149.0
-margin_bottom = 40.0
+offset_left = 116.0
+offset_right = 149.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
 [node name="RetryButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 153.0
-margin_right = 266.0
-margin_bottom = 40.0
+offset_left = 153.0
+offset_right = 266.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "Retry"
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 270.0
-margin_right = 303.0
-margin_bottom = 40.0
+offset_left = 270.0
+offset_right = 303.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
 [node name="NextButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 307.0
-margin_right = 420.0
-margin_bottom = 40.0
+offset_left = 307.0
+offset_right = 420.0
+offset_bottom = 40.0
 size_flags_horizontal = 3
 text = "Next"
 

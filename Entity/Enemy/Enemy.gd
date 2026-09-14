@@ -7,14 +7,14 @@
 extends RigidBody2D
 
 var path = null
-export var max_speed = 100.0
+@export var max_speed = 100.0
 var path_points
 var path_index = 0
 var next_point_threshold = 1
 var velocity = Vector2(0, 0)
 var rotation_factor = 100.0
-export var acceleration = 15.0
-export var reverse_acceleration = 6.0
+@export var acceleration = 15.0
+@export var reverse_acceleration = 6.0
 var path_follow_resource = preload("res://Entity/Enemy/EnemyPathFollow.tscn")
 var path_follow = null
 var path_follow_max_distance = 64.0
@@ -26,14 +26,14 @@ enum {
 var state = STATE_PATROL
 
 func _ready():
-	get_parent().connect("ready", self, "_on_parent_ready")
+	get_parent().connect("ready", Callable(self, "_on_parent_ready"))
 	_on_state_enter(state)
 
 func _on_parent_ready():
 	var potential_path = get_parent()
 	if potential_path is Path2D:
 		set_path(potential_path)
-		path_follow = path_follow_resource.instance()
+		path_follow = path_follow_resource.instantiate()
 		path.add_child(path_follow)
 		path_follow.set_max_speed(max_speed)
 		# Get the closest point on the path

@@ -24,7 +24,7 @@ func _on_ButtonResume_pressed():
 
 func _on_ButtonRestart_pressed():
 	get_tree().set_pause(false)
-	SceneTransition.instant(get_tree().get_current_scene().get_filename())
+	SceneTransition.instant(get_tree().get_current_scene().get_scene_file_path())
 
 func _on_ButtonQuit_pressed():
 	get_tree().set_pause(false)

@@ -2,26 +2,26 @@
 
 extends Control
 
-export(Resource) var level_list
+@export var level_list: Resource
 var level_button_resource = preload("res://UI/MainMenu/LevelSelect/ButtonLevel.tscn")
 var selected_level = 0
 # Nodes
-export(NodePath) var grid_container_path
-onready var grid_container = get_node(grid_container_path)
-export(NodePath) var level_number_label_path
-onready var level_number_label = get_node(level_number_label_path)
-export(NodePath) var level_caption_label_path
-onready var level_caption_label = get_node(level_caption_label_path)
-export(NodePath) var best_time_label_path
-onready var best_time_label = get_node(best_time_label_path) 
+@export var grid_container_path: NodePath
+@onready var grid_container = get_node(grid_container_path)
+@export var level_number_label_path: NodePath
+@onready var level_number_label = get_node(level_number_label_path)
+@export var level_caption_label_path: NodePath
+@onready var level_caption_label = get_node(level_caption_label_path)
+@export var best_time_label_path: NodePath
+@onready var best_time_label = get_node(best_time_label_path) 
 
 func _ready():
 	# Populate level grid
 	for i in level_list.get_number_of_levels():
-		var lb = level_button_resource.instance()
+		var lb = level_button_resource.instantiate()
 		grid_container.add_child(lb)
 		lb.set_text(String(i + 1).pad_zeros(2))
-		lb.connect("pressed", self, "_on_ButtonLevel_pressed", [i])
+		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i))
 		if not Profile.is_level_unlocked(i):
 			lb.set_disabled(true)
 		if i == 0:
@@ -33,7 +33,7 @@ func _on_ButtonLevel_pressed(level_number):
 	selected_level = level_number
 	# Update details
 	level_number_label.set_text("Level " + String(level_number + 1))
-	level_caption_label.set_text(level_list.get_caption(level_number))
+	level_caption_label.set_text(level_list._get_caption(level_number))
 	var t_cent = Profile.get_level_best_time(level_number)
 	if t_cent == -1:
 		best_time_label.set_text("xx:xx:xx")

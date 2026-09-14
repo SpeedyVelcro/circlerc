@@ -5,8 +5,8 @@ extends Control
 var credits_file = "res://Credits.txt"
 var mit_file = "res://License/MIT.txt"
 var ofl_file = "res://License/OFL.txt"
-export(NodePath) var text_edit_path
-onready var text_edit = get_node(text_edit_path)
+@export var text_edit_path: NodePath
+@onready var text_edit = get_node(text_edit_path)
 
 func _ready():
 	display_text_file(credits_file)

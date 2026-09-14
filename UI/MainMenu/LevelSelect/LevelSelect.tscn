@@ -4,8 +4,8 @@
 [ext_resource path="res://UI/MainMenu/ButtonMainMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Level/LevelList.tres" type="Resource" id=3]
 [ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=4]
-[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture" id=5]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture2D" id=5]
+[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="FontFile" id=6]
 
 
 [node name="LevelSelect" type="Control"]
@@ -50,11 +50,11 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="CenterContainer"]
-margin_left = 239.0
-margin_top = 119.0
-margin_right = 1039.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 800, 480 )
+offset_left = 239.0
+offset_top = 119.0
+offset_right = 1039.0
+offset_bottom = 599.0
+custom_minimum_size = Vector2( 800, 480 )
 theme = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""
@@ -63,35 +63,35 @@ __meta__ = {
 [node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer"]
-margin_right = 736.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 6 )
+offset_right = 736.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource( 6 )
 text = "Level Select"
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 28.0
-margin_right = 736.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 24 )
+offset_top = 28.0
+offset_right = 736.0
+offset_bottom = 52.0
+custom_minimum_size = Vector2( 0, 24 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 56.0
-margin_right = 736.0
-margin_bottom = 352.0
+offset_top = 56.0
+offset_right = 736.0
+offset_bottom = 352.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_right = 440.0
-margin_bottom = 296.0
+offset_right = 440.0
+offset_bottom = 296.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 8
@@ -100,25 +100,25 @@ __meta__ = {
 }
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_left = 444.0
-margin_right = 476.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 32, 0 )
+offset_left = 444.0
+offset_right = 476.0
+offset_bottom = 296.0
+custom_minimum_size = Vector2( 32, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_left = 480.0
-margin_right = 736.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 256, 0 )
+offset_left = 480.0
+offset_right = 736.0
+offset_bottom = 296.0
+custom_minimum_size = Vector2( 256, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer"]
-margin_right = 256.0
-margin_bottom = 260.0
+offset_right = 256.0
+offset_bottom = 260.0
 size_flags_vertical = 3
 
 [node name="LevelNumber" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_right = 256.0
-margin_bottom = 14.0
+offset_right = 256.0
+offset_bottom = 14.0
 text = "Level X"
 align = 1
 autowrap = true
@@ -127,15 +127,15 @@ __meta__ = {
 }
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 256.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 16 )
+offset_top = 18.0
+offset_right = 256.0
+offset_bottom = 34.0
+custom_minimum_size = Vector2( 0, 16 )
 
 [node name="LevelCaption" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 256.0
-margin_bottom = 52.0
+offset_top = 38.0
+offset_right = 256.0
+offset_bottom = 52.0
 text = "Lorem ipsum dolor sit amet"
 align = 1
 autowrap = true
@@ -144,15 +144,15 @@ __meta__ = {
 }
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 56.0
-margin_right = 256.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 56.0
+offset_right = 256.0
+offset_bottom = 88.0
+custom_minimum_size = Vector2( 0, 32 )
 
 [node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 256.0
-margin_bottom = 106.0
+offset_top = 92.0
+offset_right = 256.0
+offset_bottom = 106.0
 text = "Best time:"
 align = 1
 autowrap = true
@@ -161,9 +161,9 @@ __meta__ = {
 }
 
 [node name="BestTime" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 110.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_top = 110.0
+offset_right = 256.0
+offset_bottom = 124.0
 text = "00:00:00"
 align = 1
 autowrap = true
@@ -172,57 +172,57 @@ __meta__ = {
 }
 
 [node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 128.0
-margin_right = 256.0
-margin_bottom = 128.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 128.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer"]
-margin_top = 264.0
-margin_right = 256.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 264.0
+offset_right = 256.0
+offset_bottom = 296.0
+custom_minimum_size = Vector2( 0, 32 )
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 76.0
-margin_bottom = 32.0
+offset_right = 76.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="ButtonPlay" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 80.0
-margin_right = 176.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+offset_left = 80.0
+offset_right = 176.0
+offset_bottom = 32.0
+custom_minimum_size = Vector2( 96, 0 )
 text = "Play"
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 180.0
-margin_right = 256.0
-margin_bottom = 32.0
+offset_left = 180.0
+offset_right = 256.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 356.0
-margin_right = 736.0
-margin_bottom = 380.0
-rect_min_size = Vector2( 0, 24 )
+offset_top = 356.0
+offset_right = 736.0
+offset_bottom = 380.0
+custom_minimum_size = Vector2( 0, 24 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 384.0
-margin_right = 736.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 0, 32 )
+offset_top = 384.0
+offset_right = 736.0
+offset_bottom = 416.0
+custom_minimum_size = Vector2( 0, 32 )
 
 [node name="ButtonBack" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2" instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_right = 96.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+offset_left = 0.0
+offset_right = 96.0
+offset_bottom = 32.0
+custom_minimum_size = Vector2( 96, 0 )
 text = "Back"
 
 [node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2"]
-margin_left = 100.0
-margin_right = 736.0
-margin_bottom = 32.0
+offset_left = 100.0
+offset_right = 736.0
+offset_bottom = 32.0
 size_flags_horizontal = 3
 [connection signal="pressed" from="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VSplitContainer/HBoxContainer2/ButtonBack" to="." method="_on_ButtonBack_pressed"]

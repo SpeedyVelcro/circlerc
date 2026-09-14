@@ -32,8 +32,8 @@ func _draw():
 	# Draw arc
 	# TODO: fuck I just realised there's an inbuilt function for this, should probably replace everything
 	var origin = Vector2(0, 0)
-	var points = PoolVector2Array()
-	var color = Color.white
+	var points = PackedVector2Array()
+	var color = Color.WHITE
 	color.a = alpha
 	for i in range(circle_resolution + 1):
 		if (i as float) / ((circle_resolution as float) + 1) > progress_rad / (2 * PI):
@@ -51,13 +51,13 @@ func _draw():
 		var final_scale = 1.3
 		var a = initial_a + (final_a - initial_a) * success_circle_progress
 		var s = initial_scale + (final_scale - initial_scale) * success_circle_progress
-		color = Color.white
+		color = Color.WHITE
 		color.a = a
 		draw_circle(origin, (radius as float) * s, color)
 
 func complete():
 	for cap in capturables:
-		connect("complete", cap, "_on_Loop_complete", [], CONNECT_ONESHOT)
+		connect("complete", Callable(cap, "_on_Loop_complete").bind(), CONNECT_ONE_SHOT)
 	emit_signal("complete")
 	$Timer.start(success_lifetime_sec)
 	draw_success_circle = true
