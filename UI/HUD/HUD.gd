@@ -43,12 +43,12 @@ func _on_Player_health_changed(health, max_health):
 func _on_ControllerArea_body_entered(_body):
 	# Collision mask means only player can trigger this
 	if not level_finished:
-		$Controller.hide()
+		$Controller.slide_out()
 
 func _on_ControllerArea_body_exited(_body):
 	# Collision mask means only player can trigger this
 	if not level_finished:
-		$Controller.show()
+		$Controller.slide_in()
 
 func _on_Level_time_elapsed(time_centisec):
 	$Clock.set_time(time_centisec)

@@ -8,12 +8,10 @@ var hide_time = 0.2
 
 func _ready():
 	normal_visual_position = $Visual.get_position()
-	hidden_visual_position = normal_visual_position
-	hidden_visual_position.y += 96
+	hidden_visual_position = normal_visual_position + Vector2(0, 96)
 
 
-@warning_ignore("native_method_override") # TODO: rename
-func show():
+func slide_in():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
@@ -21,12 +19,11 @@ func show():
 	tween.play()
 
 
-@warning_ignore("native_method_override") # TODO: rename
-func hide():
+func slide_out():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_QUAD)
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property($Visual, "position", normal_visual_position, hide_time)
+	tween.tween_property($Visual, "position", hidden_visual_position, hide_time)
 	tween.play()
 
 # Manipulate gizmos
