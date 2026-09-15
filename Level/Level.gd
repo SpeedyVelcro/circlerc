@@ -5,7 +5,7 @@ extends Node
 @export var current_level: int = 1 # Starts at 1
 var level_list = preload("res://Level/LevelList.tres")
 var time_elapsed_centisec = 0
-var finished = false
+var has_finished = false
 var started = false
 
 signal time_elapsed(time_sec)
@@ -18,7 +18,7 @@ func _ready():
 		$HUD.set_level(current_level - 1)
 
 func _process(delta):
-	if started and not finished:
+	if started and not has_finished:
 		var t = 100 * delta
 		time_elapsed_centisec += t
 		emit_signal("time_elapsed", t)
@@ -26,7 +26,7 @@ func _process(delta):
 func _on_Finish_activated():
 	emit_signal("finished")
 	$VictoryAudio.play()
-	finished = true
+	has_finished = true
 	$FinishTimer.start(1.5)
 	$HUDFadeTimer.start(1.5)
 	Profile.submit_level_time(current_level - 1, time_elapsed_centisec)
