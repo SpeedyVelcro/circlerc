@@ -1,175 +1,162 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene format=3 uid="uid://davrql42i6s68"]
 
-[ext_resource path="res://UI/HUD/Controller/ThrottleGizmoForward.png" type="Texture2D" id=1]
-[ext_resource path="res://UI/HUD/Controller/SteerGizmoLeft.png" type="Texture2D" id=2]
-[ext_resource path="res://UI/HUD/Controller/SteerGizmoStraight.png" type="Texture2D" id=3]
-[ext_resource path="res://UI/HUD/Controller/ThrottleGizmoStop.png" type="Texture2D" id=4]
-[ext_resource path="res://UI/HUD/Controller/ThrottleGizmoReverse.png" type="Texture2D" id=5]
-[ext_resource path="res://UI/HUD/Controller/Controller.gd" type="Script" id=6]
-[ext_resource path="res://UI/HUD/Controller/SteerGizmoRight.png" type="Texture2D" id=7]
-[ext_resource path="res://UI/HUD/Controller/Controller.png" type="Texture2D" id=8]
-[ext_resource path="res://UI/HUD/HUD.gd" type="Script" id=9]
-[ext_resource path="res://UI/HUD/HealthBar.gd" type="Script" id=10]
-[ext_resource path="res://UI/HUD/Clock.gd" type="Script" id=11]
-[ext_resource path="res://Font/PressStart2P/PressStart2PMedium.tres" type="FontFile" id=12]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="FontFile" id=13]
-[ext_resource path="res://UI/HUD/LevelDetail.gd" type="Script" id=14]
-[ext_resource path="res://Level/LevelList.tres" type="Resource" id=15]
+[ext_resource type="Texture2D" uid="uid://bw466eom4j58h" path="res://UI/HUD/Controller/ThrottleGizmoForward.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bykrrcsorkb3g" path="res://UI/HUD/Controller/SteerGizmoLeft.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c2xwg558kl61u" path="res://UI/HUD/Controller/SteerGizmoStraight.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://2bstmq4l58t4" path="res://UI/HUD/Controller/ThrottleGizmoStop.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ct5scf7sghr2m" path="res://UI/HUD/Controller/ThrottleGizmoReverse.png" id="5"]
+[ext_resource type="Script" uid="uid://bhnqpgm5bwfyy" path="res://UI/HUD/Controller/Controller.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://b0eh0m3epmcek" path="res://UI/HUD/Controller/SteerGizmoRight.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://buwie0oga5a1f" path="res://UI/HUD/Controller/Controller.png" id="8"]
+[ext_resource type="Script" uid="uid://1jsaxl7mlfe0" path="res://UI/HUD/HUD.gd" id="9"]
+[ext_resource type="Script" uid="uid://bprdb8sap1wc0" path="res://UI/HUD/HealthBar.gd" id="10"]
+[ext_resource type="Script" uid="uid://c8advmvmyymwq" path="res://UI/HUD/Clock.gd" id="11"]
+[ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PMedium.tres" id="12"]
+[ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PSmall.tres" id="13"]
+[ext_resource type="Script" uid="uid://dcd245n68mesm" path="res://UI/HUD/LevelDetail.gd" id="14"]
+[ext_resource type="Resource" path="res://Level/LevelList.tres" id="15"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "left",
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": 1,
+"name": &"left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "right",
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": 1,
+"name": &"right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "straight",
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": 1,
+"name": &"straight",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "stop",
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": 1,
+"name": &"forward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "forward",
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": 1,
+"name": &"reverse",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "reverse",
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": 1,
+"name": &"stop",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0784314, 0.52549, 0.121569, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0, 0, 0, 0 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.121569, 0.121569, 0.121569, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0, 0, 0, 1 )
-
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1960076881]
 layer = 90
-script = ExtResource( 9 )
+script = ExtResource("9")
 
-[node name="Controller" type="Control" parent="."]
+[node name="Controller" type="Control" parent="." unique_id=1358080715]
+layout_mode = 3
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("6")
 
-[node name="Visual" type="Node2D" parent="Controller"]
+[node name="Visual" type="Node2D" parent="Controller" unique_id=283720916]
 
-[node name="Sprite2D" type="Sprite2D" parent="Controller/Visual"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 8 )
-offset = Vector2( -160, -128 )
+[node name="Sprite2D" type="Sprite2D" parent="Controller/Visual" unique_id=287821927]
+scale = Vector2(2, 2)
+texture = ExtResource("8")
+offset = Vector2(-160, -128)
 
-[node name="SteerSprite" type="AnimatedSprite2D" parent="Controller/Visual"]
-position = Vector2( -416, -24 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 1 )
-animation = "right"
+[node name="SteerSprite" type="AnimatedSprite2D" parent="Controller/Visual" unique_id=1379896747]
+position = Vector2(-416, -24)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("1")
+animation = &"right"
 
-[node name="ThrottleSprite" type="AnimatedSprite2D" parent="Controller/Visual"]
-position = Vector2( -124, -48 )
-scale = Vector2( 2, 2 )
-frames = SubResource( 2 )
-animation = "reverse"
+[node name="ThrottleSprite" type="AnimatedSprite2D" parent="Controller/Visual" unique_id=1882125752]
+position = Vector2(-124, -48)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("2")
+animation = &"reverse"
 
-[node name="Tween" type="Tween" parent="Controller"]
-
-[node name="HealthBar" type="Control" parent="."]
+[node name="HealthBar" type="Control" parent="." unique_id=2090785767]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 256.0
 offset_bottom = 64.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("10")
 
-[node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar" unique_id=213934546]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 32.0
 offset_right = 160.0
 offset_bottom = 64.0
-theme_override_styles/fg = SubResource( 3 )
-theme_override_styles/bg = SubResource( 4 )
 value = 50.0
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Clock" type="Control" parent="."]
+[node name="Clock" type="Control" parent="." unique_id=1896455828]
+layout_mode = 3
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -160.0
 offset_right = 160.0
 offset_bottom = 96.0
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("11")
 
-[node name="Label" type="Label" parent="Clock"]
+[node name="Label" type="Label" parent="Clock" unique_id=1067274787]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 16.0
-theme_override_fonts/font = ExtResource( 12 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12")
 text = "00:00:00"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="LevelDetail" type="Control" parent="."]
+[node name="LevelDetail" type="Control" parent="." unique_id=2037420551]
+layout_mode = 3
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -400.0
 offset_right = 650.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-level_list = ExtResource( 15 )
+script = ExtResource("14")
+level_list = ExtResource("15")
 
-[node name="Label" type="Label" parent="LevelDetail"]
+[node name="Label" type="Label" parent="LevelDetail" unique_id=1256441496]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_bottom = -16.0
-theme_override_fonts/font = ExtResource( 13 )
-theme_override_colors/font_shadow_color = Color( 0, 0, 0, 1 )
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13")
 text = "Level X
 If you can see this text something went wrong."
-valign = 2
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+vertical_alignment = 2
+
 [connection signal="tree_exiting" from="Controller" to="Controller" method="_on_Controller_tree_exiting"]
