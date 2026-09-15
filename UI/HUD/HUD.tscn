@@ -73,7 +73,6 @@ animations = [{
 font = ExtResource("12_cgpfr")
 font_size = 32
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(2, 2)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y8qxg"]
 font = ExtResource("12_cgpfr")
