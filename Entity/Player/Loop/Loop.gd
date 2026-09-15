@@ -24,7 +24,7 @@ signal completed
 func _process(delta):
 	if draw_success_circle:
 		success_circle_progress += delta / success_circle_time
-		update()
+		queue_redraw()
 		if success_circle_progress >= 1.0:
 			draw_success_circle = false
 
@@ -65,7 +65,7 @@ func complete():
 
 func _on_Player_loop_advance(value_rad):
 	progress_rad += abs(value_rad)
-	update() # Re-draw
+	queue_redraw() # Re-draw
 	if progress_rad >= (2 * PI) * success_threshold:
 		progress_rad = 2 * PI
 		complete()
@@ -104,7 +104,7 @@ func set_radius(value):
 
 func set_alpha(value):
 	alpha = value
-	update() # Re-draw with new alpha
+	queue_redraw() # Re-draw with new alpha
 
 func get_alpha():
 	return alpha
