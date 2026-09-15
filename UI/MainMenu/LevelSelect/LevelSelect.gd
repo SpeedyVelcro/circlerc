@@ -20,7 +20,7 @@ func _ready():
 	for i in level_list.get_number_of_levels():
 		var lb = level_button_resource.instantiate()
 		grid_container.add_child(lb)
-		lb.set_text(String(i + 1).pad_zeros(2))
+		lb.set_text(str(i + 1).pad_zeros(2))
 		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i))
 		if not Profile.is_level_unlocked(i):
 			lb.set_disabled(true)
@@ -32,7 +32,7 @@ func _ready():
 func _on_ButtonLevel_pressed(level_number):
 	selected_level = level_number
 	# Update details
-	level_number_label.set_text("Level " + String(level_number + 1))
+	level_number_label.set_text("Level " + str(level_number + 1))
 	level_caption_label.set_text(level_list._get_caption(level_number))
 	var t_cent = Profile.get_level_best_time(level_number)
 	if t_cent == -1:
@@ -46,9 +46,9 @@ func _on_ButtonLevel_pressed(level_number):
 		while t_sec >= 60:
 			t_sec -= 60
 			t_min += 1
-		var s_cent = String(floor(t_cent)).pad_zeros(2)
-		var s_sec = String(floor(t_sec)).pad_zeros(2)
-		var s_min = String(floor(t_min)). pad_zeros(2)
+		var s_cent = str(floor(t_cent)).pad_zeros(2)
+		var s_sec = str(floor(t_sec)).pad_zeros(2)
+		var s_min = str(floor(t_min)). pad_zeros(2)
 		best_time_label.set_text(s_min + ":" + s_sec + ":" + s_cent)
 
 func _on_ButtonBack_pressed():
