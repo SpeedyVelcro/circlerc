@@ -1,112 +1,92 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene format=3 uid="uid://g1ootw016pxe"]
 
-[ext_resource path="res://Entity/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture2D" id=2]
-[ext_resource path="res://UI/PauseMenu/PauseMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/HUD/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Level/Level.gd" type="Script" id=5]
-[ext_resource path="res://Sound/Jingle/VictorySteel.ogg" type="AudioStream" id=6]
-[ext_resource path="res://UI/VictoryMenu/VictoryMenu.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://bowma5bbto5lg" path="res://Entity/Player/Player.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="2"]
+[ext_resource type="PackedScene" path="res://UI/PauseMenu/PauseMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://davrql42i6s68" path="res://UI/HUD/HUD.tscn" id="4"]
+[ext_resource type="Script" uid="uid://qlpolhkqtds7" path="res://Level/Level.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://je2ewecg0q2d" path="res://Sound/Jingle/VictorySteel.ogg" id="6"]
+[ext_resource type="PackedScene" path="res://UI/VictoryMenu/VictoryMenu.tscn" id="7"]
 
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(1414.678, 42.1774)
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 707.339, 21.0887 )
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(66.2352, 779.204)
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 33.1176, 389.602 )
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(61.7452, 788.184)
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 30.8726, 394.092 )
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(1496.252, 49.6038)
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 748.126, 24.8019 )
+[sub_resource type="RectangleShape2D" id="5"]
+size = Vector2(667.188, 158.7514)
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 333.594, 79.3757 )
+[node name="Level" type="Node" unique_id=636156732]
+script = ExtResource("5")
 
-[node name="Level" type="Node"]
-script = ExtResource( 5 )
-
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="." unique_id=591550601]
 z_index = -1000
-texture = ExtResource( 2 )
-offset = Vector2( 640, 360 )
+texture_repeat = 2
+texture = ExtResource("2")
+offset = Vector2(640, 360)
 region_enabled = true
-region_rect = Rect2( 0, 0, 1280, 720 )
+region_rect = Rect2(0, 0, 1280, 720)
 
-[node name="World" type="Node2D" parent="."]
+[node name="World" type="Node2D" parent="." unique_id=1028984410]
 
-[node name="Borders" type="StaticBody2D" parent="World"]
+[node name="Borders" type="StaticBody2D" parent="World" unique_id=1073710074]
 collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders"]
-position = Vector2( 636.814, -29.5299 )
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Borders" unique_id=1821671272]
+position = Vector2(636.814, -29.5299)
+shape = SubResource("1")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Borders"]
-position = Vector2( 1323.38, 347.963 )
-shape = SubResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/Borders" unique_id=553018407]
+position = Vector2(1323.38, 347.963)
+shape = SubResource("2")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/Borders"]
-position = Vector2( -40.4086, 352.453 )
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World/Borders" unique_id=739396277]
+position = Vector2(-40.4086, 352.453)
+shape = SubResource("3")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/Borders"]
-position = Vector2( 639.803, 754.294 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World/Borders" unique_id=842226024]
+position = Vector2(639.803, 754.294)
+shape = SubResource("4")
 
-[node name="Player" parent="World" instance=ExtResource( 1 )]
-position = Vector2( 517, 300 )
+[node name="Player" parent="World" unique_id=910774058 instance=ExtResource("1")]
+position = Vector2(517, 300)
 
-[node name="ControllerArea" type="Area2D" parent="World"]
-position = Vector2( 961.814, 658.364 )
-monitorable = false
+[node name="ControllerArea" type="Area2D" parent="World" unique_id=1985042947]
+position = Vector2(961.814, 658.364)
 collision_layer = 0
 collision_mask = 2
-__meta__ = {
-"_edit_lock_": true
-}
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/ControllerArea"]
-shape = SubResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/ControllerArea" unique_id=2068645496]
+shape = SubResource("5")
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="HUD" parent="." unique_id=1577798570 instance=ExtResource("4")]
 
-[node name="PauseMenu" parent="." instance=ExtResource( 3 )]
+[node name="PauseMenu" parent="." unique_id=996937789 instance=ExtResource("3")]
 
-[node name="VictoryMenu" parent="." instance=ExtResource( 7 )]
+[node name="VictoryMenu" parent="." unique_id=296939300 instance=ExtResource("7")]
 
-[node name="FinishTimer" type="Timer" parent="."]
+[node name="FinishTimer" type="Timer" parent="." unique_id=1759241989]
 one_shot = true
 
-[node name="DeathTimer" type="Timer" parent="."]
+[node name="DeathTimer" type="Timer" parent="." unique_id=1676538177]
 
-[node name="VictoryAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+[node name="VictoryAudio" type="AudioStreamPlayer" parent="." unique_id=458362482]
+stream = ExtResource("6")
 
-[node name="HUDFadeTimer" type="Timer" parent="."]
+[node name="HUDFadeTimer" type="Timer" parent="." unique_id=1841367607]
 one_shot = true
-[connection signal="finished" from="." to="PauseMenu" method="_on_Level_finished"]
+
 [connection signal="finished" from="." to="World/Player" method="_on_Level_finished"]
 [connection signal="finished" from="." to="HUD" method="_on_Level_finished"]
+[connection signal="finished" from="." to="PauseMenu" method="_on_Level_finished"]
 [connection signal="time_elapsed" from="." to="HUD" method="_on_Level_time_elapsed"]
 [connection signal="death" from="World/Player" to="." method="_on_Player_death"]
 [connection signal="first_move" from="World/Player" to="." method="_on_Player_first_move"]
