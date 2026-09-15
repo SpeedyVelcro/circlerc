@@ -158,5 +158,3 @@ theme_override_fonts/font = ExtResource("13")
 text = "Level X
 If you can see this text something went wrong."
 vertical_alignment = 2
-
-[connection signal="tree_exiting" from="Controller" to="Controller" method="_on_Controller_tree_exiting"]
