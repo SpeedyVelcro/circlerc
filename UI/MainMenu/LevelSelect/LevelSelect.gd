@@ -17,9 +17,11 @@ var selected_level = 0
 
 func _ready():
 	# Populate level grid
+	var button_group := ButtonGroup.new()
 	for i in level_list.get_number_of_levels():
 		var lb = level_button_resource.instantiate()
 		grid_container.add_child(lb)
+		lb.button_group = button_group
 		lb.set_text(str(i + 1).pad_zeros(2))
 		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i))
 		if not Profile.is_level_unlocked(i):
