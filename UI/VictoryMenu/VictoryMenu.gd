@@ -90,7 +90,7 @@ func set_time_cent(value):
 func set_level(value):
 	# Input level starting from 1
 	level_number = value
-	level_title_label.set_text("Level " + String(level_number))
+	level_title_label.set_text("Level " + str(level_number))
 	best_time_cent = Profile.get_level_best_time(level_number - 1)
 	best_time_label.set_text(centisec_to_string(best_time_cent))
 	
