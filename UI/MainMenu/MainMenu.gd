@@ -2,7 +2,7 @@
 
 extends Control
 
-@onready var quit_button = get_node("CenterContainer/Panel/VBoxContainer/HBoxContainer4/ButtonQuit")
+@export var quit_button: Button
 
 func _ready():
 	if OS.get_name() == "HTML5":

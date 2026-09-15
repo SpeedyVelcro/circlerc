@@ -8,13 +8,14 @@
 [ext_resource type="LabelSettings" uid="uid://dxullnmum6xx1" path="res://Font/PressStart2P/PressStart2PTinyLabelSettings.tres" id="5_1dhmk"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="6_jhcbk"]
 
-[node name="MainMenu" type="Control" unique_id=785984497]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("4")
 script = ExtResource("2")
+quit_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=506171900]
 layer = -128
