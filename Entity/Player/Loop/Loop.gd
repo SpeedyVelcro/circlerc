@@ -71,15 +71,19 @@ func _on_Player_loop_advance(value_rad):
 		complete()
 
 func _on_Player_loop_cancel():
-	$FadeTween.interpolate_method(self, "set_alpha", get_alpha(), 0.0, 0.1,
-				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$FadeTween.start()
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "alpha", 0.0, 0.1)
+	tween.play()
 
 func _on_Timer_timeout():
 	# Success lifetime over so fade out.
-	$FadeTween.interpolate_method(self, "set_alpha", get_alpha(), 0.0, 3.0,
-				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$FadeTween.start()
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(self, "alpha", 0.0, 3.0)
+	tween.play()
 
 func _on_FadeTween_tween_completed(_object, _key):
 	# Faded out so free
