@@ -69,6 +69,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgpfr"]
+bg_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8qxg"]
+bg_color = Color(0.078431375, 0.5254902, 0.12156863, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 0)
+
 [sub_resource type="LabelSettings" id="LabelSettings_dwvm7"]
 font = ExtResource("12_cgpfr")
 font_size = 32
@@ -124,7 +140,10 @@ offset_left = 32.0
 offset_top = 32.0
 offset_right = 160.0
 offset_bottom = 64.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cgpfr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y8qxg")
 value = 50.0
+show_percentage = false
 
 [node name="Clock" type="Control" parent="." unique_id=1896455828]
 layout_mode = 3
