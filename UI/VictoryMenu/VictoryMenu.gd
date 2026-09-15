@@ -50,9 +50,9 @@ func centisec_to_string(value):
 	while secs >= 60:
 		secs -= 60
 		mins += 1
-	var str_min = String(floor(mins)).pad_zeros(2)
-	var str_sec = String(floor(secs)).pad_zeros(2)
-	var str_cent = String(floor(cents)).pad_zeros(2)
+	var str_min = str(floor(mins)).pad_zeros(2)
+	var str_sec = str(floor(secs)).pad_zeros(2)
+	var str_cent = str(floor(cents)).pad_zeros(2)
 	return str_min + ":" + str_sec + ":" + str_cent + ":"
 
 func quit():
