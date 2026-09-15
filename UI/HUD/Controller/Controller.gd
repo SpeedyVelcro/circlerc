@@ -11,6 +11,8 @@ func _ready():
 	hidden_visual_position = normal_visual_position
 	hidden_visual_position.y += 96
 
+
+@warning_ignore("native_method_override") # TODO: rename
 func show():
 	# Inside tree check necessary to prevent annoying error messages when
 			# RC car is deleted
@@ -20,6 +22,8 @@ func show():
 				Tween.TRANS_QUAD, Tween.EASE_OUT)
 		$Tween.start()
 
+
+@warning_ignore("native_method_override") # TODO: rename
 func hide():
 	# Inside tree check necessary to prevent annoying error messages when
 			# RC car is deleted
