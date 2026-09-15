@@ -48,7 +48,7 @@ func _on_ButtonLevel_pressed(level_number):
 		while t_sec >= 60:
 			t_sec -= 60
 			t_min += 1
-		var s_cent = str(floor(t_cent)).pad_zeros(2)
+		var s_cent = str(floori(t_cent)).pad_zeros(2)
 		var s_sec = str(floor(t_sec)).pad_zeros(2)
 		var s_min = str(floor(t_min)). pad_zeros(2)
 		best_time_label.set_text(s_min + ":" + s_sec + ":" + s_cent)
