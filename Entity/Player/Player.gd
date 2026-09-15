@@ -18,7 +18,6 @@ var steering_change_rate = 3
 #var turn_speed = 0.03
 var turn_radius = 64
 var turn_velocity = 0
-var velocity = Vector2(0, 0)
 var speed = 0
 var drag = 1.8
 @onready var loop_resource = preload("res://Entity/Player/Loop/Loop.tscn")
@@ -137,15 +136,9 @@ func _physics_process(delta):
 	velocity += move_vec
 	# move_and_slide(velocity)
 	# Apply movement
-	var infinite_inertia = false # Must be false so pushing stuff isn't janky.
 	var push_power = 1
 	# warning-ignore:return_value_discarded
-	move_and_slide(velocity,
-		Vector2(0, 0), # default
-		false, # default
-		4, # default
-		0.785398, # default
-		infinite_inertia) # Infinite inertia, must be false
+	move_and_slide()
 	
 	# Push props that have been collided with
 	for i in get_slide_collision_count():
@@ -241,7 +234,7 @@ func steer(direction):
 		1:
 			emit_signal("steer_right")
 
-func perfect_turn_velocity(steer = steering):
+func perfect_turn_velocity(with_steering = steering):
 	# Returns turn velocity in radians per second required for a perfect
 	# circular turn of exact radius turn_radius
 	if speed == 0:
@@ -249,7 +242,7 @@ func perfect_turn_velocity(steer = steering):
 	# Calculate the time a full loop would take for a constant circumference
 	var expected_time = (2 * PI * turn_radius) / speed
 	# Then calculate turn speed from time
-	return steer * ((2 * PI) / expected_time)
+	return with_steering * ((2 * PI) / expected_time)
 
 func _on_Loop_complete():
 	forget_loop()
