@@ -6,7 +6,14 @@
 
 extends RigidBody2D
 
-var path = null
+var path = null:
+	set(value):
+		_path = value
+		path_points = path.get_curve().get_baked_points()
+	get:
+		return _path
+
+var _path = null
 @export var max_speed = 100.0
 var path_points
 var path_index = 0
@@ -32,7 +39,7 @@ func _ready():
 func _on_parent_ready():
 	var potential_path = get_parent()
 	if potential_path is Path2D:
-		set_path(potential_path)
+		path = potential_path
 		path_follow = path_follow_resource.instantiate()
 		path.add_child(path_follow)
 		path_follow.set_max_speed(max_speed)
@@ -40,8 +47,8 @@ func _on_parent_ready():
 		# position used rather than global_position as this is in the curve's local space.
 		var f_offset = path.get_curve().get_closest_offset(position)
 		# Put the path_follow at that point
-		path_follow.set_offset(f_offset)
-		path_follow.set_offset(path_follow.get_offset() + path_follow_max_distance)
+		path_follow.progress = f_offset
+		path_follow.progress = path_follow.progress + path_follow_max_distance
 		global_rotation = get_angle_to(path_follow.get_global_position())
 
 func _physics_process(_delta):
@@ -117,14 +124,6 @@ func is_path_assigned():
 
 func is_path_follow_assigned():
 	return path_follow != null
-
-# Getters and setters
-func set_path(value):
-	path = value
-	path_points = path.get_curve().get_baked_points()
-
-func get_path():
-	return path
 
 func _on_CollisionAudio_finished():
 	print("collision audio done")

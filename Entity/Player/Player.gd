@@ -170,7 +170,7 @@ func _physics_process(delta):
 func take_damage(amount):
 	if not invincible:
 		set_health(get_health() - amount)
-		print("took damage " + String(amount))
+		print("took damage " + str(amount))
 	if not $CrashAudio.is_playing():
 		$CrashAudio.play(0.0)
 
