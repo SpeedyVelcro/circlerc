@@ -17,7 +17,7 @@ func _process(delta):
 			closest_relative_offset = min(closest_relative_offset, sibling_relative_offset)
 	if not (closest_relative_offset < ((1.0 / path_follow_count) * 0.5)):
 		# This is the actual line that does the movement
-		offset += max_speed * delta * speed_multiplier
+		progress += max_speed * delta * speed_multiplier
 		
 
 # Getters and setters
