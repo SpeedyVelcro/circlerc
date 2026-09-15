@@ -11,8 +11,7 @@
 [ext_resource type="Script" uid="uid://1jsaxl7mlfe0" path="res://UI/HUD/HUD.gd" id="9"]
 [ext_resource type="Script" uid="uid://bprdb8sap1wc0" path="res://UI/HUD/HealthBar.gd" id="10"]
 [ext_resource type="Script" uid="uid://c8advmvmyymwq" path="res://UI/HUD/Clock.gd" id="11"]
-[ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PMedium.tres" id="12"]
-[ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PSmall.tres" id="13"]
+[ext_resource type="FontFile" uid="uid://djtfpau1f651x" path="res://Font/PressStart2P/PressStart2P-Regular.ttf" id="12_cgpfr"]
 [ext_resource type="Script" uid="uid://dcd245n68mesm" path="res://UI/HUD/LevelDetail.gd" id="14"]
 [ext_resource type="Resource" path="res://Level/LevelList.tres" id="15"]
 
@@ -69,6 +68,17 @@ animations = [{
 "name": &"stop",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dwvm7"]
+font = ExtResource("12_cgpfr")
+font_size = 32
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8qxg"]
+font = ExtResource("12_cgpfr")
+font_size = 24
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=1960076881]
 layer = 90
@@ -132,9 +142,8 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 16.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("12")
 text = "00:00:00"
+label_settings = SubResource("LabelSettings_dwvm7")
 horizontal_alignment = 1
 
 [node name="LevelDetail" type="Control" parent="." unique_id=2037420551]
@@ -148,13 +157,14 @@ script = ExtResource("14")
 level_list = ExtResource("15")
 
 [node name="Label" type="Label" parent="LevelDetail" unique_id=1256441496]
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
 offset_bottom = -16.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("13")
 text = "Level X
 If you can see this text something went wrong."
+label_settings = SubResource("LabelSettings_y8qxg")
 vertical_alignment = 2
+autowrap_mode = 3

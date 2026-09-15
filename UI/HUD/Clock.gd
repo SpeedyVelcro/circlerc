@@ -24,4 +24,4 @@ func update_text():
 	$Label.set_text(str_min + ":" + str_sec + ":" + str_cent)
 
 func finalise():
-	$Label.set("theme_override_colors/font_color", Color.GREEN)
+	$Label.label_settings.font_color = Color.GREEN
