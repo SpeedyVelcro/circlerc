@@ -24,17 +24,15 @@ func save_profile():
 		"level_best_time" : level_best_time
 	}
 	# Save dictionary to file
-	var file = File.new()
-	file.open(PROFILE_PATH, File.WRITE)
-	file.store_string(JSON.new().stringify(dict))
+	var file = FileAccess.open(PROFILE_PATH, FileAccess.WRITE)
+	file.store_string(JSON.stringify(dict))
 	file.close()
 
 func load_profile():
 	# Load
-	var file = File.new()
-	if file.file_exists(PROFILE_PATH):
+	if FileAccess.file_exists(PROFILE_PATH):
 		# Get dictionary from file
-		file.open(PROFILE_PATH, File.READ)
+		var file := FileAccess.open(PROFILE_PATH, FileAccess.READ)
 		var test_json_conv = JSON.new()
 		test_json_conv.parse(file.get_as_text())
 		var dict = test_json_conv.get_data()
