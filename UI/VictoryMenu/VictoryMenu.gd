@@ -27,7 +27,7 @@ func _ready():
 func _process(_delta):
 	if input_allowed:
 		if Input.is_action_just_pressed("ui_accept"):
-			next_level()
+			continue_to_next_level()
 		elif Input.is_action_just_pressed("ui_cancel"):
 			quit()
 
@@ -61,7 +61,7 @@ func quit():
 func retry():
 	SceneTransition.instant(get_tree().get_current_scene().get_scene_file_path())
 
-func next_level():
+func continue_to_next_level():
 	emit_signal("next_level")
 
 func _on_QuitButton_pressed():
@@ -71,7 +71,7 @@ func _on_RetryButton_pressed():
 	retry()
 
 func _on_NextButton_pressed():
-	next_level()
+	continue_to_next_level()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
