@@ -15,8 +15,7 @@ func _on_ButtonBack_pressed():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
 
 func display_text_file(file_path):
-	var file = File.new()
-	file.open(file_path, File.READ)
+	var file = FileAccess.open(file_path, FileAccess.READ)
 	var credits_text = ""
 	while true:
 		credits_text += file.get_line()
