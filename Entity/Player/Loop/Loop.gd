@@ -19,7 +19,7 @@ var draw_success_circle = false
 var success_circle_progress = 0.0
 var success_circle_time = 1.0
 
-signal complete
+signal completed
 
 func _process(delta):
 	if draw_success_circle:
@@ -57,8 +57,8 @@ func _draw():
 
 func complete():
 	for cap in capturables:
-		connect("complete", Callable(cap, "_on_Loop_complete").bind(), CONNECT_ONE_SHOT)
-	emit_signal("complete")
+		connect("completed", Callable(cap, "_on_Loop_complete").bind(), CONNECT_ONE_SHOT)
+	emit_signal("completed")
 	$Timer.start(success_lifetime_sec)
 	draw_success_circle = true
 	

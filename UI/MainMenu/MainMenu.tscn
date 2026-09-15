@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="1"]
 [ext_resource type="Script" uid="uid://batrjr5yeanx" path="res://UI/MainMenu/MainMenu.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="3"]
-[ext_resource type="Theme" path="res://UI/Styles/MenuTheme.tres" id="4"]
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
 [ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PTitle.tres" id="5"]
 [ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2Tiny.tres" id="6"]
 [ext_resource type="FontFile" path="res://Font/PressStart2P/PressStart2PSmall.tres" id="7"]
