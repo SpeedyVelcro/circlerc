@@ -12,6 +12,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
 level_list = ExtResource("3")
@@ -95,9 +97,11 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="LevelCaption" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1771990353]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 text = "Lorem ipsum dolor sit amet"
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=166860459]
 custom_minimum_size = Vector2(0, 32)
