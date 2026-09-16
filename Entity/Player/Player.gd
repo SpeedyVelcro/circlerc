@@ -178,13 +178,13 @@ func start_loop():
 	if target_steering == 0:
 		return
 	# Calculate loop position
-	var loop_pos = Vector2(cos(get_global_rotation()), sin(get_global_rotation()))
+	var loop_pos = Vector2(cos(global_rotation), sin(global_rotation))
 	loop_pos *= turn_radius
 	if target_steering < 0:
 		loop_pos = loop_pos.rotated(-(PI / 2))
 	if target_steering > 0:
 		loop_pos = loop_pos.rotated(PI / 2)
-	loop_pos += get_global_position()
+	loop_pos += global_position
 	# Create loop
 	if loop != null:
 		cancel_loop()
@@ -192,7 +192,7 @@ func start_loop():
 	get_parent().add_child(loop)
 	loop.set_global_position(loop_pos)
 	# Set its values
-	loop.starting_angle = get_global_position().angle_to_point(loop.get_global_position())
+	loop.starting_angle = loop.global_position.angle_to_point(global_position)
 	loop.radius = turn_radius
 	loop.direction = target_steering
 	# Hook up
