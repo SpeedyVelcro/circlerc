@@ -74,7 +74,7 @@ func _on_Player_loop_cancel():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "alpha", 0.0, 0.1)
+	tween.tween_property(self, "modulate", Color(modulate, 0.0), 0.1)
 	tween.tween_callback(queue_free)
 	tween.play()
 
@@ -83,7 +83,7 @@ func _on_Timer_timeout():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN_OUT)
-	tween.tween_property(self, "alpha", 0.0, 3.0)
+	tween.tween_property(self, "modulate", Color(modulate, 0.0), 3.0)
 	tween.tween_callback(queue_free)
 	tween.play()
 
