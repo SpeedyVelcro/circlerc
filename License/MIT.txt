@@ -1,5 +1,5 @@
 CircleRC
-Copyright © 2020 SpeedyVelcro
+Copyright © 2020-2026 SpeedyVelcro
 Licensed under the MIT license
 Where another license is specified for part of CircleRC, that license takes precedence.
 
