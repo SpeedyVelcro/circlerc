@@ -3,9 +3,9 @@
 [ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=1]
 
 [node name="ButtonMainMenu" type="Button"]
-margin_left = 0.471939
-margin_right = 67.4719
-margin_bottom = 22.0
+offset_left = 0.471939
+offset_right = 67.4719
+offset_bottom = 22.0
 theme = ExtResource( 1 )
 text = "Click me!"
 __meta__ = {

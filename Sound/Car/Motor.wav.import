@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/Motor.wav-d5dbbdfe7a08c9cf78297213250f266b.sample"
+type="AudioStreamWAV"
+uid="uid://bvgceuk4e44sp"
+path="res://.godot/imported/Motor.wav-d5dbbdfe7a08c9cf78297213250f266b.sample"
 
 [deps]
 
 source_file="res://Sound/Car/Motor.wav"
-dest_files=[ "res://.import/Motor.wav-d5dbbdfe7a08c9cf78297213250f266b.sample" ]
+dest_files=["res://.godot/imported/Motor.wav-d5dbbdfe7a08c9cf78297213250f266b.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=true
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

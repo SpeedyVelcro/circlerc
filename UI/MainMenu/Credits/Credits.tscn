@@ -1,173 +1,129 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://dvhpp058vg8j5"]
 
-[ext_resource path="res://UI/MainMenu/ButtonMainMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://UI/MainMenu/Credits/Credits.gd" type="Script" id=2]
-[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture" id=3]
-[ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=4]
-[ext_resource path="res://Font/PressStart2P/PressStart2PMedium.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Font/PressStart2P/PressStart2Tiny.tres" type="DynamicFont" id=6]
+[ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="1"]
+[ext_resource type="Script" uid="uid://tit8xiihwdtl" path="res://UI/MainMenu/Credits/Credits.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="3"]
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
+[ext_resource type="LabelSettings" uid="uid://byinc2p570ku4" path="res://Font/PressStart2P/PressStart2PMediumLabelSettings.tres" id="4_ju5vu"]
+[ext_resource type="LabelSettings" uid="uid://dxullnmum6xx1" path="res://Font/PressStart2P/PressStart2PTinyLabelSettings.tres" id="5_htarf"]
 
-
-[node name="Credits" type="Control"]
+[node name="Credits" type="Control" unique_id=684961863]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("2")
 text_edit_path = NodePath("CenterContainer/Panel/VBoxContainer/HBoxContainer2/TextEdit")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=2090493269]
 layer = -128
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1034372442]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=884412719]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("3")
+stretch_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=84549138]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
-margin_left = 320.0
-margin_top = 60.0
-margin_right = 960.0
-margin_bottom = 660.0
-rect_min_size = Vector2( 640, 600 )
-theme = ExtResource( 4 )
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=11547396]
+custom_minimum_size = Vector2(640, 600)
+layout_mode = 2
+theme = ExtResource("4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=768796217]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
-margin_right = 576.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 5 )
+[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer" unique_id=1099327031]
+layout_mode = 2
 text = "Credits"
-align = 1
-autowrap = true
+label_settings = ExtResource("4_ju5vu")
+horizontal_alignment = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 36.0
-margin_right = 576.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 0, 24 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer" unique_id=373131145]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 64.0
-margin_right = 576.0
-margin_bottom = 480.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=1684809239]
+layout_mode = 2
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
-margin_right = 140.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 140, 0 )
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=1873472331]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
 
-[node name="CreditsButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 140.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 0, 32 )
+[node name="CreditsButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=426450512]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "Credits"
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 36.0
-margin_right = 140.0
-margin_bottom = 52.0
-custom_fonts/font = ExtResource( 6 )
+[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=364509204]
+layout_mode = 2
 text = "Licenses"
-align = 1
+label_settings = ExtResource("5_htarf")
+horizontal_alignment = 1
 
-[node name="MITButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 56.0
-margin_right = 140.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 32 )
+[node name="MITButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=400128423]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "MIT"
 
-[node name="OFLButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_top = 92.0
-margin_right = 140.0
-margin_bottom = 124.0
-rect_min_size = Vector2( 0, 32 )
+[node name="OFLButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1457701147]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "OFL"
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
-margin_left = 144.0
-margin_right = 160.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 16, 0 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=962976127]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
-margin_left = 164.0
-margin_right = 576.0
-margin_bottom = 416.0
+[node name="TextEdit" type="TextEdit" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=1587527734]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
-custom_colors/font_color_readonly = Color( 1, 1, 1, 1 )
-readonly = true
-wrap_enabled = true
+theme = ExtResource("4")
+wrap_mode = 1
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 484.0
-margin_right = 576.0
-margin_bottom = 500.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer" unique_id=4906961]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 504.0
-margin_right = 576.0
-margin_bottom = 536.0
-rect_min_size = Vector2( 0, 32 )
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer" unique_id=2063457804]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-margin_right = 236.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer" unique_id=132204098]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ButtonBack" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 240.0
-margin_right = 336.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonBack" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer" unique_id=112481734 instance=ExtResource("1")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Back"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 340.0
-margin_right = 576.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer" unique_id=734534115]
+layout_mode = 2
 size_flags_horizontal = 3
+
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/MITButton" to="." method="_on_MITButton_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/OFLButton" to="." method="_on_OFLButton_pressed"]

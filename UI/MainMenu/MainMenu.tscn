@@ -1,282 +1,202 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://bqxug537ferlh"]
 
-[ext_resource path="res://UI/MainMenu/ButtonMainMenu.tscn" type="PackedScene" id=1]
-[ext_resource path="res://UI/MainMenu/MainMenu.gd" type="Script" id=2]
-[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture" id=3]
-[ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=4]
-[ext_resource path="res://Font/PressStart2P/PressStart2PTitle.tres" type="DynamicFont" id=5]
-[ext_resource path="res://Font/PressStart2P/PressStart2Tiny.tres" type="DynamicFont" id=6]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="DynamicFont" id=7]
+[ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="1"]
+[ext_resource type="Script" uid="uid://batrjr5yeanx" path="res://UI/MainMenu/MainMenu.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="3"]
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
+[ext_resource type="LabelSettings" uid="uid://md5x4l5fmt06" path="res://Font/PressStart2P/PressStart2PTitleLabelSettings.tres" id="4_a712v"]
+[ext_resource type="LabelSettings" uid="uid://dxullnmum6xx1" path="res://Font/PressStart2P/PressStart2PTinyLabelSettings.tres" id="5_1dhmk"]
+[ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="6_jhcbk"]
 
-
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("quit_button")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource("4")
+script = ExtResource("2")
+quit_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=506171900]
 layer = -128
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1891447939]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1091493395]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("3")
+stretch_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1605678448]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
-margin_left = 370.0
-margin_top = 60.0
-margin_right = 910.0
-margin_bottom = 660.0
-rect_min_size = Vector2( 540, 600 )
-theme = ExtResource( 4 )
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=192903109]
+custom_minimum_size = Vector2(540, 600)
+layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=548799753]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="ReferenceRectStart" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_right = 476.0
-margin_bottom = 31.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=959775992]
+layout_mode = 2
+
+[node name="ReferenceRectStart" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1477377074]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Title" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 35.0
-margin_right = 476.0
-margin_bottom = 83.0
-custom_fonts/font = ExtResource( 5 )
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=634551284]
+layout_mode = 2
 text = "CircleRC"
-align = 1
-autowrap = true
+label_settings = ExtResource("4_a712v")
+horizontal_alignment = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 87.0
-margin_right = 476.0
-margin_bottom = 111.0
-rect_min_size = Vector2( 0, 24 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=539493236]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 
-[node name="Or" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 115.0
-margin_right = 476.0
-margin_bottom = 131.0
-custom_fonts/font = ExtResource( 6 )
+[node name="Or" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1733360816]
+layout_mode = 2
 text = "or"
-align = 1
-autowrap = true
+label_settings = ExtResource("5_1dhmk")
+horizontal_alignment = 1
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 135.0
-margin_right = 476.0
-margin_bottom = 151.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=674693793]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="Subtitle" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 155.0
-margin_right = 476.0
-margin_bottom = 260.0
-custom_fonts/font = ExtResource( 7 )
+[node name="Subtitle" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1158243382]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
 text = "@#$~!! I broke my controller and now I can't drive straight"
-align = 1
-autowrap = true
+label_settings = ExtResource("6_jhcbk")
+horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 264.0
-margin_right = 476.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 0, 32 )
+[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=854885918]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 300.0
-margin_right = 476.0
-margin_bottom = 332.0
-rect_min_size = Vector2( 0, 32 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=591474826]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-margin_right = 186.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=143524140]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonPlay" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
-margin_left = 190.0
-margin_right = 286.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonPlay" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=5732955 instance=ExtResource("1")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_vertical = 3
 text = "Play"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
-margin_left = 290.0
-margin_right = 476.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2021425435]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ReferenceRect4" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 336.0
-margin_right = 476.0
-margin_bottom = 352.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect4" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=71599354]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 356.0
-margin_right = 476.0
-margin_bottom = 388.0
-rect_min_size = Vector2( 0, 32 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1519504581]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
-margin_right = 186.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1455587638]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonLevelSelect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
-margin_left = 190.0
-margin_right = 286.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonLevelSelect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1014107543 instance=ExtResource("1")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_vertical = 3
 text = "Level Select"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
-margin_left = 290.0
-margin_right = 476.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=123536219]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ReferenceRect5" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 392.0
-margin_right = 476.0
-margin_bottom = 408.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect5" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=202285479]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 412.0
-margin_right = 476.0
-margin_bottom = 444.0
-rect_min_size = Vector2( 0, 32 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1664829694]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer3"]
-margin_right = 186.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1755044220]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonCredits" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer3" instance=ExtResource( 1 )]
-margin_left = 190.0
-margin_right = 286.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonCredits" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1278858544 instance=ExtResource("1")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_vertical = 3
 text = "Credits"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer3"]
-margin_left = 290.0
-margin_right = 476.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1393377360]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ReferenceRect6" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 448.0
-margin_right = 476.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect6" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1965815183]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 468.0
-margin_right = 476.0
-margin_bottom = 500.0
-rect_min_size = Vector2( 0, 32 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=112007098]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer4"]
-margin_right = 186.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1506314495]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonQuit" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer4" instance=ExtResource( 1 )]
-margin_left = 190.0
-margin_right = 286.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonQuit" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=179408998 instance=ExtResource("1")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer4"]
-margin_left = 290.0
-margin_right = 476.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=235841848]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
-margin_top = 504.0
-margin_right = 476.0
-margin_bottom = 536.0
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1671010701]
+layout_mode = 2
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer5"]
-margin_right = 39.0
-margin_bottom = 32.0
-size_flags_vertical = 3
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1080820774]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 text = "v1.1.0"
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+vertical_alignment = 2
 
-[node name="ReferenceRectEnd" type="ReferenceRect" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer5"]
-margin_left = 43.0
-margin_right = 476.0
-margin_bottom = 32.0
+[node name="ReferenceRectEnd" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=328562026]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer2/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer3/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/VBoxContainer/HBoxContainer4/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]

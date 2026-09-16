@@ -1,228 +1,158 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene format=3 uid="uid://ychv3himwjoo"]
 
-[ext_resource path="res://UI/MainMenu/LevelSelect/LevelSelect.gd" type="Script" id=1]
-[ext_resource path="res://UI/MainMenu/ButtonMainMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Level/LevelList.tres" type="Resource" id=3]
-[ext_resource path="res://UI/Styles/MenuTheme.tres" type="Theme" id=4]
-[ext_resource path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" type="Texture" id=5]
-[ext_resource path="res://Font/PressStart2P/PressStart2PSmall.tres" type="DynamicFont" id=6]
+[ext_resource type="Script" uid="uid://byrvb1rf7lm8k" path="res://UI/MainMenu/LevelSelect/LevelSelect.gd" id="1"]
+[ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="2"]
+[ext_resource type="Resource" path="res://Level/LevelList.tres" id="3"]
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="5"]
+[ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
 
-
-[node name="LevelSelect" type="Control"]
+[node name="LevelSelect" type="Control" unique_id=722515851]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-level_list = ExtResource( 3 )
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4")
+script = ExtResource("1")
+level_list = ExtResource("3")
 grid_container_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/GridContainer")
 level_number_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelNumber")
 level_caption_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelCaption")
 best_time_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/BestTime")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=493737718]
 layer = -128
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=183241168]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1153622115]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 5 )
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
+texture = ExtResource("5")
+stretch_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=144984482]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Panel" type="Panel" parent="CenterContainer"]
-margin_left = 239.0
-margin_top = 119.0
-margin_right = 1039.0
-margin_bottom = 599.0
-rect_min_size = Vector2( 800, 480 )
-theme = ExtResource( 4 )
-__meta__ = {
-"_editor_description_": ""
-}
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1265038121]
+custom_minimum_size = Vector2(800, 480)
+layout_mode = 2
 
-[node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+[node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer/Panel" unique_id=378624237]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
-margin_right = -32.0
-margin_bottom = -32.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer"]
-margin_right = 736.0
-margin_bottom = 24.0
-custom_fonts/font = ExtResource( 6 )
+[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer" unique_id=186420312]
+layout_mode = 2
 text = "Level Select"
+label_settings = ExtResource("5_l273y")
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 28.0
-margin_right = 736.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 0, 24 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer" unique_id=642634865]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 56.0
-margin_right = 736.0
-margin_bottom = 352.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer" unique_id=382813621]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_right = 440.0
-margin_bottom = 296.0
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer" unique_id=474305028]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_left = 444.0
-margin_right = 476.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 32, 0 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer" unique_id=1085173914]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer"]
-margin_left = 480.0
-margin_right = 736.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 256, 0 )
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer" unique_id=389485310]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer"]
-margin_right = 256.0
-margin_bottom = 260.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer" unique_id=1563030799]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LevelNumber" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_right = 256.0
-margin_bottom = 14.0
+[node name="LevelNumber" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=113068756]
+layout_mode = 2
 text = "Level X"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 256.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 0, 16 )
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1848713152]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
 
-[node name="LevelCaption" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 256.0
-margin_bottom = 52.0
+[node name="LevelCaption" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1771990353]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Lorem ipsum dolor sit amet"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 56.0
-margin_right = 256.0
-margin_bottom = 88.0
-rect_min_size = Vector2( 0, 32 )
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=166860459]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 92.0
-margin_right = 256.0
-margin_bottom = 106.0
+[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=2094675620]
+layout_mode = 2
 text = "Best time:"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="BestTime" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 110.0
-margin_right = 256.0
-margin_bottom = 124.0
+[node name="BestTime" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=165059465]
+layout_mode = 2
 text = "00:00:00"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
-[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-margin_top = 128.0
-margin_right = 256.0
-margin_bottom = 128.0
+[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1712156139]
+layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer"]
-margin_top = 264.0
-margin_right = 256.0
-margin_bottom = 296.0
-rect_min_size = Vector2( 0, 32 )
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer" unique_id=1591785379]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_right = 76.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=829509522]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ButtonPlay" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
-margin_left = 80.0
-margin_right = 176.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonPlay" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1154248594 instance=ExtResource("2")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Play"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 180.0
-margin_right = 256.0
-margin_bottom = 32.0
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1699975043]
+layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 356.0
-margin_right = 736.0
-margin_bottom = 380.0
-rect_min_size = Vector2( 0, 24 )
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer" unique_id=499795602]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer"]
-margin_top = 384.0
-margin_right = 736.0
-margin_bottom = 416.0
-rect_min_size = Vector2( 0, 32 )
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer" unique_id=296677120]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
-[node name="ButtonBack" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2" instance=ExtResource( 2 )]
-margin_left = 0.0
-margin_right = 96.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 96, 0 )
+[node name="ButtonBack" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2" unique_id=499741244 instance=ExtResource("2")]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
 text = "Back"
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2"]
-margin_left = 100.0
-margin_right = 736.0
-margin_bottom = 32.0
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer2" unique_id=1360633453]
+layout_mode = 2
 size_flags_horizontal = 3
+
 [connection signal="pressed" from="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/Panel/VSplitContainer/HBoxContainer2/ButtonBack" to="." method="_on_ButtonBack_pressed"]

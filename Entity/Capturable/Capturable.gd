@@ -4,7 +4,7 @@ extends Area2D
 
 signal captured
 
-export var active = true
+@export var active = true
 
 func _on_Loop_complete():
 	if active:

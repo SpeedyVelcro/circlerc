@@ -3,12 +3,12 @@
 extends CanvasLayer
 
 var level_finished = false
-var fade_out = false # When true all the UI gizmos will begin interpolating to alpha 0
+var fading_out = false # When true all the UI gizmos will begin interpolating to alpha 0
 var fade_out_progress = 0.0
 var fade_out_time_sec = 0.2
 
 func _process(delta):
-	if fade_out and fade_out_progress < 1.0:
+	if fading_out and fade_out_progress < 1.0:
 		fade_out_progress += (1.0 / fade_out_time_sec) * delta
 		clamp(fade_out_progress, 0.0, 1.0)
 		var initial_alpha = 1.0
@@ -17,7 +17,7 @@ func _process(delta):
 		set_alpha_all(interpolated)
 
 func fade_out():
-	fade_out = true
+	fading_out = true
 
 func _on_Player_steer_left():
 	$Controller.steer_left()
@@ -43,12 +43,12 @@ func _on_Player_health_changed(health, max_health):
 func _on_ControllerArea_body_entered(_body):
 	# Collision mask means only player can trigger this
 	if not level_finished:
-		$Controller.hide()
+		$Controller.slide_out()
 
 func _on_ControllerArea_body_exited(_body):
 	# Collision mask means only player can trigger this
 	if not level_finished:
-		$Controller.show()
+		$Controller.slide_in()
 
 func _on_Level_time_elapsed(time_centisec):
 	$Clock.set_time(time_centisec)
