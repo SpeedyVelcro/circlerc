@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://byrvb1rf7lm8k" path="res://UI/MainMenu/LevelSelect/LevelSelect.gd" id="1"]
 [ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="2"]
-[ext_resource type="Resource" path="res://Level/LevelList.tres" id="3"]
+[ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="3"]
 [ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="5"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]

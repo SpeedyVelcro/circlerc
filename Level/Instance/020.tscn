@@ -1,0 +1,115 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Entity/Obstacle/Casette/Casette.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entity/Finish/Finish.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entity/Pip/Pip.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entity/Enemy/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Entity/Obstacle/Can/Can.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Entity/Obstacle/Pencil/PencilRed.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PackedVector2Array( 0, 0, 0, 0, 0.914062, -0.635803, 0, -67.0151, 0, 67.0151, 66.5133, 70.1548, 0, 0, 0, 0, -0.973694, 134.338, 0, 63.7115, 0, -63.7115, -69.8765, 67.3231, 0, 0, 0, 0, 0.914062, -0.635803 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PackedVector2Array( 0, 0, 0, 0, 0.938629, 1.09789, 0, -169.861, 0, 169.861, 180.89, 173.482, 0, 0, 0, 0, 2.62042, 344.184, -0.840896, 171.543, 0.840896, -171.543, -178.172, 174.323, 0, 0, 0, 0, 0.938629, 1.09789 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PackedVector2Array( 0, 0, 0, 0, 0.369904, -0.0570221, -219, 0, 219, 0, 221.345, 206.957, 0, 0, 0, 0, 435.219, 0.0422516, 214, -2, -214, 2, 215.81, -213.42, 0, 0, 0, 0, 0.369904, -0.0570221 )
+}
+
+[node name="Level" instance=ExtResource( 3 )]
+current_level = 14
+
+[node name="Player" parent="World" index="1"]
+position = Vector2( 635.921, 339.244 )
+
+[node name="Finish" parent="World" index="3" instance=ExtResource( 5 )]
+position = Vector2( 628.224, 307.245 )
+
+[node name="Casette" parent="World" index="4" instance=ExtResource( 1 )]
+position = Vector2( 676.084, 54.4248 )
+rotation = 1.5708
+
+[node name="Matchbox" parent="World" index="5" instance=ExtResource( 4 )]
+position = Vector2( 639.128, 445.862 )
+
+[node name="PencilGreen" parent="World" index="6" instance=ExtResource( 2 )]
+position = Vector2( 779.774, 608.834 )
+rotation = 0.90975
+
+[node name="Pip" parent="World" index="7" instance=ExtResource( 6 )]
+position = Vector2( 576.888, 619.51 )
+
+[node name="Path2D3" type="Path2D" parent="World" index="8"]
+position = Vector2( 579.884, 549.09 )
+curve = SubResource( 1 )
+
+[node name="Enemy" parent="World/Path2D3" index="0" instance=ExtResource( 7 )]
+
+[node name="Enemy2" parent="World/Path2D3" index="1" instance=ExtResource( 7 )]
+position = Vector2( -1.49799, 134.098 )
+
+[node name="PencilBlue" parent="World" index="9" instance=ExtResource( 8 )]
+position = Vector2( 400.658, 601.786 )
+rotation = -1.64368
+
+[node name="Pip2" parent="World" index="10" instance=ExtResource( 6 )]
+position = Vector2( 274.018, 589.431 )
+
+[node name="Pip3" parent="World" index="11" instance=ExtResource( 6 )]
+position = Vector2( 99.1606, 529.08 )
+
+[node name="Path2D" type="Path2D" parent="World" index="12"]
+position = Vector2( 261.007, 62.2728 )
+curve = SubResource( 2 )
+
+[node name="Enemy3" parent="World/Path2D" index="0" instance=ExtResource( 7 )]
+
+[node name="Enemy4" parent="World/Path2D" index="1" instance=ExtResource( 7 )]
+position = Vector2( 180.052, 174.579 )
+
+[node name="Enemy5" parent="World/Path2D" index="2" instance=ExtResource( 7 )]
+position = Vector2( 5.01602, 345.901 )
+
+[node name="Enemy6" parent="World/Path2D" index="3" instance=ExtResource( 7 )]
+position = Vector2( -177.584, 174.015 )
+
+[node name="Can" parent="World" index="13" instance=ExtResource( 9 )]
+position = Vector2( 264.958, 231.387 )
+
+[node name="Path2D2" type="Path2D" parent="World" index="14"]
+position = Vector2( 44.4627, 236.454 )
+curve = SubResource( 3 )
+
+[node name="Enemy7" parent="World/Path2D2" index="0" instance=ExtResource( 7 )]
+
+[node name="Enemy8" parent="World/Path2D2" index="1" instance=ExtResource( 7 )]
+position = Vector2( 435.619, 1.388 )
+
+[node name="Pip4" parent="World" index="15" instance=ExtResource( 6 )]
+position = Vector2( 452.606, 79.3341 )
+
+[node name="PencilRed" parent="World" index="16" instance=ExtResource( 10 )]
+position = Vector2( 986.298, 281.766 )
+
+[node name="PencilGreen2" parent="World" index="17" instance=ExtResource( 2 )]
+position = Vector2( 981.541, 455.39 )
+rotation = 1.55609
+
+[node name="Pip5" parent="World" index="18" instance=ExtResource( 6 )]
+position = Vector2( 835.269, 423.282 )
+
+[node name="Pip6" parent="World" index="19" instance=ExtResource( 6 )]
+position = Vector2( 1137.33, 433.985 )
+
+[node name="Pip7" parent="World" index="20" instance=ExtResource( 6 )]
+position = Vector2( 1004.14, 99.8174 )

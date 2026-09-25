@@ -2,8 +2,8 @@
 
 extends Resource
 
-@export var levels = [] # (Array, String)
-@export var captions = [] # (Array, String)
+@export var levels: Array[String] = []
+@export var captions: Array[String] = []
 
 # Getters and setters
 func get_level(num):

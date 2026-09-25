@@ -1,8 +1,8 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" format=3 uid="uid://bqe0t2gl7yun1"]
 
-[ext_resource path="res://Level/LevelList.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://cdqtg8p4cjran" path="res://Level/LevelList.gd" id="1"]
 
 [resource]
-script = ExtResource( 1 )
-levels = [ "res://Level/Instance/001.tscn", "res://Level/Instance/002.tscn", "res://Level/Instance/003.tscn", "res://Level/Instance/004.tscn", "res://Level/Instance/005.tscn", "res://Level/Instance/006.tscn", "res://Level/Instance/007.tscn", "res://Level/Instance/008.tscn", "res://Level/Instance/009.tscn", "res://Level/Instance/010.tscn", "res://Level/Instance/011.tscn", "res://Level/Instance/012.tscn", "res://Level/Instance/013.tscn", "res://Level/Instance/014.tscn" ]
-captions = [ "Circle the flag", "Circle the pip", "You'll need a couple", "Don't crash!", "Follow the path", "Pencil speedway", "Twin guardians", "CircleRC is a choice-driven narrative", "Your own personal helipad", "Waltz of the Plastic Toys", "Slalom", "Frogs or something idk", "You should probably lay off the energy drinks", "The final level" ]
+script = ExtResource("1")
+levels = ["res://Level/Instance/001.tscn", "res://Level/Instance/002.tscn", "res://Level/Instance/003.tscn", "res://Level/Instance/004.tscn", "res://Level/Instance/005.tscn", "res://Level/Instance/006.tscn", "res://Level/Instance/007.tscn", "res://Level/Instance/008.tscn", "res://Level/Instance/009.tscn", "res://Level/Instance/010.tscn", "res://Level/Instance/011.tscn", "res://Level/Instance/012.tscn", "res://Level/Instance/013.tscn", "res://Level/Instance/014.tscn", "res://Level/Instance/015.tscn", "res://Level/Instance/016.tscn", "res://Level/Instance/017.tscn", "res://Level/Instance/018.tscn", "res://Level/Instance/019.tscn", "res://Level/Instance/020.tscn"]
+captions = ["Circle the flag", "Circle the pip", "You'll need a couple", "Don't crash!", "Follow the path", "Pencil speedway", "Twin guardians", "CircleRC is a choice-driven narrative", "Your own personal helipad", "Waltz of the Plastic Toys", "Slalom", "Frogs or something idk", "TODO", "TODO", "TODO", "TODO", "TODO", "TODO", "You should probably lay off the energy drinks", "The final level"]
