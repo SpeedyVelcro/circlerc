@@ -22,6 +22,7 @@ config/windows_native_icon="res://Art/CircleRC/Godot/icon.ico"
 
 SceneTransition="*res://AutoLoad/SceneTransition.gd"
 Profile="*res://AutoLoad/Profile.gd"
+OnStart="*uid://8r0ccj4kti1"
 
 [display]
 
