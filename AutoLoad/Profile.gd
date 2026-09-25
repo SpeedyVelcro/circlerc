@@ -19,6 +19,7 @@ func new_profile():
 func save_profile():
 	# Store info in dictionary
 	var dict = {
+		"version": _CURRENT_SAVE_VERSION,
 		"level_unlocked" : level_unlocked,
 		"level_best_time" : level_best_time
 	}
