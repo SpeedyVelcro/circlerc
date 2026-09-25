@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bxjhd0nr6rea0"]
+
+[ext_resource type="Texture2D" uid="uid://egcckh8iuias" path="res://Art/CircleRC/Obstacle/Dice/DiceTwo.png" id="1_cdj3g"]
+
+[node name="DiceOne" type="StaticBody2D" unique_id=1876512737]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1710438411]
+texture = ExtResource("1_cdj3g")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1215972131]
+polygon = PackedVector2Array(-29, 32, -32, 29, -32, -29, -29, -32, 29, -32, 32, -29, 32, 29, 29, 32)

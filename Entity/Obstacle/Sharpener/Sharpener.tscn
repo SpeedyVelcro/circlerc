@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ds40ftxs5wjtq"]
+
+[ext_resource type="Texture2D" uid="uid://0g2yhki1ms7k" path="res://Art/CircleRC/Obstacle/Sharpener/Sharpener.png" id="1_1yoqw"]
+
+[node name="Sharpener" type="StaticBody2D" unique_id=1320470724]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1645869496]
+texture = ExtResource("1_1yoqw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1093522073]
+polygon = PackedVector2Array(-24, 32, -24, 13, -21, 3, -21, -3, -24, -13, -24, -32, 24, -32, 24, -13, 21, -3, 21, 3, 24, 13, 24, 32)

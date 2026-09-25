@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://tswdm23cjhel"]
+
+[ext_resource type="Texture2D" uid="uid://ckutq6qntakxv" path="res://Art/CircleRC/Obstacle/PokerChip/PokerChipGreen.png" id="1_gqq6c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yfss4"]
+radius = 64.0
+
+[node name="PokerChipBlue" type="StaticBody2D" unique_id=1612104899]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=264612337]
+texture = ExtResource("1_gqq6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1852708903]
+shape = SubResource("CircleShape2D_yfss4")
