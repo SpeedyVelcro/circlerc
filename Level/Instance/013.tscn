@@ -1,5 +1,121 @@
 [gd_scene format=3 uid="uid://cuaiqdriimqvk"]
 
 [ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1_l0ges"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Can/Can.tscn" id="2_u75p4"]
+[ext_resource type="PackedScene" uid="uid://disuut5gvcvyh" path="res://Entity/Obstacle/Sunglasses/Sunglasses.tscn" id="3_wjrdp"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" id="4_pbr7w"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" id="5_pp5tv"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" id="6_p3po2"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="7_bex5y"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="8_yb4ri"]
+[ext_resource type="PackedScene" path="res://Entity/Enemy/Enemy.tscn" id="9_hn715"]
+
+[sub_resource type="Curve2D" id="Curve2D_goypn"]
+_data = {
+"points": PackedVector2Array(117.29325, 3.198907, -117.29325, -3.198907, 638, 534, 42.652092, 36.78743, -42.652092, -36.78743, 448, 477, 5.0649357, 41.852364, -0.5331507, -21.59262, 361, 369, -9.8632965, 9.596721, 9.8632965, -9.596721, 373, 313, -16.794262, -6.131238, 26.657557, 24.524952, 427, 295, -16.527685, -23.725225, 34.38825, 38.653458, 478, 368, -27.457285, -7.464116, 27.457285, 7.464116, 553, 433, -20.792894, 0, 20.792894, 0, 629, 440, -32.788795, 7.9972672, 41.58579, -17.060837, 728, 435, -7.9972677, 16.527685, 12.529053, -11.9959, 798, 367, -16.527687, 22.392347, 12.262478, -17.860563, 835, 289, -27.457285, -14.128506, 27.457285, 14.128506, 907, 277, 3.732058, -22.39235, -3.732058, 22.39235, 933, 329, 23.991802, -28.523586, -23.991802, 28.523586, 896, 405, 38.120308, -23.192076, -38.120308, 23.192076, 809, 477, 29.856462, -6.9309645, -29.856462, 6.9309645, 710, 519, 20.792894, -3.732058, -20.792894, 3.732058, 638, 534)
+}
+point_count = 17
+
+[sub_resource type="Curve2D" id="Curve2D_u75p4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 639, 228, 0.7270243, -71.24838, 0, 0, 704, 299, 69.309654, 0.4846829, 0, 0, 636, 366, -0.7270243, 69.794334, -0.7270243, -69.794334, 570, 298, 0, 0, 0, 0, 639, 228)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_wjrdp"]
+_data = {
+"points": PackedVector2Array(0, 0, -24.631584, -21.406021, 366, 102, 21.406021, -38.413544, 0, 0, 288, 215, 11.436093, -27.85715, 0, 0, 251, 290, 4.9849634, -45.157906, -4.105264, 22.28572, 230, 375, -50.142868, 3.2255647, 46.624073, -2.3458652, 252, 438, -6.4511294, 28.150383, 0, 0, 312, 330, -27.270683, 47.797005, 0, 0, 360, 208, 46.624073, 18.180456, 0, 0, 366, 102)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_pbr7w"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 934, 144, 0, 0, 14.0751915, 38.413544, 971, 234, 0, 0, 7.3308287, 50.729336, 994, 317, 0, 0, 0, 0, 996, 428, -43.18524, 1.5994534, 35.187977, 0, 1038, 466, 0, 0, -1.3328779, -42.652092, 1071, 434, 0, 0, -5.0649357, -47.183876, 1063, 315, 0, 0, -11.995901, -39.71976, 1045, 222, 20.259743, 36.520855, 0, 0, 997, 112, 33.721813, -13.195492, -34.30828, 4.105264, 946, 90, 0, 0, 0, 0, 934, 144)
+}
+point_count = 11
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_l0ges")]
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(254, 135)
+rotation = 0.5767578
+
+[node name="Can" parent="." index="9" unique_id=1339780489 instance=ExtResource("2_u75p4")]
+position = Vector2(133, 576)
+rotation = -0.67572206
+
+[node name="Sunglasses" parent="." index="10" unique_id=768372859 instance=ExtResource("3_wjrdp")]
+position = Vector2(640, 136.00002)
+
+[node name="PencilBlue" parent="." index="11" unique_id=1590210429 instance=ExtResource("4_pbr7w")]
+position = Vector2(353, 28.000015)
+rotation = 0.36716267
+
+[node name="PencilBlue2" parent="." index="12" unique_id=833501818 instance=ExtResource("4_pbr7w")]
+position = Vector2(944.99994, 26)
+rotation = -0.28631204
+
+[node name="Matchbox" parent="." index="13" unique_id=1164745208 instance=ExtResource("5_pp5tv")]
+position = Vector2(529, 623)
+
+[node name="Matchbox2" parent="." index="14" unique_id=1230175412 instance=ExtResource("6_p3po2")]
+position = Vector2(359, 562)
+rotation = 0.31318113
+
+[node name="Pip" parent="." index="15" unique_id=875887020 instance=ExtResource("7_bex5y")]
+position = Vector2(523, 222)
+
+[node name="Pip2" parent="." index="16" unique_id=1091387648 instance=ExtResource("7_bex5y")]
+position = Vector2(748, 226)
+
+[node name="Finish" parent="." index="17" unique_id=2113674879 instance=ExtResource("8_yb4ri")]
+position = Vector2(1116, 140)
+
+[node name="Path2D" type="Path2D" parent="." index="18" unique_id=1542007326]
+curve = SubResource("Curve2D_goypn")
+
+[node name="Enemy" parent="Path2D" index="0" unique_id=391624267 instance=ExtResource("9_hn715")]
+position = Vector2(641, 531)
+rotation = 3.118838
+
+[node name="Enemy2" parent="Path2D" index="1" unique_id=137189177 instance=ExtResource("9_hn715")]
+position = Vector2(641, 439)
+
+[node name="Enemy3" parent="Path2D" index="2" unique_id=54958454 instance=ExtResource("9_hn715")]
+position = Vector2(374, 315)
+rotation = -0.75264215
+
+[node name="Enemy4" parent="Path2D" index="3" unique_id=929206744 instance=ExtResource("9_hn715")]
+position = Vector2(923, 282)
+rotation = 0.9066656
+
+[node name="Path2D2" type="Path2D" parent="." index="19" unique_id=1727098947]
+curve = SubResource("Curve2D_u75p4")
+
+[node name="Enemy" parent="Path2D2" index="0" unique_id=1282625040 instance=ExtResource("9_hn715")]
+position = Vector2(642, 228)
+
+[node name="Path2D3" type="Path2D" parent="." index="20" unique_id=935946119]
+curve = SubResource("Curve2D_wjrdp")
+
+[node name="Enemy" parent="Path2D3" index="0" unique_id=2136516492 instance=ExtResource("9_hn715")]
+position = Vector2(273, 239)
+rotation = 2.091338
+
+[node name="Enemy2" parent="Path2D3" index="1" unique_id=446050807 instance=ExtResource("9_hn715")]
+position = Vector2(333, 260)
+rotation = -1.044255
+
+[node name="Path2D4" type="Path2D" parent="." index="21" unique_id=1908132012]
+curve = SubResource("Curve2D_pbr7w")
+
+[node name="Enemy3" parent="Path2D4" index="0" unique_id=225002763 instance=ExtResource("9_hn715")]
+position = Vector2(979, 256)
+rotation = 1.1834832
+
+[node name="Enemy" parent="Path2D4" index="1" unique_id=1483660582 instance=ExtResource("9_hn715")]
+position = Vector2(1053, 244)
+rotation = -1.8464187
+
+[node name="Pip3" parent="." index="22" unique_id=2120369432 instance=ExtResource("7_bex5y")]
+position = Vector2(640, 292)
