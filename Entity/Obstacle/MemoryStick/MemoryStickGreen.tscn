@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://wwsinr0o5j2j" path="res://Art/CircleRC/Obstacle/MemoryStick/MemoryStickGreen.png" id="1_mbdr6"]
 
-[node name="MemoryStickBlue" type="StaticBody2D" unique_id=1659953013]
+[node name="MemoryStickGreen" type="StaticBody2D" unique_id=1659953013]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=914606617]
 texture = ExtResource("1_mbdr6")

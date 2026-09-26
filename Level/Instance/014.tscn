@@ -1,5 +1,62 @@
 [gd_scene format=3 uid="uid://d0aq5xj2pg4go"]
 
 [ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1_wrmfw"]
+[ext_resource type="PackedScene" uid="uid://panyysscctnt" path="res://Entity/Obstacle/MemoryStick/MemoryStickBlue.tscn" id="2_c0lkc"]
+[ext_resource type="PackedScene" uid="uid://qiq8hvvygfcb" path="res://Entity/Obstacle/MemoryStick/MemoryStickRed.tscn" id="3_0pmv7"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilRed.tscn" id="4_ghl2f"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" id="5_rmbyq"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="6_asm3u"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="7_wdeev"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" id="8_1har7"]
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_wrmfw")]
+current_level = 14
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(642, 281)
+rotation = -1.576112
+
+[node name="MemoryStickBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=1659953013 instance=ExtResource("2_c0lkc")]
+position = Vector2(484, 333)
+rotation = 1.5707964
+
+[node name="MemoryStickRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=1736722056 instance=ExtResource("3_0pmv7")]
+position = Vector2(796, 334)
+rotation = -1.5707964
+
+[node name="PencilRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=2100341073 instance=ExtResource("4_ghl2f")]
+position = Vector2(657, 134)
+
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=1490373329 instance=ExtResource("5_rmbyq")]
+position = Vector2(646, 544)
+
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=869691450 instance=ExtResource("6_asm3u")]
+position = Vector2(640, 350)
+
+[node name="Pip" parent="." index="9" unique_id=6018550 instance=ExtResource("7_wdeev")]
+position = Vector2(909, 175)
+
+[node name="Pip2" parent="." index="10" unique_id=1179075510 instance=ExtResource("7_wdeev")]
+position = Vector2(904, 497)
+
+[node name="Pip3" parent="." index="11" unique_id=92047315 instance=ExtResource("7_wdeev")]
+position = Vector2(391, 502)
+
+[node name="Pip4" parent="." index="12" unique_id=1845722969 instance=ExtResource("7_wdeev")]
+position = Vector2(387, 163)
+
+[node name="PencilBlue" parent="." index="13" unique_id=1822916265 instance=ExtResource("5_rmbyq")]
+position = Vector2(212.00002, 471)
+rotation = -1.8314114
+
+[node name="PencilGreen" parent="." index="14" unique_id=612963669 instance=ExtResource("8_1har7")]
+position = Vector2(218.00002, 171.00002)
+rotation = -1.370351
+
+[node name="PencilRed" parent="." index="15" unique_id=1330008226 instance=ExtResource("4_ghl2f")]
+position = Vector2(1072, 158.00002)
+rotation = 1.2949247
+
+[node name="PencilGreen2" parent="." index="16" unique_id=1400174347 instance=ExtResource("8_1har7")]
+position = Vector2(1085, 466.99997)
+rotation = 1.7282767

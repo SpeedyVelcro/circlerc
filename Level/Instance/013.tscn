@@ -35,87 +35,88 @@ _data = {
 point_count = 11
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_l0ges")]
+current_level = 13
 
 [node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
 position = Vector2(254, 135)
 rotation = 0.5767578
 
-[node name="Can" parent="." index="9" unique_id=1339780489 instance=ExtResource("2_u75p4")]
+[node name="Can" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=1339780489 instance=ExtResource("2_u75p4")]
 position = Vector2(133, 576)
 rotation = -0.67572206
 
-[node name="Sunglasses" parent="." index="10" unique_id=768372859 instance=ExtResource("3_wjrdp")]
+[node name="Sunglasses" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=768372859 instance=ExtResource("3_wjrdp")]
 position = Vector2(640, 136.00002)
 
-[node name="PencilBlue" parent="." index="11" unique_id=1590210429 instance=ExtResource("4_pbr7w")]
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=1590210429 instance=ExtResource("4_pbr7w")]
 position = Vector2(353, 28.000015)
 rotation = 0.36716267
 
-[node name="PencilBlue2" parent="." index="12" unique_id=833501818 instance=ExtResource("4_pbr7w")]
+[node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=833501818 instance=ExtResource("4_pbr7w")]
 position = Vector2(944.99994, 26)
 rotation = -0.28631204
 
-[node name="Matchbox" parent="." index="13" unique_id=1164745208 instance=ExtResource("5_pp5tv")]
+[node name="Matchbox" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=1164745208 instance=ExtResource("5_pp5tv")]
 position = Vector2(529, 623)
 
-[node name="Matchbox2" parent="." index="14" unique_id=1230175412 instance=ExtResource("6_p3po2")]
+[node name="Matchbox2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=1230175412 instance=ExtResource("6_p3po2")]
 position = Vector2(359, 562)
 rotation = 0.31318113
 
-[node name="Pip" parent="." index="15" unique_id=875887020 instance=ExtResource("7_bex5y")]
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=875887020 instance=ExtResource("7_bex5y")]
 position = Vector2(523, 222)
 
-[node name="Pip2" parent="." index="16" unique_id=1091387648 instance=ExtResource("7_bex5y")]
+[node name="Pip2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=1091387648 instance=ExtResource("7_bex5y")]
 position = Vector2(748, 226)
 
-[node name="Finish" parent="." index="17" unique_id=2113674879 instance=ExtResource("8_yb4ri")]
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=2113674879 instance=ExtResource("8_yb4ri")]
 position = Vector2(1116, 140)
 
-[node name="Path2D" type="Path2D" parent="." index="18" unique_id=1542007326]
+[node name="Path2D" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=1542007326]
 curve = SubResource("Curve2D_goypn")
 
-[node name="Enemy" parent="Path2D" index="0" unique_id=391624267 instance=ExtResource("9_hn715")]
+[node name="Enemy" parent="World/Path2D" index="0" unique_id=391624267 instance=ExtResource("9_hn715")]
 position = Vector2(641, 531)
 rotation = 3.118838
 
-[node name="Enemy2" parent="Path2D" index="1" unique_id=137189177 instance=ExtResource("9_hn715")]
+[node name="Enemy2" parent="World/Path2D" index="1" unique_id=137189177 instance=ExtResource("9_hn715")]
 position = Vector2(641, 439)
 
-[node name="Enemy3" parent="Path2D" index="2" unique_id=54958454 instance=ExtResource("9_hn715")]
+[node name="Enemy3" parent="World/Path2D" index="2" unique_id=54958454 instance=ExtResource("9_hn715")]
 position = Vector2(374, 315)
 rotation = -0.75264215
 
-[node name="Enemy4" parent="Path2D" index="3" unique_id=929206744 instance=ExtResource("9_hn715")]
+[node name="Enemy4" parent="World/Path2D" index="3" unique_id=929206744 instance=ExtResource("9_hn715")]
 position = Vector2(923, 282)
 rotation = 0.9066656
 
-[node name="Path2D2" type="Path2D" parent="." index="19" unique_id=1727098947]
+[node name="Path2D2" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=1727098947]
 curve = SubResource("Curve2D_u75p4")
 
-[node name="Enemy" parent="Path2D2" index="0" unique_id=1282625040 instance=ExtResource("9_hn715")]
+[node name="Enemy" parent="World/Path2D2" index="0" unique_id=1282625040 instance=ExtResource("9_hn715")]
 position = Vector2(642, 228)
 
-[node name="Path2D3" type="Path2D" parent="." index="20" unique_id=935946119]
+[node name="Path2D3" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=935946119]
 curve = SubResource("Curve2D_wjrdp")
 
-[node name="Enemy" parent="Path2D3" index="0" unique_id=2136516492 instance=ExtResource("9_hn715")]
+[node name="Enemy" parent="World/Path2D3" index="0" unique_id=2136516492 instance=ExtResource("9_hn715")]
 position = Vector2(273, 239)
 rotation = 2.091338
 
-[node name="Enemy2" parent="Path2D3" index="1" unique_id=446050807 instance=ExtResource("9_hn715")]
+[node name="Enemy2" parent="World/Path2D3" index="1" unique_id=446050807 instance=ExtResource("9_hn715")]
 position = Vector2(333, 260)
 rotation = -1.044255
 
-[node name="Path2D4" type="Path2D" parent="." index="21" unique_id=1908132012]
+[node name="Path2D4" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=1908132012]
 curve = SubResource("Curve2D_pbr7w")
 
-[node name="Enemy3" parent="Path2D4" index="0" unique_id=225002763 instance=ExtResource("9_hn715")]
+[node name="Enemy3" parent="World/Path2D4" index="0" unique_id=225002763 instance=ExtResource("9_hn715")]
 position = Vector2(979, 256)
 rotation = 1.1834832
 
-[node name="Enemy" parent="Path2D4" index="1" unique_id=1483660582 instance=ExtResource("9_hn715")]
+[node name="Enemy" parent="World/Path2D4" index="1" unique_id=1483660582 instance=ExtResource("9_hn715")]
 position = Vector2(1053, 244)
 rotation = -1.8464187
 
-[node name="Pip3" parent="." index="22" unique_id=2120369432 instance=ExtResource("7_bex5y")]
+[node name="Pip3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=2120369432 instance=ExtResource("7_bex5y")]
 position = Vector2(640, 292)
