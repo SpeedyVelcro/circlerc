@@ -18,137 +18,140 @@ current_level = 16
 position = Vector2(94.000015, 558)
 rotation = -0.44346693
 
-[node name="PencilBlue" parent="." index="9" unique_id=678770457 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=678770457 instance=ExtResource("2_u2x6h")]
 position = Vector2(485, 517)
 rotation = -1.5707964
 
-[node name="PencilBlue4" parent="." index="10" unique_id=613799211 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=613799211 instance=ExtResource("2_u2x6h")]
 position = Vector2(677, 511)
 rotation = -1.5707964
 
-[node name="PencilBlue5" parent="." index="11" unique_id=1912160739 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=1912160739 instance=ExtResource("2_u2x6h")]
 position = Vector2(990, 502)
 rotation = -1.5707964
 
-[node name="PencilBlue3" parent="." index="12" unique_id=657913216 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=657913216 instance=ExtResource("2_u2x6h")]
 position = Vector2(629, 485)
 rotation = -1.5707964
 
-[node name="PencilGreen" parent="." index="13" unique_id=2079822051 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=2079822051 instance=ExtResource("3_g2k8b")]
 position = Vector2(532, 481)
 rotation = -1.5707964
 
-[node name="PencilGreen3" parent="." index="14" unique_id=531420798 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=531420798 instance=ExtResource("3_g2k8b")]
 position = Vector2(726, 516)
 rotation = -1.5707964
 
-[node name="PencilGreen4" parent="." index="15" unique_id=1916201136 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=1916201136 instance=ExtResource("3_g2k8b")]
 position = Vector2(817, 474)
 rotation = -1.5707964
 
-[node name="PencilGreen5" parent="." index="16" unique_id=1115537921 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=1115537921 instance=ExtResource("3_g2k8b")]
 position = Vector2(948, 491)
 rotation = -1.5707964
 
-[node name="PencilRed" parent="." index="17" unique_id=295272656 instance=ExtResource("4_jgang")]
+[node name="PencilRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=295272656 instance=ExtResource("4_jgang")]
 position = Vector2(580, 421)
 rotation = -1.5707964
 
-[node name="PencilRed5" parent="." index="18" unique_id=1671143408 instance=ExtResource("4_jgang")]
+[node name="PencilRed5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=1671143408 instance=ExtResource("4_jgang")]
 position = Vector2(1036, 504)
 rotation = -1.5707964
 
-[node name="PencilRed3" parent="." index="19" unique_id=655598423 instance=ExtResource("4_jgang")]
+[node name="PencilRed3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=655598423 instance=ExtResource("4_jgang")]
 position = Vector2(773, 493)
 rotation = -1.5707964
 
-[node name="PencilRed4" parent="." index="20" unique_id=1342313191 instance=ExtResource("4_jgang")]
+[node name="PencilRed4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=1342313191 instance=ExtResource("4_jgang")]
 position = Vector2(905, 476)
 rotation = -1.5707964
 
-[node name="PencilBlue2" parent="." index="21" unique_id=1131606091 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=1131606091 instance=ExtResource("2_u2x6h")]
 position = Vector2(484, 186)
 rotation = 1.5707964
 
-[node name="PencilBlue6" parent="." index="22" unique_id=68534240 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=68534240 instance=ExtResource("2_u2x6h")]
 position = Vector2(724, 176)
 rotation = 1.5707964
 
-[node name="PencilBlue7" parent="." index="23" unique_id=2032408334 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=2032408334 instance=ExtResource("2_u2x6h")]
 position = Vector2(816, 143)
 rotation = 1.5707964
 
-[node name="PencilBlue8" parent="." index="24" unique_id=1392296879 instance=ExtResource("2_u2x6h")]
+[node name="PencilBlue8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=1392296879 instance=ExtResource("2_u2x6h")]
 position = Vector2(862, 191)
 rotation = 1.5707964
 
-[node name="PencilGreen2" parent="." index="25" unique_id=870246689 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=870246689 instance=ExtResource("3_g2k8b")]
 position = Vector2(677, 174)
-rotation = -4.712389
+rotation = 1.5707964
 
-[node name="PencilGreen7" parent="." index="26" unique_id=1430308440 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="20" unique_id=1430308440 instance=ExtResource("3_g2k8b")]
 position = Vector2(903, 151)
-rotation = -4.712389
+rotation = 1.5707964
 
-[node name="PencilGreen8" parent="." index="27" unique_id=1350616886 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="21" unique_id=1350616886 instance=ExtResource("3_g2k8b")]
 position = Vector2(1038, 208)
-rotation = -4.712389
+rotation = 1.5707964
 
-[node name="PencilGreen6" parent="." index="28" unique_id=1816435422 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="22" unique_id=1816435422 instance=ExtResource("3_g2k8b")]
 position = Vector2(529, 165)
-rotation = -4.712389
+rotation = 1.5707964
 
-[node name="PencilRed2" parent="." index="29" unique_id=1137822139 instance=ExtResource("4_jgang")]
+[node name="PencilRed2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="23" unique_id=1137822139 instance=ExtResource("4_jgang")]
 position = Vector2(630, 165)
 rotation = 1.5707964
 
-[node name="PencilRed6" parent="." index="30" unique_id=320860313 instance=ExtResource("4_jgang")]
+[node name="PencilRed6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="24" unique_id=320860313 instance=ExtResource("4_jgang")]
 position = Vector2(771, 162)
 rotation = 1.5707964
 
-[node name="PencilRed7" parent="." index="31" unique_id=1485238630 instance=ExtResource("4_jgang")]
+[node name="PencilRed7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="25" unique_id=1485238630 instance=ExtResource("4_jgang")]
 position = Vector2(949, 168)
 rotation = 1.5707964
 
-[node name="PencilRed8" parent="." index="32" unique_id=81094923 instance=ExtResource("4_jgang")]
+[node name="PencilRed8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="26" unique_id=81094923 instance=ExtResource("4_jgang")]
 position = Vector2(995, 178)
 rotation = 1.5707964
 
-[node name="Sharpener" parent="." index="33" unique_id=1320470724 instance=ExtResource("5_16lkb")]
+[node name="Sharpener" parent="World" parent_id_path=PackedInt32Array(1028984410) index="27" unique_id=1320470724 instance=ExtResource("5_16lkb")]
 position = Vector2(580, 219)
 
-[node name="Sharpener2" parent="." index="34" unique_id=370681575 instance=ExtResource("5_16lkb")]
+[node name="Sharpener2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="28" unique_id=370681575 instance=ExtResource("5_16lkb")]
 position = Vector2(862, 420)
-rotation = 3.1415927
+rotation = -3.1415925
 
-[node name="PencilGreen9" parent="." index="35" unique_id=2133696988 instance=ExtResource("3_g2k8b")]
+[node name="PencilGreen9" parent="World" parent_id_path=PackedInt32Array(1028984410) index="29" unique_id=2133696988 instance=ExtResource("3_g2k8b")]
 position = Vector2(151, 229.00002)
 rotation = -0.26398948
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Sharpener3" parent="." index="36" unique_id=904196280 instance=ExtResource("5_16lkb")]
+[node name="Sharpener3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="30" unique_id=904196280 instance=ExtResource("5_16lkb")]
 position = Vector2(383, 214)
 rotation = 1.6616299
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="DiceFive" parent="." index="37" unique_id=1876512737 instance=ExtResource("6_7bt82")]
+[node name="DiceFive" parent="World" parent_id_path=PackedInt32Array(1028984410) index="31" unique_id=1876512737 instance=ExtResource("6_7bt82")]
 position = Vector2(542, 681)
 rotation = -0.29420084
 
-[node name="DiceTwo" parent="." index="38" unique_id=1981257099 instance=ExtResource("7_liq3w")]
+[node name="DiceTwo" parent="World" parent_id_path=PackedInt32Array(1028984410) index="32" unique_id=1981257099 instance=ExtResource("7_liq3w")]
 position = Vector2(636, 676)
 rotation = 0.39997792
+scale = Vector2(0.99999994, 0.99999994)
 
-[node name="Pip" parent="." index="39" unique_id=620321843 instance=ExtResource("8_l1erg")]
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="33" unique_id=620321843 instance=ExtResource("8_l1erg")]
 position = Vector2(116, 139)
 
-[node name="Pip2" parent="." index="40" unique_id=1148947050 instance=ExtResource("8_l1erg")]
+[node name="Pip2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="34" unique_id=1148947050 instance=ExtResource("8_l1erg")]
 position = Vector2(300, 376)
 
-[node name="Finish" parent="." index="41" unique_id=407080615 instance=ExtResource("9_nqrpi")]
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="35" unique_id=407080615 instance=ExtResource("9_nqrpi")]
 position = Vector2(1168, 137)
 
-[node name="Pip3" parent="." index="42" unique_id=1005644340 instance=ExtResource("8_l1erg")]
+[node name="Pip3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="36" unique_id=1005644340 instance=ExtResource("8_l1erg")]
 position = Vector2(1174, 499)
 
-[node name="MemoryStickBlue" parent="." index="43" unique_id=1659953013 instance=ExtResource("10_g2k8b")]
+[node name="MemoryStickBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="37" unique_id=1659953013 instance=ExtResource("10_g2k8b")]
 position = Vector2(970.00006, 4)
 rotation = 0.13551933
