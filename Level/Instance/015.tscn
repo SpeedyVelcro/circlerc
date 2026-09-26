@@ -1,5 +1,336 @@
 [gd_scene format=3 uid="uid://bhj7iqsttwwwn"]
 
 [ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1_rvgs1"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="2_07xxm"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="3_6qaoq"]
+[ext_resource type="PackedScene" path="res://Entity/Enemy/Enemy.tscn" id="4_6qaoq"]
+[ext_resource type="PackedScene" uid="uid://disuut5gvcvyh" path="res://Entity/Obstacle/Sunglasses/Sunglasses.tscn" id="4_sxme5"]
+[ext_resource type="PackedScene" uid="uid://chf3y3mtoi1sd" path="res://Entity/Obstacle/PokerChip/PokerChipBlue.tscn" id="5_42frs"]
+[ext_resource type="PackedScene" uid="uid://tswdm23cjhel" path="res://Entity/Obstacle/PokerChip/PokerChipGreen.tscn" id="6_u10ql"]
+[ext_resource type="PackedScene" uid="uid://o5lu6j5m36sy" path="res://Entity/Obstacle/PokerChip/PokerChipRed.tscn" id="7_jujl4"]
+
+[sub_resource type="Curve2D" id="Curve2D_dh5vq"]
+_data = {
+"points": PackedVector2Array(27.837866, 22.420767, -27.837866, -22.420767, 1053, 187, 9.329447, -10.081821, -9.329447, 10.081821, 996, 186, 10.533247, -24.376942, -10.533247, 24.376942, 972, 252, 21.517918, -20.615068, -21.517918, 20.615068, 923, 331, 34.609238, -11.887521, -34.609238, 11.887521, 840, 387, 50.55958, -2.5580742, -50.55958, 2.5580742, 716, 396, 20.163643, 2.1066494, -20.163643, -2.1066494, 623, 401, 27.38644, 0.45142484, -27.38644, -0.45142484, 576, 368, 3.310449, -26.032166, -3.310449, 26.032166, 521, 396, -24.376942, 3.310449, 24.376942, -3.310449, 563, 438, -40.47776, 8.426598, 40.47776, -8.426598, 626, 405, -31.59974, 4.5142484, 31.59974, -4.5142484, 776, 397, -31.59974, 19.862694, 31.59974, -19.862694, 868, 363, -19.71222, 16.40177, 19.71222, -16.40177, 957, 285, -22.721718, 9.630397, 22.721718, -9.630397, 996, 257, -16.10082, 12.9408455, 16.10082, -12.9408455, 1057, 240, 29.49309, 24.527416, -29.49309, -24.527416, 1053, 187)
+}
+point_count = 17
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_rvgs1")]
+current_level = 15
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(94, 104)
+rotation = 0.8030446
+
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=966560078 instance=ExtResource("2_07xxm")]
+position = Vector2(292, 148)
+
+[node name="Pip2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=1758639030 instance=ExtResource("2_07xxm")]
+position = Vector2(229, 254)
+
+[node name="Pip3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=1552209817 instance=ExtResource("2_07xxm")]
+position = Vector2(117, 334)
+
+[node name="Pip4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=499863120 instance=ExtResource("2_07xxm")]
+position = Vector2(236, 359)
+
+[node name="Pip5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=473048097 instance=ExtResource("2_07xxm")]
+position = Vector2(364, 353)
+
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=463788355 instance=ExtResource("3_6qaoq")]
+position = Vector2(1088, 146)
+
+[node name="Path2D" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=576384713]
+curve = SubResource("Curve2D_dh5vq")
+
+[node name="Enemy" parent="World/Path2D" index="0" unique_id=1037801825 instance=ExtResource("4_6qaoq")]
+position = Vector2(1061, 193)
+rotation = -2.4573884
+
+[node name="Sunglasses" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=768372859 instance=ExtResource("4_sxme5")]
+position = Vector2(239, 572)
+rotation = -0.16328745
+
+[node name="PokerChipBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=1612104899 instance=ExtResource("5_42frs")]
+position = Vector2(165, 622)
+rotation = -0.27260306
+
+[node name="PokerChipGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=2114726243 instance=ExtResource("6_u10ql")]
+position = Vector2(323, 618)
+rotation = 0.2848148
+
+[node name="PokerChipRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=499509285 instance=ExtResource("7_jujl4")]
+position = Vector2(486, 697)
+rotation = 0.49867076
+
+[node name="PokerChipRed2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=244047013 instance=ExtResource("7_jujl4")]
+position = Vector2(626, 748)
+rotation = -0.19501153
+
+[node name="PokerChipBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=1299221023 instance=ExtResource("5_42frs")]
+position = Vector2(963, 36)
+
+[node name="PokerChipBlue3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=412178606 instance=ExtResource("5_42frs")]
+position = Vector2(891, 158)
+
+[node name="PokerChipGreen2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=970237209 instance=ExtResource("6_u10ql")]
+position = Vector2(1110, -22)
+rotation = -0.38053507
+
+[node name="PokerChipRed3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=595919655 instance=ExtResource("7_jujl4")]
+position = Vector2(1244.0001, 42)
+rotation = 1.6448182
+
+[node name="PokerChipRed4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=836416098 instance=ExtResource("7_jujl4")]
+position = Vector2(1255, 174)
+rotation = 1.4678093
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipGreen3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="20" unique_id=1980745252 instance=ExtResource("6_u10ql")]
+position = Vector2(1170, 290.00003)
+rotation = 2.3246777
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipRed5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="21" unique_id=1536974245 instance=ExtResource("7_jujl4")]
+position = Vector2(1053, 367)
+rotation = 1.373813
+
+[node name="PokerChipGreen4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="22" unique_id=1507760260 instance=ExtResource("6_u10ql")]
+position = Vector2(815, 261)
+rotation = 2.7121553
+
+[node name="PokerChipBlue4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="23" unique_id=1642575863 instance=ExtResource("5_42frs")]
+position = Vector2(959, 454)
+rotation = 2.34193
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipBlue5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="24" unique_id=1320433094 instance=ExtResource("5_42frs")]
+position = Vector2(847, 516)
+rotation = 1.7373666
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipGreen5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="25" unique_id=738247508 instance=ExtResource("6_u10ql")]
+position = Vector2(718, 518)
+rotation = 1.6773095
+
+[node name="PokerChipRed6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="26" unique_id=451004056 instance=ExtResource("7_jujl4")]
+position = Vector2(688, 274)
+rotation = 1.2925955
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipGreen6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="27" unique_id=2078163878 instance=ExtResource("6_u10ql")]
+position = Vector2(560, 264)
+rotation = -2.2297316
+
+[node name="PokerChipBlue6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="28" unique_id=1572886386 instance=ExtResource("5_42frs")]
+position = Vector2(593, 534)
+rotation = 1.5360497
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipRed7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="29" unique_id=1883518584 instance=ExtResource("7_jujl4")]
+position = Vector2(784, 629)
+rotation = -2.288272
+
+[node name="PokerChipGreen7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="30" unique_id=664049476 instance=ExtResource("6_u10ql")]
+position = Vector2(918, 624)
+
+[node name="PokerChipRed8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="31" unique_id=1493507629 instance=ExtResource("7_jujl4")]
+position = Vector2(1030, 563)
+rotation = 1.5291443
+
+[node name="PokerChipBlue7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="32" unique_id=1886892139 instance=ExtResource("5_42frs")]
+position = Vector2(1125, 475)
+
+[node name="PokerChipRed9" parent="World" parent_id_path=PackedInt32Array(1028984410) index="33" unique_id=491142501 instance=ExtResource("7_jujl4")]
+position = Vector2(1226, 394)
+
+[node name="PokerChipGreen8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="34" unique_id=814232581 instance=ExtResource("6_u10ql")]
+position = Vector2(1311, 295)
+rotation = 1.0917424
+
+[node name="PokerChipGreen9" parent="World" parent_id_path=PackedInt32Array(1028984410) index="35" unique_id=151142494 instance=ExtResource("6_u10ql")]
+position = Vector2(1237, 538)
+rotation = -2.5940359
+
+[node name="PokerChipGreen10" parent="World" parent_id_path=PackedInt32Array(1028984410) index="36" unique_id=1158451259 instance=ExtResource("6_u10ql")]
+position = Vector2(1143, 625)
+rotation = 2.5575287
+
+[node name="PokerChipGreen11" parent="World" parent_id_path=PackedInt32Array(1028984410) index="37" unique_id=1692566092 instance=ExtResource("6_u10ql")]
+position = Vector2(1266, 664)
+rotation = 2.1902437
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipBlue8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="38" unique_id=821448441 instance=ExtResource("5_42frs")]
+position = Vector2(740, 156)
+
+[node name="PokerChipBlue9" parent="World" parent_id_path=PackedInt32Array(1028984410) index="39" unique_id=1509115893 instance=ExtResource("5_42frs")]
+position = Vector2(819, 55)
+
+[node name="PokerChipBlue10" parent="World" parent_id_path=PackedInt32Array(1028984410) index="40" unique_id=629557433 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(878, -8)
+rotation = 2.390794
+
+[node name="PokerChipRed10" parent="World" parent_id_path=PackedInt32Array(1028984410) index="41" unique_id=171425638 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(899, 120)
+rotation = -1.4275463
+
+[node name="PokerChipGreen12" parent="World" parent_id_path=PackedInt32Array(1028984410) index="42" unique_id=1004825280 instance=ExtResource("6_u10ql")]
+position = Vector2(611, 143)
+
+[node name="PokerChipBlue11" parent="World" parent_id_path=PackedInt32Array(1028984410) index="43" unique_id=1431326384 instance=ExtResource("5_42frs")]
+position = Vector2(687, 38)
+
+[node name="PokerChipGreen13" parent="World" parent_id_path=PackedInt32Array(1028984410) index="44" unique_id=529744274 instance=ExtResource("6_u10ql")]
+position = Vector2(559, 24)
+
+[node name="PokerChipGreen14" parent="World" parent_id_path=PackedInt32Array(1028984410) index="45" unique_id=130446843 instance=ExtResource("6_u10ql")]
+position = Vector2(484, 160)
+rotation = -2.1922443
+
+[node name="PokerChipRed11" parent="World" parent_id_path=PackedInt32Array(1028984410) index="46" unique_id=941103769 instance=ExtResource("7_jujl4")]
+position = Vector2(431, 43)
+rotation = 3.0067463
+
+[node name="PokerChipRed12" parent="World" parent_id_path=PackedInt32Array(1028984410) index="47" unique_id=320393247 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(489, -27)
+rotation = 1.4264139
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PokerChipRed13" parent="World" parent_id_path=PackedInt32Array(1028984410) index="48" unique_id=1644512171 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(526, 97)
+rotation = 2.8501906
+
+[node name="PokerChipGreen15" parent="World" parent_id_path=PackedInt32Array(1028984410) index="49" unique_id=1629897135 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(644, 43)
+rotation = 3.0962622
+
+[node name="PokerChipBlue12" parent="World" parent_id_path=PackedInt32Array(1028984410) index="50" unique_id=1089971210 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(750, -31)
+rotation = 2.1284294
+
+[node name="PokerChipGreen16" parent="World" parent_id_path=PackedInt32Array(1028984410) index="51" unique_id=934689492 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(770, 98)
+
+[node name="PokerChipRed14" parent="World" parent_id_path=PackedInt32Array(1028984410) index="52" unique_id=301681989 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(817, 218)
+
+[node name="PokerChipGreen17" parent="World" parent_id_path=PackedInt32Array(1028984410) index="53" unique_id=884177811 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(691, 199)
+rotation = 0.9179591
+
+[node name="PokerChipBlue13" parent="World" parent_id_path=PackedInt32Array(1028984410) index="54" unique_id=557043368 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 70
+position = Vector2(683, 107)
+rotation = -2.8682048
+
+[node name="PokerChipGreen18" parent="World" parent_id_path=PackedInt32Array(1028984410) index="55" unique_id=1682646626 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 70
+position = Vector2(780, 20)
+
+[node name="PokerChipRed15" parent="World" parent_id_path=PackedInt32Array(1028984410) index="56" unique_id=1246366319 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 70
+position = Vector2(807, 147)
+rotation = 2.2164297
+
+[node name="PokerChipBlue14" parent="World" parent_id_path=PackedInt32Array(1028984410) index="57" unique_id=2008533074 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 70
+position = Vector2(575, 21)
+
+[node name="PokerChipRed16" parent="World" parent_id_path=PackedInt32Array(1028984410) index="58" unique_id=1678118995 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(1007, -33)
+rotation = 0.73884445
+
+[node name="PokerChipBlue15" parent="World" parent_id_path=PackedInt32Array(1028984410) index="59" unique_id=1662136503 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(1208, -29)
+rotation = -2.0874288
+
+[node name="PokerChipGreen19" parent="World" parent_id_path=PackedInt32Array(1028984410) index="60" unique_id=916830572 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(1309, 50)
+rotation = 2.1691213
+
+[node name="PokerChipGreen20" parent="World" parent_id_path=PackedInt32Array(1028984410) index="61" unique_id=553316675 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(1301.0001, 180.00002)
+rotation = 1.7189391
+
+[node name="PokerChipBlue16" parent="World" parent_id_path=PackedInt32Array(1028984410) index="62" unique_id=1604964689 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(1249, 300)
+
+[node name="PokerChipBlue17" parent="World" parent_id_path=PackedInt32Array(1028984410) index="63" unique_id=58390903 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(1308, 414)
+rotation = 1.4559919
+
+[node name="PokerChipBlue18" parent="World" parent_id_path=PackedInt32Array(1028984410) index="64" unique_id=236555514 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(1198, 482)
+rotation = 1.7261698
+
+[node name="PokerChipRed17" parent="World" parent_id_path=PackedInt32Array(1028984410) index="65" unique_id=68047526 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(1140, 367)
+rotation = 2.9276974
+
+[node name="PokerChipGreen21" parent="World" parent_id_path=PackedInt32Array(1028984410) index="66" unique_id=522291963 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 70
+position = Vector2(1223, 393)
+rotation = 2.67386
+
+[node name="PokerChipGreen22" parent="World" parent_id_path=PackedInt32Array(1028984410) index="67" unique_id=1071978731 instance=ExtResource("6_u10ql")]
+process_mode = 4
+z_index = 60
+position = Vector2(1071, 475)
+
+[node name="PokerChipRed18" parent="World" parent_id_path=PackedInt32Array(1028984410) index="68" unique_id=929355113 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(1215, 614)
+
+[node name="PokerChipRed19" parent="World" parent_id_path=PackedInt32Array(1028984410) index="69" unique_id=1813500266 instance=ExtResource("7_jujl4")]
+process_mode = 4
+z_index = 60
+position = Vector2(934, 541)
+
+[node name="PokerChipBlue19" parent="World" parent_id_path=PackedInt32Array(1028984410) index="70" unique_id=566889435 instance=ExtResource("5_42frs")]
+process_mode = 4
+z_index = 60
+position = Vector2(810, 582)
+
+[node name="PokerChipRed20" parent="World" parent_id_path=PackedInt32Array(1028984410) index="71" unique_id=1043659842 instance=ExtResource("7_jujl4")]
+position = Vector2(10, 480)

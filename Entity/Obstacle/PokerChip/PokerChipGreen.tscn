@@ -5,7 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_yfss4"]
 radius = 64.0
 
-[node name="PokerChipBlue" type="StaticBody2D" unique_id=1612104899]
+[node name="PokerChipGreen" type="StaticBody2D" unique_id=1612104899]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=264612337]
 texture = ExtResource("1_gqq6c")
