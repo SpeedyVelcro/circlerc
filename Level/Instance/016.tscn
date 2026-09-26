@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bxjhd0nr6rea0" path="res://Entity/Obstacle/Dice/DiceTwo.tscn" id="7_liq3w"]
 [ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="8_l1erg"]
 [ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="9_nqrpi"]
+[ext_resource type="PackedScene" uid="uid://panyysscctnt" path="res://Entity/Obstacle/MemoryStick/MemoryStickBlue.tscn" id="10_g2k8b"]
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_ok33y")]
 current_level = 16
@@ -50,7 +51,7 @@ position = Vector2(948, 491)
 rotation = -1.5707964
 
 [node name="PencilRed" parent="." index="17" unique_id=295272656 instance=ExtResource("4_jgang")]
-position = Vector2(580, 442)
+position = Vector2(580, 421)
 rotation = -1.5707964
 
 [node name="PencilRed5" parent="." index="18" unique_id=1671143408 instance=ExtResource("4_jgang")]
@@ -78,7 +79,7 @@ position = Vector2(816, 143)
 rotation = 1.5707964
 
 [node name="PencilBlue8" parent="." index="24" unique_id=1392296879 instance=ExtResource("2_u2x6h")]
-position = Vector2(859, 160)
+position = Vector2(862, 191)
 rotation = 1.5707964
 
 [node name="PencilGreen2" parent="." index="25" unique_id=870246689 instance=ExtResource("3_g2k8b")]
@@ -147,3 +148,7 @@ position = Vector2(1168, 137)
 
 [node name="Pip3" parent="." index="42" unique_id=1005644340 instance=ExtResource("8_l1erg")]
 position = Vector2(1174, 499)
+
+[node name="MemoryStickBlue" parent="." index="43" unique_id=1659953013 instance=ExtResource("10_g2k8b")]
+position = Vector2(970.00006, 4)
+rotation = 0.13551933
