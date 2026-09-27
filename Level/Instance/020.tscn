@@ -41,7 +41,7 @@ _data = {
 point_count = 12
 
 [node name="Level" unique_id=243202749 instance=ExtResource("3")]
-current_level = 14
+current_level = 20
 
 [node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
 position = Vector2(635.921, 339.244)
