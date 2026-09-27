@@ -1,5 +1,158 @@
 [gd_scene format=3 uid="uid://f4ln5sgvsswb"]
 
 [ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1_w0sxi"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="2_045gc"]
+[ext_resource type="PackedScene" uid="uid://crvko70qtl0eb" path="res://Entity/Obstacle/Dice/DiceSix.tscn" id="2_ar762"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="3_p5r22"]
+[ext_resource type="PackedScene" uid="uid://b7354lrgmnt0d" path="res://Entity/Obstacle/Dice/DiceThree.tscn" id="3_re710"]
+[ext_resource type="PackedScene" uid="uid://bxjhd0nr6rea0" path="res://Entity/Obstacle/Dice/DiceTwo.tscn" id="4_0dbga"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" id="4_bid8d"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Can/Can.tscn" id="5_0by45"]
+[ext_resource type="PackedScene" uid="uid://d4l4qvn78kshx" path="res://Entity/Obstacle/Dice/DiceFour.tscn" id="5_wrdew"]
+[ext_resource type="PackedScene" path="res://Entity/Enemy/Enemy.tscn" id="6_0by45"]
+[ext_resource type="PackedScene" uid="uid://c50ipiyy7c140" path="res://Entity/Obstacle/Dice/DiceOne.tscn" id="6_045gc"]
+[ext_resource type="PackedScene" uid="uid://py2svobekop2" path="res://Entity/Obstacle/Dice/DiceFive.tscn" id="7_p5r22"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" id="12_bid8d"]
+[ext_resource type="PackedScene" uid="uid://disuut5gvcvyh" path="res://Entity/Obstacle/Sunglasses/Sunglasses.tscn" id="13_0by45"]
+
+[sub_resource type="Curve2D" id="Curve2D_g6b53"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1084, 503, 42.932274, 34.77514, -42.932274, -34.77514, 1074, 377, 56.241276, 27.905977, -56.241276, -27.905977, 910, 359, -15.455618, 34.77514, 15.455618, -34.77514, 893, 254, 3.4345818, 43.361595, -3.4345818, -43.361595, 940, 174, 31.340559, 2.1466136, -31.340559, -2.1466136, 883, 125, 0.85864544, -43.361595, -0.85864544, 43.361595, 806, 180, 3.4345818, -30.911236, -3.4345818, 30.911236, 835, 269, 41.21498, -28.764622, -41.21498, 28.764622, 803, 326, 42.073627, 15.884941, -42.073627, -15.884941, 688, 341, 48.084145, 20.60749, -48.084145, -20.60749, 602, 275, 55.38263, 0, -55.38263, 0, 506, 236, 29.193945, -20.178167, -29.193945, 20.178167, 408, 252, 36.06311, -18.031555, -36.06311, 18.031555, 349, 343, 42.073627, -8.157131, -42.073627, 8.157131, 221, 372, 7.298486, -25.33004, -7.298486, 25.33004, 139, 429, -9.874422, -31.340559, 9.874422, 31.340559, 141, 576, -40.78566, -3.4345818, 40.78566, 3.4345818, 202, 637, -46.796177, 20.60749, 46.796177, -20.60749, 349, 617, -20.60749, 29.193945, 20.60749, -29.193945, 405, 530, -75.99012, 7.298486, 75.99012, -7.298486, 524, 468, -33.48717, -14.596972, 33.48717, 14.596972, 659, 497, -58.81721, -9.874422, 58.81721, 9.874422, 779, 570, -99.602875, 14.596972, 99.602875, -14.596972, 968, 588, 0, 0, 0, 0, 1084, 503)
+}
+point_count = 25
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_w0sxi")]
+current_level = 17
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(617, 342)
+rotation = -1.5707964
+
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=743074492 instance=ExtResource("2_045gc")]
+position = Vector2(1155, 463)
+
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=482801850 instance=ExtResource("3_p5r22")]
+position = Vector2(889, 356)
+
+[node name="Pip2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=527837913 instance=ExtResource("3_p5r22")]
+position = Vector2(868, 180)
+
+[node name="Pip3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=1802644138 instance=ExtResource("3_p5r22")]
+position = Vector2(576, 232)
+
+[node name="Pip4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=838404386 instance=ExtResource("3_p5r22")]
+position = Vector2(602, 452)
+
+[node name="Pip5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=12956459 instance=ExtResource("3_p5r22")]
+position = Vector2(385, 513)
+
+[node name="Pip6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=1685732993 instance=ExtResource("3_p5r22")]
+position = Vector2(389, 232)
+
+[node name="Matchbox" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=167629586 instance=ExtResource("4_bid8d")]
+position = Vector2(195, 142.00002)
+rotation = -3.0249815
+
+[node name="Can" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=822613444 instance=ExtResource("5_0by45")]
+position = Vector2(-11, 50)
+rotation = 0.61462003
+
+[node name="Path2D" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=1092592589]
+curve = SubResource("Curve2D_g6b53")
+
+[node name="Enemy" parent="World/Path2D" index="0" unique_id=225842794 instance=ExtResource("6_0by45")]
+position = Vector2(1097, 450)
+rotation = -1.5075548
+
+[node name="Enemy2" parent="World/Path2D" index="1" unique_id=604706033 instance=ExtResource("6_0by45")]
+position = Vector2(524, 240)
+rotation = -3.0777102
+
+[node name="Enemy3" parent="World/Path2D" index="2" unique_id=772563534 instance=ExtResource("6_0by45")]
+position = Vector2(208, 639)
+
+[node name="Enemy4" parent="World/Path2D" index="3" unique_id=2028741608 instance=ExtResource("6_0by45")]
+position = Vector2(674, 503)
+rotation = 0.646807
+
+[node name="DiceSix" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=1876512737 instance=ExtResource("2_ar762")]
+position = Vector2(1273, 23)
+rotation = 0.4428342
+
+[node name="DiceThree" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=736073504 instance=ExtResource("3_re710")]
+position = Vector2(1152, 69)
+rotation = -0.1531279
+
+[node name="DiceTwo" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=499246562 instance=ExtResource("4_0dbga")]
+position = Vector2(1228, 102)
+rotation = 0.16160595
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="DiceFour" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=1512153144 instance=ExtResource("5_wrdew")]
+position = Vector2(1136, 186)
+rotation = 0.30314383
+
+[node name="DiceSix2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=981599134 instance=ExtResource("2_ar762")]
+position = Vector2(1017, 95)
+rotation = -0.7584132
+
+[node name="DiceTwo2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=1604560765 instance=ExtResource("4_0dbga")]
+position = Vector2(1154, 287)
+rotation = 1.167179
+
+[node name="DiceOne" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=333570446 instance=ExtResource("6_045gc")]
+position = Vector2(987, 264)
+rotation = 0.70869863
+
+[node name="DiceFive" parent="World" parent_id_path=PackedInt32Array(1028984410) index="20" unique_id=1460698103 instance=ExtResource("7_p5r22")]
+position = Vector2(972, 470)
+rotation = -0.35950392
+
+[node name="DiceTwo3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="21" unique_id=2011976042 instance=ExtResource("4_0dbga")]
+position = Vector2(728, 229)
+rotation = -0.12315262
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="DiceOne2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="22" unique_id=1293310784 instance=ExtResource("6_045gc")]
+position = Vector2(766, 427)
+rotation = 0.17516258
+
+[node name="DiceFive2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="23" unique_id=678690570 instance=ExtResource("7_p5r22")]
+position = Vector2(772, 81)
+rotation = -0.26746294
+
+[node name="DiceSix3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="24" unique_id=1786577841 instance=ExtResource("2_ar762")]
+position = Vector2(550, 582)
+rotation = -0.16101053
+
+[node name="DiceThree2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="25" unique_id=344658743 instance=ExtResource("3_re710")]
+position = Vector2(460.00003, 375.00006)
+rotation = -0.13788877
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="DiceFive3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="26" unique_id=329104207 instance=ExtResource("7_p5r22")]
+position = Vector2(473, 118)
+rotation = 0.31164137
+
+[node name="DiceSix4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="27" unique_id=233478079 instance=ExtResource("2_ar762")]
+position = Vector2(247, 267)
+rotation = -0.11513737
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="DiceOne3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="28" unique_id=2130199088 instance=ExtResource("6_045gc")]
+position = Vector2(233, 529)
+rotation = 0.042652044
+
+[node name="Pip7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="29" unique_id=48502276 instance=ExtResource("3_p5r22")]
+position = Vector2(758, 562)
+
+[node name="Pip8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="30" unique_id=1237777346 instance=ExtResource("3_p5r22")]
+position = Vector2(117, 399)
+
+[node name="PencilGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="31" unique_id=1956003762 instance=ExtResource("12_bid8d")]
+position = Vector2(74.999985, 628.99994)
+rotation = -1.7179909
+
+[node name="Sunglasses" parent="World" parent_id_path=PackedInt32Array(1028984410) index="32" unique_id=768372859 instance=ExtResource("13_0by45")]
+position = Vector2(1141.9999, 700.00006)
+rotation = -0.13851345
