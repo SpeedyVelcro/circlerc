@@ -114,7 +114,10 @@ size_flags_vertical = 3
 [node name="SVAboutSelectedDescriptionLabel" type="RichTextLabel" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer/PanelContainer" unique_id=408708338 node_paths=PackedStringArray("ui_controller")]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 2
 bbcode_enabled = true
+context_menu_enabled = true
+selection_enabled = true
 script = ExtResource("11_a8pmb")
 ui_controller = NodePath("../../../../../../../SVAboutUIController")
 open_links = true
