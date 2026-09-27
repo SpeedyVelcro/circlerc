@@ -1,115 +1,167 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene format=3 uid="uid://d1mntsg5paek8"]
 
-[ext_resource path="res://Entity/Obstacle/Casette/Casette.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Entity/Finish/Finish.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Entity/Pip/Pip.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Entity/Enemy/Enemy.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Entity/Obstacle/Can/Can.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Entity/Obstacle/Pencil/PencilRed.tscn" type="PackedScene" id=10]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Casette/Casette.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Entity/Enemy/Enemy.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" id="8"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Can/Can.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilRed.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://tswdm23cjhel" path="res://Entity/Obstacle/PokerChip/PokerChipGreen.tscn" id="11_rll7q"]
+[ext_resource type="PackedScene" uid="uid://o5lu6j5m36sy" path="res://Entity/Obstacle/PokerChip/PokerChipRed.tscn" id="12_ldr5c"]
+[ext_resource type="PackedScene" uid="uid://nddxaay5d7ey" path="res://Entity/Obstacle/MemoryStick/MemoryStickGreen.tscn" id="13_5hkgr"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" id="14_y2ihx"]
+[ext_resource type="PackedScene" uid="uid://ds40ftxs5wjtq" path="res://Entity/Obstacle/Sharpener/Sharpener.tscn" id="15_873ky"]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id="1"]
 _data = {
-"points": PackedVector2Array( 0, 0, 0, 0, 0.914062, -0.635803, 0, -67.0151, 0, 67.0151, 66.5133, 70.1548, 0, 0, 0, 0, -0.973694, 134.338, 0, 63.7115, 0, -63.7115, -69.8765, 67.3231, 0, 0, 0, 0, 0.914062, -0.635803 )
+"points": PackedVector2Array(0, 0, 0, 0, 0.914062, -0.635803, 0, -67.0151, 0, 67.0151, 66.5133, 70.1548, 0, 0, 0, 0, -0.973694, 134.338, 0, 63.7115, 0, -63.7115, -69.8765, 67.3231, 0, 0, 0, 0, 0.914062, -0.635803)
 }
+point_count = 5
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Curve2D" id="2"]
 _data = {
-"points": PackedVector2Array( 0, 0, 0, 0, 0.938629, 1.09789, 0, -169.861, 0, 169.861, 180.89, 173.482, 0, 0, 0, 0, 2.62042, 344.184, -0.840896, 171.543, 0.840896, -171.543, -178.172, 174.323, 0, 0, 0, 0, 0.938629, 1.09789 )
+"points": PackedVector2Array(0, 0, 0, 0, 0.938629, 1.09789, 0, -169.861, 0, 169.861, 180.89, 173.482, 0, 0, 0, 0, 2.62042, 344.184, -0.840896, 171.543, 0.840896, -171.543, -178.172, 174.323, 0, 0, 0, 0, 0.938629, 1.09789)
 }
+point_count = 5
 
-[sub_resource type="Curve2D" id=3]
+[sub_resource type="Curve2D" id="3"]
 _data = {
-"points": PackedVector2Array( 0, 0, 0, 0, 0.369904, -0.0570221, -219, 0, 219, 0, 221.345, 206.957, 0, 0, 0, 0, 435.219, 0.0422516, 214, -2, -214, 2, 215.81, -213.42, 0, 0, 0, 0, 0.369904, -0.0570221 )
+"points": PackedVector2Array(0, 0, 0, 0, 0.369904, -0.0570221, -219, 0, 219, 0, 221.345, 206.957, 0, 0, 0, 0, 435.219, 0.0422516, 214, -2, -214, 2, 215.81, -213.42, 0, 0, 0, 0, 0.369904, -0.0570221)
 }
+point_count = 5
 
-[node name="Level" instance=ExtResource( 3 )]
+[sub_resource type="Curve2D" id="Curve2D_rll7q"]
+_data = {
+"points": PackedVector2Array(-7.464116, -86.37048, 7.464116, 86.37048, 778, 349, -34.601513, -74.481224, 34.601513, 74.481224, 853, 522, -19.299921, -27.493284, 19.299921, 27.493284, 923, 660, -41.133545, 21.797623, 41.133545, -21.797623, 1081, 656, -11.729325, 88.76967, 11.729325, -88.76967, 1133, 521, -1.5994534, 41.05264, 1.5994534, -41.05264, 1168, 293, 11.196175, 4.531785, -11.196175, -4.531785, 1145, 233, 34.38825, 11.995901, -34.38825, -11.995901, 1061, 219, 21.59262, 42.652092, -21.59262, -42.652092, 1013, 144, 43.45182, -23.192076, -43.45182, 23.192076, 897, 143, 38.653458, -63.44499, -38.653458, 63.44499, 813, 246, 0, 0, 0, 0, 778, 349)
+}
+point_count = 12
+
+[node name="Level" unique_id=243202749 instance=ExtResource("3")]
 current_level = 14
 
-[node name="Player" parent="World" index="1"]
-position = Vector2( 635.921, 339.244 )
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(635.921, 339.244)
 
-[node name="Finish" parent="World" index="3" instance=ExtResource( 5 )]
-position = Vector2( 628.224, 307.245 )
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=265512852 instance=ExtResource("5")]
+position = Vector2(628.224, 307.245)
 
-[node name="Casette" parent="World" index="4" instance=ExtResource( 1 )]
-position = Vector2( 676.084, 54.4248 )
+[node name="Casette" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=1094534586 instance=ExtResource("1")]
+position = Vector2(676.084, 54.4248)
 rotation = 1.5708
 
-[node name="Matchbox" parent="World" index="5" instance=ExtResource( 4 )]
-position = Vector2( 639.128, 445.862 )
+[node name="Matchbox" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=696725111 instance=ExtResource("4")]
+position = Vector2(639.128, 445.862)
 
-[node name="PencilGreen" parent="World" index="6" instance=ExtResource( 2 )]
-position = Vector2( 779.774, 608.834 )
+[node name="PencilGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=1700606425 instance=ExtResource("2")]
+position = Vector2(779.774, 608.834)
 rotation = 0.90975
 
-[node name="Pip" parent="World" index="7" instance=ExtResource( 6 )]
-position = Vector2( 576.888, 619.51 )
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=179607016 instance=ExtResource("6")]
+position = Vector2(576.888, 619.51)
 
-[node name="Path2D3" type="Path2D" parent="World" index="8"]
-position = Vector2( 579.884, 549.09 )
-curve = SubResource( 1 )
+[node name="Path2D3" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=1959811206]
+position = Vector2(579.884, 549.09)
+curve = SubResource("1")
 
-[node name="Enemy" parent="World/Path2D3" index="0" instance=ExtResource( 7 )]
+[node name="Enemy" parent="World/Path2D3" index="0" unique_id=356129433 instance=ExtResource("7")]
 
-[node name="Enemy2" parent="World/Path2D3" index="1" instance=ExtResource( 7 )]
-position = Vector2( -1.49799, 134.098 )
+[node name="Enemy2" parent="World/Path2D3" index="1" unique_id=912416450 instance=ExtResource("7")]
+position = Vector2(-1.49799, 134.098)
 
-[node name="PencilBlue" parent="World" index="9" instance=ExtResource( 8 )]
-position = Vector2( 400.658, 601.786 )
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=18845305 instance=ExtResource("8")]
+position = Vector2(400.658, 601.786)
 rotation = -1.64368
 
-[node name="Pip2" parent="World" index="10" instance=ExtResource( 6 )]
-position = Vector2( 274.018, 589.431 )
+[node name="Pip2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=440008183 instance=ExtResource("6")]
+position = Vector2(274.018, 589.431)
 
-[node name="Pip3" parent="World" index="11" instance=ExtResource( 6 )]
-position = Vector2( 99.1606, 529.08 )
+[node name="Pip3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=1243953447 instance=ExtResource("6")]
+position = Vector2(99.1606, 529.08)
 
-[node name="Path2D" type="Path2D" parent="World" index="12"]
-position = Vector2( 261.007, 62.2728 )
-curve = SubResource( 2 )
+[node name="Path2D" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=34499517]
+position = Vector2(261.007, 62.2728)
+curve = SubResource("2")
 
-[node name="Enemy3" parent="World/Path2D" index="0" instance=ExtResource( 7 )]
+[node name="Enemy3" parent="World/Path2D" index="0" unique_id=1649939681 instance=ExtResource("7")]
 
-[node name="Enemy4" parent="World/Path2D" index="1" instance=ExtResource( 7 )]
-position = Vector2( 180.052, 174.579 )
+[node name="Enemy4" parent="World/Path2D" index="1" unique_id=1448544714 instance=ExtResource("7")]
+position = Vector2(180.052, 174.579)
 
-[node name="Enemy5" parent="World/Path2D" index="2" instance=ExtResource( 7 )]
-position = Vector2( 5.01602, 345.901 )
+[node name="Enemy5" parent="World/Path2D" index="2" unique_id=1818638207 instance=ExtResource("7")]
+position = Vector2(5.01602, 345.901)
 
-[node name="Enemy6" parent="World/Path2D" index="3" instance=ExtResource( 7 )]
-position = Vector2( -177.584, 174.015 )
+[node name="Enemy6" parent="World/Path2D" index="3" unique_id=2027583899 instance=ExtResource("7")]
+position = Vector2(-177.584, 174.015)
 
-[node name="Can" parent="World" index="13" instance=ExtResource( 9 )]
-position = Vector2( 264.958, 231.387 )
+[node name="Can" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=19338091 instance=ExtResource("9")]
+position = Vector2(264.958, 231.387)
 
-[node name="Path2D2" type="Path2D" parent="World" index="14"]
-position = Vector2( 44.4627, 236.454 )
-curve = SubResource( 3 )
+[node name="Path2D2" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=1204105492]
+position = Vector2(44.4627, 236.454)
+curve = SubResource("3")
 
-[node name="Enemy7" parent="World/Path2D2" index="0" instance=ExtResource( 7 )]
+[node name="Enemy7" parent="World/Path2D2" index="0" unique_id=1279254232 instance=ExtResource("7")]
 
-[node name="Enemy8" parent="World/Path2D2" index="1" instance=ExtResource( 7 )]
-position = Vector2( 435.619, 1.388 )
+[node name="Enemy8" parent="World/Path2D2" index="1" unique_id=1630657962 instance=ExtResource("7")]
+position = Vector2(435.619, 1.388)
 
-[node name="Pip4" parent="World" index="15" instance=ExtResource( 6 )]
-position = Vector2( 452.606, 79.3341 )
+[node name="Pip4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=1570148168 instance=ExtResource("6")]
+position = Vector2(452.606, 79.3341)
 
-[node name="PencilRed" parent="World" index="16" instance=ExtResource( 10 )]
-position = Vector2( 986.298, 281.766 )
+[node name="PencilRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=413128274 instance=ExtResource("10")]
+position = Vector2(986.298, 281.766)
 
-[node name="PencilGreen2" parent="World" index="17" instance=ExtResource( 2 )]
-position = Vector2( 981.541, 455.39 )
+[node name="PencilGreen2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=1958649985 instance=ExtResource("2")]
+position = Vector2(981.541, 455.39)
 rotation = 1.55609
 
-[node name="Pip5" parent="World" index="18" instance=ExtResource( 6 )]
-position = Vector2( 835.269, 423.282 )
+[node name="Pip5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=294272104 instance=ExtResource("6")]
+position = Vector2(835.269, 423.282)
 
-[node name="Pip6" parent="World" index="19" instance=ExtResource( 6 )]
-position = Vector2( 1137.33, 433.985 )
+[node name="Pip6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=79349209 instance=ExtResource("6")]
+position = Vector2(1137.33, 433.985)
 
-[node name="Pip7" parent="World" index="20" instance=ExtResource( 6 )]
-position = Vector2( 1004.14, 99.8174 )
+[node name="Pip7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="20" unique_id=1073488890 instance=ExtResource("6")]
+position = Vector2(1004.14, 99.8174)
+
+[node name="PokerChipGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="21" unique_id=1612104899 instance=ExtResource("11_rll7q")]
+position = Vector2(52, 632)
+rotation = -0.36293536
+
+[node name="PokerChipRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="22" unique_id=1874669913 instance=ExtResource("12_ldr5c")]
+position = Vector2(209, 679)
+rotation = 0.23901668
+
+[node name="MemoryStickGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="23" unique_id=1659953013 instance=ExtResource("13_5hkgr")]
+position = Vector2(1205, 171)
+rotation = 0.0941492
+
+[node name="Matchbox2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="24" unique_id=1935091820 instance=ExtResource("14_y2ihx")]
+position = Vector2(1239, 60)
+
+[node name="Sharpener" parent="World" parent_id_path=PackedInt32Array(1028984410) index="25" unique_id=1320470724 instance=ExtResource("15_873ky")]
+position = Vector2(1241, 285)
+rotation = 1.5707964
+
+[node name="Path2D4" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="26" unique_id=756871704]
+curve = SubResource("Curve2D_rll7q")
+
+[node name="Enemy" parent="World/Path2D4" index="0" unique_id=5348251 instance=ExtResource("7")]
+position = Vector2(833, 487)
+rotation = 0.93823695
+
+[node name="Enemy2" parent="World/Path2D4" index="1" unique_id=1249929533 instance=ExtResource("7")]
+position = Vector2(1132, 537)
+rotation = -1.3003622
+
+[node name="Enemy3" parent="World/Path2D4" index="2" unique_id=608576875 instance=ExtResource("7")]
+position = Vector2(962, 119)
+rotation = 3.0208557
+
+[node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="27" unique_id=2105088511 instance=ExtResource("8")]
+position = Vector2(874, 21.00003)
+rotation = 2.2123928
