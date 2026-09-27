@@ -116,7 +116,9 @@ func _migrate_save_to_v2(dict: Dictionary) -> void:
 			dict["level_best_time"][13 - 1] = -1
 		
 		if dict["level_best_time"][14 - 1] >= 0:
-			dict["level_best_time"][20 - 1] = dict["level_best_time"][14 - 1]
+			# We drop the final level time entirely because it has been made
+			# significantly harder. Players will have to try agian for a best
+			# time.
 			dict["level_best_time"][14 - 1] = -1
 	
 	dict["version"] = 2

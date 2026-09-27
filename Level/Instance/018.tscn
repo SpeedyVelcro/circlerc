@@ -1,5 +1,120 @@
 [gd_scene format=3 uid="uid://bblttlsqq7uer"]
 
 [ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1_hvxsb"]
+[ext_resource type="PackedScene" path="res://Entity/Pip/Pip.tscn" id="2_s6dlo"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="3_tyhw7"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" id="4_cfj74"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilRed.tscn" id="5_c56n8"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Can/Can.tscn" id="6_jd63w"]
+[ext_resource type="PackedScene" uid="uid://tswdm23cjhel" path="res://Entity/Obstacle/PokerChip/PokerChipGreen.tscn" id="7_s0cwl"]
+[ext_resource type="PackedScene" uid="uid://o5lu6j5m36sy" path="res://Entity/Obstacle/PokerChip/PokerChipRed.tscn" id="8_nu1sd"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" id="9_37dh3"]
+[ext_resource type="PackedScene" path="res://Entity/Enemy/Enemy.tscn" id="10_tyhw7"]
+[ext_resource type="PackedScene" uid="uid://c50ipiyy7c140" path="res://Entity/Obstacle/Dice/DiceOne.tscn" id="11_nu1sd"]
+[ext_resource type="PackedScene" uid="uid://crvko70qtl0eb" path="res://Entity/Obstacle/Dice/DiceSix.tscn" id="12_37dh3"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Casette/Casette.tscn" id="13_seyxx"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilGreen.tscn" id="14_3mlxh"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" id="15_spwlu"]
+
+[sub_resource type="Curve2D" id="Curve2D_cfj74"]
+_data = {
+"points": PackedVector2Array(-5.864663, -67.44363, 5.864663, 67.44363, 830, 191, 0.87969947, -68.90979, -0.87969947, 68.90979, 833, 408, 82.105286, -4.105264, -82.105286, 4.105264, 724, 515, 38.70678, 6.451129, -38.70678, -6.451129, 253, 494, 0.87969947, 38.706776, -0.87969947, -38.706776, 171, 410, -6.744363, 50.142868, 6.744363, -50.142868, 170, 195, -56.593998, 4.6917305, 56.593998, -4.6917305, 276, 110, -105.270706, 0, 105.270706, 0, 724, 78, 0, 0, 0, 0, 830, 191)
+}
+point_count = 9
 
 [node name="Level" unique_id=636156732 instance=ExtResource("1_hvxsb")]
+current_level = 18
+
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(488, 298)
+
+[node name="Pip" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=248627603 instance=ExtResource("2_s6dlo")]
+position = Vector2(1077, 371)
+
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=1920399512 instance=ExtResource("3_tyhw7")]
+position = Vector2(573, 301)
+
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=2127249339 instance=ExtResource("4_cfj74")]
+position = Vector2(556, 419)
+
+[node name="PencilRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=190634228 instance=ExtResource("5_c56n8")]
+position = Vector2(549, 182)
+
+[node name="Can" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=213123239 instance=ExtResource("6_jd63w")]
+position = Vector2(330, 301)
+
+[node name="PokerChipGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=1612104899 instance=ExtResource("7_s0cwl")]
+position = Vector2(726, 393.00003)
+rotation = 0.53056365
+
+[node name="PokerChipRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=508969315 instance=ExtResource("8_nu1sd")]
+position = Vector2(722, 195)
+
+[node name="Matchbox" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=1941376207 instance=ExtResource("9_37dh3")]
+process_mode = 4
+z_index = 70
+position = Vector2(724, 296.00003)
+rotation = 1.5313365
+
+[node name="Path2D" type="Path2D" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=240629751]
+curve = SubResource("Curve2D_cfj74")
+
+[node name="Enemy" parent="World/Path2D" index="0" unique_id=1188240692 instance=ExtResource("10_tyhw7")]
+position = Vector2(835, 194)
+rotation = 1.5430222
+
+[node name="Enemy2" parent="World/Path2D" index="1" unique_id=546670805 instance=ExtResource("10_tyhw7")]
+position = Vector2(835, 408)
+rotation = 1.6483349
+
+[node name="Enemy3" parent="World/Path2D" index="2" unique_id=424009659 instance=ExtResource("10_tyhw7")]
+position = Vector2(658, 514)
+rotation = -3.1405628
+
+[node name="Enemy4" parent="World/Path2D" index="3" unique_id=746778085 instance=ExtResource("10_tyhw7")]
+position = Vector2(362, 506)
+rotation = -3.0311174
+
+[node name="Enemy5" parent="World/Path2D" index="4" unique_id=1140093699 instance=ExtResource("10_tyhw7")]
+position = Vector2(169, 295)
+rotation = -1.5660088
+
+[node name="Enemy6" parent="World/Path2D" index="5" unique_id=1701204884 instance=ExtResource("10_tyhw7")]
+position = Vector2(338, 105)
+rotation = -0.13893728
+
+[node name="Enemy7" parent="World/Path2D" index="6" unique_id=468076912 instance=ExtResource("10_tyhw7")]
+position = Vector2(633, 83)
+rotation = -0.06051666
+
+[node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=477376233 instance=ExtResource("4_cfj74")]
+position = Vector2(977.00006, 347.00003)
+rotation = -1.5545849
+
+[node name="DiceOne" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=1876512737 instance=ExtResource("11_nu1sd")]
+position = Vector2(1169, 275)
+rotation = -0.21682267
+
+[node name="DiceSix" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=2033693913 instance=ExtResource("12_37dh3")]
+position = Vector2(1176, 441)
+rotation = 0.19643556
+
+[node name="Casette" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=712232123 instance=ExtResource("13_seyxx")]
+position = Vector2(0.99999905, 388.00003)
+rotation = -1.6187339
+
+[node name="PencilGreen" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=463777354 instance=ExtResource("14_3mlxh")]
+position = Vector2(956, 34)
+rotation = -0.07818323
+
+[node name="PencilRed2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=1997417669 instance=ExtResource("5_c56n8")]
+position = Vector2(1254, 40)
+rotation = 0.11330116
+
+[node name="PokerChipRed2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=1994228490 instance=ExtResource("8_nu1sd")]
+position = Vector2(654.00006, 710)
+rotation = -0.23964521
+
+[node name="Matchbox2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=533749440 instance=ExtResource("15_spwlu")]
+position = Vector2(1201, 676.99994)
+rotation = -3.0952072
