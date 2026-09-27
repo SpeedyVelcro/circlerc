@@ -99,6 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="SVAboutSelectedTitleLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1077172930 node_paths=PackedStringArray("ui_controller")]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 label_settings = ExtResource("9_hlcuc")
 autowrap_mode = 3
