@@ -165,3 +165,6 @@ rotation = 3.0208557
 [node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="27" unique_id=2105088511 instance=ExtResource("8")]
 position = Vector2(874, 21.00003)
 rotation = 2.2123928
+
+[node name="Pip" parent="." index="9" unique_id=1671688551 instance=ExtResource("6")]
+position = Vector2(52, 108)
