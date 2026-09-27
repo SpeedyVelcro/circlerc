@@ -13,6 +13,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("2")
 quit_button = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
@@ -149,7 +151,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Credits"
+text = "About"
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1393377360]
 layout_mode = 2

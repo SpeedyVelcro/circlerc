@@ -1,0 +1,127 @@
+[gd_resource type="Resource" script_class="SVAboutGameInfo" format=3 uid="uid://bja7ymlgga3db"]
+
+[ext_resource type="Script" uid="uid://n7jauopw8y1o" path="res://addons/sv_about_menu/data/sv_about_section.gd" id="1_qesmc"]
+[ext_resource type="Script" uid="uid://buglxgortae4s" path="res://addons/sv_about_menu/data/sv_about_game_info.gd" id="2_ebyvh"]
+[ext_resource type="Script" uid="uid://bjgnxatvg3ldr" path="res://addons/sv_about_menu/data/sv_about_entry_custom.gd" id="3_ebyvh"]
+[ext_resource type="Script" uid="uid://boomnqmjwlnh0" path="res://addons/sv_about_menu/data/sv_about_entry.gd" id="3_kc2ba"]
+
+[sub_resource type="Resource" id="Resource_knkbi"]
+script = ExtResource("3_ebyvh")
+title = "SV About Menu"
+description = "Copyright © 2026 SpeedyVelcro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_q3jjj"]
+script = ExtResource("3_ebyvh")
+title = "Press Start 2P"
+description = "Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), with Reserved Font Name \"Press Start 2P\".
+Licensed under the SIL Open Font License, Version 1.1 available at: http://scripts.sil.org/OFL"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_v4sbr"]
+script = ExtResource("1_qesmc")
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_knkbi"), SubResource("Resource_q3jjj")])
+metadata/_custom_type_script = "uid://n7jauopw8y1o"
+
+[sub_resource type="Resource" id="Resource_r1itu"]
+script = ExtResource("3_ebyvh")
+title = "Art"
+description = "Created by SpeedyVelcro (speedyvelcro.com)
+Licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_kc2ba"]
+script = ExtResource("3_ebyvh")
+title = "Car impact sound effect"
+description = "Created by SpeedyVelcro
+Licensed under CC0 1.0"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_dhlam"]
+script = ExtResource("3_ebyvh")
+title = "Motor, Small, Fast, Front, 04-01, LOOP.wav"
+description = "by InspectorJ (www.jshaw.co.uk) of Freesound.org
+Licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Pitch-shifted in-engine"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_ebyvh"]
+script = ExtResource("3_ebyvh")
+title = "Plunger pop 02"
+description = "by Quistard (https://freesound.org/people/Quistard/)
+Licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+Modified by SpeedyVelcro (Sped up and EQ). Modified version is distributed under the same license."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_4j3j2"]
+script = ExtResource("3_ebyvh")
+title = "Kenney"
+description = "This game uses one or more sound effects by Kenney (kenney.nl)
+These are licensed under CC0 1.0"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_lfsme"]
+script = ExtResource("1_qesmc")
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_4j3j2")])
+metadata/_custom_type_script = "uid://n7jauopw8y1o"
+
+[sub_resource type="Resource" id="Resource_ey7sq"]
+script = ExtResource("3_ebyvh")
+title = "CircleRC"
+description = "Copyright © 2020-2026 SpeedyVelcro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_8yd11"]
+script = ExtResource("3_ebyvh")
+title = "Credits"
+description = "[b]CircleRC[/b]
+
+A game by SpeedyVelcro
+
+Made using the Godot Engine
+
+[b]Art[/b]
+SpeedyVelcro
+
+[b]Sound Design[/b]
+SpeedyVelcro
+
+CircleRC uses third-party audio assets by the following creators:
+
+InspectorJ (www.jshaw.co.uk)
+Quistard (https://freesound.org/people/Quistard/)
+Kenney (kenney.nl)
+
+Specific audio assets and their license terms are enumerated in the about menu.
+
+[b]Fonts[/b]
+CircleRC uses the following third-party fonts:
+
+Press Start 2P
+By The Press Start 2P Project Authors (cody@zone38.net)
+
+In addition to fonts included with the Godot Engine.
+
+Font licenses can be found in the About menu."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[resource]
+script = ExtResource("2_ebyvh")
+top_level_entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_ey7sq"), SubResource("Resource_8yd11")])
+custom_sections = Dictionary[String, ExtResource("1_qesmc")]({
+"Assets": SubResource("Resource_lfsme"),
+"Components": SubResource("Resource_v4sbr")
+})
+metadata/_custom_type_script = "uid://buglxgortae4s"
