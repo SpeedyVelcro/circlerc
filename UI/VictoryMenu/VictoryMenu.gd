@@ -1,5 +1,4 @@
 # VictoryMenu.gd
-
 extends CanvasLayer
 
 @onready var visibility_node = get_node("CenterContainer")
@@ -10,8 +9,8 @@ extends CanvasLayer
 @onready var record_new_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew")
 @export var input_allowed = false
 var level_number = 0
-var time_cent = 0
-var best_time_cent = 0
+var time: TimeScore = TimeScore.NONE
+var best_time: TimeScore = TimeScore.NONE
 
 signal next_level
 
@@ -38,23 +37,6 @@ func display(skip = false):
 	if skip:
 		$AnimationPlayer.seek($AnimationPlayer.get_current_animation_length(), true)
 
-func centisec_to_string(value):
-	if value < 0:
-		return "xx:xx:xx"
-	var cents = int(value)
-	var secs = 0
-	var mins = 0
-	while cents >= 100:
-		cents -= 100
-		secs += 1
-	while secs >= 60:
-		secs -= 60
-		mins += 1
-	var str_min = str(floor(mins)).pad_zeros(2)
-	var str_sec = str(floor(secs)).pad_zeros(2)
-	var str_cent = str(floor(cents)).pad_zeros(2)
-	return str_min + ":" + str_sec + ":" + str_cent
-
 func quit():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
 
@@ -80,10 +62,10 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			input_allowed = true
 
 # Getters and setters
-func set_time_cent(value):
-	time_cent = value
-	time_label.set_text(centisec_to_string(time_cent))
-	if time_cent < best_time_cent:
+func set_time(value: TimeScore):
+	time = value
+	time_label.text = value.get_display_string()
+	if time.get_total_milliseconds() < best_time.get_total_milliseconds():
 		record_previous_node.set_visible(false)
 		record_new_node.set_visible(true)
 
@@ -91,6 +73,6 @@ func set_level(value):
 	# Input level starting from 1
 	level_number = value
 	level_title_label.set_text("Level " + str(level_number))
-	best_time_cent = Profile.get_level_best_time(level_number - 1)
-	best_time_label.set_text(centisec_to_string(best_time_cent))
+	best_time = Profile.get_level_best_time(level_number)
+	best_time_label.text = best_time.get_display_string()
 	

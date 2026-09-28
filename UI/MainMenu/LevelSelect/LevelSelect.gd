@@ -34,24 +34,10 @@ func _ready():
 func _on_ButtonLevel_pressed(level_number: int):
 	selected_level = level_number
 	# Update details
-	level_number_label.set_text("Level " + str(level_number))
-	level_caption_label.set_text(level_list.get_level_caption(level_number))
-	var t_cent = Profile.get_level_best_time(level_number)
-	if t_cent == -1:
-		best_time_label.set_text("xx:xx:xx")
-	else:
-		var t_sec = 0
-		var t_min = 0
-		while t_cent >= 100:
-			t_cent -= 100
-			t_sec += 1
-		while t_sec >= 60:
-			t_sec -= 60
-			t_min += 1
-		var s_cent = str(floori(t_cent)).pad_zeros(2)
-		var s_sec = str(floor(t_sec)).pad_zeros(2)
-		var s_min = str(floor(t_min)). pad_zeros(2)
-		best_time_label.set_text(s_min + ":" + s_sec + ":" + s_cent)
+	level_number_label.text = "Level " + str(level_number)
+	level_caption_label.text = level_list.get_level_caption(level_number)
+	var time_score := Profile.get_level_best_time(level_number)
+	best_time_label.text = time_score.get_display_string()
 
 func _on_ButtonBack_pressed():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")

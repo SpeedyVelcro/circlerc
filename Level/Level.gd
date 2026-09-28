@@ -1,13 +1,13 @@
 extends Node
 
 var _current_level: int = -1 # Starts at 1
-var time_elapsed_centisec = 0
+var time: TimeScore = TimeScore.ZERO
 var has_finished = false
 var started = false
 
 @export var level_list: LevelList
 
-signal time_elapsed(time_sec)
+signal time_elapsed(new_time: TimeScore)
 signal finished
 
 func _ready():
@@ -20,18 +20,21 @@ func _ready():
 
 func _process(delta):
 	if started and not has_finished:
-		var t = 100 * delta
-		time_elapsed_centisec += t
-		emit_signal("time_elapsed", t)
+		var milliseconds_elapsed = 1000 * delta
+		time.advance(milliseconds_elapsed)
+		emit_signal("time_elapsed", time)
 
 func _on_Finish_activated():
-	emit_signal("finished")
-	$VictoryAudio.play()
 	has_finished = true
+	emit_signal("finished")
+	
+	
+	$VictoryAudio.play()
 	$FinishTimer.start(1.5)
 	$HUDFadeTimer.start(1.5)
-	Profile.submit_level_time(_current_level, time_elapsed_centisec)
-	$VictoryMenu.set_time_cent(time_elapsed_centisec)
+	
+	Profile.submit_level_time(_current_level, time)
+	$VictoryMenu.set_time(time)
 	
 	# Unlock next level
 	Profile.set_level_unlocked(_current_level + 1, true)

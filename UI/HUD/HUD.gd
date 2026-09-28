@@ -50,8 +50,8 @@ func _on_ControllerArea_body_exited(_body):
 	if not level_finished:
 		$Controller.slide_in()
 
-func _on_Level_time_elapsed(time_centisec):
-	$Clock.set_time(time_centisec)
+func _on_Level_time_elapsed(new_time: TimeScore):
+	$Clock.set_time(new_time)
 
 func _on_Level_finished():
 	$Clock.finalise()
