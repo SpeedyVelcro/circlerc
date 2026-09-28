@@ -53,7 +53,7 @@ func centisec_to_string(value):
 	var str_min = str(floor(mins)).pad_zeros(2)
 	var str_sec = str(floor(secs)).pad_zeros(2)
 	var str_cent = str(floor(cents)).pad_zeros(2)
-	return str_min + ":" + str_sec + ":" + str_cent + ":"
+	return str_min + ":" + str_sec + ":" + str_cent
 
 func quit():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
