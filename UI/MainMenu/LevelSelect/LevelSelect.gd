@@ -24,7 +24,7 @@ func _ready():
 		lb.button_group = button_group
 		lb.set_text(str(i + 1).pad_zeros(2))
 		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i + 1))
-		if not Profile.is_level_unlocked(i):
+		if not Profile.is_level_unlocked(i + 1):
 			lb.set_disabled(true)
 		if i == 0:
 			lb.set_pressed(true)
@@ -36,7 +36,7 @@ func _on_ButtonLevel_pressed(level_number: int):
 	# Update details
 	level_number_label.set_text("Level " + str(level_number))
 	level_caption_label.set_text(level_list.get_level_caption(level_number))
-	var t_cent = Profile.get_level_best_time(level_number - 1)
+	var t_cent = Profile.get_level_best_time(level_number)
 	if t_cent == -1:
 		best_time_label.set_text("xx:xx:xx")
 	else:
