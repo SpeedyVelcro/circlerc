@@ -1,21 +1,22 @@
-# Level.gd
-
 extends Node
 
-@export var current_level: int = 1 # Starts at 1
-var level_list = preload("res://Level/LevelList.tres")
+var _current_level: int = -1 # Starts at 1
 var time_elapsed_centisec = 0
 var has_finished = false
 var started = false
+
+@export var level_list: LevelList
 
 signal time_elapsed(time_sec)
 signal finished
 
 func _ready():
-	$VictoryMenu.set_level(current_level)
+	_current_level = level_list.scene_root_node_to_number(self)
+	
+	$VictoryMenu.set_level(_current_level)
 	for fin in get_tree().get_nodes_in_group("finish"):
 		fin.connect("activated", Callable(self, "_on_Finish_activated").bind(), CONNECT_ONE_SHOT)
-		$HUD.set_level(current_level - 1)
+		$HUD.set_level(_current_level)
 
 func _process(delta):
 	if started and not has_finished:
@@ -29,23 +30,21 @@ func _on_Finish_activated():
 	has_finished = true
 	$FinishTimer.start(1.5)
 	$HUDFadeTimer.start(1.5)
-	Profile.submit_level_time(current_level - 1, time_elapsed_centisec)
+	Profile.submit_level_time(_current_level - 1, time_elapsed_centisec)
 	$VictoryMenu.set_time_cent(time_elapsed_centisec)
 
 func _on_FinishTimer_timeout():
 	$VictoryMenu.display()
 
 func next_level():
-	if current_level >= level_list.get_number_of_levels():
+	if _current_level >= level_list.get_number_of_levels():
 		# Final level so back to main menu
 		SceneTransition.fade("res://UI/MainMenu/MainMenu.tscn")
 	else:
 		# Unlock next level
-		Profile.set_level_unlocked(current_level, true) # Inherently next level
-				# as current_level starts from 1
+		Profile.set_level_unlocked(_current_level + 1, true)
 		# Go to next level
-		var next = level_list.get_level(current_level) # Inherently next level as
-				# current_level starts from 1
+		var next = level_list.get_level_scene_path(_current_level + 1)
 		SceneTransition.fade(next)
 
 func _on_Player_first_move():

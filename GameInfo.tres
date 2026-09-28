@@ -5,30 +5,6 @@
 [ext_resource type="Script" uid="uid://bjgnxatvg3ldr" path="res://addons/sv_about_menu/data/sv_about_entry_custom.gd" id="3_ebyvh"]
 [ext_resource type="Script" uid="uid://boomnqmjwlnh0" path="res://addons/sv_about_menu/data/sv_about_entry.gd" id="3_kc2ba"]
 
-[sub_resource type="Resource" id="Resource_knkbi"]
-script = ExtResource("3_ebyvh")
-title = "SV About Menu"
-description = "Copyright © 2026 SpeedyVelcro
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
-
-[sub_resource type="Resource" id="Resource_q3jjj"]
-script = ExtResource("3_ebyvh")
-title = "Press Start 2P"
-description = "Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), with Reserved Font Name \"Press Start 2P\".
-Licensed under the SIL Open Font License, Version 1.1 available at: http://scripts.sil.org/OFL"
-metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
-
-[sub_resource type="Resource" id="Resource_v4sbr"]
-script = ExtResource("1_qesmc")
-entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_knkbi"), SubResource("Resource_q3jjj")])
-metadata/_custom_type_script = "uid://n7jauopw8y1o"
-
 [sub_resource type="Resource" id="Resource_r1itu"]
 script = ExtResource("3_ebyvh")
 title = "Art"
@@ -69,6 +45,30 @@ metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 [sub_resource type="Resource" id="Resource_lfsme"]
 script = ExtResource("1_qesmc")
 entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_4j3j2")])
+metadata/_custom_type_script = "uid://n7jauopw8y1o"
+
+[sub_resource type="Resource" id="Resource_knkbi"]
+script = ExtResource("3_ebyvh")
+title = "SV About Menu"
+description = "Copyright © 2026 SpeedyVelcro
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_q3jjj"]
+script = ExtResource("3_ebyvh")
+title = "Press Start 2P"
+description = "Copyright 2012 The Press Start 2P Project Authors (cody@zone38.net), with Reserved Font Name \"Press Start 2P\".
+Licensed under the SIL Open Font License, Version 1.1 available at: http://scripts.sil.org/OFL"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_v4sbr"]
+script = ExtResource("1_qesmc")
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_knkbi"), SubResource("Resource_q3jjj")])
 metadata/_custom_type_script = "uid://n7jauopw8y1o"
 
 [sub_resource type="Resource" id="Resource_ey7sq"]

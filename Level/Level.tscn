@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://bowma5bbto5lg" path="res://Entity/Player/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="2"]
-[ext_resource type="PackedScene" path="res://UI/PauseMenu/PauseMenu.tscn" id="3"]
+[ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="2_6lumq"]
+[ext_resource type="PackedScene" uid="uid://t3b8taxmb1lx" path="res://UI/PauseMenu/PauseMenu.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://davrql42i6s68" path="res://UI/HUD/HUD.tscn" id="4"]
 [ext_resource type="Script" uid="uid://qlpolhkqtds7" path="res://Level/Level.gd" id="5"]
 [ext_resource type="AudioStream" uid="uid://je2ewecg0q2d" path="res://Sound/Jingle/VictorySteel.ogg" id="6"]
-[ext_resource type="PackedScene" path="res://UI/VictoryMenu/VictoryMenu.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://cmr1l063rjotv" path="res://UI/VictoryMenu/VictoryMenu.tscn" id="7"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(1414.678, 42.1774)
@@ -25,6 +26,7 @@ size = Vector2(667.188, 158.7514)
 
 [node name="Level" type="Node" unique_id=636156732]
 script = ExtResource("5")
+level_list = ExtResource("2_6lumq")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=591550601]
 z_index = -1000

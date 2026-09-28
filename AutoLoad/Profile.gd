@@ -53,29 +53,29 @@ func load_profile():
 	else:
 		new_profile()
 
-func submit_level_time(level : int, time_cent : int):
-	var prev_time = get_level_best_time(level)
+func submit_level_time(level_number : int, time_cent : int):
+	var prev_time = get_level_best_time(level_number)
 	if time_cent < prev_time or prev_time == -1:
-		set_level_best_time(level, time_cent)
+		set_level_best_time(level_number, time_cent)
 
 # Getters and setters
-func set_level_unlocked(level : int, value : bool):
-	while level_unlocked.size() < level + 1:
+func set_level_unlocked(level_number : int, value : bool):
+	while level_unlocked.size() < level_number:
 		level_unlocked.append(false)
 	
-	level_unlocked[level] = value
+	level_unlocked[level_number - 1] = value
 	save_profile()
 
-func is_level_unlocked(level : int):
-	return level_unlocked.size() >= level + 1 and level_unlocked[level]
+func is_level_unlocked(level_number : int):
+	return level_unlocked.size() >= level_number and level_unlocked[level_number - 1]
 
-func set_level_best_time(level : int, time_cent : int):
+func set_level_best_time(level_number : int, time_cent : int):
 	# Don't use this! Use publish_level_time() instead.
-	level_best_time[level] = time_cent
+	level_best_time[level_number - 1] = time_cent
 	save_profile()
 
-func get_level_best_time(level: int):
-	return level_best_time[level]
+func get_level_best_time(level_number: int):
+	return level_best_time[level_number - 1]
 
 
 func _get_save_version(dict: Dictionary) -> int:

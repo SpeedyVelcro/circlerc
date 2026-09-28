@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://c8advmvmyymwq" path="res://UI/HUD/Clock.gd" id="11"]
 [ext_resource type="FontFile" uid="uid://djtfpau1f651x" path="res://Font/PressStart2P/PressStart2P-Regular.ttf" id="12_cgpfr"]
 [ext_resource type="Script" uid="uid://dcd245n68mesm" path="res://UI/HUD/LevelDetail.gd" id="14"]
-[ext_resource type="Resource" path="res://Level/LevelList.tres" id="15"]
+[ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="15"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
@@ -106,6 +106,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
 script = ExtResource("6")
 
 [node name="Visual" type="Node2D" parent="Controller" unique_id=283720916]
@@ -153,6 +155,7 @@ anchor_right = 0.5
 offset_left = -160.0
 offset_right = 160.0
 offset_bottom = 96.0
+grow_horizontal = 2
 script = ExtResource("11")
 
 [node name="Label" type="Label" parent="Clock" unique_id=1067274787]
@@ -171,6 +174,7 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -400.0
 offset_right = 650.0
+grow_vertical = 0
 script = ExtResource("14")
 level_list = ExtResource("15")
 

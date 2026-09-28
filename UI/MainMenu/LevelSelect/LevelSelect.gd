@@ -2,9 +2,9 @@
 
 extends Control
 
-@export var level_list: Resource
+@export var level_list: LevelList
 var level_button_resource = preload("res://UI/MainMenu/LevelSelect/ButtonLevel.tscn")
-var selected_level = 0
+var selected_level = 1
 # Nodes
 @export var grid_container_path: NodePath
 @onready var grid_container = get_node(grid_container_path)
@@ -23,7 +23,7 @@ func _ready():
 		grid_container.add_child(lb)
 		lb.button_group = button_group
 		lb.set_text(str(i + 1).pad_zeros(2))
-		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i))
+		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i + 1))
 		if not Profile.is_level_unlocked(i):
 			lb.set_disabled(true)
 		if i == 0:
@@ -31,12 +31,12 @@ func _ready():
 			# Doing it in code doesn't emit the signal so we do that ourselves:
 			lb.emit_signal("pressed")
 
-func _on_ButtonLevel_pressed(level_number):
+func _on_ButtonLevel_pressed(level_number: int):
 	selected_level = level_number
 	# Update details
-	level_number_label.set_text("Level " + str(level_number + 1))
-	level_caption_label.set_text(level_list._get_caption(level_number))
-	var t_cent = Profile.get_level_best_time(level_number)
+	level_number_label.set_text("Level " + str(level_number))
+	level_caption_label.set_text(level_list.get_level_caption(level_number))
+	var t_cent = Profile.get_level_best_time(level_number - 1)
 	if t_cent == -1:
 		best_time_label.set_text("xx:xx:xx")
 	else:
@@ -57,4 +57,4 @@ func _on_ButtonBack_pressed():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
 
 func _on_ButtonPlay_pressed():
-	SceneTransition.fade(level_list.get_level(selected_level), 0.2, 1.0)
+	SceneTransition.fade(level_list.get_level_scene_path(selected_level), 0.2, 1.0)

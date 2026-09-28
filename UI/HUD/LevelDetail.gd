@@ -2,11 +2,11 @@
 
 extends Control
 
-@export var level_list: Resource
+@export var level_list: LevelList
 
-func update_level(level_number):
+func update_level(level_number: int):
 	var txt = "Level "
-	txt += str(level_number + 1)
+	txt += str(level_number)
 	txt += "\n"
-	txt += level_list._get_caption(level_number)
+	txt += level_list.get_level_caption(level_number)
 	$Label.set_text(txt)

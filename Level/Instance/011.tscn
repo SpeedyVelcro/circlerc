@@ -1,95 +1,95 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene format=3 uid="uid://0bi0qvgpcxyu"]
 
-[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Entity/Obstacle/Pencil/PencilRed.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Entity/Obstacle/Casette/Casette.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Entity/Finish/Finish.tscn" type="PackedScene" id=7]
+[ext_resource type="PackedScene" uid="uid://g1ootw016pxe" path="res://Level/Level.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilRed.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Casette/Casette.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Pencil/PencilBlue.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/MatchboxOpen.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Entity/Obstacle/Matchbox/Matchbox.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Entity/Finish/Finish.tscn" id="7"]
 
-[node name="Level" instance=ExtResource( 1 )]
+[node name="Level" unique_id=864722269 instance=ExtResource("1")]
 current_level = 11
 
-[node name="Player" parent="World" index="1"]
-position = Vector2( 212.91, 534.39 )
+[node name="Player" parent="World" parent_id_path=PackedInt32Array(1028984410) index="1" unique_id=910774058]
+position = Vector2(212.91, 534.39)
 rotation = 0.99044
 
-[node name="Matchbox" parent="World" index="3" instance=ExtResource( 6 )]
-position = Vector2( 290.285, 374.22 )
+[node name="Matchbox" parent="World" parent_id_path=PackedInt32Array(1028984410) index="3" unique_id=1484514099 instance=ExtResource("6")]
+position = Vector2(290.285, 374.22)
 rotation = 0.979752
 
-[node name="Matchbox2" parent="World" index="4" instance=ExtResource( 6 )]
-position = Vector2( 404.588, 294.009 )
+[node name="Matchbox2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="4" unique_id=1936137801 instance=ExtResource("6")]
+position = Vector2(404.588, 294.009)
 rotation = 0.979752
 
-[node name="Matchbox3" parent="World" index="5" instance=ExtResource( 6 )]
-position = Vector2( 520.776, 214.67 )
+[node name="Matchbox3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="5" unique_id=1329629520 instance=ExtResource("6")]
+position = Vector2(520.776, 214.67)
 rotation = 0.979752
 
-[node name="Matchbox4" parent="World" index="6" instance=ExtResource( 6 )]
-position = Vector2( 444.808, 598.774 )
+[node name="Matchbox4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="6" unique_id=1983374378 instance=ExtResource("6")]
+position = Vector2(444.808, 598.774)
 rotation = 0.979752
 
-[node name="Matchbox6" parent="World" index="7" instance=ExtResource( 6 )]
-position = Vector2( 680.667, 439.226 )
+[node name="Matchbox6" parent="World" parent_id_path=PackedInt32Array(1028984410) index="7" unique_id=1874549045 instance=ExtResource("6")]
+position = Vector2(680.667, 439.226)
 rotation = 0.979752
 
-[node name="Matchbox7" parent="World" index="8" instance=ExtResource( 6 )]
-position = Vector2( 795.787, 361.812 )
+[node name="Matchbox7" parent="World" parent_id_path=PackedInt32Array(1028984410) index="8" unique_id=1355708132 instance=ExtResource("6")]
+position = Vector2(795.787, 361.812)
 rotation = 0.979752
 
-[node name="Matchbox8" parent="World" index="9" instance=ExtResource( 6 )]
-position = Vector2( 650.473, 140.385 )
+[node name="Matchbox8" parent="World" parent_id_path=PackedInt32Array(1028984410) index="9" unique_id=1087276943 instance=ExtResource("6")]
+position = Vector2(650.473, 140.385)
 rotation = 0.979752
 
-[node name="Matchbox5" parent="World" index="10" instance=ExtResource( 5 )]
-position = Vector2( 572.906, 532.703 )
+[node name="Matchbox5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="10" unique_id=2096257121 instance=ExtResource("5")]
+position = Vector2(572.906, 532.703)
 rotation = 0.970449
 
-[node name="PencilRed" parent="World" index="11" instance=ExtResource( 2 )]
-position = Vector2( 506.809, 563.596 )
+[node name="PencilRed" parent="World" parent_id_path=PackedInt32Array(1028984410) index="11" unique_id=142185530 instance=ExtResource("2")]
+position = Vector2(506.809, 563.596)
 rotation = -2.17653
 
-[node name="PencilRed2" parent="World" index="12" instance=ExtResource( 2 )]
-position = Vector2( 741.746, 405.134 )
+[node name="PencilRed2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="12" unique_id=869697078 instance=ExtResource("2")]
+position = Vector2(741.746, 405.134)
 rotation = -2.17653
 
-[node name="PencilRed3" parent="World" index="13" instance=ExtResource( 2 )]
-position = Vector2( 229.712, 411.395 )
+[node name="PencilRed3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="13" unique_id=1423352270 instance=ExtResource("2")]
+position = Vector2(229.712, 411.395)
 rotation = -5.29879
 
-[node name="PencilRed4" parent="World" index="14" instance=ExtResource( 2 )]
-position = Vector2( 460.747, 252.331 )
+[node name="PencilRed4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="14" unique_id=1429587043 instance=ExtResource("2")]
+position = Vector2(460.747, 252.331)
 rotation = -5.29879
 
-[node name="PencilRed5" parent="World" index="15" instance=ExtResource( 2 )]
-position = Vector2( 710.348, 98.3952 )
+[node name="PencilRed5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="15" unique_id=1468900441 instance=ExtResource("2")]
+position = Vector2(710.348, 98.3952)
 rotation = -5.29879
 
-[node name="PencilBlue" parent="World" index="16" instance=ExtResource( 4 )]
-position = Vector2( 310.375, 281.948 )
+[node name="PencilBlue" parent="World" parent_id_path=PackedInt32Array(1028984410) index="16" unique_id=621257721 instance=ExtResource("4")]
+position = Vector2(310.375, 281.948)
 rotation = -2.17556
 
-[node name="PencilBlue2" parent="World" index="17" instance=ExtResource( 4 )]
-position = Vector2( 553.499, 125.171 )
+[node name="PencilBlue2" parent="World" parent_id_path=PackedInt32Array(1028984410) index="17" unique_id=816829935 instance=ExtResource("4")]
+position = Vector2(553.499, 125.171)
 rotation = -2.17556
 
-[node name="PencilBlue3" parent="World" index="18" instance=ExtResource( 4 )]
-position = Vector2( 656.291, 529.405 )
+[node name="PencilBlue3" parent="World" parent_id_path=PackedInt32Array(1028984410) index="18" unique_id=788148846 instance=ExtResource("4")]
+position = Vector2(656.291, 529.405)
 rotation = -5.29105
 
-[node name="PencilBlue4" parent="World" index="19" instance=ExtResource( 4 )]
-position = Vector2( 892.166, 377.251 )
+[node name="PencilBlue4" parent="World" parent_id_path=PackedInt32Array(1028984410) index="19" unique_id=1851974073 instance=ExtResource("4")]
+position = Vector2(892.166, 377.251)
 rotation = -5.29105
 
-[node name="PencilBlue5" parent="World" index="20" instance=ExtResource( 4 )]
-position = Vector2( 421.474, 688.974 )
+[node name="PencilBlue5" parent="World" parent_id_path=PackedInt32Array(1028984410) index="20" unique_id=51168303 instance=ExtResource("4")]
+position = Vector2(421.474, 688.974)
 rotation = -5.29105
 
-[node name="Casette" parent="World" index="21" instance=ExtResource( 3 )]
-position = Vector2( 93.0408, -6.03325 )
+[node name="Casette" parent="World" parent_id_path=PackedInt32Array(1028984410) index="21" unique_id=10429505 instance=ExtResource("3")]
+position = Vector2(93.0408, -6.03325)
 rotation = 2.65812
 
-[node name="Finish" parent="World" index="22" instance=ExtResource( 7 )]
-position = Vector2( 875.295, 187.652 )
+[node name="Finish" parent="World" parent_id_path=PackedInt32Array(1028984410) index="22" unique_id=1324570014 instance=ExtResource("7")]
+position = Vector2(875.295, 187.652)
