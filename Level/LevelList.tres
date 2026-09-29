@@ -2,128 +2,268 @@
 
 [ext_resource type="Script" uid="uid://cdqtg8p4cjran" path="res://Level/LevelList.gd" id="1"]
 [ext_resource type="Script" uid="uid://5w5n248yhyuq" path="res://Level/LevelMetadata.gd" id="1_q8xt6"]
+[ext_resource type="Script" uid="uid://uiyqfikms2rp" path="res://Data/TimeScore.gd" id="2_a72pe"]
+
+[sub_resource type="Resource" id="Resource_6lumq"]
+resource_name = "00:06:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 6000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_44p5x"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://cguopvjiu7yxt"
 caption = "Circle the flag"
+par = SubResource("Resource_6lumq")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_n4y2n"]
+resource_name = "00:09:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 9000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_6slx4"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://dn3ogkas18ti6"
 caption = "Circle the pip"
+par = SubResource("Resource_n4y2n")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_a72pe"]
+resource_name = "00:13:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 13000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_uauh5"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://bscqk7kh38q6i"
 caption = "You'll need a couple"
+par = SubResource("Resource_a72pe")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_ooua1"]
+resource_name = "00:10:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 10000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_bnpuq"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://b4wv3p5kojptm"
 caption = "Don't crash!"
+par = SubResource("Resource_ooua1")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_ujk5d"]
+resource_name = "00:15:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 15000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_5jmdn"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://bpsfl7duiu1oc"
 caption = "Follow the path"
+par = SubResource("Resource_ujk5d")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_gk03p"]
+resource_name = "00:11:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 11000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_ybiem"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://byp3rp8n83b8s"
 caption = "Pencil speedway"
+par = SubResource("Resource_gk03p")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_megyo"]
+resource_name = "00:15:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 15000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_o4nat"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://mfi48vk7j887"
 caption = "Twin guardians"
+par = SubResource("Resource_megyo")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_rgskd"]
+resource_name = "00:20:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 20000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_6yi8v"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://b27y73n514uaq"
 caption = "CircleRC is a choice-driven narrative"
+par = SubResource("Resource_rgskd")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_qpkem"]
+resource_name = "00:27:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 27000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_cdwe3"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://br8ynp2uetpb3"
 caption = "Your own personal helipad"
+par = SubResource("Resource_qpkem")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_lygs7"]
+resource_name = "00:35:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 35000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_vwcm5"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://bp7kdvp1o4qgt"
 caption = "Waltz of the Plastic Toys"
+par = SubResource("Resource_lygs7")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_bi63i"]
+resource_name = "00:09:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 9000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_8mfa4"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://0bi0qvgpcxyu"
 caption = "Slalom"
+par = SubResource("Resource_bi63i")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_dvkna"]
+resource_name = "00:25:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 25000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_l0tw7"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://c4tg2n2miavf4"
 caption = "Frogs or something idk"
+par = SubResource("Resource_dvkna")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_j06r2"]
+resource_name = "00:20:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 20000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_q6dpc"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://cuaiqdriimqvk"
 caption = "That's cool with me"
+par = SubResource("Resource_j06r2")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_tx3a5"]
+resource_name = "00:32:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 32000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_esg5o"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://d0aq5xj2pg4go"
 caption = "The EU has mandated that all levels be Type-C compliant by February next year"
+par = SubResource("Resource_tx3a5")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_kypot"]
+resource_name = "00:29:50 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 29500
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_q7mlj"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://bhj7iqsttwwwn"
 caption = "All in"
+par = SubResource("Resource_kypot")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_wav6o"]
+resource_name = "00:31:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 31000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_ps5ws"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://c6o2nxh6nnren"
 caption = "Staying sharp"
+par = SubResource("Resource_wav6o")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_7sul1"]
+resource_name = "00:50:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 50000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_xthgb"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://f4ln5sgvsswb"
 caption = "Take a Chance"
+par = SubResource("Resource_7sul1")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_b06kj"]
+resource_name = "00:19:50 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 19500
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_ooxri"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://bblttlsqq7uer"
 caption = "Hide and seek, peek-a-boo, etc."
+par = SubResource("Resource_b06kj")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_skb8u"]
+resource_name = "00:25:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 25000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_vgwfs"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://l6kfyxthao8x"
 caption = "You should probably lay off the energy drinks"
+par = SubResource("Resource_skb8u")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
+
+[sub_resource type="Resource" id="Resource_7fabp"]
+resource_name = "01:00:00 (TimeScore)"
+script = ExtResource("2_a72pe")
+_milliseconds = 60000
+metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_i3fqk"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://d1mntsg5paek8"
 caption = "The final level"
+par = SubResource("Resource_7fabp")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
 
 [resource]
 script = ExtResource("1")
 levels = Array[ExtResource("1_q8xt6")]([SubResource("Resource_44p5x"), SubResource("Resource_6slx4"), SubResource("Resource_uauh5"), SubResource("Resource_bnpuq"), SubResource("Resource_5jmdn"), SubResource("Resource_ybiem"), SubResource("Resource_o4nat"), SubResource("Resource_6yi8v"), SubResource("Resource_cdwe3"), SubResource("Resource_vwcm5"), SubResource("Resource_8mfa4"), SubResource("Resource_l0tw7"), SubResource("Resource_q6dpc"), SubResource("Resource_esg5o"), SubResource("Resource_q7mlj"), SubResource("Resource_ps5ws"), SubResource("Resource_xthgb"), SubResource("Resource_ooxri"), SubResource("Resource_vgwfs"), SubResource("Resource_i3fqk")])
-captions = Array[String](["Circle the flag", "Circle the pip", "You'll need a couple", "Don't crash!", "Follow the path", "Pencil speedway", "Twin guardians", "CircleRC is a choice-driven narrative", "Your own personal helipad", "Waltz of the Plastic Toys", "Slalom", "Frogs or something idk", "That's cool with me", "The EU has mandated that all levels be Type-C compliant by February next year", "All in", "Staying sharp", "Take a Chance", "Hide and seek, peek-a-boo, etc.", "You should probably lay off the energy drinks", "The final level"])
