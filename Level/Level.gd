@@ -33,7 +33,7 @@ func _on_Finish_activated():
 	$FinishTimer.start(1.5)
 	$HUDFadeTimer.start(1.5)
 	
-	Profile.submit_level_time(_current_level, time)
+	Profile.submit_level_time(_current_level, time, _get_player().health >= _get_player().max_health)
 	$VictoryMenu.set_time(time)
 	
 	# Unlock next level
@@ -65,3 +65,7 @@ func _on_HUDFadeTimer_timeout():
 
 func _on_VictoryMenu_next_level():
 	next_level()
+
+
+func _get_player() -> Player:
+	return $World/Player

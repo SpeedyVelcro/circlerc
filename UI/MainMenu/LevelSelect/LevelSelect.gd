@@ -14,7 +14,11 @@ var selected_level = 1
 @export var par_check_texture_rect: TextureRect
 @export var no_hit_check_texture_rect: TextureRect
 @export var par_and_no_hit_check_texture_rect: TextureRect
+@export var check_false_texture: Texture2D
+@export var check_true_texture: Texture2D
 
+
+# Override
 func _ready():
 	# Populate level grid
 	var button_group := ButtonGroup.new()
@@ -31,6 +35,20 @@ func _ready():
 			# Doing it in code doesn't emit the signal so we do that ourselves:
 			lb.emit_signal("pressed")
 
+
+func _set_par_check(value: bool) -> void:
+	par_check_texture_rect.texture = check_true_texture if value else check_false_texture
+
+
+func _set_no_hit_check(value: bool) -> void:
+	no_hit_check_texture_rect.texture = check_true_texture if value else check_false_texture
+
+
+func _set_par_and_no_hit_check(value: bool) -> void:
+	par_and_no_hit_check_texture_rect.texture = check_true_texture if value else check_false_texture
+
+
+# Signal connection
 func _on_ButtonLevel_pressed(level_number: int):
 	selected_level = level_number
 	# Update details
@@ -38,9 +56,16 @@ func _on_ButtonLevel_pressed(level_number: int):
 	level_caption_label.text = level_list.get_level_caption(level_number)
 	personal_best_time_label.text = Profile.get_level_best_time(level_number).get_display_string()
 	par_time_label.text = level_list.get_level_par_time(level_number).get_display_string()
+	_set_par_check(Profile.is_level_best_time_under_par(level_number))
+	_set_no_hit_check(Profile.is_level_no_hit(level_number))
+	_set_par_and_no_hit_check(Profile.is_level_par_and_no_hit(level_number))
 
+
+# Signal connection
 func _on_ButtonBack_pressed():
 	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
 
+
+# Signal connection
 func _on_ButtonPlay_pressed():
 	SceneTransition.fade(level_list.get_level_scene_path(selected_level), 0.2, 1.0)

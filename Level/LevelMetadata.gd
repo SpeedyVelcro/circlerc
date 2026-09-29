@@ -8,3 +8,10 @@ extends Resource
 		par = value
 	get:
 		return par if par != null else TimeScore.NONE
+
+
+func is_time_under_par(time: TimeScore) -> bool:
+	if par.is_none():
+		return false # You are not under par if there is no par.
+	
+	return time.get_total_milliseconds() <= par.get_total_milliseconds()

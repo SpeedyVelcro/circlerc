@@ -64,6 +64,16 @@ func get_level_par_time(number: int) -> TimeScore:
 	return get_level(number).par
 
 
+func is_time_under_level_par(level_number: int, time: TimeScore) -> bool:
+	if not has_level(level_number):
+		push_error("No level %d" % level_number)
+		return false
+	
+	var level := get_level(level_number)
+	
+	return level.is_time_under_par(time)
+
+
 func get_number_of_levels():
 	return levels.size()
 

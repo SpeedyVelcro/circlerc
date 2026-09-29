@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="5"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
+[ext_resource type="Texture2D" uid="uid://cuddwhnlkmva1" path="res://Art/CircleRC/Icon/objective_checked.svg" id="5_mswm2"]
 [ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/objective_unchecked.svg" id="6_36xea"]
 
 [node name="LevelSelect" type="Control" unique_id=722515851 node_paths=PackedStringArray("level_button_container", "level_number_label", "level_caption_label", "personal_best_time_label", "par_time_label", "par_check_texture_rect", "no_hit_check_texture_rect", "par_and_no_hit_check_texture_rect")]
@@ -26,6 +27,8 @@ par_time_label = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/V
 par_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParCheckTextureRect")
 no_hit_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/NoHitCheckTextureRect")
 par_and_no_hit_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParAndNoHitCheckTextureRect")
+check_false_texture = ExtResource("6_36xea")
+check_true_texture = ExtResource("5_mswm2")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=493737718]
 layer = -128

@@ -2,33 +2,44 @@
 
 extends Node
 
-const _CURRENT_SAVE_VERSION: int = 3
+const _CURRENT_SAVE_VERSION: int = 4
 
-var level_list = preload("res://Level/LevelList.tres")
+var level_list = preload("res://Level/LevelList.tres") # TODO: make private
 const PROFILE_PATH = "user://profile.json"
+# TODO: make these private
 var level_unlocked: Array[bool] = []
 var level_best_time: Array[TimeScore] = []
+var level_no_hit: Array[bool] = []
+var level_par_and_no_hit: Array[bool] = []
+
 
 func new_profile():
 	for i in range(level_list.get_number_of_levels()):
 		level_unlocked.append(false)
 		level_best_time.append(TimeScore.NONE)
+		level_no_hit.append(false)
+		level_par_and_no_hit.append(false)
 	level_unlocked[0] = true
 	save_profile()
+
 
 func save_profile():
 	# Store info in dictionary
 	var dict = {
 		"version": _CURRENT_SAVE_VERSION,
 		"level_unlocked" : level_unlocked,
-		"level_best_time" : level_best_time.map(func(time): return time.serialize())
+		"level_best_time" : level_best_time.map(func(time): return time.serialize()),
+		"level_no_hit": level_no_hit,
+		"level_par_and_no_hit": level_par_and_no_hit
 	}
 	# Save dictionary to file
 	var file = FileAccess.open(PROFILE_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(dict))
 	file.close()
 
+
 func load_profile():
+	# TODO: defend against missing fields and incorrect types
 	# Load
 	if FileAccess.file_exists(PROFILE_PATH):
 		# Get dictionary from file
@@ -44,22 +55,56 @@ func load_profile():
 		if _get_save_version(dict) < 3:
 			_migrate_save_to_v3(dict)
 		
+		if _get_save_version(dict) < 4:
+			_migrate_save_to_v4(dict)
+		
 		# Get info out of dictionary
 		# Levels unlocked
 		level_unlocked.assign(dict["level_unlocked"])
 		while level_unlocked.size() < level_list.get_number_of_levels():
-			level_unlocked.append("false")
+			level_unlocked.append(false)
 		# Best time
 		level_best_time.assign(dict["level_best_time"].map(func(time_data): return TimeScore.deserialize(time_data)))
 		while level_best_time.size() < level_list.get_number_of_levels():
 			level_best_time.append(TimeScore.NONE)
+		# No-hit
+		level_no_hit.assign(dict["level_no_hit"])
+		while level_no_hit.size() < level_list.get_number_of_levels():
+			level_no_hit.append(false)
+		# Par and no-hit
+		level_par_and_no_hit.assign(dict["level_par_and_no_hit"])
+		while level_par_and_no_hit.size() < level_list.get_number_of_levels():
+			level_par_and_no_hit.append(false)
 	else:
 		new_profile()
 
-func submit_level_time(level_number : int, time : TimeScore) -> void:
+
+func submit_level_time(level_number : int, time : TimeScore, no_hit: bool) -> void:
+	const SAVE_STEP := false
+	var to_save := false
+	
 	var prev_time := get_level_best_time(level_number)
 	if time.get_total_milliseconds() < prev_time.get_total_milliseconds():
-		set_level_best_time(level_number, time)
+		set_level_best_time(level_number, time, SAVE_STEP)
+		to_save = true
+	
+	var prev_no_hit := is_level_no_hit(level_number)
+	if (not prev_no_hit) and no_hit:
+		const VALUE := true
+		set_level_no_hit(level_number, VALUE, SAVE_STEP)
+		to_save = true
+	
+	var prev_par_and_no_hit := is_level_par_and_no_hit(level_number)
+	if (not prev_par_and_no_hit) \
+			and no_hit \
+			and level_list.is_time_under_level_par(level_number, time):
+		const VALUE := true
+		set_level_par_and_no_hit(level_number, VALUE, SAVE_STEP)
+		to_save = true
+	
+	if to_save:
+		save_profile()
+
 
 # Getters and setters
 func set_level_unlocked(level_number : int, value : bool) -> void:
@@ -69,19 +114,57 @@ func set_level_unlocked(level_number : int, value : bool) -> void:
 	level_unlocked[level_number - 1] = value
 	save_profile()
 
-func is_level_unlocked(level_number : int) -> bool:
-	return level_unlocked.size() >= level_number and level_unlocked[level_number - 1]
 
-func set_level_best_time(level_number : int, time : TimeScore) -> void:
+func is_level_unlocked(level_number: int) -> bool:
+	return level_unlocked.size() >= level_number \
+			and level_unlocked[level_number - 1]
+
+
+func set_level_best_time(level_number: int, time: TimeScore, save := true) -> void:
 	# Don't use this! Use publish_level_time() instead.
 	while level_best_time.size() < level_number:
 		level_best_time.append(TimeScore.NONE)
 	
 	level_best_time[level_number - 1] = time
-	save_profile()
+	if save:
+		save_profile()
+
 
 func get_level_best_time(level_number: int) -> TimeScore:
 	return level_best_time[level_number - 1] if level_best_time.size() >= level_number else TimeScore.NONE
+
+
+func is_level_best_time_under_par(level_number: int) -> bool:
+	return level_best_time.size() >= level_number \
+			and level_list.is_time_under_level_par(level_number, level_best_time[level_number - 1])
+
+
+func set_level_no_hit(level_number: int, value: bool, save := true) -> void:
+	while level_no_hit.size() < level_number:
+		level_no_hit.append(false)
+	
+	level_no_hit[level_number - 1] = value
+	if save:
+		save_profile()
+
+
+func is_level_no_hit(level_number: int) -> bool:
+	return level_no_hit.size() >= level_number \
+			and level_no_hit[level_number - 1]
+
+
+func set_level_par_and_no_hit(level_number: int, value: bool, save := true) -> void:
+	while level_par_and_no_hit.size() < level_number:
+		level_par_and_no_hit.append(false)
+	
+	level_par_and_no_hit[level_number - 1] = value
+	if save:
+		save_profile()
+
+
+func is_level_par_and_no_hit(level_number: int) -> bool:
+	return level_par_and_no_hit.size() >= level_number \
+			and level_par_and_no_hit[level_number - 1]
 
 
 func _get_save_version(dict: Dictionary) -> int:
@@ -142,3 +225,14 @@ func _migrate_save_to_v3(dict: Dictionary) -> void:
 				best_time_array[i] = (int(time_data) * 10) + 1
 	
 	dict["version"] = 3
+
+
+func _migrate_save_to_v4(dict: Dictionary) -> void:
+	## Added no hit and par (par on its own is not stored but "par and no-hit" is).
+	dict["level_no_hit"] = []
+	dict["level_par_and_no_hit"] = []
+	for _i in range(level_list.get_number_of_levels()):
+		dict["level_no_hit"].append(false)
+		dict["level_par_and_no_hit"].append(false)
+	
+	dict["version"] = 4
