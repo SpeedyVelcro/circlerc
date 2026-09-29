@@ -56,6 +56,14 @@ func get_level_caption(number: int) -> String:
 	return get_level(number).caption
 
 
+func get_level_par_time(number: int) -> TimeScore:
+	if not has_level(number):
+		push_error("No level %d" % number)
+		return TimeScore.NONE
+	
+	return get_level(number).par
+
+
 func get_number_of_levels():
 	return levels.size()
 

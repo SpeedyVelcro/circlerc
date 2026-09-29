@@ -8,7 +8,7 @@
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
 [ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/objective_unchecked.svg" id="6_36xea"]
 
-[node name="LevelSelect" type="Control" unique_id=722515851]
+[node name="LevelSelect" type="Control" unique_id=722515851 node_paths=PackedStringArray("level_button_container", "level_number_label", "level_caption_label", "personal_best_time_label", "par_time_label", "par_check_texture_rect", "no_hit_check_texture_rect", "par_and_no_hit_check_texture_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,10 +18,14 @@ grow_vertical = 2
 theme = ExtResource("4")
 script = ExtResource("1")
 level_list = ExtResource("3")
-grid_container_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/GridContainer")
-level_number_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelNumber")
-level_caption_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelCaption")
-best_time_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/PersonalBestTimeLabel")
+level_button_container = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/GridContainer")
+level_number_label = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelNumber")
+level_caption_label = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelCaption")
+personal_best_time_label = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/PersonalBestTimeLabel")
+par_time_label = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParTimeLabel")
+par_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParCheckTextureRect")
+no_hit_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/NoHitCheckTextureRect")
+par_and_no_hit_check_texture_rect = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParAndNoHitCheckTextureRect")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=493737718]
 layer = -128
@@ -146,7 +150,7 @@ text = "No-Hit"
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=679483874]
 layout_mode = 2
 
-[node name="NoHitTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=502837934]
+[node name="NoHitCheckTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=502837934]
 layout_mode = 2
 texture = ExtResource("6_36xea")
 expand_mode = 3
@@ -159,7 +163,7 @@ text = "Par & No-Hit"
 [node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1006088737]
 layout_mode = 2
 
-[node name="ParAndNoHitTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1497382046]
+[node name="ParAndNoHitCheckTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1497382046]
 layout_mode = 2
 texture = ExtResource("6_36xea")
 expand_mode = 3
