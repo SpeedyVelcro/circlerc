@@ -11,7 +11,7 @@ extends Resource
 
 @export_storage var _milliseconds: int = 0:
 	set(value):
-		_milliseconds = value
+		_milliseconds = max(0, value)
 		notify_property_list_changed()
 		emit_changed()
 		resource_name = _generate_resource_name()
@@ -54,6 +54,7 @@ func _get_property_list() -> Array[Dictionary]:
 	# while still using a straight milliseconds value as the source of truth
 	# for storage and runtime. These properties can be modified as if they were
 	# segments on a clock face (similar to what you get from get_display_string()).
+	@warning_ignore("integer_division")
 	return [
 		{
 			"name": "minutes",
@@ -201,4 +202,21 @@ func _generate_resource_name() -> String:
 
 
 func _exports_to_milliseconds(minutes: int, seconds: int, milliseconds: int) -> int:
-	return (minutes * 60 * 1000) + (seconds * 1000) + milliseconds
+	var cumulative := milliseconds
+	var threshold: int
+	
+	# Add on seconds
+	threshold = _MAXIMUM_MILLISECONDS - max(0, cumulative)
+	var milliseconds_from_seconds := seconds * 1000
+	if milliseconds_from_seconds >= threshold:
+		return _MAXIMUM_MILLISECONDS
+	cumulative += milliseconds_from_seconds
+	
+	# Add on minutes
+	threshold = _MAXIMUM_MILLISECONDS - max(0, cumulative)
+	var milliseconds_from_minutes := minutes * 1000 * 60
+	if milliseconds_from_minutes >= threshold:
+		return _MAXIMUM_MILLISECONDS
+	cumulative += milliseconds_from_minutes
+	
+	return cumulative
