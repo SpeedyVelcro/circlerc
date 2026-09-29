@@ -3,6 +3,11 @@
   sticks, sunglasses and poker chips.
 - Added 6 new levels between level 12 and level 13. Levels 13 and 14
   have been pushed to the end so they are now level 19 and 20.
+- Levels now have a par time. If you finish under par, this is tracked
+  in the level select screen.
+- Levels now track whether you complete them without being hit. They
+  also track whether you have completed the level both under par AND
+  no-hit in the same attempt.
 
 ## UI
 - Overhaul the About menu. The About menu is now much better organised and goes
