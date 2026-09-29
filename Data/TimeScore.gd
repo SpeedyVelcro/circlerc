@@ -1,3 +1,4 @@
+@tool
 class_name TimeScore
 extends Resource
 ## A timestamp representing a time trial score.
@@ -8,8 +9,14 @@ extends Resource
 ## (using the [code]get_total_x()[/code] methods). Thus, players are not
 ## advantaged by favourable rounding.
 
-
-var _milliseconds: int = 0
+@export_storage var _milliseconds: int = 0:
+	set(value):
+		_milliseconds = value
+		notify_property_list_changed()
+		emit_changed()
+		resource_name = _generate_resource_name()
+	get:
+		return _milliseconds
 var _none: bool = false
 
 ## Timestamp that always returns the maximum value. You can use this for
@@ -36,8 +43,69 @@ const _MAXIMUM_MILLISECONDS: int = INT64_MAX
 func _init(milliseconds: int = 0) -> void:
 	if milliseconds < 0:
 		_none = true
-	else:
+	elif _milliseconds > 0: # Don't include default value of zero, so we don't overwrite any stored value when invoked as a tool script
 		_milliseconds = milliseconds
+
+
+# Override
+func _get_property_list() -> Array[Dictionary]:
+	# Our whole _get_property_list() setup (and the _get() and _set() overrides)
+	# is for displaying a user-friendly editable timestamp in the inspector,
+	# while still using a straight milliseconds value as the source of truth
+	# for storage and runtime. These properties can be modified as if they were
+	# segments on a clock face (similar to what you get from get_display_string()).
+	return [
+		{
+			"name": "minutes",
+			"type": TYPE_INT,
+			"hint": PROPERTY_HINT_NONE,
+			"hint_string": "suffix:mins",
+			"usage": PROPERTY_USAGE_EDITOR
+		},
+		{
+			"name": "seconds",
+			"type": TYPE_INT,
+			"hint": PROPERTY_HINT_NONE,
+			"hint_string": "suffix:s",
+			"usage": PROPERTY_USAGE_EDITOR
+		},
+		{
+			"name": "milliseconds",
+			"type": TYPE_INT,
+			"hint": PROPERTY_HINT_NONE,
+			"hint_string": "suffix:ms",
+			"usage": PROPERTY_USAGE_EDITOR
+		}
+	]
+
+# Override
+func _get(property: StringName) -> Variant:
+	const ROUND_UP := false
+	match property:
+		"minutes":
+			return get_total_minutes(ROUND_UP)
+		"seconds":
+			return get_total_seconds(ROUND_UP) % 60
+		"milliseconds":
+			return get_total_milliseconds() % 1000
+	
+	return null
+
+
+# Override
+func _set(property: StringName, value: Variant) -> bool:
+	match property:
+		"minutes":
+			_milliseconds = _exports_to_milliseconds(value, _get("seconds"), _get("milliseconds"))
+			return true
+		"seconds":
+			_milliseconds = _exports_to_milliseconds(_get("minutes"), value, _get("milliseconds"))
+			return true
+		"milliseconds":
+			_milliseconds = _exports_to_milliseconds(_get("minutes"), _get("seconds"), value)
+			return true
+	
+	return false
 
 
 func is_none() -> bool:
@@ -126,3 +194,11 @@ func serialize() -> int:
 
 static func deserialize(from: int) -> TimeScore:
 	return TimeScore.new(from)
+
+
+func _generate_resource_name() -> String:
+	return "%s (TimeScore)" % get_display_string()
+
+
+func _exports_to_milliseconds(minutes: int, seconds: int, milliseconds: int) -> int:
+	return (minutes * 60 * 1000) + (seconds * 1000) + milliseconds
