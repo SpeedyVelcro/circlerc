@@ -9,7 +9,7 @@ extends Resource
 ## (using the [code]get_total_x()[/code] methods). Thus, players are not
 ## advantaged by favourable rounding.
 
-@export_storage var _milliseconds: int = 0:
+@export_storage var _milliseconds: int:
 	set(value):
 		_milliseconds = max(0, value)
 		notify_property_list_changed()
@@ -28,23 +28,19 @@ var _none: bool = false
 ## there is a bug.
 static var NONE: TimeScore:
 	get():
-		return TimeScore.new(-1)
+		var new := TimeScore.new()
+		new._none = true
+		return new
 
 
 ## Gets a timestamp of zero milliseconds.
 static var ZERO: TimeScore:
 	get():
-		return TimeScore.new(0)
+		var new := TimeScore.new()
+		new._milliseconds = 0
+		return new
 
 const _MAXIMUM_MILLISECONDS: int = INT64_MAX
-
-
-# Override
-func _init(milliseconds: int = 0) -> void:
-	if milliseconds < 0:
-		_none = true
-	elif _milliseconds > 0: # Don't include default value of zero, so we don't overwrite any stored value when invoked as a tool script
-		_milliseconds = milliseconds
 
 
 # Override
@@ -190,11 +186,15 @@ func get_display_string(null_segment := "xx", round_up := true) -> String:
 
 
 func serialize() -> int:
-	return _milliseconds
+	return _milliseconds if not _none else -1
 
 
 static func deserialize(from: int) -> TimeScore:
-	return TimeScore.new(from)
+	if from < 0:
+		return TimeScore.NONE
+	var new := TimeScore.new()
+	new._milliseconds = from
+	return new
 
 
 func _generate_resource_name() -> String:
