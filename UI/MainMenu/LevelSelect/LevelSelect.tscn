@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="5"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
+[ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/objective_unchecked.svg" id="6_36xea"]
 
 [node name="LevelSelect" type="Control" unique_id=722515851]
 layout_mode = 3
@@ -20,7 +21,7 @@ level_list = ExtResource("3")
 grid_container_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/GridContainer")
 level_number_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelNumber")
 level_caption_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/LevelCaption")
-best_time_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/BestTime")
+best_time_label_path = NodePath("CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/PersonalBestTimeLabel")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=493737718]
 layer = -128
@@ -107,18 +108,62 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=2094675620]
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1805360208]
 layout_mode = 2
-text = "Best time:"
-horizontal_alignment = 1
+columns = 3
 
-[node name="BestTime" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=165059465]
+[node name="Label" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=2094675620]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Personal Best"
+
+[node name="PersonalBestTimeLabel" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=165059465]
 layout_mode = 2
 text = "00:00:00"
 horizontal_alignment = 1
 
-[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer" unique_id=1712156139]
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1436223468]
 layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=819376240]
+layout_mode = 2
+text = "Par"
+
+[node name="ParTimeLabel" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1441894815]
+layout_mode = 2
+text = "00:00:00"
+
+[node name="ParCheckTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=852201687]
+layout_mode = 2
+texture = ExtResource("6_36xea")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Label3" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=421478358]
+layout_mode = 2
+text = "No-Hit"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=679483874]
+layout_mode = 2
+
+[node name="NoHitTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=502837934]
+layout_mode = 2
+texture = ExtResource("6_36xea")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Label4" type="Label" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=2644440]
+layout_mode = 2
+text = "Par & No-Hit"
+
+[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1006088737]
+layout_mode = 2
+
+[node name="ParAndNoHitTextureRect" type="TextureRect" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1497382046]
+layout_mode = 2
+texture = ExtResource("6_36xea")
+expand_mode = 3
+stretch_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VSplitContainer/HBoxContainer/VBoxContainer" unique_id=1591785379]
 custom_minimum_size = Vector2(0, 32)
