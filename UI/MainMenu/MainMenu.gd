@@ -5,6 +5,7 @@ extends Control
 @export var start_menu_root_control: Control
 @export var options_menu_root_control: Control
 @export var about_menu_root_control: Control
+@export var level_select_menu_root_control: Control
 @export var quit_button: Button
 
 var current_tweens: Array[Tween] = []
@@ -23,7 +24,18 @@ func _on_ButtonPlay_pressed():
 
 # Signal connection
 func _on_ButtonLevelSelect_pressed():
-	SceneTransition.instant("res://UI/MainMenu/LevelSelect/LevelSelect.tscn")
+	_play_animations(
+		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(0.0, -1280.0)),
+		_create_menu_fly_in_tween(level_select_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO)
+	)
+
+
+# Signal connection
+func _on_level_select_back() -> void:
+	_play_animations(
+		_create_menu_fly_in_tween(start_menu_root_control, Vector2(0.0, -1280.0), Vector2.ZERO),
+		_create_menu_fly_out_tween(level_select_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0))
+	)
 
 
 # Signal connection

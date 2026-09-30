@@ -1,6 +1,6 @@
 # LevelSelect.gd
 
-extends Control
+extends PanelContainer
 
 @export var level_list: LevelList
 var level_button_resource = preload("res://UI/MainMenu/LevelSelect/ButtonLevel.tscn")
@@ -16,6 +16,8 @@ var selected_level = 1
 @export var par_and_no_hit_check_texture_rect: TextureRect
 @export var check_false_texture: Texture2D
 @export var check_true_texture: Texture2D
+
+signal back
 
 
 # Override
@@ -63,7 +65,7 @@ func _on_ButtonLevel_pressed(level_number: int):
 
 # Signal connection
 func _on_ButtonBack_pressed():
-	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
+	back.emit()
 
 
 # Signal connection
