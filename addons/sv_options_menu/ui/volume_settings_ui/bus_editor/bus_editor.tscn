@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dvhos55lru58i"]
+
+[ext_resource type="Script" uid="uid://vbv4coxg22ry" path="res://addons/sv_options_menu/ui/volume_settings_ui/bus_editor/bus_editor.gd" id="1_ijmlb"]
+[ext_resource type="Texture2D" uid="uid://c6ekm1n1dx0df" path="res://addons/sv_options_menu/icon/audio.svg" id="2_jipr7"]
+[ext_resource type="Texture2D" uid="uid://dve427xl1ccqi" path="res://addons/sv_options_menu/icon/audio_muted.svg" id="3_jipr7"]
+
+[node name="BusEditor" type="HBoxContainer" unique_id=701120791]
+custom_minimum_size = Vector2(128, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_ijmlb")
+mute_button_icon_unmuted = ExtResource("2_jipr7")
+mute_button_icon_muted = ExtResource("3_jipr7")
+
+[node name="MuteButton" type="Button" parent="." unique_id=1763827212]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+toggle_mode = true
+icon = ExtResource("2_jipr7")
+expand_icon = true
+
+[node name="VolumeSlider" type="HSlider" parent="." unique_id=1901329702]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 100.0
+tick_count = 3
+ticks_on_borders = true
+
+[node name="LevelLabel" type="Label" parent="." unique_id=1194185083]
+layout_mode = 2
+text = "100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="toggled" from="MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="drag_ended" from="VolumeSlider" to="." method="_on_volume_slider_drag_ended"]
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_volume_slider_value_changed"]

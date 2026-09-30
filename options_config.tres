@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="OptionsConfig" format=3 uid="uid://fjq1eqr36rsg"]
+
+[ext_resource type="Script" uid="uid://bgpntw2sb3xq1" path="res://addons/sv_options_menu/data/editable_bus_config.gd" id="1_y0x8s"]
+[ext_resource type="Script" uid="uid://dgoog2vtad4e0" path="res://addons/sv_options_menu/data/audio_bus_reference/audio_bus_name.gd" id="2_y0x8s"]
+[ext_resource type="Script" uid="uid://dt7kofv62xt16" path="res://addons/sv_options_menu/data/input_event_locks.gd" id="3_yn0ri"]
+[ext_resource type="Script" uid="uid://dm4oxbx41iy5e" path="res://addons/sv_options_menu/data/options_config.gd" id="4_24d8f"]
+
+[sub_resource type="Resource" id="Resource_y0x8s"]
+script = ExtResource("2_y0x8s")
+bus_name = "Master"
+metadata/_custom_type_script = "uid://dgoog2vtad4e0"
+
+[sub_resource type="Resource" id="Resource_dcy7j"]
+script = ExtResource("1_y0x8s")
+reference = SubResource("Resource_y0x8s")
+name = "Master"
+
+[sub_resource type="Resource" id="Resource_24d8f"]
+script = ExtResource("2_y0x8s")
+bus_name = "Jingles"
+metadata/_custom_type_script = "uid://dgoog2vtad4e0"
+
+[sub_resource type="Resource" id="Resource_3sj0y"]
+script = ExtResource("1_y0x8s")
+reference = SubResource("Resource_24d8f")
+name = "Jingles"
+metadata/_custom_type_script = "uid://bgpntw2sb3xq1"
+
+[sub_resource type="Resource" id="Resource_aax7n"]
+script = ExtResource("2_y0x8s")
+bus_name = "Effects"
+metadata/_custom_type_script = "uid://dgoog2vtad4e0"
+
+[sub_resource type="Resource" id="Resource_yn0ri"]
+script = ExtResource("1_y0x8s")
+reference = SubResource("Resource_aax7n")
+name = "SFX"
+metadata/_custom_type_script = "uid://bgpntw2sb3xq1"
+
+[resource]
+script = ExtResource("4_24d8f")
+auto_start = false
+manage_window_mode = true
+manage_screen = true
+manage_volume = true
+editable_buses = Array[ExtResource("1_y0x8s")]([SubResource("Resource_dcy7j"), SubResource("Resource_3sj0y"), SubResource("Resource_yn0ri")])
+manage_input_map = true
+editable_input_actions = Array[String](["accelerate", "decelerate", "steer_left", "steer_right"])

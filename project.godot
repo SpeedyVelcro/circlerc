@@ -18,10 +18,20 @@ boot_splash/image="res://Art/CircleRC/Godot/LoadingSplash.png"
 config/icon="res://Art/CircleRC/Godot/icon.png"
 config/windows_native_icon="res://Art/CircleRC/Godot/icon.ico"
 
+[audio]
+
+buses/default_bus_layout="uid://dkdsn583m3mgc"
+
 [autoload]
 
 SceneTransition="*res://AutoLoad/SceneTransition.gd"
 Profile="*res://AutoLoad/Profile.gd"
+OptionsConfigProvider="*uid://crsy5td2cnkvc"
+OptionsProvider="*uid://bmxkuqvyotq70"
+ManagedOptionsSynchronizer="*uid://bbamh7evxqacu"
+OptionsLifecycle="*uid://bg6i2usjy2ola"
+OptionsSaver="*uid://byw1rlb3hl7lb"
+UIScaleLimiter="*uid://bvyix0sadk4ni"
 OnStart="*uid://8r0ccj4kti1"
 
 [display]
@@ -31,6 +41,10 @@ window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/sv_options_menu/plugin.cfg")
 
 [input]
 

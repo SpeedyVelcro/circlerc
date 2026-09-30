@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 67.733332 67.733333"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="plus.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="3.3959318"
+     inkscape:cx="80.537542"
+     inkscape:cy="140.60942"
+     inkscape:window-width="2194"
+     inkscape:window-height="1162"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="4.2333333"
+       spacingy="4.2333333"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="4"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="powermask"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1"
+       uri="#mask-powermask-path-effect2"
+       invert="false"
+       hide_mask="false"
+       background="true"
+       background_color="#ffffffff" />
+    <inkscape:path-effect
+       effect="powermask"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       uri="#mask-powermask-path-effect2"
+       invert="false"
+       hide_mask="false"
+       background="true"
+       background_color="#ffffffff" />
+    <inkscape:path-effect
+       effect="powermask"
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1"
+       uri="#mask-powermask-path-effect11"
+       invert="false"
+       hide_mask="false"
+       background="true"
+       background_color="#ffffffff" />
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask-powermask-path-effect3">
+      <path
+         id="path2"
+         mask="none"
+         style="fill:#000000;stroke-width:0.264583"
+         d="M 12.698966,4.9883261 4.9883261,12.698966 26.155509,33.866151 4.9883261,55.033333 12.698966,62.743974 33.866151,41.576789 55.033333,62.743974 62.743974,55.033333 41.576789,33.866151 62.743974,12.698966 55.033333,4.9883261 33.866151,26.155509 Z" />
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask-powermask-path-effect2">
+      <path
+         id="path3"
+         mask="none"
+         style="fill:#000000;stroke-width:0.264583"
+         d="M 12.698966,4.9883261 4.9883261,12.698966 26.155509,33.866151 4.9883261,55.033333 12.698966,62.743974 33.866151,41.576789 55.033333,62.743974 62.743974,55.033333 41.576789,33.866151 62.743974,12.698966 55.033333,4.9883261 33.866151,26.155509 Z" />
+    </mask>
+  </defs>
+  <path
+     id="rect2"
+     style="display:inline;fill:#ffffff;stroke-width:0.324047"
+     d="M 27.516667 8.4666667 L 27.516667 27.516667 L 8.4666667 27.516667 L 8.4666667 40.216667 L 27.516667 40.216667 L 27.516667 59.266667 L 40.216667 59.266667 L 40.216667 40.216667 L 59.266667 40.216667 L 59.266667 27.516667 L 40.216667 27.516667 L 40.216667 8.4666667 L 27.516667 8.4666667 z " />
+</svg>

@@ -82,6 +82,7 @@ one_shot = true
 
 [node name="VictoryAudio" type="AudioStreamPlayer" parent="." unique_id=458362482]
 stream = ExtResource("6")
+bus = &"Jingles"
 
 [node name="HUDFadeTimer" type="Timer" parent="." unique_id=1841367607]
 one_shot = true

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dtor8bby8jyrj"]
+
+[ext_resource type="PackedScene" uid="uid://cxtw6ljik6ras" path="res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/action_editor.tscn" id="1_id6g8"]
+[ext_resource type="Script" uid="uid://bsjblorw5ybfm" path="res://addons/sv_options_menu/ui/input_map_settings_ui/input_map_settings_ui.gd" id="1_irsj7"]
+[ext_resource type="Texture2D" uid="uid://ceishhadfgv2e" path="res://addons/sv_options_menu/icon/delete.svg" id="2_udkxl"]
+[ext_resource type="Texture2D" uid="uid://y6ngqc3xosl6" path="res://addons/sv_options_menu/icon/add.svg" id="3_j0j1h"]
+
+[node name="InputMapSettingsUI" type="VBoxContainer" unique_id=1515047317]
+offset_right = 512.0
+offset_bottom = 432.0
+script = ExtResource("1_irsj7")
+delete_icon = ExtResource("2_udkxl")
+add_icon = ExtResource("3_j0j1h")
+
+[node name="PlaceholderActionEditor" parent="." unique_id=1681253897 instance=ExtResource("1_id6g8")]
+layout_mode = 2
+
+[node name="PlaceholderActionEditor2" parent="." unique_id=2096546508 instance=ExtResource("1_id6g8")]
+layout_mode = 2
+
+[node name="PlaceholderActionEditor3" parent="." unique_id=596331410 instance=ExtResource("1_id6g8")]
+layout_mode = 2
+
+[node name="PlaceholderActionEditor4" parent="." unique_id=1353553386 instance=ExtResource("1_id6g8")]
+layout_mode = 2

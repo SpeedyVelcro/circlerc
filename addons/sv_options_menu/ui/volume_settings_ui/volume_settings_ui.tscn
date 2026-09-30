@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://i6168hsfkqt"]
+
+[ext_resource type="PackedScene" uid="uid://dvhos55lru58i" path="res://addons/sv_options_menu/ui/volume_settings_ui/bus_editor/bus_editor.tscn" id="1_ift0o"]
+[ext_resource type="Script" uid="uid://cki3sk4bsugi0" path="res://addons/sv_options_menu/ui/volume_settings_ui/volume_settings_ui.gd" id="1_pvghc"]
+[ext_resource type="Texture2D" uid="uid://c6ekm1n1dx0df" path="res://addons/sv_options_menu/icon/audio.svg" id="2_p14ka"]
+[ext_resource type="Texture2D" uid="uid://dve427xl1ccqi" path="res://addons/sv_options_menu/icon/audio_muted.svg" id="3_ek17i"]
+[ext_resource type="Script" uid="uid://b03v2s84drqeh" path="res://addons/sv_options_menu/data/audio_bus_reference/audio_bus_id.gd" id="5_ek17i"]
+
+[sub_resource type="Resource" id="Resource_ggmpy"]
+script = ExtResource("5_ek17i")
+metadata/_custom_type_script = "uid://b03v2s84drqeh"
+
+[sub_resource type="Resource" id="Resource_uedmh"]
+script = ExtResource("5_ek17i")
+metadata/_custom_type_script = "uid://b03v2s84drqeh"
+
+[sub_resource type="Resource" id="Resource_cnq22"]
+script = ExtResource("5_ek17i")
+metadata/_custom_type_script = "uid://b03v2s84drqeh"
+
+[node name="VolumeSettingsUI" type="GridContainer" unique_id=1616413023]
+offset_right = 364.0
+offset_bottom = 131.0
+theme_override_constants/h_separation = 16
+columns = 2
+script = ExtResource("1_pvghc")
+mute_button_icon_unmuted = ExtResource("2_p14ka")
+mute_button_icon_muted = ExtResource("3_ek17i")
+
+[node name="PlaceholderLabel" type="Label" parent="." unique_id=526161544]
+layout_mode = 2
+text = "Placeholder"
+
+[node name="PlaceholderBusEditor" parent="." unique_id=701120791 instance=ExtResource("1_ift0o")]
+layout_mode = 2
+size_flags_horizontal = 3
+bus = SubResource("Resource_ggmpy")
+
+[node name="PlaceholderLabel2" type="Label" parent="." unique_id=1293605863]
+layout_mode = 2
+text = "Placeholder"
+
+[node name="PlaceholderBusEditor2" parent="." unique_id=160572018 instance=ExtResource("1_ift0o")]
+layout_mode = 2
+bus = SubResource("Resource_uedmh")
+
+[node name="PlaceholderLabel3" type="Label" parent="." unique_id=923278411]
+layout_mode = 2
+text = "Placeholder"
+
+[node name="PlaceholderBusEditor3" parent="." unique_id=1421191300 instance=ExtResource("1_ift0o")]
+layout_mode = 2
+bus = SubResource("Resource_cnq22")

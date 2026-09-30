@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cdbcshvsjv1lc"]
+
+[ext_resource type="Script" uid="uid://ushirn6rkeyf" path="res://addons/sv_options_menu/ui/vsync_settings_ui/vsync_settings_ui.gd" id="1_8o55n"]
+
+[node name="VsyncSettingsUI" type="OptionButton" unique_id=1092695597]
+tooltip_text = "VSync synchronizes framerate with the monitor's refresh rate. This reduces screen tearing, but may increase input latency."
+script = ExtResource("1_8o55n")
+
+[connection signal="item_selected" from="." to="." method="_on_item_selected"]

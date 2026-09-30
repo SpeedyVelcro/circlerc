@@ -1,0 +1,173 @@
+[gd_scene format=3 uid="uid://dv1j6wg48ftoo"]
+
+[ext_resource type="Script" uid="uid://df4ovpfshp1qf" path="res://UI/MainMenu/OptionsMenu/options_menu.gd" id="1_np2vl"]
+[ext_resource type="PackedScene" uid="uid://cg3sk7atw1rs3" path="res://addons/sv_options_menu/ui/window_settings_ui/window_settings_ui.tscn" id="2_afras"]
+[ext_resource type="PackedScene" uid="uid://cdbcshvsjv1lc" path="res://addons/sv_options_menu/ui/vsync_settings_ui/vsync_settings_ui.tscn" id="3_1txl7"]
+[ext_resource type="PackedScene" uid="uid://i6168hsfkqt" path="res://addons/sv_options_menu/ui/volume_settings_ui/volume_settings_ui.tscn" id="4_k3ojk"]
+[ext_resource type="PackedScene" uid="uid://dtor8bby8jyrj" path="res://addons/sv_options_menu/ui/input_map_settings_ui/input_map_settings_ui.tscn" id="5_jk2qe"]
+
+[node name="OptionsMenu" type="PanelContainer" unique_id=475423097 node_paths=PackedStringArray("window_settings_ui", "fullscreen_toggle_container", "tab_container")]
+custom_minimum_size = Vector2(640, 560)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_np2vl")
+window_settings_ui = NodePath("MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/WindowSettingsUI")
+fullscreen_toggle_container = NodePath("MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer")
+tab_container = NodePath("MarginContainer/VBoxContainer/TabContainer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1445326715]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=824468747]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=238866721]
+layout_mode = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=423836196]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+
+[node name="General" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=599869640]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/General" unique_id=1669747129]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/General/MarginContainer" unique_id=1499454934]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/General/MarginContainer/VBoxContainer" unique_id=474498392]
+layout_mode = 2
+text = "General settings coming soon"
+
+[node name="Video" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=248869469]
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Video" unique_id=320156282]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer" unique_id=1040881134]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer" unique_id=675324127]
+layout_mode = 2
+text = "Display"
+horizontal_alignment = 1
+
+[node name="WindowSettingsUI" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer" unique_id=1430727212 instance=ExtResource("2_afras")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer" unique_id=1971266111]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="FullscreenToggleButton" type="Button" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer" unique_id=180022739]
+layout_mode = 2
+text = "Toggle"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2019308241]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer" unique_id=1783806705]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer" unique_id=1938207053]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=803521397]
+layout_mode = 2
+text = "VSync"
+
+[node name="VsyncSettingsUI" parent="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1092695597 instance=ExtResource("3_1txl7")]
+layout_mode = 2
+
+[node name="Audio" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=962445734]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio" unique_id=660001701]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer" unique_id=880163691]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=224410151]
+layout_mode = 2
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSettingsUI" parent="MarginContainer/VBoxContainer/TabContainer/Audio/MarginContainer/VBoxContainer" unique_id=1616413023 instance=ExtResource("4_k3ojk")]
+layout_mode = 2
+
+[node name="Controls" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=982519804]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls" unique_id=66123969]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer" unique_id=1943220518]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1415857988]
+layout_mode = 2
+text = "Bindings"
+horizontal_alignment = 1
+
+[node name="InputMapSettingsUI" parent="MarginContainer/VBoxContainer/TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=1515047317 instance=ExtResource("5_jk2qe")]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1885370093]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TabContainer/Video/MarginContainer/VBoxContainer/HBoxContainer/FullscreenToggleButton" to="." method="_on_fullscreen_toggle_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

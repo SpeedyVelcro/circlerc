@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cg3sk7atw1rs3"]
+
+[ext_resource type="Script" uid="uid://c78oqjnf45sli" path="res://addons/sv_options_menu/ui/window_settings_ui/window_settings_ui.gd" id="1_q1a7o"]
+
+[node name="WindowSettingsUI" type="HBoxContainer" unique_id=1430727212]
+offset_right = 320.0
+offset_bottom = 136.0
+script = ExtResource("1_q1a7o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=7371312]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="WindowModeOptionButton" type="OptionButton" parent="VBoxContainer" unique_id=1660892346]
+layout_mode = 2
+tooltip_text = "Affects whether the game will be displayed in fullscreen or windowed mode."
+selected = 0
+item_count = 1
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+
+[node name="CustomResolutionCheckBox" type="CheckBox" parent="VBoxContainer" unique_id=1750595214]
+layout_mode = 2
+tooltip_text = "Check to input custom numbers for resolution width and height."
+text = "Custom Resolution"
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="VBoxContainer" unique_id=640614579]
+layout_mode = 2
+tooltip_text = "Resolution affects the size the game displays at in pixels."
+selected = 0
+item_count = 1
+popup/item_0/text = "1280x720"
+popup/item_0/id = 0
+
+[node name="CustomResolutionHBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=140895754]
+visible = false
+layout_mode = 2
+tooltip_text = "Resolution affects the size the game displays at in pixels."
+
+[node name="WidthLineEdit" type="LineEdit" parent="VBoxContainer/CustomResolutionHBoxContainer" unique_id=729680384]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "1280"
+context_menu_enabled = false
+emoji_menu_enabled = false
+select_all_on_focus = true
+
+[node name="Label" type="Label" parent="VBoxContainer/CustomResolutionHBoxContainer" unique_id=1296039466]
+layout_mode = 2
+mouse_filter = 1
+text = "x"
+
+[node name="HeightLineEdit" type="LineEdit" parent="VBoxContainer/CustomResolutionHBoxContainer" unique_id=1519369673]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "720"
+context_menu_enabled = false
+emoji_menu_enabled = false
+select_all_on_focus = true
+
+[node name="ScreenHBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=841614511]
+layout_mode = 2
+tooltip_text = "Screen determines which screen (i.e. display/monitor) the game
+will display on when applying settings and on startup."
+
+[node name="Label" type="Label" parent="VBoxContainer/ScreenHBoxContainer" unique_id=1978901958]
+layout_mode = 2
+mouse_filter = 1
+text = "Screen"
+
+[node name="ScreenOptionButton" type="OptionButton" parent="VBoxContainer/ScreenHBoxContainer" unique_id=499877164]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "Primary"
+popup/item_0/id = 0
+
+[node name="ApplyButton" type="Button" parent="." unique_id=2071247075]
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "Apply settings that affect the game window,
+including fullscreen/windowed mode, resolution,
+and screen. These specific settings are not
+saved until you apply them."
+text = "Apply Settings"
+
+[connection signal="toggled" from="VBoxContainer/CustomResolutionCheckBox" to="." method="_on_custom_resolution_check_box_toggled"]
+[connection signal="text_changed" from="VBoxContainer/CustomResolutionHBoxContainer/WidthLineEdit" to="." method="_on_width_line_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/CustomResolutionHBoxContainer/HeightLineEdit" to="." method="_on_height_line_edit_text_changed"]
+[connection signal="pressed" from="ApplyButton" to="." method="_on_apply_button_pressed"]

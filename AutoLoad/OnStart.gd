@@ -15,3 +15,8 @@ extends Node
 # Override
 func _ready() -> void:
 	Profile.load_profile()
+	
+	var options_config := OptionsConfigProvider.get_config()
+	options_config.manage_window_mode = not OS.has_feature("web")
+	options_config.manage_screen = not OS.has_feature("web")
+	OptionsLifecycle.start_up()

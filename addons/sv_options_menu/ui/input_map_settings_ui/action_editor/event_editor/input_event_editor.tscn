@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c1swx2dmyyyeg"]
+
+[ext_resource type="Script" uid="uid://db4an6xu2se77" path="res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/event_editor/input_event_editor.gd" id="1_vqhsp"]
+[ext_resource type="Texture2D" uid="uid://ceishhadfgv2e" path="res://addons/sv_options_menu/icon/delete.svg" id="2_6blra"]
+
+[node name="InputEventEditor" type="HBoxContainer" unique_id=551252339]
+custom_minimum_size = Vector2(128, 0)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_vqhsp")
+delete_icon = ExtResource("2_6blra")
+
+[node name="BindingButton" type="Button" parent="." unique_id=407700130]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "Key"
+
+[node name="DeleteButton" type="Button" parent="." unique_id=998939068]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+icon = ExtResource("2_6blra")
+expand_icon = true
+
+[node name="ListeningVisualTimer" type="Timer" parent="." unique_id=686525166]
+
+[connection signal="pressed" from="BindingButton" to="." method="_on_binding_button_pressed"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
