@@ -7,8 +7,9 @@
 [ext_resource type="LabelSettings" uid="uid://dxullnmum6xx1" path="res://Font/PressStart2P/PressStart2PTinyLabelSettings.tres" id="5_1dhmk"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="6_jhcbk"]
 [ext_resource type="PackedScene" uid="uid://dv1j6wg48ftoo" path="res://UI/MainMenu/OptionsMenu/OptionsMenu.tscn" id="7_a712v"]
+[ext_resource type="PackedScene" uid="uid://dvhpp058vg8j5" path="res://UI/MainMenu/About/About.tscn" id="8_1dhmk"]
 
-[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "quit_button")]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +20,7 @@ theme = ExtResource("4")
 script = ExtResource("2")
 start_menu_root_control = NodePath("CenterContainer/StartMenuPanelContainer")
 options_menu_root_control = NodePath("CenterContainer/OptionsMenu")
+about_menu_root_control = NodePath("CenterContainer/AboutMenu")
 quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=506171900]
@@ -213,9 +215,14 @@ size_flags_vertical = 3
 visible = false
 layout_mode = 2
 
+[node name="AboutMenu" parent="CenterContainer" unique_id=1245046625 instance=ExtResource("8_1dhmk")]
+visible = false
+layout_mode = 2
+
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
 [connection signal="back" from="CenterContainer/OptionsMenu" to="." method="_on_options_menu_back"]
+[connection signal="back" from="CenterContainer/AboutMenu" to="." method="_on_about_menu_back"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dv1j6wg48ftoo"]
 
 [ext_resource type="Script" uid="uid://df4ovpfshp1qf" path="res://UI/MainMenu/OptionsMenu/options_menu.gd" id="1_np2vl"]
+[ext_resource type="LabelSettings" uid="uid://byinc2p570ku4" path="res://Font/PressStart2P/PressStart2PMediumLabelSettings.tres" id="2_1txl7"]
 [ext_resource type="PackedScene" uid="uid://cg3sk7atw1rs3" path="res://addons/sv_options_menu/ui/window_settings_ui/window_settings_ui.tscn" id="2_afras"]
 [ext_resource type="PackedScene" uid="uid://cdbcshvsjv1lc" path="res://addons/sv_options_menu/ui/vsync_settings_ui/vsync_settings_ui.tscn" id="3_1txl7"]
 [ext_resource type="PackedScene" uid="uid://i6168hsfkqt" path="res://addons/sv_options_menu/ui/volume_settings_ui/volume_settings_ui.tscn" id="4_k3ojk"]
@@ -33,6 +34,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=238866721]
 layout_mode = 2
 text = "Options"
+label_settings = ExtResource("2_1txl7")
 horizontal_alignment = 1
 
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer" unique_id=423836196]

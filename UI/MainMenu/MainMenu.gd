@@ -4,6 +4,7 @@ extends Control
 
 @export var start_menu_root_control: Control
 @export var options_menu_root_control: Control
+@export var about_menu_root_control: Control
 @export var quit_button: Button
 
 var current_tweens: Array[Tween] = []
@@ -27,7 +28,19 @@ func _on_ButtonLevelSelect_pressed():
 
 # Signal connection
 func _on_ButtonCredits_pressed():
-	SceneTransition.instant("res://UI/MainMenu/About/About.tscn")
+	_play_animations(
+		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0)),
+		_create_menu_fly_in_tween(about_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO)
+	)
+
+
+# Signal connection
+func _on_about_menu_back() -> void:
+	_play_animations(
+		_create_menu_fly_in_tween(start_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO),
+		_create_menu_fly_out_tween(about_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0))
+	)
+
 
 # Signal connection
 func _on_ButtonQuit_pressed():

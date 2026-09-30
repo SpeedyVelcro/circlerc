@@ -1,6 +1,8 @@
-extends Control
+extends PanelContainer
+
+signal back
 
 
 # Signal connection
-func _on_ButtonBack_pressed():
-	SceneTransition.instant("res://UI/MainMenu/MainMenu.tscn")
+func _on_button_back_pressed() -> void:
+	back.emit()
