@@ -6,6 +6,7 @@ extends Control
 @export var options_menu_root_control: Control
 @export var about_menu_root_control: Control
 @export var level_select_menu_root_control: Control
+@export var background_layer: CanvasLayer
 @export var quit_button: Button
 
 var current_tweens: Array[Tween] = []
@@ -26,7 +27,8 @@ func _on_ButtonPlay_pressed():
 func _on_ButtonLevelSelect_pressed():
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(0.0, -1280.0)),
-		_create_menu_fly_in_tween(level_select_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO)
+		_create_menu_fly_in_tween(level_select_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO),
+		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, -512.0))
 	)
 
 
@@ -34,7 +36,8 @@ func _on_ButtonLevelSelect_pressed():
 func _on_level_select_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(0.0, -1280.0), Vector2.ZERO),
-		_create_menu_fly_out_tween(level_select_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0))
+		_create_menu_fly_out_tween(level_select_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0)),
+		_create_background_fly_tween(Vector2(0.0, -512.0), Vector2.ZERO)
 	)
 
 
@@ -42,7 +45,8 @@ func _on_level_select_back() -> void:
 func _on_ButtonCredits_pressed():
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0)),
-		_create_menu_fly_in_tween(about_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO)
+		_create_menu_fly_in_tween(about_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO),
+		_create_background_fly_tween(Vector2.ZERO, Vector2(512.0, 0.0))
 	)
 
 
@@ -50,7 +54,8 @@ func _on_ButtonCredits_pressed():
 func _on_about_menu_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO),
-		_create_menu_fly_out_tween(about_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0))
+		_create_menu_fly_out_tween(about_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0)),
+		_create_background_fly_tween(Vector2(512.0, 0.0), Vector2.ZERO)
 	)
 
 
@@ -65,7 +70,8 @@ func _on_ButtonQuit_pressed():
 func _on_options_button_pressed() -> void:
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0)),
-		_create_menu_fly_in_tween(options_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO)
+		_create_menu_fly_in_tween(options_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO),
+		_create_background_fly_tween(Vector2.ZERO, Vector2(-512.0, 0.0))
 	)
 
 
@@ -73,7 +79,8 @@ func _on_options_button_pressed() -> void:
 func _on_options_menu_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO),
-		_create_menu_fly_out_tween(options_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0))
+		_create_menu_fly_out_tween(options_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0)),
+		_create_background_fly_tween(Vector2(-512.0, 0.0), Vector2.ZERO)
 	)
 
 
@@ -93,14 +100,26 @@ func _create_menu_fly_tween(control: Control, from: Vector2, to: Vector2, out: b
 	
 	tween.tween_callback(func(): control.visible = true)
 	tween.tween_callback(func(): control.offset_transform_enabled = true)
-	tween.tween_callback(func(): control.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED)
+	if out:
+		tween.tween_callback(func(): control.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED)
 	
-	tween.tween_property(control, "offset_transform_position", to, 0.5).from(from)
+	tween.tween_property(control, "offset_transform_position", to, 0.7).from(from)
 	
 	tween.tween_callback(func(): control.offset_transform_enabled = false)
 	tween.tween_callback(func(): control.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_INHERITED)
 	if out:
 		tween.tween_callback(func(): control.visible = false)
+	
+	return tween
+
+
+func _create_background_fly_tween(from: Vector2, to: Vector2) -> Tween:
+	var tween := get_tree().create_tween()
+	
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(background_layer, "offset", to, 0.7).from(from)
 	
 	return tween
 
@@ -119,3 +138,20 @@ func _play_animations(...tweens: Array) -> void:
 	current_tweens.assign(tweens)
 	for tween in current_tweens:
 		tween.play()
+
+
+func _is_currently_animating() -> bool:
+	for tween in current_tweens:
+		if tween.is_valid():
+			return true
+	
+	return false
+
+
+# Uncomment to allow skipping animation
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventJoypadButton or event is InputEventMouseButton or event is InputEventKey:
+		#if _is_currently_animating():
+			#if event.is_released() or (event is InputEventMouseButton):
+				#accept_event()
+				#skip_animation()
