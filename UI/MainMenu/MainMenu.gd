@@ -6,6 +6,7 @@ extends Control
 @export var options_menu_root_control: Control
 @export var about_menu_root_control: Control
 @export var level_select_menu_root_control: Control
+@export var achievement_menu_root_control: Control
 @export var background_layer: CanvasLayer
 @export var quit_button: Button
 
@@ -64,6 +65,24 @@ func _on_ButtonQuit_pressed():
 	Profile.save_profile()
 	OptionsSaver.save()
 	get_tree().quit()
+
+
+# Signal connection
+func _on_AchievementsButton_pressed() -> void:
+	_play_animations(
+		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0)),
+		_create_menu_fly_in_tween(achievement_menu_root_control, Vector2(0.0, -1280.0), Vector2.ZERO),
+		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, 512.0))
+	)
+
+
+# Signal connection
+func _on_achievement_menu_back() -> void:
+	_play_animations(
+		_create_menu_fly_in_tween(start_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO),
+		_create_menu_fly_out_tween(achievement_menu_root_control, Vector2.ZERO, Vector2(0.0, -1280.0)),
+		_create_background_fly_tween(Vector2(0.0, 512.0), Vector2.ZERO)
+	)
 
 
 # Signal connection

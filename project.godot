@@ -32,6 +32,8 @@ ManagedOptionsSynchronizer="*uid://bbamh7evxqacu"
 OptionsLifecycle="*uid://bg6i2usjy2ola"
 OptionsSaver="*uid://byw1rlb3hl7lb"
 UIScaleLimiter="*uid://bvyix0sadk4ni"
+AchievementService="*uid://cl58nbrkylxrq"
+AchievementOverlayLayer="*uid://ccgob6hba25km"
 OnStart="*uid://8r0ccj4kti1"
 
 [display]
@@ -44,7 +46,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/sv_options_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/sv_achievements/plugin.cfg", "res://addons/sv_options_menu/plugin.cfg")
 
 [input]
 
@@ -96,3 +98,8 @@ textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_environment="res://default_env.tres"
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
+
+[sv_achievements]
+
+general/achievements="uid://cox8oaneu2ygv"
+general/completion_save_file_path="user://achievements.json"

@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dv1j6wg48ftoo" path="res://UI/MainMenu/OptionsMenu/OptionsMenu.tscn" id="7_a712v"]
 [ext_resource type="PackedScene" uid="uid://dvhpp058vg8j5" path="res://UI/MainMenu/About/About.tscn" id="8_1dhmk"]
 [ext_resource type="PackedScene" uid="uid://ychv3himwjoo" path="res://UI/MainMenu/LevelSelect/LevelSelect.tscn" id="9_jhcbk"]
+[ext_resource type="PackedScene" uid="uid://cxs2a4gwmr7bk" path="res://UI/MainMenu/AchievementMenu/AchievementMenu.tscn" id="10_32jca"]
 
-[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "background_layer", "quit_button")]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "background_layer", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,6 +24,7 @@ start_menu_root_control = NodePath("CenterContainer/StartMenuPanelContainer")
 options_menu_root_control = NodePath("CenterContainer/OptionsMenu")
 about_menu_root_control = NodePath("CenterContainer/AboutMenu")
 level_select_menu_root_control = NodePath("CenterContainer/LevelSelect")
+achievement_menu_root_control = NodePath("CenterContainer/AchievementMenu")
 background_layer = NodePath("Background")
 quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
 
@@ -147,6 +149,10 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Options"
 
+[node name="AchievementsButton" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2054565582]
+layout_mode = 2
+text = "Achievements"
+
 [node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=123536219]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -230,11 +236,17 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="AchievementMenu" parent="CenterContainer" unique_id=1159673253 instance=ExtResource("10_32jca")]
+visible = false
+layout_mode = 2
+
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/AchievementsButton" to="." method="_on_AchievementsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
 [connection signal="back" from="CenterContainer/OptionsMenu" to="." method="_on_options_menu_back"]
 [connection signal="back" from="CenterContainer/AboutMenu" to="." method="_on_about_menu_back"]
 [connection signal="back" from="CenterContainer/LevelSelect" to="." method="_on_level_select_back"]
+[connection signal="back" from="CenterContainer/AchievementMenu" to="." method="_on_achievement_menu_back"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cnf4r72kds3xj"]
+
+[ext_resource type="Script" uid="uid://cubnbw71ewoc" path="res://addons/sv_achievements/ui/achievement_overlay/achievement_overlay.gd" id="1_ma23b"]
+[ext_resource type="Texture2D" uid="uid://d4kna6h3ww5dt" path="res://addons/sv_achievements/image/achievement.svg" id="2_banob"]
+
+[node name="AchievementOverlay" type="MarginContainer" unique_id=1634175387]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_ma23b")
+corner = 3
+popup_animation = 1
+transition_type = 5
+ease_type = 1
+default_achievement_icon = ExtResource("2_banob")
+
+[node name="DisplayRegionControl" type="Control" parent="." unique_id=1006030653]
+layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1

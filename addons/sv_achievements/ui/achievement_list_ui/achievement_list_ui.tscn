@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://3frhprt6v3o6"]
+
+[ext_resource type="Script" uid="uid://xuk7fgk7c878" path="res://addons/sv_achievements/ui/achievement_list_ui/achievement_list_ui.gd" id="1_qlo8e"]
+[ext_resource type="Texture2D" uid="uid://d4kna6h3ww5dt" path="res://addons/sv_achievements/image/achievement.svg" id="2_klkrh"]
+[ext_resource type="Texture2D" uid="uid://dftf3pf0cyiyv" path="res://addons/sv_achievements/image/achievement_secret.svg" id="3_domtv"]
+[ext_resource type="Texture2D" uid="uid://car0yu887gv2l" path="res://addons/sv_achievements/image/objective_unchecked.svg" id="4_2s3kl"]
+[ext_resource type="Texture2D" uid="uid://cgw6etl1rdory" path="res://addons/sv_achievements/image/objective_checked.svg" id="5_c1o5d"]
+
+[node name="AchievementListUI" type="VBoxContainer" unique_id=40048756]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlo8e")
+default_achievement_icon = ExtResource("2_klkrh")
+secret_achievement_icon = ExtResource("3_domtv")
+objective_incomplete_icon = ExtResource("4_2s3kl")
+objective_complete_icon = ExtResource("5_c1o5d")

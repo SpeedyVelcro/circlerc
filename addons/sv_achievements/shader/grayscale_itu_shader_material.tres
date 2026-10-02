@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bpcxw1qe2v6v1"]
+
+[ext_resource type="Shader" uid="uid://c3kwtotmrtiea" path="res://addons/sv_achievements/shader/grayscale.gdshader" id="1_vlykj"]
+
+[resource]
+shader = ExtResource("1_vlykj")
+shader_parameter/red_luminance = 0.2126
+shader_parameter/green_luminance = 0.7152
+shader_parameter/blue_luminance = 0.0722

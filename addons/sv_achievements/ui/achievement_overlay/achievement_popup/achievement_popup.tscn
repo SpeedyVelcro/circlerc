@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://b6rt2g5x5ftan"]
+
+[ext_resource type="Script" uid="uid://f4l2t4lnkqr8" path="res://addons/sv_achievements/ui/achievement_overlay/achievement_popup/achievement_popup.gd" id="1_2lw0j"]
+[ext_resource type="Texture2D" uid="uid://d4kna6h3ww5dt" path="res://addons/sv_achievements/image/achievement.svg" id="1_e5s6m"]
+[ext_resource type="StyleBox" uid="uid://dl3xlbby2sy8f" path="res://addons/sv_achievements/ui/theming/icon_border/icon_border_white.tres" id="2_2lw0j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ag1u7"]
+font_size = 24
+
+[node name="AchievementPopup" type="PanelContainer" unique_id=550423629]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -672.0
+offset_bottom = -488.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_2lw0j")
+default_achievement_icon = ExtResource("1_e5s6m")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1899275365]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=677358887]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="IconTextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=748416838]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_e5s6m")
+
+[node name="IconBorderPanel" type="Panel" parent="MarginContainer/HBoxContainer/IconTextureRect" unique_id=1855284018]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_2lw0j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1033553796]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=302051258]
+layout_mode = 2
+text = "Achievement Name"
+label_settings = SubResource("LabelSettings_ag1u7")
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=629909670]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempot incididunt ut labore. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="RewardHBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=715159917]
+layout_mode = 2
+
+[node name="RewardTitleRichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/RewardHBoxContainer" unique_id=1845624730]
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Reward:[/b]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="RewardLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/RewardHBoxContainer" unique_id=1067502472]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+clip_text = true
+text_overrun_behavior = 5

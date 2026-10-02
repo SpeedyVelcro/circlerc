@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cxs2a4gwmr7bk"]
+
+[ext_resource type="Script" uid="uid://ngadf3wbhino" path="res://UI/MainMenu/AchievementMenu/AchievementMenu.gd" id="1_k78al"]
+[ext_resource type="LabelSettings" uid="uid://byinc2p570ku4" path="res://Font/PressStart2P/PressStart2PMediumLabelSettings.tres" id="2_51swf"]
+[ext_resource type="PackedScene" uid="uid://3frhprt6v3o6" path="res://addons/sv_achievements/ui/achievement_list_ui/achievement_list_ui.tscn" id="3_hjjt3"]
+[ext_resource type="StyleBox" uid="uid://c0xjso4drxk63" path="res://UI/Styles/AchievementIconBorder.tres" id="4_51swf"]
+[ext_resource type="Texture2D" uid="uid://d20tt23fgbbir" path="res://Art/CircleRC/Achievement/Player.png" id="4_ayuir"]
+
+[node name="AchievementMenu" type="PanelContainer" unique_id=1159673253]
+custom_minimum_size = Vector2(912, 600)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -456.0
+offset_top = -300.0
+offset_right = 456.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k78al")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1780570968]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1490948294]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2006938571]
+layout_mode = 2
+text = "Achievements"
+label_settings = ExtResource("2_51swf")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=1347661106]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="AchievementListUI" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=40048756 instance=ExtResource("3_hjjt3")]
+layout_mode = 2
+size_flags_horizontal = 3
+show_separators = true
+icon_border_stylebox_override = ExtResource("4_51swf")
+default_achievement_icon = ExtResource("4_ayuir")
+secret_achievement_icon = ExtResource("4_ayuir")
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1856616308]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

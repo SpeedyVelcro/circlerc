@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://muxtbahue368"]
+
+[ext_resource type="Script" uid="uid://c3dqfg65ga148" path="res://addons/sv_achievements/ui/achievement_list_ui/achievement_ui/objective_list_ui/objective_list_ui.gd" id="1_k66ii"]
+[ext_resource type="Texture2D" uid="uid://car0yu887gv2l" path="res://addons/sv_achievements/image/objective_unchecked.svg" id="2_hgupo"]
+[ext_resource type="Texture2D" uid="uid://cgw6etl1rdory" path="res://addons/sv_achievements/image/objective_checked.svg" id="3_0222b"]
+
+[node name="ObjectiveListUI" type="VBoxContainer" unique_id=1732672958]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k66ii")
+incomplete_icon = ExtResource("2_hgupo")
+complete_icon = ExtResource("3_0222b")

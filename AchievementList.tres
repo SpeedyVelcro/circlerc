@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="AchievementList" format=3 uid="uid://cox8oaneu2ygv"]
+
+[ext_resource type="Script" uid="uid://bfkrw11bj6wk" path="res://addons/sv_achievements/data/achievement/achievement.gd" id="1_efj3i"]
+[ext_resource type="Script" uid="uid://dux30a2ax0nyt" path="res://addons/sv_achievements/data/achievement_list/achievement_list.gd" id="2_exhbu"]
+
+[sub_resource type="Resource" id="Resource_n4y2n"]
+script = ExtResource("1_efj3i")
+achievement_id = "test-1"
+name = "Test Achievement 1"
+description = "Lorem ipsum dolor sit amet."
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[sub_resource type="Resource" id="Resource_ooua1"]
+script = ExtResource("1_efj3i")
+achievement_id = "test-2"
+name = "Test Achievement 2"
+description = "Lorem ipsum dolor sit amet."
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[sub_resource type="Resource" id="Resource_ujk5d"]
+script = ExtResource("1_efj3i")
+achievement_id = "test-3"
+name = "Test Achievement 3"
+description = "Lorem ipsum dolor sit amet."
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[resource]
+script = ExtResource("2_exhbu")
+achievements = Array[ExtResource("1_efj3i")]([SubResource("Resource_n4y2n"), SubResource("Resource_ooua1"), SubResource("Resource_ujk5d")])
+metadata/_custom_type_script = "uid://dux30a2ax0nyt"
