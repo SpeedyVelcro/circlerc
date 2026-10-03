@@ -1,36 +1,108 @@
 [gd_resource type="Resource" script_class="AchievementList" format=3 uid="uid://cox8oaneu2ygv"]
 
 [ext_resource type="Script" uid="uid://bfkrw11bj6wk" path="res://addons/sv_achievements/data/achievement/achievement.gd" id="1_efj3i"]
+[ext_resource type="Texture2D" uid="uid://jbjbph6oq6gk" path="res://Art/CircleRC/Achievement/Finish.png" id="2_a6a6i"]
 [ext_resource type="Script" uid="uid://dux30a2ax0nyt" path="res://addons/sv_achievements/data/achievement_list/achievement_list.gd" id="2_exhbu"]
+[ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="3_p68im"]
+[ext_resource type="Script" uid="uid://ce7vq51letive" path="res://addons/sv_achievements/data/achievement_objective/achievement_objective.gd" id="4_jwo0a"]
+[ext_resource type="Script" uid="uid://km8twd04m88y" path="res://Data/LevelsAchievementObjective.gd" id="5_a6a6i"]
+[ext_resource type="Texture2D" uid="uid://1m3xkldep2xc" path="res://Art/CircleRC/Achievement/PlayerSparkling.png" id="6_jwo0a"]
+[ext_resource type="Texture2D" uid="uid://ct41bgk1fxsrv" path="res://Art/CircleRC/Achievement/PlayerFast.png" id="7_vtq4v"]
+[ext_resource type="Texture2D" uid="uid://dq6ntd4su1nv7" path="res://Art/CircleRC/Achievement/PlayerGold.png" id="8_td8n2"]
+[ext_resource type="Texture2D" uid="uid://dykk57wpls032" path="res://Art/CircleRC/Achievement/CarCrash.png" id="9_451v0"]
+[ext_resource type="Texture2D" uid="uid://dqi3qroirjrom" path="res://Art/CircleRC/Achievement/FlagCrash.png" id="10_451v0"]
 
-[sub_resource type="Resource" id="Resource_n4y2n"]
+[sub_resource type="Resource" id="Resource_7fu15"]
+script = ExtResource("5_a6a6i")
+description_format_string = "Complete level %d."
+metadata/_custom_type_script = "uid://km8twd04m88y"
+
+[sub_resource type="Resource" id="Resource_7p0me"]
 script = ExtResource("1_efj3i")
-achievement_id = "test-1"
-name = "Test Achievement 1"
-description = "Lorem ipsum dolor sit amet."
+achievement_id = "finish-all"
+name = "Finish Line"
+objective = SubResource("Resource_7fu15")
+description = "Complete all 20 levels."
+icon = ExtResource("2_a6a6i")
 game_jolt_id = null
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
-[sub_resource type="Resource" id="Resource_ooua1"]
+[sub_resource type="Resource" id="Resource_jwo0a"]
+script = ExtResource("5_a6a6i")
+description_format_string = "Complete level %d without taking any hits."
+metadata/_custom_type_script = "uid://km8twd04m88y"
+
+[sub_resource type="Resource" id="Resource_p68im"]
 script = ExtResource("1_efj3i")
-achievement_id = "test-2"
-name = "Test Achievement 2"
-description = "Lorem ipsum dolor sit amet."
+achievement_id = "no-hit-all"
+name = "Spick and Span"
+objective = SubResource("Resource_jwo0a")
+description = "Complete every level without taking any hits."
+icon = ExtResource("6_jwo0a")
+show_objectives = true
+show_progress_bar = false
 game_jolt_id = null
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
-[sub_resource type="Resource" id="Resource_ujk5d"]
+[sub_resource type="Resource" id="Resource_td8n2"]
+script = ExtResource("5_a6a6i")
+description_format_string = "Complete level %d under par."
+metadata/_custom_type_script = "uid://km8twd04m88y"
+
+[sub_resource type="Resource" id="Resource_vtq4v"]
 script = ExtResource("1_efj3i")
-achievement_id = "test-3"
-name = "Test Achievement 3"
-description = "Lorem ipsum dolor sit amet."
+achievement_id = "par-all"
+name = "That Was Fast"
+objective = SubResource("Resource_td8n2")
+description = "Complete every level under par."
+icon = ExtResource("7_vtq4v")
+show_objectives = true
+show_progress_bar = false
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[sub_resource type="Resource" id="Resource_451v0"]
+script = ExtResource("5_a6a6i")
+description_format_string = "Complete level %d no-hit and under par."
+metadata/_custom_type_script = "uid://km8twd04m88y"
+
+[sub_resource type="Resource" id="Resource_fibhw"]
+script = ExtResource("1_efj3i")
+achievement_id = "no-hit-par-all"
+name = "Perfect Run"
+objective = SubResource("Resource_451v0")
+description = "Complete every level under par without taking any hits. For each level, you must achieve both par and a hitless run in the same attempt."
+icon = ExtResource("8_td8n2")
+show_objectives = true
+show_progress_bar = false
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[sub_resource type="Resource" id="Resource_x0rao"]
+script = ExtResource("1_efj3i")
+achievement_id = "stationary-crash"
+name = "Can't Park There Mate"
+description = "Have an enemy car crash into your car while you are completely still."
+icon = ExtResource("9_451v0")
+game_jolt_id = null
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
+
+[sub_resource type="Resource" id="Resource_dar0t"]
+script = ExtResource("1_efj3i")
+achievement_id = "flag-crash"
+name = "Oh for Crying Out Loud"
+description = "While the finish flag is hoisted, lose a level by crashing into the flag."
+icon = ExtResource("10_451v0")
 game_jolt_id = null
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
 [resource]
 script = ExtResource("2_exhbu")
-achievements = Array[ExtResource("1_efj3i")]([SubResource("Resource_n4y2n"), SubResource("Resource_ooua1"), SubResource("Resource_ujk5d")])
+achievements = Array[ExtResource("1_efj3i")]([SubResource("Resource_7p0me"), SubResource("Resource_p68im"), SubResource("Resource_vtq4v"), SubResource("Resource_fibhw"), SubResource("Resource_x0rao"), SubResource("Resource_dar0t")])
 metadata/_custom_type_script = "uid://dux30a2ax0nyt"

@@ -13,6 +13,7 @@ extends AchievementObjective
 	set(value):
 		_disconnect_children()
 		objectives = value
+		_append_generated_objectives()
 		_connect_children()
 	get:
 		return objectives
@@ -43,6 +44,13 @@ func count_complete() -> int:
 		return 0
 	
 	return objectives.filter(func (o: AchievementObjective) -> bool: return o.completion_state).size()
+
+
+## This method is called after setting [member objectives], before the signals
+## are connected. Extend this class and override this to automatically generate
+## a list of objectives.
+func _append_generated_objectives() -> void:
+	pass # Override me
 
 
 # Override
