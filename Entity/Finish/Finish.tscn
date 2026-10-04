@@ -1,64 +1,94 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene format=3 uid="uid://dqbufdi5d0mao"]
 
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist6.png" type="Texture2D" id=1]
-[ext_resource path="res://Art/CircleRC/Finish/FinishWave4.png" type="Texture2D" id=2]
-[ext_resource path="res://Art/CircleRC/Finish/FinishWave2.png" type="Texture2D" id=3]
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist4.png" type="Texture2D" id=4]
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist2.png" type="Texture2D" id=5]
-[ext_resource path="res://Art/CircleRC/Finish/FinishWave1.png" type="Texture2D" id=6]
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist1.png" type="Texture2D" id=7]
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist5.png" type="Texture2D" id=8]
-[ext_resource path="res://Art/CircleRC/Finish/FinishHoist3.png" type="Texture2D" id=9]
-[ext_resource path="res://Art/CircleRC/Finish/FinishWave3.png" type="Texture2D" id=10]
-[ext_resource path="res://Entity/Capturable/Capturable.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Entity/Finish/Finish.gd" type="Script" id=12]
+[ext_resource type="Texture2D" uid="uid://cijvpa5mqanba" path="res://Art/CircleRC/Finish/FinishHoist6.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cfflyxd2yiy3g" path="res://Art/CircleRC/Finish/FinishWave4.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://qejg1n44li4g" path="res://Art/CircleRC/Finish/FinishWave2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://crcd73lxrwmqc" path="res://Art/CircleRC/Finish/FinishHoist4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cr2nddbjkafix" path="res://Art/CircleRC/Finish/FinishHoist2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b87coyyqg2ep6" path="res://Art/CircleRC/Finish/FinishWave1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://qa5lfniq482v" path="res://Art/CircleRC/Finish/FinishHoist1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b47r14wm3jyiw" path="res://Art/CircleRC/Finish/FinishHoist5.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://crw5770oxn2ul" path="res://Art/CircleRC/Finish/FinishHoist3.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://qbmb77dix8k8" path="res://Art/CircleRC/Finish/FinishWave3.png" id="10"]
+[ext_resource type="PackedScene" path="res://Entity/Capturable/Capturable.tscn" id="11"]
+[ext_resource type="Script" uid="uid://cb0nsehw3f1lu" path="res://Entity/Finish/Finish.gd" id="12"]
 
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 10 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "wave",
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": 0,
+"name": &"down",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": false,
-"name": "down",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7")
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 1 ) ],
-"loop": false,
-"name": "hoist",
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": 0,
+"name": &"hoist",
 "speed": 15.0
-} ]
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": 1,
+"name": &"wave",
+"speed": 5.0
+}]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 1.0
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id="3"]
 radius = 3.0
 
-[node name="Finish" type="StaticBody2D" groups=[
-"finish",
-]]
+[node name="Finish" type="StaticBody2D" unique_id=326646588 groups=["finish"]]
 z_index = 100
 collision_mask = 2
-script = ExtResource( 12 )
+script = ExtResource("12")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-frames = SubResource( 1 )
-animation = "wave"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1099132869]
+sprite_frames = SubResource("1")
+animation = &"wave"
 frame = 2
-playing = true
-offset = Vector2( 15, -16 )
+offset = Vector2(15, -16)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=162043907]
+shape = SubResource("2")
 
-[node name="Capturable" parent="." instance=ExtResource( 11 )]
+[node name="Capturable" parent="." unique_id=1093850198 instance=ExtResource("11")]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Capturable"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Capturable" unique_id=452166071]
+shape = SubResource("3")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="captured" from="Capturable" to="." method="_on_Capturable_captured"]

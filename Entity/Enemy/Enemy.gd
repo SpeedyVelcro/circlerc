@@ -101,7 +101,7 @@ func _on_state_exit(p_state):
 
 func _on_Enemy_body_entered(body):
 	if body is Player:
-		var dam = abs(linear_velocity.length()) - 30
+		var dam = abs(linear_velocity.length()) - 10.0
 		dam = max(dam, 0.0)
 		dam *= 0.25
 		if (dam > 0.0):
@@ -109,6 +109,12 @@ func _on_Enemy_body_entered(body):
 			set_linear_velocity(Vector2(0, 0))
 		$AnimationPlayer.stop()
 		$AnimationPlayer.play("crash_back_up")
+		
+		if body.speed <= 1.0:
+			var crash_achievement := AchievementService.get_achievement("stationary-crash")
+			if not crash_achievement.is_unlocked():
+				crash_achievement.unlock()
+				AchievementService.save_progress()
 
 func reverse():
 	change_state(STATE_REVERSE)

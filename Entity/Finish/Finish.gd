@@ -1,5 +1,5 @@
 # Finish.gd
-
+class_name Finish
 extends StaticBody2D
 
 var finish_condition = true

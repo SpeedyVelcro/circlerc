@@ -74,7 +74,7 @@ func is_time_under_level_par(level_number: int, time: TimeScore) -> bool:
 	return level.is_time_under_par(time)
 
 
-func get_number_of_levels():
+func get_number_of_levels() -> int:
 	return levels.size()
 
 

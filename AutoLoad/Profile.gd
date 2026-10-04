@@ -81,18 +81,28 @@ func load_profile():
 
 func submit_level_time(level_number : int, time : TimeScore, no_hit: bool) -> void:
 	const SAVE_STEP := false
-	var to_save := false
+	var new_best := false
+	var new_par := false
+	var new_no_hit := false
+	var new_no_hit_par := false
 	
 	var prev_time := get_level_best_time(level_number)
 	if time.get_total_milliseconds() < prev_time.get_total_milliseconds():
 		set_level_best_time(level_number, time, SAVE_STEP)
-		to_save = true
+		new_best = true
+	
+	var prev_par := level_list.is_time_under_level_par(level_number, prev_time)
+	if (not prev_par) and level_list.is_time_under_level_par(level_number, time):
+		# Unde par is automatically calculated by the Profile on get, but we
+		# will still need to mark that we are newly under par in order to
+		# unlock the achievement.
+		new_par = true
 	
 	var prev_no_hit := is_level_no_hit(level_number)
 	if (not prev_no_hit) and no_hit:
 		const VALUE := true
 		set_level_no_hit(level_number, VALUE, SAVE_STEP)
-		to_save = true
+		new_no_hit = true
 	
 	var prev_par_and_no_hit := is_level_par_and_no_hit(level_number)
 	if (not prev_par_and_no_hit) \
@@ -100,10 +110,30 @@ func submit_level_time(level_number : int, time : TimeScore, no_hit: bool) -> vo
 			and level_list.is_time_under_level_par(level_number, time):
 		const VALUE := true
 		set_level_par_and_no_hit(level_number, VALUE, SAVE_STEP)
-		to_save = true
+		new_no_hit_par = true
 	
-	if to_save:
+	if new_best or new_par or new_no_hit or new_no_hit_par:
 		save_profile()
+	
+	var finish_all_achievement := AchievementService.get_achievement("finish-all")
+	var no_hit_all_achievement := AchievementService.get_achievement("no-hit-all")
+	var par_all_achievement := AchievementService.get_achievement("par-all")
+	var no_hit_par_all_achievement := AchievementService.get_achievement("no-hit-par-all")
+	
+	if new_best:
+		finish_all_achievement.objective.objectives[level_number - 1].complete()
+	
+	if new_no_hit:
+		no_hit_all_achievement.objective.objectives[level_number - 1].complete()
+	
+	if new_par:
+		par_all_achievement.objective.objectives[level_number - 1].complete()
+	
+	if new_no_hit_par:
+		no_hit_par_all_achievement.objective.objectives[level_number - 1].complete()
+	
+	if new_best or new_par or new_no_hit or new_no_hit_par:
+		AchievementService.save_progress()
 
 
 # Getters and setters
@@ -151,6 +181,11 @@ func set_level_no_hit(level_number: int, value: bool, save := true) -> void:
 func is_level_no_hit(level_number: int) -> bool:
 	return level_no_hit.size() >= level_number \
 			and level_no_hit[level_number - 1]
+
+
+func is_level_finished(level_number: int) -> bool:
+	return level_best_time.size() >= level_number \
+			and not level_best_time[level_number - 1].is_none()
 
 
 func set_level_par_and_no_hit(level_number: int, value: bool, save := true) -> void:
@@ -214,7 +249,7 @@ func _migrate_save_to_v2(dict: Dictionary) -> void:
 
 
 func _migrate_save_to_v3(dict: Dictionary) -> void:
-	## Best time is now stored as milliseconds rather than centiseconds.
+	# Best time is now stored as milliseconds rather than centiseconds.
 	if dict.has("level_best_time") and dict["level_best_time"] is Array:
 		var best_time_array = dict["level_best_time"]
 		for i in range(best_time_array.size()):
@@ -228,7 +263,7 @@ func _migrate_save_to_v3(dict: Dictionary) -> void:
 
 
 func _migrate_save_to_v4(dict: Dictionary) -> void:
-	## Added no hit and par (par on its own is not stored but "par and no-hit" is).
+	# Added no hit and par (par on its own is not stored but "par and no-hit" is).
 	dict["level_no_hit"] = []
 	dict["level_par_and_no_hit"] = []
 	for _i in range(level_list.get_number_of_levels()):

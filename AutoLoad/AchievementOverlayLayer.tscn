@@ -2,11 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://cnf4r72kds3xj" path="res://addons/sv_achievements/ui/achievement_overlay/achievement_overlay.tscn" id="1_7fu15"]
 [ext_resource type="StyleBox" uid="uid://c0xjso4drxk63" path="res://UI/Styles/AchievementIconBorder.tres" id="2_hf1uo"]
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="2_isn18"]
 [ext_resource type="Texture2D" uid="uid://d20tt23fgbbir" path="res://Art/CircleRC/Achievement/Player.png" id="3_isn18"]
 
 [node name="AchievementOverlayLayer" type="CanvasLayer" unique_id=1982467569]
 layer = 1000
 
 [node name="AchievementOverlay" parent="." unique_id=1634175387 instance=ExtResource("1_7fu15")]
+theme = ExtResource("2_isn18")
+display_time_sec = 6.0
 icon_border_stylebox_override = ExtResource("2_hf1uo")
 default_achievement_icon = ExtResource("3_isn18")

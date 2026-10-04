@@ -391,8 +391,8 @@ func _update_progress() -> void:
 	var progress := achievement.get_progress()
 	var target := achievement.get_progress_target()
 	
-	_progress_bar.value = progress
 	_progress_bar.max_value = target
+	_progress_bar.value = progress
 	
 	_progress_label.text = "%s/%s" % [_format_float(progress), _format_float(target)]
 	

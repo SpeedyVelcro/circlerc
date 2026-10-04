@@ -166,6 +166,15 @@ func _physics_process(delta):
 		#	$CrashAudio.play()
 		# Bounce away
 		speed *= -0.8
+	
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		if collision.get_collider() is Finish:
+			if health <= 0.0:
+				var crash_achievement := AchievementService.get_achievement("flag-crash")
+				if not crash_achievement.is_unlocked():
+					crash_achievement.unlock()
+					AchievementService.save_progress()
 
 func take_damage(amount):
 	if not invincible:

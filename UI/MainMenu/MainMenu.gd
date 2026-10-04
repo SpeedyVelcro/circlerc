@@ -64,6 +64,7 @@ func _on_about_menu_back() -> void:
 func _on_ButtonQuit_pressed():
 	Profile.save_profile()
 	OptionsSaver.save()
+	AchievementService.save_progress()
 	get_tree().quit()
 
 
