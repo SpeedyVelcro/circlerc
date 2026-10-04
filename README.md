@@ -22,3 +22,8 @@ The following directories have different licenses:
 
 These directories (or their subdirectories) have their own LICENSE.txt file which
 specifies the license of the files therein.
+
+Also note that the directory `Art/Icons` contains third-party brand icons. These are
+the property of their respective owners, who likely have their own terms for
+usage. They are used here in a descriptive capacity for linking social media
+pages and websites.

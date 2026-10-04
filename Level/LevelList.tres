@@ -252,9 +252,9 @@ par = SubResource("Resource_skb8u")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
 
 [sub_resource type="Resource" id="Resource_7fabp"]
-resource_name = "01:00:00 (TimeScore)"
+resource_name = "01:20:00 (TimeScore)"
 script = ExtResource("2_a72pe")
-_milliseconds = 60000
+_milliseconds = 80000
 metadata/_custom_type_script = "uid://uiyqfikms2rp"
 
 [sub_resource type="Resource" id="Resource_i3fqk"]

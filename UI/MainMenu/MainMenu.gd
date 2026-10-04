@@ -7,6 +7,7 @@ extends Control
 @export var about_menu_root_control: Control
 @export var level_select_menu_root_control: Control
 @export var achievement_menu_root_control: Control
+@export var social_media_root_control: Control
 @export var background_layer: CanvasLayer
 @export var quit_button: Button
 
@@ -29,7 +30,8 @@ func _on_ButtonLevelSelect_pressed():
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(0.0, -1280.0)),
 		_create_menu_fly_in_tween(level_select_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO),
-		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, -512.0))
+		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, -512.0)),
+		_create_hide_social_menu_tween()
 	)
 
 
@@ -38,7 +40,8 @@ func _on_level_select_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(0.0, -1280.0), Vector2.ZERO),
 		_create_menu_fly_out_tween(level_select_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0)),
-		_create_background_fly_tween(Vector2(0.0, -512.0), Vector2.ZERO)
+		_create_background_fly_tween(Vector2(0.0, -512.0), Vector2.ZERO),
+		_create_show_social_menu_tween()
 	)
 
 
@@ -47,7 +50,8 @@ func _on_ButtonCredits_pressed():
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0)),
 		_create_menu_fly_in_tween(about_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO),
-		_create_background_fly_tween(Vector2.ZERO, Vector2(512.0, 0.0))
+		_create_background_fly_tween(Vector2.ZERO, Vector2(512.0, 0.0)),
+		_create_hide_social_menu_tween()
 	)
 
 
@@ -56,7 +60,8 @@ func _on_about_menu_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO),
 		_create_menu_fly_out_tween(about_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0)),
-		_create_background_fly_tween(Vector2(512.0, 0.0), Vector2.ZERO)
+		_create_background_fly_tween(Vector2(512.0, 0.0), Vector2.ZERO),
+		_create_show_social_menu_tween()
 	)
 
 
@@ -73,7 +78,8 @@ func _on_AchievementsButton_pressed() -> void:
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(0.0, 1280.0)),
 		_create_menu_fly_in_tween(achievement_menu_root_control, Vector2(0.0, -1280.0), Vector2.ZERO),
-		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, 512.0))
+		_create_background_fly_tween(Vector2.ZERO, Vector2(0.0, 512.0)),
+		_create_hide_social_menu_tween()
 	)
 
 
@@ -82,7 +88,8 @@ func _on_achievement_menu_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(0.0, 1280.0), Vector2.ZERO),
 		_create_menu_fly_out_tween(achievement_menu_root_control, Vector2.ZERO, Vector2(0.0, -1280.0)),
-		_create_background_fly_tween(Vector2(0.0, 512.0), Vector2.ZERO)
+		_create_background_fly_tween(Vector2(0.0, 512.0), Vector2.ZERO),
+		_create_show_social_menu_tween()
 	)
 
 
@@ -91,7 +98,8 @@ func _on_options_button_pressed() -> void:
 	_play_animations(
 		_create_menu_fly_out_tween(start_menu_root_control, Vector2.ZERO, Vector2(-1280.0, 0.0)),
 		_create_menu_fly_in_tween(options_menu_root_control, Vector2(1280.0, 0.0), Vector2.ZERO),
-		_create_background_fly_tween(Vector2.ZERO, Vector2(-512.0, 0.0))
+		_create_background_fly_tween(Vector2.ZERO, Vector2(-512.0, 0.0)),
+		_create_hide_social_menu_tween()
 	)
 
 
@@ -100,7 +108,8 @@ func _on_options_menu_back() -> void:
 	_play_animations(
 		_create_menu_fly_in_tween(start_menu_root_control, Vector2(-1280.0, 0.0), Vector2.ZERO),
 		_create_menu_fly_out_tween(options_menu_root_control, Vector2.ZERO, Vector2(1280.0, 0.0)),
-		_create_background_fly_tween(Vector2(-512.0, 0.0), Vector2.ZERO)
+		_create_background_fly_tween(Vector2(-512.0, 0.0), Vector2.ZERO),
+		_create_show_social_menu_tween()
 	)
 
 
@@ -166,6 +175,43 @@ func _is_currently_animating() -> bool:
 			return true
 	
 	return false
+
+
+func _create_show_social_menu_tween() -> Tween:
+	var tween := get_tree().create_tween()
+	
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_interval(0.1)
+	
+	tween.tween_callback(func(): social_media_root_control.visible = true)
+	tween.tween_callback(func(): social_media_root_control.offset_transform_enabled = true)
+	
+	tween.tween_property(social_media_root_control, "offset_transform_position", Vector2(0, 0), 0.5).from(Vector2(-128, 0))
+	
+	tween.tween_callback(func(): social_media_root_control.offset_transform_enabled = false)
+	tween.tween_callback(func(): social_media_root_control.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_INHERITED)
+	
+	return tween
+
+
+func _create_hide_social_menu_tween() -> Tween:
+	var tween := get_tree().create_tween()
+	
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_callback(func(): social_media_root_control.visible = true)
+	tween.tween_callback(func(): social_media_root_control.offset_transform_enabled = true)
+	tween.tween_callback(func(): social_media_root_control.mouse_behavior_recursive = Control.MOUSE_BEHAVIOR_DISABLED)
+	
+	tween.tween_property(social_media_root_control, "offset_transform_position", Vector2(-128, 0), 0.5).from(Vector2(0, 0))
+	
+	tween.tween_callback(func(): social_media_root_control.offset_transform_enabled = false)
+	tween.tween_callback(func(): social_media_root_control.visible = false)
+	
+	return tween
 
 
 # Uncomment to allow skipping animation

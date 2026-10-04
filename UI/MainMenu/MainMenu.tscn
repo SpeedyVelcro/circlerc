@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dvhpp058vg8j5" path="res://UI/MainMenu/About/About.tscn" id="8_1dhmk"]
 [ext_resource type="PackedScene" uid="uid://ychv3himwjoo" path="res://UI/MainMenu/LevelSelect/LevelSelect.tscn" id="9_jhcbk"]
 [ext_resource type="PackedScene" uid="uid://cxs2a4gwmr7bk" path="res://UI/MainMenu/AchievementMenu/AchievementMenu.tscn" id="10_32jca"]
+[ext_resource type="PackedScene" uid="uid://dsip72if3djl1" path="res://UI/MainMenu/SocialMenu/SocialMenu.tscn" id="11_srm2j"]
 
-[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "background_layer", "quit_button")]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "social_media_root_control", "background_layer", "quit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +26,7 @@ options_menu_root_control = NodePath("CenterContainer/OptionsMenu")
 about_menu_root_control = NodePath("CenterContainer/AboutMenu")
 level_select_menu_root_control = NodePath("CenterContainer/LevelSelect")
 achievement_menu_root_control = NodePath("CenterContainer/AchievementMenu")
+social_media_root_control = NodePath("SocialMenu")
 background_layer = NodePath("Background")
 quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
 
@@ -239,6 +241,12 @@ layout_mode = 2
 [node name="AchievementMenu" parent="CenterContainer" unique_id=1159673253 instance=ExtResource("10_32jca")]
 visible = false
 layout_mode = 2
+
+[node name="SocialMenu" parent="." unique_id=134727907 instance=ExtResource("11_srm2j")]
+layout_mode = 1
+offset_top = -262.0
+offset_right = 100.0
+offset_bottom = 262.0
 
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
