@@ -1,0 +1,167 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Build and Publish (Newgrounds)
+on:
+  release:
+    types: [published]
+  workflow_call:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+env:
+  GODOT_VERSION: "4.7.2"
+  GODOT_STREAM: "stable"
+  GAME_SLUG: "circlerc"
+permissions:
+  contents: write
+jobs:
+  get-tag:
+    name: Get Release Tag
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get-tag.outputs.tag }}
+    steps:
+      - name: Get Release Tag
+        id: get-tag
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            echo "Tag will be: ${{ inputs.tag }}"
+            echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "Tag will be: ${{ github.ref_name }}"
+            echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+  build-newgrounds:
+    name: Build for Newgrounds
+    runs-on: ubuntu-latest
+    needs: get-tag
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main && endsWith( needs.get-tag.outputs.tag, '-ng' ) ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Inject Secrets
+        uses: "./.github/actions/inject-newgrounds-secrets"
+        with:
+          app-id: ${{ secrets.NEWGROUNDS_APP_ID }}
+          aes-128-encryption-key: ${{ secrets.NEWGROUNDS_AES_128_ENCRYPTION_KEY }}
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4"
+          platform: "linux.x86_64"
+      - name: Build Export Templates (web)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "web"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Inject PCK Encryption Key
+        run: |
+          ./inject-pck-encryption-key.sh newgrounds ${{ secrets.PCK_ENCRYPTION_KEY }}
+      - name: Build project
+        run: make newgrounds
+      - name: Package
+        id: package
+        run: |
+          mkdir -p zip_root
+          cp -r build/newgrounds/* zip_root
+          rm -f zip_root/.gitkeep
+          (cd zip_root && zip -r \
+              "../${{ env.GAME_SLUG }}-web-${{ needs.get-tag.outputs.tag }}.zip" \
+              ./*)
+          rm -rf zip_root
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: newgrounds-builds
+          path: ${{ env.GAME_SLUG }}-web-${{ needs.get-tag.outputs.tag }}.zip
+  publish:
+    name: Publish release
+    needs: [get-tag, build-newgrounds]
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'release' || ( inputs.invoked && inputs.tag != '' ) }}
+    steps:
+      - name: Download Builds
+        uses: actions/download-artifact@v8
+        with:
+          name: newgrounds-builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            "${{ needs.get-tag.outputs.tag }}" \
+            ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.* \
+            --repo "${{ github.repository }}"
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Compile Release Notes
+        run: |
+          version_without_postfix=$( echo "${{ needs.get-tag.outputs.tag }}" | sed 's/-.*$//' )
+          notes_file=$(if [ -f release-notes/${version_without_postfix}.md ]; then echo "release-notes/${version_without_postfix}.md"; else echo "release-notes/latest.md"; fi)
+          echo "This release is the Newgrounds build, which would you would typically be playing when you visit the game's page on Newgrounds. There is no reason to download this here. Instead, if you are a Newgrounds user, visit the game's page on Newgrounds. Or, if you are not a Newgrounds user, see the main release: [${version_without_postfix}](https://github.com/${{ github.repository }}/releases/tag/${version_without_postfix})" > release-notes.md
+          echo "" >> release-notes.md
+          cat $notes_file >> release-notes.md
+      - name: Copy Release Notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release edit \
+            "${{ needs.get-tag.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --latest=false \
+            --notes-file release-notes.md
+

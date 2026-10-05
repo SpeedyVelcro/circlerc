@@ -1,0 +1,403 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Build and Publish (Game Jolt)
+on:
+  release:
+    types: [published]
+  workflow_call:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+env:
+  GODOT_VERSION: "4.7.2"
+  GODOT_STREAM: "stable"
+  GAME_SLUG: "circlerc"
+permissions:
+  contents: write
+jobs:
+  get-tag:
+    name: Get Release Tag
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get-tag.outputs.tag }}
+    steps:
+      - name: Get Release Tag
+        id: get-tag
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            echo "Tag will be: ${{ inputs.tag }}"
+            echo "tag=${{ inputs.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "Tag will be: ${{ github.ref_name }}"
+            echo "tag=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          fi
+  build-game_jolt:
+    name: Build for Game Jolt
+    needs: get-tag
+    runs-on: ubuntu-22.04
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main && endsWith( needs.get-tag.outputs.tag, '-gj' ) ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Inject Secrets
+        uses: "./.github/actions/inject-game_jolt-secrets"
+        with:
+          private-key: ${{ secrets.GAME_JOLT_PRIVATE_KEY }}
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4"
+          platform: "linux.x86_64"
+      - name: Build Export Templates (Linux x86_64)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "linuxbsd"
+          arch: "x86_64"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Build Export Templates (Linux x86_32)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "linuxbsd"
+          arch: "x86_32"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Build Export Templates (Web)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "web"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Inject PCK Encryption Keys
+        run: |
+          ./inject-pck-encryption-key.sh game_jolt-linux-x86_64 ${{ secrets.PCK_ENCRYPTION_KEY }}
+          ./inject-pck-encryption-key.sh game_jolt-linux-x86_32 ${{ secrets.PCK_ENCRYPTION_KEY }}
+          ./inject-pck-encryption-key.sh game_jolt-web ${{ secrets.PCK_ENCRYPTION_KEY }}
+      - name: Build project
+        run: make game_jolt-linux-x86_64 game_jolt-linux-x86_32 game_jolt-web
+      - name: Package All
+        id: package-all
+        run: |
+          # TODO: Combine tarball and zip steps into one for loop
+          BUILDS=('linux-x86_64' 'linux-x86_32' 'web')
+          for build in "${BUILDS[@]}"; do
+            mkdir -p zip_root
+            cp -r build/game_jolt/${build}/* zip_root
+            rm -f zip_root/.gitkeep
+            (cd zip_root && zip -r \
+              "../${{ env.GAME_SLUG }}-${build}-${{ needs.get-tag.outputs.tag }}.zip" \
+              ./*)
+            rm -rf zip_root
+          done
+          TARBUILDS=('linux-x86_64' 'linux-x86_32')
+          for tarbuild in "${TARBUILDS[@]}"; do
+            mkdir -p zip_root
+            cp -r build/game_jolt/${tarbuild}/* zip_root
+            rm -f zip_root/.gitkeep
+            (cd zip_root && tar -czf \
+              "../${{ env.GAME_SLUG }}-${tarbuild}-${{ needs.get-tag.outputs.tag }}.tar.gz" \
+              ./*)
+            rm -rf zip_root
+          done
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: game_jolt-builds
+          path: ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.*
+  build-game_jolt-windows:
+    name: Build Windows for Game Jolt
+    needs: get-tag
+    # Newer GCC (so newer ubuntu) required for winRT
+    runs-on: ubuntu-latest
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main && endsWith( needs.get-tag.outputs.tag, '-gj' ) ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Inject Secrets
+        uses: "./.github/actions/inject-game_jolt-secrets"
+        with:
+          private-key: ${{ secrets.GAME_JOLT_PRIVATE_KEY }}
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4"
+          platform: "linux.x86_64"
+      - name: Build Export Templates (Windows x86_64)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "windows"
+          arch: "x86_64"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Build Export Templates (Windows x86_32)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "windows"
+          arch: "x86_32"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Build Export Templates (Windows arm64)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "windows"
+          arch: "arm64"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Inject PCK Encryption Keys
+        run: |
+          ./inject-pck-encryption-key.sh game_jolt-windows-x86_64 ${{ secrets.PCK_ENCRYPTION_KEY }}
+          ./inject-pck-encryption-key.sh game_jolt-windows-x86_32 ${{ secrets.PCK_ENCRYPTION_KEY }}
+          ./inject-pck-encryption-key.sh game_jolt-windows-arm64 ${{ secrets.PCK_ENCRYPTION_KEY }}
+      - name: Build project
+        run: make game_jolt-windows-x86_64 game_jolt-windows-x86_32 game_jolt-windows-arm64
+      - name: Package All
+        id: package-all
+        run: |
+          BUILDS=('windows-x86_64' 'windows-x86_32' 'windows-arm64')
+          for build in "${BUILDS[@]}"; do
+            mkdir -p zip_root
+            cp -r build/game_jolt/${build}/* zip_root
+            rm -f zip_root/.gitkeep
+            (cd zip_root && zip -r \
+              "../${{ env.GAME_SLUG }}-${build}-${{ needs.get-tag.outputs.tag }}.zip" \
+              ./*)
+            rm -rf zip_root
+          done
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: game_jolt-windows-builds
+          path: ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.*
+  build-game_jolt-arm64:
+    name: Build Linux arm64 for Game Jolt
+    needs: get-tag
+    runs-on: ubuntu-22.04-arm
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main && endsWith( needs.get-tag.outputs.tag, '-gj' ) ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Inject Secrets
+        uses: "./.github/actions/inject-game_jolt-secrets"
+        with:
+          private-key: ${{ secrets.GAME_JOLT_PRIVATE_KEY }}
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "5dd0d86405cf7e8adf79fb6377b38ba682a2846cb378ffe5364f38c01ad29b9d"
+          platform: "linux.arm64"
+      - name: Build Export Templates (Linux arm64)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "linuxbsd"
+          arch: "arm64"
+          target: "release"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Inject PCK Encryption Keys
+        run: |
+          ./inject-pck-encryption-key.sh game_jolt-linux-arm64 ${{ secrets.PCK_ENCRYPTION_KEY }}
+      - name: Build project
+        run: make game_jolt-linux-arm64
+      - name: Package All
+        id: package-all
+        run: |
+          mkdir -p zip_root
+          cp -r build/game_jolt/linux-arm64/* zip_root
+          rm -f zip_root/.gitkeep
+          (cd zip_root && zip -r \
+            "../${{ env.GAME_SLUG }}-linux-arm64-${{ needs.get-tag.outputs.tag }}.zip" \
+            ./*)
+          (cd zip_root && tar -czf \
+            "../${{ env.GAME_SLUG }}-linux-arm64-${{ needs.get-tag.outputs.tag }}.tar.gz" \
+            ./*)
+          rm -rf zip_root
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: game_jolt-arm64-builds
+          path: ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.*
+  build-game_jolt-macos:
+    name: Build macOS for Game Jolt
+    needs: get-tag
+    runs-on: macos-latest
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main && endsWith( needs.get-tag.outputs.tag, '-gj' ) ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Inject Secrets
+        uses: "./.github/actions/inject-game_jolt-secrets"
+        with:
+          private-key: ${{ secrets.GAME_JOLT_PRIVATE_KEY }}
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e"
+          platform: "macos.universal"
+      - name: Build Export Templates (macOS Universal)
+        uses: "./.github/actions/build-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          platform: "macos"
+          arch: "universal"
+          encryption-key: ${{ secrets.PCK_ENCRYPTION_KEY }}
+          install: "true"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          # Trying to adapt the command for macOS was too complicated to figure out completely, so I'm just installing GNU sed instead.
+          echo "Running on macOS. Replacing BSD sed with GNU sed to avoid errors."
+          brew install gnu-sed
+          # See https://formulae.brew.sh/formula/gnu-sed
+          PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Inject PCK Encryption Keys
+        run: |
+          brew install gawk
+          ./inject-pck-encryption-key.sh game_jolt-macos-universal ${{ secrets.PCK_ENCRYPTION_KEY }}
+      - name: Build project
+        run: make game_jolt-macos-universal
+      - name: Package
+        id: package
+        run: |
+          mkdir -p zip_root
+          cp -r build/game_jolt/macos-universal/* zip_root
+          rm -f zip_root/.gitkeep
+          (cd zip_root && zip -r \
+            "../${{ env.GAME_SLUG }}-macos-universal-${{ needs.get-tag.outputs.tag }}.zip" \
+            ./*)
+          rm -rf zip_root
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: game_jolt-macos-builds
+          path: ${{ env.GAME_SLUG }}-macos-universal-${{ needs.get-tag.outputs.tag }}.zip
+  publish:
+    name: Publish Game Jolt Release
+    runs-on: ubuntu-latest
+    needs: [get-tag, build-game_jolt, build-game_jolt-arm64, build-game_jolt-windows, build-game_jolt-macos]
+    if: ${{ github.event_name == 'release' || ( inputs.invoked && inputs.tag != '' ) }}
+    steps:
+      - name: Download Builds
+        uses: actions/download-artifact@v8
+        with:
+          name: game_jolt-builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Download macOS builds
+        uses: actions/download-artifact@v8
+        with:
+          name: game_jolt-macos-builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Download arm64 builds
+        uses: actions/download-artifact@v8
+        with:
+          name: game_jolt-arm64-builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Download Windows builds
+        uses: actions/download-artifact@v8
+        with:
+          name: game_jolt-windows-builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            "${{ needs.get-tag.outputs.tag }}" \
+            ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.* \
+            --repo "${{ github.repository }}"
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Compile Release Notes
+        run: |
+          version_without_postfix=$( echo "${{ needs.get-tag.outputs.tag }}" | sed 's/-.*$//' )
+          notes_file=$(if [ -f release-notes/${version_without_postfix}.md ]; then echo "release-notes/${version_without_postfix}.md"; else echo "release-notes/latest.md"; fi)
+          echo "This release comprises the Game Jolt builds, which you would typically obtain through the game's Game Jolt page. There is no reason to use these if you are not a Game Jolt user. Instead, see the main release: [${version_without_postfix}](https://github.com/${{ github.repository }}/releases/tag/${version_without_postfix})" > release-notes.md
+          echo "" >> release-notes.md
+          cat $notes_file >> release-notes.md
+      - name: Copy Release Notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release edit \
+            "${{ needs.get-tag.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --latest=false \
+            --notes-file release-notes.md
+

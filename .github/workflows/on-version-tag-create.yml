@@ -1,0 +1,188 @@
+# This workflow will call when creating a main version tag or release (vX.X.X) or
+# a platform version tag or release (vX.X.X-ng etc.), and populate tags and releases
+# accordingly. For a main version tag or release you will end up with releases
+# for platforms as well, but if you trigger this with a platform version tag or
+# release, it will just populate that release.
+#
+# It is advised to make a new release by just making a release on GitHub with
+# the tag in the form "vX.X.X" and then let this pipeline do the rest.
+#
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Create Releases
+on:
+  push:
+    tags:
+      - "v*.*.*" # Not as thorough as the checks we use later, but we can at least save on some actions minutes
+permissions:
+  contents: write
+jobs:
+  create-releases:
+    name: Create Releases
+    runs-on: ubuntu-latest
+    outputs:
+      is-main-version: ${{ steps.identify-tag.outputs.is-main }}
+      is-any-version: ${{ steps.identify-tag.outputs.is-any }}
+      is-newgrounds-version: ${{ steps.identify-tag.outputs.is-newgrounds }}
+      is-game_jolt-version: ${{ steps.identify-tag.outputs.is-game_jolt }}
+      main-tag: ${{ steps.identify-tag.outputs.main-tag }}
+      newgrounds-tag: ${{ steps.identify-tag.outputs.newgrounds-tag }}
+      game_jolt-tag: ${{ steps.identify-tag.outputs.game_jolt-tag }}
+      created-main-release: ${{ steps.main-release.outputs.created }}
+      created-newgrounds-release: ${{ steps.newgrounds-release.outputs.created }}
+      created-game_jolt-release: ${{ steps.game_jolt-release.outputs.created }}
+    steps:
+      - name: Identify Tag
+        id: identify-tag
+        run: |
+          echo "Identifying tag ${{ github.ref_name }}"
+          any_regex='^v[0-9]+\.[0-9]+\.[0-9]+-.*$'
+          is_any=$(if [[ ${{ github.ref_name }} =~ $any_regex ]]; then echo "true"; else echo "false"; fi)
+          main_regex='^v[0-9]+\.[0-9]+\.[0-9]+$'
+          is_main=$(if [[ ${{ github.ref_name }} =~ $main_regex ]]; then echo "true"; else echo "false"; fi)
+          game_jolt_regex='-gj$'
+          is_game_jolt=$(if [ is-any == "true" ] && [[ ${{ github.ref_name }} =~ $game_jolt_regex ]]; then echo "true"; else echo "false"; fi)
+          newgrounds_regex='-ng$'
+          is_newgrounds=$(if [ is-any == "true" ] && [[ ${{ github.ref_name }} =~ $newgrounds_regex ]]; then echo "true"; else echo "false"; fi)
+          main_tag=$(echo "${{ github.ref_name }}" | sed 's/-.*$//')
+          newgrounds_tag="${main_tag}-ng"
+          game_jolt_tag="${main_tag}-gj"
+          echo "Tag is:"
+          [ is_any == "true" ] && echo "Any Version"
+          [ is_main == "true" ] && echo "Main version"
+          [ is_game_jolt == "true" ] && echo "Game Jolt"
+          [ is_newgrounds == "true" ] && echo "Newgrounds"
+          echo ""
+          echo "Tags will be:"
+          echo "Main tag: ${main_tag}"
+          echo "Newgrounds tag: ${newgrounds_tag}"
+          echo "Game Jolt tag: ${game_jolt_tag}"
+          echo "is-any=${is_any}" >> $GITHUB_OUTPUT
+          echo "is-main=${is_main}" >> $GITHUB_OUTPUT
+          echo "is-game_jolt=${is_game_jolt}" >> $GITHUB_OUTPUT
+          echo "is-newgrounds=${is_newgrounds}" >> $GITHUB_OUTPUT
+          echo "main-tag=${main_tag}" >> $GITHUB_OUTPUT
+          echo "newgrounds-tag=${newgrounds_tag}" >> $GITHUB_OUTPUT
+          echo "game_jolt-tag=${game_jolt_tag}" >> $GITHUB_OUTPUT
+      # We use actions/github-script to avoid having to checkout the repo
+      - name: Create Game Jolt Tag
+        if: steps.identify-tag.outputs.is-main == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ github.ref_name }}-gj",
+              sha: context.sha
+            })
+      - name: Create Newgrounds Tag
+        if: steps.identify-tag.outputs.is-main == 'true'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ github.ref_name }}-ng",
+              sha: context.sha
+            })
+      - name: Create Main Release
+        id: main-release
+        if: steps.identify-tag.outputs.is-main == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create \
+            "${{ steps.identify-tag.outputs.main-tag }}" \
+            --title "${{ steps.identify-tag.outputs.main-tag }}" \
+            --latest \
+            --verify-tag \
+            --repo "${{ github.repository }}" \
+            || exit 1
+          echo "Created release"
+          echo "created=true" >> $GITHUB_OUTPUT
+      - name: Create Newgrounds Release
+        id: newgrounds-release
+        if: steps.identify-tag.outputs.is-main == 'true' || steps.identify-tag.outputs.is-newgrounds == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create \
+            "${{ steps.identify-tag.outputs.newgrounds-tag }}" \
+            --title "${{ steps.identify-tag.outputs.newgrounds-tag }}" \
+            --latest=false \
+            --verify-tag \
+            --repo "${{ github.repository }}" \
+            || exit 1
+          echo "Created release"
+          echo "created=true" >> $GITHUB_OUTPUT
+      - name: Create Game Jolt Release
+        id: game_jolt-release
+        if: steps.identify-tag.outputs.is-main == 'true' || steps.identify-tag.outputs.is-game_jolt == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create \
+            "${{ steps.identify-tag.outputs.game_jolt-tag }}" \
+            --title "${{ steps.identify-tag.outputs.game_jolt-tag }}" \
+            --latest=false \
+            --verify-tag \
+            --repo "${{ github.repository }}" \
+            || exit 1
+          echo "Created release"
+          echo "created=true" >> $GITHUB_OUTPUT
+  # Creating releases (or indeed doing anything) via workflows does not trigger other
+  # workflows (it's a defense against recursion) so we need to call the release
+  # pipelines directly
+  general-release:
+    name: "Call General Release Workflow"
+    needs: create-releases
+    if: ${{ needs.create-releases.outputs.created-main-release == 'true' }}
+    uses: $/.github/workflows/build-and-publish.yml
+    with:
+      tag: ${{ needs.create-releases.outputs.main-tag }}
+    secrets: inherit
+  newgrounds-release:
+    name: "Call Newgrounds Release Workflow"
+    needs: create-releases
+    if: ${{ needs.create-releases.outputs.created-newgrounds-release == 'true' }}
+    uses: $/.github/workflows/newgrounds-build-and-publish.yml
+    with:
+      tag: ${{ needs.create-releases.outputs.newgrounds-tag }}
+    secrets: inherit
+  game_jolt-release:
+    name: "Call Game Jolt Release Workflow"
+    needs: create-releases
+    if: ${{ needs.create-releases.outputs.created-game_jolt-release == 'true' }}
+    uses: $/.github/workflows/game_jolt-build-and-publish.yml
+    with:
+      tag: ${{ needs.create-releases.outputs.game_jolt-tag }}
+    secrets: inherit

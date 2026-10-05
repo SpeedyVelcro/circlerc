@@ -10,6 +10,7 @@ extends Control
 @export var social_media_root_control: Control
 @export var background_layer: CanvasLayer
 @export var quit_button: Button
+@export var version_number_label: Label
 
 var current_tweens: Array[Tween] = []
 
@@ -18,6 +19,8 @@ var current_tweens: Array[Tween] = []
 func _ready():
 	if OS.get_name() == "HTML5":
 		quit_button.set_visible(false)
+	
+	version_number_label.text = VersionNumber.value
 
 
 # Signal connection

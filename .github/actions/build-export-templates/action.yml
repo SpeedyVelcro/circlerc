@@ -1,0 +1,419 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Build Export Templates
+description: Builds custom export templates for Godot for a particular platform and architecture. Should be run on macOS when building macOS export templates, and on Linux for all other platforms. Per the docs, when compiling Linux binaries you should run this action on a runner using the oldest supported Ubuntu version (currently 22.04 for non-pro users) and no higher (see https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_linuxbsd.html#building-export-templates).
+inputs:
+  version:
+    description: "Godot version. If not provided, the latest will be pulled. This should be a ref to a branch, tag, or commit from the GitHub repo. Example values: '4.7', '4.7-stable', etc."
+    required: false
+    default: ''
+  platform:
+    description: "Target platform for the export template. Note that if you choose 'macos', you must use a MacOS runner. Valid values: 'linuxbsd', 'macos', 'web', 'windows'"
+    required: true
+    default: ''
+  arch:
+    description: "Target architecture for the export template. If this is not provided, the arch parameter will not be passed to SCons. A value of 'universal' should only be used for the macOS platform, and will bundle 64-bit and arm64 architectures into a single Universal 2 bundle similar to the official templates. Valid values: 'x86_64', 'x86_32', 'arm64', 'universal'"
+    required: false
+  target:
+    description: "Release or debug template. If not provided, both will be compiled. Has no effect if platform='macos' and arch='universal' because the universal bundle contains both release and debug templates. Valid values: '', 'release', 'debug'"
+    required: false
+    default: ''
+  threads:
+    description: "Threads support for web template. Valid values: 'true', 'false'"
+    required: false
+    default: 'false'
+  encryption-key:
+    description: "Encryption key to embed in the export template. If this is left empty, the export template will not support encryption."
+    required: false
+    default: ''
+  rename:
+    description: "Rename the compiled export templates to match the names used by the official export templates. If you set the install input to 'true', then this input must also be 'true' for the installed templates to be recognised by Godot. Valid values: 'true', 'false'"
+    required: false
+    default: 'true'
+  install:
+    description: "Whether to install the templates into the standard export templates directory. Version must be set to a version tag such as '4.7-stable' for this to work, as export template folders are separated by version. Valid values: 'true', 'false'"
+    required: false
+    default: 'false'
+outputs:
+  output-directory:
+    description: "The directory where built export templates can be found."
+    value: ${{ steps.build.outputs.output-directory }}
+runs:
+  using: "composite"
+  steps:
+    - name: Calculate cache key
+      id: cache-key
+      shell: bash
+      run: |
+        builder="export-templates"
+        builder="${builder}+${{ runner.os }}"
+        builder="${builder}+${{ inputs.version }}"
+        builder="${builder}+${{ inputs.platform }}"
+        builder="${builder}+${{ inputs.arch }}"
+        builder="${builder}+${{ inputs.target }}"
+        builder="${builder}+${{ inputs.threads }}"
+        builder="${builder}+${{ inputs.encryption-key }}"
+        # SHA-256 used to kill two birds with one stone here
+        # 1. Protect the encryption key (cache keys are not secure).
+        # 2. Keep cache key length below GitHub's limit.
+        echo "cache-key=$( echo -n "${builder}" | sha256sum | cut -f 1 -d " " )" >> $GITHUB_OUTPUT
+    - name: Make working directory
+      id: working-directory
+      shell: bash
+      run: |
+        # Filepaths have to be consistent across runs to get a cache hit, so we
+        # can't just use mktemp for a unique folder name. Instead, we'll use
+        # the cache key as it will always be unique and consistent for a given
+        # export template.
+        dir="${{ runner.temp }}/${{ steps.cache-key.outputs.cache-key }}"
+        mkdir -p "$dir"
+        echo "working-directory=${dir}" >> $GITHUB_OUTPUT
+    - name: Restore Cached Export Templates
+      id: cache-export-templates-restore
+      uses: actions/cache/restore@v6
+      with:
+        path: ${{ steps.working-directory.outputs.working-directory }}/bin
+        key: ${{ steps.cache-key.outputs.cache-key }}
+    # We use a run step rather than actions/checkout because actions/checkout
+    # doesn't let us checkout the repo to a directory outside $GITHUB_WORKSPACE
+    # Luckily, being a public repo, we don't need to faff about with tokens.
+    - name: Checkout Godot Repo
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' }}
+      run: |
+        clone_dir=$(mktemp -d -p ${{ runner.temp }})
+        git clone https://github.com/godotengine/godot.git "${clone_dir}"
+        (cd "${clone_dir}" && git checkout ${{ inputs.version }})
+        cp -r "${clone_dir}"/* ./
+    - name: Install Dependencies (Linux -> Linux)
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'linuxbsd' && inputs.arch != 'x86_32' }}
+      run: |
+        # See: https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_linuxbsd.html#distro-specific-one-liners
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          pkg-config \
+          libx11-dev \
+          libxcursor-dev \
+          libxinerama-dev \
+          libgl1-mesa-dev \
+          libglu1-mesa-dev \
+          libasound2-dev \
+          libpulse-dev \
+          libudev-dev \
+          libxi-dev \
+          libxrandr-dev \
+          libwayland-dev \
+          pipx # pipx manages PATH for us safely when installing scons
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+        python misc/scripts/install_accesskit.py
+    - name: Configure Dependencies (Linux -> Linux x86_32)
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'linuxbsd' && inputs.arch == 'x86_32' }}
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install -y \
+          gcc-multilib \
+          g++-multilib \
+          build-essential \
+          pkg-config \
+          libx11-dev:i386 \
+          libxcursor-dev:i386 \
+          libxinerama-dev:i386 \
+          libgl1-mesa-dev:i386 \
+          libglu1-mesa-dev:i386 \
+          libasound2-dev:i386 \
+          libpulse-dev:i386 \
+          libudev-dev:i386 \
+          libxi-dev:i386 \
+          libxrandr-dev:i386 \
+          libwayland-dev:i386 \
+          pipx # pipx manages PATH for us safely when installing scons
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+        python misc/scripts/install_accesskit.py
+    - name: Install Dependencies (Linux -> Windows x86_64)
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'windows' && inputs.arch == 'x86_64' }}
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      run: |
+        # See: https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_windows.html#cross-compiling-for-windows-from-other-operating-systems
+        sudo apt-get update
+        sudo apt-get install -y \
+          mingw-w64 \
+          pipx # pipx manages PATH for us safely when installing scons
+        sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
+        sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+        python misc/scripts/install_accesskit.py
+        python misc/scripts/install_winrt.py
+        python misc/scripts/install_d3d12_sdk_windows.py
+    - name: Install Dependencies (Linux -> Windows x86_32)
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'windows' && inputs.arch == 'x86_32' }}
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      run: |
+        # See: https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_windows.html#cross-compiling-for-windows-from-other-operating-systems
+        sudo apt-get update
+        sudo apt-get install -y \
+          mingw-w64 \
+          pipx # pipx manages PATH for us safely when installing scons
+        sudo update-alternatives --set i686-w64-mingw32-gcc /usr/bin/i686-w64-mingw32-gcc-posix
+        sudo update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+        python misc/scripts/install_accesskit.py
+        python misc/scripts/install_winrt.py
+        python misc/scripts/install_d3d12_sdk_windows.py
+    - name: Install Dependencies (Linux -> Windows arm64)
+      id: linux-to-windows-arm64-dependencies
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'windows' && inputs.arch == 'arm64' }}
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      run: |
+        # See: https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_windows.html#cross-compiling-for-windows-from-other-operating-systems
+        sudo apt-get update
+        sudo apt-get install -y pipx # pipx manages PATH for us safely when installing scons
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+        python misc/scripts/install_accesskit.py
+        python misc/scripts/install_winrt.py
+        python misc/scripts/install_d3d12_sdk_windows.py
+        # Don't clutter the working directory while installing llvm-mingw
+        dir=$(mktemp -d -p ${{ runner.temp }})
+        cd ${dir}
+        wget "https://github.com/mstorsjo/llvm-mingw/releases/download/20260616/llvm-mingw-20260616-msvcrt-ubuntu-22.04-x86_64.tar.xz"
+        tar -xf *.tar.xz
+        llvm_dir=$(pwd)/$(ls -d --zero */)
+        echo "mingw-llvm-directory=${llvm_dir}" >> $GITHUB_OUTPUT
+    - name: Install Dependencies (macOS -> macOS)
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'macOS' && inputs.platform == 'macos' }}
+      run: |
+        brew install scons
+        ./misc/scripts/install_vulkan_sdk_macos.sh
+        # Not sure why but on mac we need to cd to the folder before running these or it errors
+        (cd misc/scripts && python install_accesskit.py)
+        (cd misc/scripts && python install_angle.py)
+    - name: Install Dependencies (Linux -> Web) (Except Emscripten)
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'web' }}
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y pipx # pipx manages PATH for us safely when installing scons
+        # ubuntu's scons is not new enough, so install through pip instead.
+        pipx ensurepath
+        pipx install scons
+    - name: Set Up Emscripten Dependency (Linux -> Web)
+      uses: emscripten-core/setup-emsdk@v15
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' && runner.os == 'Linux' && inputs.platform == 'web' }}
+      with:
+        version: 4.0.23 # Docs currently recommend 4.0.0+: https://docs.godotengine.org/en/stable/engine_details/development/compiling/compiling_for_web.html#requirements
+    - name: Build Templates
+      id: build
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ steps.cache-export-templates-restore.outputs.cache-hit != 'true' }}
+      run: |
+        export SCRIPT_AES256_ENCRYPTION_KEY="${{ inputs.encryption-key }}"
+        if [ "${{ inputs.platform }}" == "windows" ] && [ "${{ inputs.arch }}" == "arm64" ]; then
+          export MINGW_PREFIX="${{ steps.linux-to-windows-arm64-dependencies.outputs.mingw-llvm-directory }}"
+        fi
+        echo "Enumerating targets..."
+        targets=()
+        if [ -z "${{ inputs.target }}" ]; then
+          targets+=("release")
+          targets+=("debug")
+        elif [ "${{ inputs.platform }}" == "macos" ] && [ "${{ inputs.arch }}" == "universal" ]; then
+          # macOS universal is one bundle for both release and debug.
+          targets+=("release")
+          targets+=("debug")
+        else
+          targets+=("${{ inputs.target }}")
+        fi
+        echo "Targets: ${targets[@]}"
+        echo "Enumerating arches..."
+        arches=()
+        if [ -z "${{ inputs.arch }}" ]; then
+          arches+=("")
+        elif [ "${{ inputs.platform }}" == "macos" ] && [ "${{ inputs.arch }}" == "universal" ]; then
+          arches+=("arm64")
+          arches+=("x86_64")
+        else
+          arches+=("${{ inputs.arch }}")
+        fi
+        echo "Arches: ${arches[@]}"
+        # We will need to get the last elements the old way because we might be running on macOS.
+        last_arch=${arches[${#arches[@]} - 1]}
+        last_target=${targets[${#targets[@]} - 1]}
+        for arch in "${arches[@]}"; do
+          echo "For arch ${arch}"
+          for target in "${targets[@]}"; do
+            echo "For target ${target}"
+            last_iteration=$( [ "${arch}" == "${last_arch}" ] && [ "${target}" == "${last_target}" ] && printf %s "true" || printf %s "false" )
+            echo "Last iteration check: ${last_iteration}"
+            generate_bundle=$( [ "${{ inputs.platform }}" == "macos" ] && [ "${{ inputs.arch }}" == "universal" ] && [ "${last_iteration}" == "true" ] && printf %s "true" || printf %s "false" )
+            echo "Generate bundle check: ${generate_bundle}"
+            echo "Compiling export template..."
+            scons \
+              platform=${{ inputs.platform }} \
+              $( [[ -n "${arch}" ]] && printf %s "arch=${arch}" || true ) \
+              target=template_${target} \
+              $( [ "${{ inputs.platform }}" == "windows" ] && [ "${{ inputs.arch }}" == "arm64" ] && printf %s "use_llvm=yes" || true ) \
+              $( [ "${{ inputs.platform }}" == "web" ] && [ "${{ inputs.threads }}" == 'false' ] && printf %s "threads=no" || true ) \
+              production=yes \
+              $( [ "${generate_bundle}" == "true" ] && printf %s "generate_bundle=yes" || true )
+            echo "Export template compiled!"
+          done
+        done
+        echo "All export templates compiled. Outputting output directory..."
+        echo "output-directory=$(pwd)/bin" >> $GITHUB_OUTPUT
+        # We don't want to cache this. They're a lot of megabytes!
+        echo "Clearing build_deps folder"
+        rm -rf ./bin/build_deps
+        echo "Clearing obj folder"
+        rm -rf ./bin/obj
+        echo "Clearing D3D12 DLLs (if they exist)"
+        # I don't think these are needed (and am not sure if they are even allowed to be distributed), pretty sure the templates rely on the system install of directX anyway
+        rm -f ./bin/D3D12Core.dll
+        rm -f ./bin/d3d12SDKLayers.dll
+        echo "Remaining contents of bin directory:"
+        ls -lA ./bin
+        echo "Done!"
+    - name: Save Export Templates to Cache
+      id: cache-export-templates-save
+      uses: actions/cache/save@v6
+      with:
+        path: ${{ steps.working-directory.outputs.working-directory }}/bin
+        key: ${{ steps.cache-key.outputs.cache-key }}
+    - name: Rename Export Templates
+      if: ${{ inputs.rename == 'true' }}
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      run: |
+        cd bin
+        echo "bin contents before renaming:"
+        ls -lA
+        # If inputs.arch is not supplied we will need to infer the arch compiled for from the current arch of the system
+        if [ -z "${{ inputs.arch }}" ]; then
+          if [ "$(uname -m)" == "x86_64" ]; then arch="x86_64"; fi
+          if [ "$(uname -m)" == "i386" ]; then arch="x86_32"; fi
+          if [ "$(uname -m)" == "arm64" ]; then arch="arm64"; fi
+        else
+          arch="${{ inputs.arch }}"
+        fi
+        if [ -z "${{ inputs.target }}" ] || [ "${{ inputs.target }}" == "release" ]; then release="true"; else release="false"; fi
+        if [ -z "${{ inputs.target }}" ] || [ "${{ inputs.target }}" == "debug" ]; then debug="true"; else debug="false"; fi
+        # Linux
+        if [ "${{ inputs.platform }}" == "linuxbsd" ]; then
+          if [ "${arch}" == "x86_64" ] && [ "${release}" == "true" ]; then mv godot.linuxbsd.template_release.x86_64 linux_release.x86_64; fi
+          if [ "${arch}" == "x86_64" ] && [ "${debug}" == "true" ]; then mv godot.linuxbsd.template_debug.x86_64 linux_debug.x86_64; fi
+          if [ "${arch}" == "x86_32" ] && [ "${release}" == "true" ]; then mv godot.linuxbsd.template_release.x86_32 linux_release.x86_32; fi
+          if [ "${arch}" == "x86_32" ] && [ "${debug}" == "true" ]; then mv godot.linuxbsd.template_debug.x86_32 linux_debug.x86_32; fi
+          if [ "${arch}" == "arm64" ] && [ "${release}" == "true" ]; then mv godot.linuxbsd.template_release.arm64 linux_release.arm64; fi
+          if [ "${arch}" == "arm64" ] && [ "${debug}" == "true" ]; then mv godot.linuxbsd.template_debug.arm64 linux_debug.arm64; fi
+        fi
+        # macOS
+        if [ "${{ inputs.platform }}" == "macos" ] && [ "${{ inputs.arch }}" == "universal" ]; then mv godot_macos.zip macos.zip; fi
+        # Windows
+        if [ "${{ inputs.platform }}" == "windows" ]; then
+          if [ "${arch}" == "x86_64" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.x86_64.exe windows_release_x86_64.exe; fi
+          if [ "${arch}" == "x86_64" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.x86_64.console.exe windows_release_x86_64_console.exe; fi
+          if [ "${arch}" == "x86_64" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.x86_64.exe windows_debug_x86_64.exe; fi
+          if [ "${arch}" == "x86_64" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.x86_64.console.exe windows_debug_x86_64_console.exe; fi
+          if [ "${arch}" == "x86_32" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.x86_32.exe windows_release_x86_32.exe; fi
+          if [ "${arch}" == "x86_32" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.x86_32.console.exe windows_release_x86_32_console.exe; fi
+          if [ "${arch}" == "x86_32" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.x86_32.exe windows_debug_x86_32.exe; fi
+          if [ "${arch}" == "x86_32" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.x86_32.console.exe windows_debug_x86_32_console.exe; fi
+          # arm64 builds have .llvm after the arm64. Use a wildcard glob in case I change this in future
+          # NB: This does mean that the console builds need to be moved first so that the glob doesn't pick up multiple files
+          if [ "${arch}" == "arm64" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.arm64*.console.exe windows_release_arm64_console.exe; fi
+          if [ "${arch}" == "arm64" ] && [ "${release}" == "true" ]; then mv godot.windows.template_release.arm64*.exe windows_release_arm64.exe; fi
+          if [ "${arch}" == "arm64" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.arm64*.console.exe windows_debug_arm64_console.exe; fi
+          if [ "${arch}" == "arm64" ] && [ "${debug}" == "true" ]; then mv godot.windows.template_debug.arm64*.exe windows_debug_arm64.exe; fi
+        fi
+        # Web
+        if [ "${{ inputs.platform }}" == "web" ]; then
+          if [ "${release}" == "true" ]; then mv godot.web.template_release.wasm32*.zip \
+            "web"$( [ "${{ inputs.threads }}" == "false" ] && printf %s "_nothreads" || true )"_release.zip"; fi
+          if [ "${debug}" == "true" ]; then mv godot.web.template_debug.wasm32*.zip  \
+            "web"$( [ "${{ inputs.threads }}" == "false" ] && printf %s "_nothreads" || true )"_debug.zip"; fi
+        fi
+        echo "bin contents after renaming:"
+        ls -lA
+    - name: Install Export Templates
+      shell: bash
+      working-directory: ${{ steps.working-directory.outputs.working-directory }}
+      if: ${{ inputs.install == 'true' }}
+      run: |
+        regex_version_only="^[0-9]+\.[0-9]+(\.[0-9]+)?$"
+        regex_release="^[0-9]+\.[0-9]+(\.[0-9]+)?-[a-zA-Z]+[0-9]*$"
+        # Empty check
+        if [ -z "${{ inputs.version }}" ]; then
+          echo "Cannot install export templates as version input is empty."
+          exit 1
+        fi
+        # Set folder name
+        if [[ "${{ inputs.version }}" =~ $regex_version_only ]]; then
+          # TODO: idk if this is the right behaviour
+          folder="${{ inputs.version }}.stable"
+        elif [[ "${{ inputs.version }}" =~ $regex_release ]]; then
+          # Subfolders of the export-templates folder have a dot instead of a hyphen between the version number and release stream.
+          folder=$(echo -n "${{ inputs.version }}" | sed 's/-/\./g')
+        else
+          echo "Cannot install export templates as version input is invalid."
+          exit 1
+        fi
+        # Install
+        if [ "${{ runner.os }}" == "macOS" ]; then
+          target_dir="$HOME/Library/Application Support/Godot/export_templates/${folder}"
+        else
+          target_dir="$HOME/.local/share/godot/export_templates/${folder}"
+        fi
+        echo "Copying files to ${target_dir} ..."
+        mkdir -p "${target_dir}"
+        # Use -R flag (not -r) for more reliable copying on mac
+        cp -fR ./bin/* "${target_dir}/"
+        echo "Done."
+        echo "Resulting target directory contents:"
+        ls -lA "${target_dir}"
+
+

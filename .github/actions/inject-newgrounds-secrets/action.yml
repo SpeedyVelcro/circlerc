@@ -1,0 +1,50 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Inject Newgrounds Secrets
+description: "Injects the Newgrounds app ID and encryption key into the Secrets.gd file at the project's root."
+inputs:
+  app-id:
+    description: "Newgrounds app ID including the appended secret. Obtain from the game's API tools. e.g. '12345:aBCdEfgH'"
+    required: true
+  aes-128-encryption-key:
+    description: "128-bit AES encryption key. Obtain from the game's API tools."
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Inject Secrets
+      shell: "bash"
+      run: |
+        command=sed
+        if [ "${{ runner.os }}" == 'macOS' ]; then
+          brew install gnu-sed
+          command=gsed
+        fi
+        ${command} -i 's/replace_me_newgrounds_app_id/${{ inputs.app-id }}/' Secrets.gd
+        # Newgrounds AES-128 encryption key is base64 encoded, so may include '/' or '+' characters.
+        ${command} -i 's|replace_me_newgrounds_aes_128_encryption_key|${{ inputs.aes-128-encryption-key }}|' Secrets.gd
+

@@ -1,0 +1,170 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Build and Publish
+on:
+  release:
+    types: [published]
+  workflow_call:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag name of release, as displayed on GitHub (i.e. no ref/tags/ prefix). If provided, the build will be published on the release with the same tag (release must already exist)."
+        required: false
+        type: string
+        default: ""
+      invoked:
+        description: "DO NOT CHANGE! This input's default value is used to identify workflow calls and dispatches. This is the only way to check for workflow calls, because called workflows inherit their event from the caller."
+        required: false
+        type: boolean
+        default: true
+env:
+  GODOT_VERSION: "4.7.2"
+  GODOT_STREAM: "stable"
+  GAME_SLUG: "circlerc"
+permissions:
+  contents: write
+jobs:
+  get-tag:
+    name: Get Tag (version or other ref name)
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get-tag.outputs.tag }}
+      is-main: ${{ steps.get-tag.outputs.is-main }}
+    steps:
+      - name: Get Release Tag
+        id: get-tag
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            echo "Tag will be: ${{ inputs.tag }}"
+            tag="${{ inputs.tag }}"
+          else
+            echo "Tag will be: ${{ github.ref_name }}"
+            tag="${{ github.ref_name }}"
+          fi
+          main_version_regex='^v[0-9]+[.][0-9]+[.][0-9]+$'
+          if [[ "${tag}" =~ $main_version_regex ]]; then
+            echo "Tag is a main release."
+            echo "is-main=true" >> $GITHUB_OUTPUT
+          fi
+          echo "tag=${tag}" >> $GITHUB_OUTPUT
+  build:
+    name: Build All
+    needs: get-tag
+    runs-on: ubuntu-latest
+    if: ${{ inputs.invoked || ( github.event_name == 'release' && needs.get-tag.outputs.is-main ) }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Install Godot Engine
+        uses: "./.github/actions/install-godot"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "cadd3204e728a35d3f13adb7fd0d7902636b79f6b95c40c265eb73b6c35329e4"
+          platform: "linux.x86_64"
+      - name: Install Export Templates
+        uses: "./.github/actions/install-export-templates"
+        with:
+          version: ${{ env.GODOT_VERSION }}-${{ env.GODOT_STREAM }}
+          sha_256: "f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011"
+      - name: Inject Version Number
+        run: |
+          grep 'config/version=".*"' project.godot || exit 1 # Need this in project.godot for injection to work
+          sed -i 's/\(config\/version="\).*\("\)/\1${{ needs.get-tag.outputs.tag }}\2/' project.godot
+      - name: Build All
+        id: build-all
+        run: make
+      - name: Package All
+        id: package-all
+        run: |
+          # TODO: Combine tarball and zip steps into one for loop
+          BUILDS=('linux-x86_64' 'linux-x86_32' 'linux-arm64' 'windows-x86_64' 'windows-x86_32' 'windows-arm64' 'macos-universal' 'web')
+          for build in "${BUILDS[@]}"; do
+            mkdir -p zip_root
+            cp -r build/${build}/* zip_root # Needs -r because macOS' .app files are actually folders.
+            rm -f zip_root/.gitkeep
+            (cd zip_root && zip -r \
+              "../${{ env.GAME_SLUG }}-${build}-${{ needs.get-tag.outputs.tag }}.zip" \
+              ./*)
+            rm -rf zip_root
+          done
+          TARBUILDS=('linux-x86_64' 'linux-x86_32' 'linux-arm64')
+          for tarbuild in "${TARBUILDS[@]}"; do
+            mkdir -p zip_root
+            cp -r build/${tarbuild}/* zip_root # Needs -r because macOS' .app files are actually folders.
+            rm -f zip_root/.gitkeep
+            (cd zip_root && tar -czf \
+              "../${{ env.GAME_SLUG }}-${tarbuild}-${{ needs.get-tag.outputs.tag }}.tar.gz" \
+              ./*)
+            rm -rf zip_root
+          done
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: builds
+          path: ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.*
+  publish:
+    name: Publish release
+    needs: [get-tag, build]
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'release' || ( inputs.invoked && inputs.tag != '' ) }}
+    steps:
+      - name: Download Builds
+        uses: actions/download-artifact@v8
+        with:
+          name: builds
+          skip-decompress: false
+          merge-multiple: true
+      - name: Release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload \
+            "${{ needs.get-tag.outputs.tag }}" \
+            ${{ env.GAME_SLUG }}-*-${{ needs.get-tag.outputs.tag }}.* \
+            --repo "${{ github.repository }}"
+      - name: Checkout Repo
+        uses: actions/checkout@v7
+      - name: Copy patch notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release edit \
+            "${{ needs.get-tag.outputs.tag }}" \
+            --repo "${{ github.repository }}" \
+            --notes-file release-notes/$(if [ -f release-notes/${{ needs.get-tag.outputs.tag }}.md ]; then echo "${{ needs.get-tag.outputs.tag }}.md"; else echo "latest.md"; fi)
+

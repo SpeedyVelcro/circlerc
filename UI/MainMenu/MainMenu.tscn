@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cxs2a4gwmr7bk" path="res://UI/MainMenu/AchievementMenu/AchievementMenu.tscn" id="10_32jca"]
 [ext_resource type="PackedScene" uid="uid://dsip72if3djl1" path="res://UI/MainMenu/SocialMenu/SocialMenu.tscn" id="11_srm2j"]
 
-[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "social_media_root_control", "background_layer", "quit_button")]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "social_media_root_control", "background_layer", "quit_button", "version_number_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,6 +29,7 @@ achievement_menu_root_control = NodePath("CenterContainer/AchievementMenu")
 social_media_root_control = NodePath("SocialMenu")
 background_layer = NodePath("Background")
 quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
+version_number_label = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VersionNumberLabel")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=506171900]
 layer = -128
@@ -214,11 +215,11 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1080820774]
+[node name="VersionNumberLabel" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1080820774]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-text = "v1.1.0"
+text = "v0.0.0"
 vertical_alignment = 2
 
 [node name="ReferenceRectEnd" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=328562026]

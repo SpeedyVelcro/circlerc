@@ -1,0 +1,75 @@
+# Authored by Speedyvelcro, 2026
+#
+# This is free and unencumbered software released into the public domain.
+#
+# Anyone is free to copy, modify, publish, use, compile, sell, or
+# distribute this software, either in source code form or as a compiled
+# binary, for any purpose, commercial or non-commercial, and by any
+# means.
+#
+# In jurisdictions that recognize copyright laws, the author or authors
+# of this software dedicate any and all copyright interest in the
+# software to the public domain. We make this dedication for the benefit
+# of the public at large and to the detriment of our heirs and
+# successors. We intend this dedication to be an overt act of
+# relinquishment in perpetuity of all present and future rights to this
+# software under copyright law.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+# OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+# ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+# OTHER DEALINGS IN THE SOFTWARE.
+#
+# For more information, please refer to <https://unlicense.org/>
+name: Install Export Templates
+description: Installs export templates for the Godot Engine to the templates directory for the duration of the current job.
+inputs:
+  version:
+    description: "Version, e.g. 4.6-stable"
+    required: true
+  sha_256:
+    description: "SHA-256 checksum of the zip file from the release page. If provided, then the action will fail on a checksum mismatch."
+    required: false
+    default: ""
+runs:
+  using: "composite"
+  steps:
+    - name: Restore Cached Export Templates
+      id: cache-export-templates-restore
+      uses: actions/cache/restore@v6
+      with:
+        path: templates
+        key: ${{ runner.os }}-${{ inputs.version }}-templates
+    - name: Get Export Templates
+      shell: "bash"
+      if: steps.cache-export-templates-restore.outputs.cache-hit != 'true'
+      env:
+        TEMPLATES_ZIP: "Godot_v${{ inputs.version }}_export_templates.tpz" # Does not work with mono builds as they have a separate template archive
+      run: |
+        curl -LO "https://github.com/godotengine/godot/releases/download/${{ inputs.version }}/${{ env.TEMPLATES_ZIP }}"
+        if [[ -n "${{ inputs.sha_256 }}" ]] && ! (echo "${{ inputs.sha_256 }} ${{ env.TEMPLATES_ZIP }}" | sha256sum -c); then
+            exit 1
+        fi
+        unzip ${{ env.TEMPLATES_ZIP }} # .tpz is just a renamed zip, see https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html#export-templates
+        rm ${{ env.TEMPLATES_ZIP }}
+    - name: Save Export Templates to Cache
+      id: cache-export-templates-save
+      uses: actions/cache/save@v6
+      with:
+        path: templates
+        key: ${{ steps.cache-export-templates-restore.outputs.cache-primary-key }}
+    - name: Install Export Templates
+      shell: "bash"
+      env:
+        TEMPLATES_ZIP: "Godot_v${{ inputs.version }}_export_templates.tpz" # Does not work with mono builds as they have a separate template archive
+      run: |
+        VERSION=${{ inputs.version }} # So it can be used in shell parameter expansion
+        VERSION_DIR=${VERSION/%-stable/.stable} # TODO: unsure what the transformation is for non-stable releases
+        TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/$VERSION_DIR"
+        mkdir -p $TEMPLATES_DIR
+        mv ./templates/* $TEMPLATES_DIR
+        rm -rf ./templates
+
