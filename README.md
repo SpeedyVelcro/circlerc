@@ -15,6 +15,10 @@ compatible) licenses. You will have to comply with all applicable licenses.
 The following directories have different licenses:
 ```
 /addons/sv_about_menu
+/addons/sv_achievements
+/addons/sv_options_menu
+/addons/newgrounds
+/addons/gamejolt
 /Font
 /Sound
 /Art/CircleRC
