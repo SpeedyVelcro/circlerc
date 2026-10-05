@@ -34,6 +34,9 @@ UIScaleLimiter="*uid://bvyix0sadk4ni"
 AchievementService="*uid://cl58nbrkylxrq"
 AchievementOverlayLayer="*uid://ccgob6hba25km"
 Profile="*res://AutoLoad/Profile.gd"
+GameJolt="*uid://dwwwfqrm86umu"
+NG="*uid://cx0lbddb6da4w"
+NGCloudSave="*uid://b7g1k2gu4cpve"
 OnStart="*uid://8r0ccj4kti1"
 
 [display]
@@ -46,7 +49,19 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/sv_achievements/plugin.cfg", "res://addons/sv_options_menu/plugin.cfg")
+enabled=PackedStringArray("res://addons/gamejolt/plugin.cfg", "res://addons/newgrounds/plugin.cfg", "res://addons/sv_achievements/plugin.cfg", "res://addons/sv_options_menu/plugin.cfg")
+
+[game_jolt]
+
+config/global/game_id=""
+config/global/private_key=""
+config/debug/enabled=false
+config/debug/user_name=""
+config/debug/user_token=""
+
+[global_group]
+
+CloudSave="Newgrounds Cloudsave"
 
 [input]
 
@@ -92,6 +107,11 @@ pause={
 2d_physics/layer_3="capturable"
 2d_physics/layer_4="enemy"
 
+[newgrounds.io]
+
+opened_getting_started_page=true
+auto_init=false
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
@@ -103,3 +123,7 @@ vram_compression/import_etc=true
 
 general/achievements="uid://cox8oaneu2ygv"
 general/completion_save_file_path="user://achievements.json"
+sync/achievement_api.newgrounds=3
+sync/achievement_api.game_jolt=2
+sync/enable_sync.newgrounds=true
+sync/enable_sync.game_jolt=true
