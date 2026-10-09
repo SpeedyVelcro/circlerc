@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://buglxgortae4s" path="res://addons/sv_about_menu/data/sv_about_game_info.gd" id="2_ebyvh"]
 [ext_resource type="Script" uid="uid://bjgnxatvg3ldr" path="res://addons/sv_about_menu/data/sv_about_entry_custom.gd" id="3_ebyvh"]
 [ext_resource type="Script" uid="uid://boomnqmjwlnh0" path="res://addons/sv_about_menu/data/sv_about_entry.gd" id="3_kc2ba"]
+[ext_resource type="Script" uid="uid://d3bmuv28aw436" path="res://UI/MainMenu/About/GameAboutEntry.gd" id="5_kc2ba"]
 
 [sub_resource type="Resource" id="Resource_r1itu"]
 script = ExtResource("3_ebyvh")
@@ -129,17 +130,24 @@ script = ExtResource("1_qesmc")
 entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_0ssw7"), SubResource("Resource_1ccfu"), SubResource("Resource_q3jjj"), SubResource("Resource_knkbi"), SubResource("Resource_odl16"), SubResource("Resource_481gy")])
 metadata/_custom_type_script = "uid://n7jauopw8y1o"
 
-[sub_resource type="Resource" id="Resource_ey7sq"]
-script = ExtResource("3_ebyvh")
-title = "CircleRC"
-description = "Copyright © 2020-2026 SpeedyVelcro
+[sub_resource type="Resource" id="Resource_3og5u"]
+script = ExtResource("5_kc2ba")
+text = "[url]https://speedyvelcro.com/games/circlerc/[/url]
+Source Code: [url]https://github.com/SpeedyVelcro/circlerc[/url]
+
+CircleRC is distributed under the terms of the MIT license, produced below.
+
+CircleRC also contains numerous assets and software components under compatible free licenses. These are enumerated in the About menu, and can be viewed using the buttons on the left-hand side.
+
+[b]MIT License[/b]
+Copyright © 2020-2026 SpeedyVelcro
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+metadata/_custom_type_script = "uid://d3bmuv28aw436"
 
 [sub_resource type="Resource" id="Resource_8yd11"]
 script = ExtResource("3_ebyvh")
@@ -177,7 +185,7 @@ metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [resource]
 script = ExtResource("2_ebyvh")
-top_level_entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_ey7sq"), SubResource("Resource_8yd11")])
+top_level_entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_3og5u"), SubResource("Resource_8yd11")])
 custom_sections = Dictionary[String, ExtResource("1_qesmc")]({
 "Assets": SubResource("Resource_lfsme"),
 "Components": SubResource("Resource_v4sbr")
