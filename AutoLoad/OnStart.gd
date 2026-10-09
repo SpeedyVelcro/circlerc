@@ -16,24 +16,28 @@ const _LEVEL_LIST: LevelList = preload("res://Level/LevelList.tres")
 
 # Override
 func _ready() -> void:
-	if OS.has_feature("newgrounds"):
-		ProjectSettings.set_setting("newgrounds.io/app_id", Secrets.NEWGROUNDS_APP_ID)
-		ProjectSettings.set_setting("newgrounds.io/AES-128_key", Secrets.NEWGROUNDS_AES_128_ENCRYPTION_KEY)
-		NG.init()
-	
-	if OS.has_feature("game_jolt"):
-		GameJolt.private_key = Secrets.GAME_JOLT_PRIVATE_KEY
-	
 	Profile.load_profile()
+	
+	# Earlier versions of CircleRC did not have achievements. We check if any
+	# achievements should have been unlocked.
+	_fix_achievement_progress()
 	
 	var options_config := OptionsConfigProvider.get_config()
 	options_config.manage_window_mode = not OS.has_feature("web")
 	options_config.manage_screen = not OS.has_feature("web")
 	OptionsLifecycle.start_up()
 	
-	# Earlier versions of CircleRC did not have achievements. We check if any
-	# achievements should have been unlocked.
-	_fix_achievement_progress()
+	if OS.has_feature("newgrounds"):
+		ProjectSettings.set_setting("newgrounds.io/app_id", Secrets.NEWGROUNDS_APP_ID)
+		ProjectSettings.set_setting("newgrounds.io/AES-128_key", Secrets.NEWGROUNDS_AES_128_ENCRYPTION_KEY)
+		NG.init()
+		
+		LeaderboardService.backend = LeaderboardService.Backend.NEWGROUNDS
+	
+	if OS.has_feature("game_jolt"):
+		GameJolt.private_key = Secrets.GAME_JOLT_PRIVATE_KEY
+		
+		LeaderboardService.backend = LeaderboardService.Backend.GAME_JOLT
 
 
 func _fix_achievement_progress() -> void:

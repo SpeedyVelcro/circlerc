@@ -38,6 +38,7 @@ Profile="*res://AutoLoad/Profile.gd"
 GameJolt="*uid://dwwwfqrm86umu"
 NG="*uid://cx0lbddb6da4w"
 NGCloudSave="*uid://b7g1k2gu4cpve"
+LeaderboardService="*uid://bxtsltpogacbp"
 OnStart="*uid://8r0ccj4kti1"
 
 [display]
