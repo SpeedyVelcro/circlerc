@@ -42,9 +42,15 @@ description = "This game uses one or more sound effects by Kenney (kenney.nl)
 These are licensed under CC0 1.0"
 metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
+[sub_resource type="Resource" id="Resource_n4y2n"]
+script = ExtResource("3_ebyvh")
+title = "Social Media Icons"
+description = "The social media icons on the main menu are the property and/or trademarks of their respective companies. They are used here in a descriptive capacity for links to profiles or accounts on those platforms."
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
 [sub_resource type="Resource" id="Resource_lfsme"]
 script = ExtResource("1_qesmc")
-entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_4j3j2")])
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_4j3j2"), SubResource("Resource_n4y2n")])
 metadata/_custom_type_script = "uid://n7jauopw8y1o"
 
 [sub_resource type="Resource" id="Resource_0ssw7"]
@@ -106,7 +112,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
 metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
-[sub_resource type="Resource" id="Resource_n4y2n"]
+[sub_resource type="Resource" id="Resource_481gy"]
 script = ExtResource("3_ebyvh")
 title = "SV Achievements"
 description = "Copyright © 2026 SpeedyVelcro
@@ -120,7 +126,7 @@ metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [sub_resource type="Resource" id="Resource_v4sbr"]
 script = ExtResource("1_qesmc")
-entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_0ssw7"), SubResource("Resource_1ccfu"), SubResource("Resource_q3jjj"), SubResource("Resource_knkbi"), SubResource("Resource_odl16"), SubResource("Resource_n4y2n")])
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_0ssw7"), SubResource("Resource_1ccfu"), SubResource("Resource_q3jjj"), SubResource("Resource_knkbi"), SubResource("Resource_odl16"), SubResource("Resource_481gy")])
 metadata/_custom_type_script = "uid://n7jauopw8y1o"
 
 [sub_resource type="Resource" id="Resource_ey7sq"]
