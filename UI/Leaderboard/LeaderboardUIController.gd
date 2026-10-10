@@ -135,6 +135,18 @@ func is_loading() -> bool:
 	return _loading
 
 
+## Advances to the next page. Automatically calls [method update].
+func go_to_next_page() -> void:
+	page += 1
+	update()
+
+
+## Goes back to the previous page. Automatically calls [method update].
+func go_to_previous_page() -> void:
+	page -= 1
+	update()
+
+
 func format_score(score: int) -> String:
 	if formatter == null:
 		return str(score)
