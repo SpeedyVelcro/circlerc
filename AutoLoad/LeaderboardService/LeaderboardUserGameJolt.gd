@@ -29,4 +29,12 @@ func is_same_user(user: LeaderboardUser) -> bool:
 		# between sessions. Though I haven't found documentation to confirm this.
 		return false
 	
-	return user_id == user.user_id
+	# Game Jolt API requires a separate request (using the users fetch endpoint)
+	# to get the user ID. It is not stored in the plugin, and it is not returned
+	# by the auth endpoint either. Doing this would be complicated and the username
+	# appears to be unique anyway (frankly I'm not even sure why the user ID
+	# exists) so we only check on user IDs if we have them both.
+	if user_id.is_empty() or user.user_id.is_empty():
+		return username == user.username
+	else:
+		return user_id == user.user_id

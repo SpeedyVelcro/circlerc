@@ -39,8 +39,8 @@ var backend: Backend = Backend.NONE:
 var _backend_adapter: LeaderboardBackendAdapter = null
 
 
-## Get scores from the given leaderboard, starting from the given rank (1-based),
-## to the given rank. If you reach the end of the scoreboard, an empty array
+## Get scores from the given leaderboard, starting from the given rank (1-based, inclusive),
+## to the given rank (inclusive). If you reach the end of the scoreboard, an empty array
 ## is returned.
 func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: int = 10) -> Array[LeaderboardScore]:
 	if backend == Backend.NONE:
@@ -60,3 +60,28 @@ func submit_score(leaderboard: LeaderboardReference, score: int, formatted_score
 	
 	@warning_ignore("redundant_await") # Not detected as a coroutine because it's an abstract. https://github.com/godotengine/godot/issues/110961
 	return await _backend_adapter.submit_score(leaderboard, score, formatted_score)
+
+
+## Gets the current user (i.e. the logged-in user, or the user who is submitting
+## scores).
+func get_current_user() -> LeaderboardUser:
+	if backend == Backend.NONE:
+		return LeaderboardUserNone.new()
+	
+	return _backend_adapter.get_current_user()
+
+
+## Returns [code]true[/code] if leaderboards are supported in this platform. This
+## basically only returns [code]false[/code] if you set [member backend] to
+## [enum Backend.NONE].
+##
+## This only guarantees that fetching scores is supproted. To check if submitting
+## scores is supported, call [method can_submit].
+func is_supported() -> bool:
+	return _backend_adapter != null
+
+
+## Returns [code]true[/code] if backend supports submitting scores and it is
+## currently ready to submit scores (e.g. you might need to be logged in).
+func can_submit() -> bool:
+	return (_backend_adapter != null) and (_backend_adapter.can_submit())

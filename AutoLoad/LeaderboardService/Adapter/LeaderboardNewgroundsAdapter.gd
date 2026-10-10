@@ -61,3 +61,26 @@ func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: 
 		score.rank = from_rank + skip + i
 	
 	return translated
+
+
+# Override
+func get_current_user() -> LeaderboardUser:
+	if NG.session == null:
+		return LeaderboardUserNone.new()
+	
+	if not NG.session.is_signed_in():
+		return LeaderboardUserNone.new()
+	
+	if NG.session.user == null:
+		return LeaderboardUserNone.new()
+	
+	var user := LeaderboardUserNewgrounds.new()
+	user.username = NG.session.user.name
+	user.user_id = NG.session.user.id
+	
+	return user
+
+
+# Override
+func can_submit() -> bool:
+	return NG.session != null and NG.session.is_signed_in()

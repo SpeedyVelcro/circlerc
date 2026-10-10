@@ -113,6 +113,26 @@ func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: 
 	return scores.slice(from_rank - 1, to_rank)
 
 
+# Override
+func get_current_user() -> LeaderboardUser:
+	if GameJolt.user_name == "":
+		return LeaderboardUserNone.new()
+	
+	var user := LeaderboardUserGameJolt.new()
+	user.username = GameJolt.user_name
+	# There's a long comment explaining this in LeaderboardUserGameJolt but
+	# basically it's a pain in the ass to get the user ID and the username is
+	# unique anyway so we don't really need to set the user ID.
+	
+	return user
+
+
+# Override
+func can_submit() -> bool:
+	# TODO: Once guests are supported, this can just always return true.
+	return not (GameJolt.user_name.is_empty() or GameJolt.user_token.is_empty())
+
+
 func _is_response_successful(res: Dictionary) -> bool:
 	if not res.has("success"):
 		return false

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b03tiiaxsf0de"]
+
+[ext_resource type="Script" uid="uid://dyb4xkxc0ghf0" path="res://UI/Leaderboard/LeaderboardDisplay.gd" id="1_7owxk"]
+
+[node name="LeaderboardDisplay" type="Control" unique_id=114590988]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7owxk")
+
+[node name="ScoresRichTextLabel" type="RichTextLabel" parent="." unique_id=2127975702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[table=3]
+[cell]1. [/cell][cell expand=2 shrink=false]John Doe[/cell][cell]789[/cell]
+[cell]2. [/cell][cell expand=2 shrink=false]Jane Doe[/cell][cell]456[/cell]
+[cell]3. [/cell][cell expand=2 shrink=false]James Doe[/cell][cell]123[/cell]
+[/table]"
+
+[node name="LoadingLabel" type="Label" parent="." unique_id=1548445847]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HiddenLabel" type="Label" parent="." unique_id=1845424755]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "No Scores"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnsupportedLabel" type="Label" parent="." unique_id=1439548336]
+visible = false
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Scores not supported on this platform."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="LoadingAnimationTimer" type="Timer" parent="." unique_id=359188228]
+
+[connection signal="timeout" from="LoadingAnimationTimer" to="." method="_on_loading_animation_timer_timeout"]
