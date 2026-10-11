@@ -92,3 +92,4 @@ func set_level(value):
 	par_time_label.text = par.get_display_string()
 	
 	leaderboard_ui_controller.leaderboard = level_list.get_level_leaderboard(level_number)
+	leaderboard_ui_controller.update()
