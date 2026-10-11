@@ -4,11 +4,14 @@
 [ext_resource type="PackedScene" path="res://UI/MainMenu/ButtonMainMenu.tscn" id="2"]
 [ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
-[ext_resource type="Texture2D" uid="uid://cuddwhnlkmva1" path="res://Art/CircleRC/Icon/objective_checked.svg" id="5_mswm2"]
-[ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/objective_unchecked.svg" id="6_36xea"]
+[ext_resource type="Texture2D" uid="uid://cuddwhnlkmva1" path="res://Art/CircleRC/Icon/ObjectiveChecked.svg" id="5_mswm2"]
+[ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/ObjectiveUnchecked.svg" id="6_36xea"]
 [ext_resource type="PackedScene" uid="uid://b03tiiaxsf0de" path="res://UI/Leaderboard/LeaderboardDisplayUI.tscn" id="7_aqy8u"]
+[ext_resource type="Texture2D" uid="uid://cign7qss357ov" path="res://Art/CircleRC/Icon/LeftArrow.svg" id="8_1prdm"]
 [ext_resource type="Script" uid="uid://bfl1ayomav64p" path="res://UI/Leaderboard/LeaderboardUIController.gd" id="8_uhbus"]
 [ext_resource type="Script" uid="uid://bofpkj0j6vftc" path="res://UI/Leaderboard/TimeScoreLeaderboardScoreFormatter.gd" id="9_1prdm"]
+[ext_resource type="Texture2D" uid="uid://csn7nai617807" path="res://Art/CircleRC/Icon/right-arrow.svg" id="9_6vqqq"]
+[ext_resource type="Script" uid="uid://dqrkmtwrapgv6" path="res://UI/Leaderboard/LeaderboardPageButton.gd" id="9_d035a"]
 
 [sub_resource type="Resource" id="Resource_yfss4"]
 script = ExtResource("9_1prdm")
@@ -184,6 +187,31 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 ui_controller = NodePath("../../../../../LeaderboardUIController")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer2" unique_id=1601650539]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="LeaderboardLeftButton" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1870122320 node_paths=PackedStringArray("ui_controller")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("8_1prdm")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("9_d035a")
+ui_controller = NodePath("../../../../../../LeaderboardUIController")
+direction = 0
+metadata/_custom_type_script = "uid://dqrkmtwrapgv6"
+
+[node name="LeaderboardRightButton" type="Button" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1300344712 node_paths=PackedStringArray("ui_controller")]
+layout_mode = 2
+size_flags_horizontal = 3
+icon = ExtResource("9_6vqqq")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("9_d035a")
+ui_controller = NodePath("../../../../../../LeaderboardUIController")
+metadata/_custom_type_script = "uid://dqrkmtwrapgv6"
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="MarginContainer/VSplitContainer" unique_id=499795602]
 custom_minimum_size = Vector2(0, 24)
