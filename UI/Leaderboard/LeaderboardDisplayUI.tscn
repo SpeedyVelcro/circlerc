@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://b03tiiaxsf0de"]
 
-[ext_resource type="Script" uid="uid://dyb4xkxc0ghf0" path="res://UI/Leaderboard/LeaderboardDisplay.gd" id="1_7owxk"]
+[ext_resource type="Script" uid="uid://dyb4xkxc0ghf0" path="res://UI/Leaderboard/LeaderboardDisplayUI.gd" id="1_vkx1h"]
 
-[node name="LeaderboardDisplay" type="Control" unique_id=114590988]
+[node name="LeaderboardDisplayUI" type="Control" unique_id=114590988]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7owxk")
+script = ExtResource("1_vkx1h")
 
 [node name="ScoresRichTextLabel" type="RichTextLabel" parent="." unique_id=2127975702]
 layout_mode = 1

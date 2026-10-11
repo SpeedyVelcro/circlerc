@@ -1,4 +1,3 @@
-class_name LeaderboardDisplay
 extends Control
 
 @export var ui_controller: LeaderboardUIController:

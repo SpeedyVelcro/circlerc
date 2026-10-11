@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dnerpeepkr4db"]
+
+[ext_resource type="Script" uid="uid://c8hstx3j8qcl0" path="res://UI/Leaderboard/LeaderboardSubmitUI.gd" id="1_7qw70"]
+
+[node name="LeaderboardSubmitUI" type="VBoxContainer" unique_id=1693484359]
+offset_right = 171.0
+offset_bottom = 85.0
+alignment = 2
+script = ExtResource("1_7qw70")
+
+[node name="StatusFailedLabel" type="Label" parent="." unique_id=415437184]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Failed to submit score"
+horizontal_alignment = 1
+
+[node name="StatusUploadingLabel" type="Label" parent="." unique_id=1014135932]
+visible = false
+layout_mode = 2
+text = "Uploading..."
+horizontal_alignment = 1
+
+[node name="StatusSuccessLabel" type="Label" parent="." unique_id=1559940059]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "Submitted"
+horizontal_alignment = 1
+
+[node name="SubmitButton" type="Button" parent="." unique_id=393690042]
+layout_mode = 2
+text = "Submit Score"
+
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

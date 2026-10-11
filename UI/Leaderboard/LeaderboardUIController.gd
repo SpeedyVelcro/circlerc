@@ -22,6 +22,11 @@ extends Node
 
 @export var formatter: LeaderboardScoreFormatter = null
 
+## If true, will automatically submit the score as soon as you set one using
+## [method set_score_to_submit] (provided it is actually possible to submit
+## a score)
+@export var auto_submit: bool = false
+
 var _last_update_page := page
 var _last_update_page_size := page_size
 var _last_update_leaderboard := leaderboard
@@ -29,6 +34,9 @@ var _on_first_page := false
 var _on_last_page := false
 var _scores: Array[LeaderboardScore]
 var _loading: bool
+var _score_to_submit: int = -1
+var _has_score: bool = false
+var _submitting: bool = false
 
 ## Emitted when scores should be hidden (i.e. an empty page should be shown).
 signal scores_hidden
@@ -36,6 +44,17 @@ signal scores_hidden
 ## and therefore before the score has actually updated. Connecting to this
 ## allows you to implement a loading UI.
 signal started_loading
+## Emitted when score is set via [method set_score_to_submit], provided that
+## the backend supports submitting scores.
+signal ready_to_submit
+## Emitted when you have started submitting a score using [method submit_score]
+## (i.e. you have submitted but the HTTP request hasn't completed yet)
+signal started_submitting
+## Emitted when the HTTP request has completed and you have successfully
+## submitted a score.
+signal submit_succeeded
+## Emitted when the HTTP request has completed and submitting a score has failed.
+signal submit_failed
 ## Emitted when scores should be shown. The scores to be shown are included as
 ## a parameter.
 signal scores_shown(scores: Array[LeaderboardScore])
@@ -97,6 +116,40 @@ func update() -> void:
 			reached_middle_page.emit()
 
 
+## Sets the score that will be submit when the player hits the "Submit" button.
+func set_score_to_submit(score: int) -> void:
+	_score_to_submit = score
+	_has_score = true
+	if can_submit_score():
+		ready_to_submit.emit()
+
+
+## Submits the score that was set using [method set_score_to_submit].
+func submit_score() -> void:
+	if not can_submit_score():
+		push_error("Tried to submit score but can_submit_score() currently returns false.")
+		return
+	
+	if leaderboard == null:
+		push_error("Tried to submit score but no leaderboard is set on UI controller.")
+		return
+	
+	var formatted_score := str(_score_to_submit) if formatter == null else formatter.format_score(_score_to_submit)
+	
+	_submitting = true
+	started_submitting.emit()
+	var res := await LeaderboardService.submit_score(leaderboard, _score_to_submit, formatted_score)
+	
+	_submitting = false
+	
+	if res.success:
+		submit_succeeded.emit()
+	else:
+		submit_failed.emit()
+	
+	# TODO: Do something with rank so the UI can show what rank you are?
+
+
 ## Returns [code]true[/code] if any properties have been changed since the last
 ## update and therefore new scores need to be fetched.
 func has_pending_changes() -> bool:
@@ -133,6 +186,10 @@ func is_hidden() -> bool:
 
 func is_loading() -> bool:
 	return _loading
+
+
+func can_submit_score() -> bool:
+	return _has_score and LeaderboardService.can_submit()
 
 
 ## Advances to the next page. Automatically calls [method update].
