@@ -2,7 +2,7 @@ extends VBoxContainer
 
 @export var ui_controller: LeaderboardUIController
 
-@onready var _submit_button: Label = $SubmitButton
+@onready var _submit_button: Button = $SubmitButton
 @onready var _status_failed_label: Label = $StatusFailedLabel
 @onready var _status_uploading_label: Label = $StatusUploadingLabel
 @onready var _status_success_label: Label = $StatusSuccessLabel

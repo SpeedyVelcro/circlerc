@@ -6,6 +6,13 @@
 [ext_resource type="Script" uid="uid://uxbju6j2hsbb" path="res://UI/VictoryMenu/VictoryMenu.gd" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dxullnmum6xx1" path="res://Font/PressStart2P/PressStart2PTinyLabelSettings.tres" id="5_dcgol"]
 [ext_resource type="FontFile" uid="uid://djtfpau1f651x" path="res://Font/PressStart2P/PressStart2P-Regular.ttf" id="6_kqut3"]
+[ext_resource type="PackedScene" uid="uid://b03tiiaxsf0de" path="res://UI/Leaderboard/LeaderboardDisplayUI.tscn" id="7_l6nai"]
+[ext_resource type="Texture2D" uid="uid://cign7qss357ov" path="res://Art/CircleRC/Icon/LeftArrow.svg" id="8_ttaee"]
+[ext_resource type="Script" uid="uid://dqrkmtwrapgv6" path="res://UI/Leaderboard/LeaderboardPageButton.gd" id="9_4hhmb"]
+[ext_resource type="PackedScene" uid="uid://dnerpeepkr4db" path="res://UI/Leaderboard/LeaderboardSubmitUI.tscn" id="10_te4g7"]
+[ext_resource type="Texture2D" uid="uid://csn7nai617807" path="res://Art/CircleRC/Icon/right-arrow.svg" id="11_jul68"]
+[ext_resource type="Script" uid="uid://bfl1ayomav64p" path="res://UI/Leaderboard/LeaderboardUIController.gd" id="12_ebmy7"]
+[ext_resource type="Script" uid="uid://bofpkj0j6vftc" path="res://UI/Leaderboard/TimeScoreLeaderboardScoreFormatter.gd" id="13_ttaee"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gk86b"]
 font = ExtResource("6_kqut3")
@@ -81,9 +88,22 @@ _data = {
 &"fly_in": SubResource("1")
 }
 
-[node name="VictoryMenu" type="CanvasLayer" unique_id=1323163799]
+[sub_resource type="Resource" id="Resource_l6nai"]
+script = ExtResource("13_ttaee")
+metadata/_custom_type_script = "uid://bofpkj0j6vftc"
+
+[node name="VictoryMenu" type="CanvasLayer" unique_id=1323163799 node_paths=PackedStringArray("visibility_node", "level_title_label", "time_label", "par_time_label", "best_time_label", "new_personal_best_label", "no_hits_label", "under_par_label", "leaderboard_ui_controller")]
 layer = 100
 script = ExtResource("5")
+visibility_node = NodePath("CenterContainer")
+level_title_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/LevelTitle")
+time_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Time")
+par_time_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/ParLabel")
+best_time_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer/PersonalBestLabel")
+new_personal_best_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NewPersonalBestLabel")
+no_hits_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/NoHitsLabel")
+under_par_label = NodePath("CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/UnderParLabel")
+leaderboard_ui_controller = NodePath("LeaderboardUIController")
 input_allowed = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1814397418]
@@ -100,25 +120,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 720.0
 offset_bottom = 720.0
+theme = ExtResource("1")
 
-[node name="Panel" type="Panel" parent="CenterContainer" unique_id=1539923599]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1233052797]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/HBoxContainer" unique_id=689637975]
 custom_minimum_size = Vector2(480, 600)
 layout_mode = 2
 theme = ExtResource("1")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel" unique_id=1556527678]
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 30.0
-offset_right = -30.0
-offset_bottom = -30.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer" unique_id=194669356]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer/PanelContainer" unique_id=1556527678]
 layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="Title" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=523440701]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer" unique_id=194669356]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=523440701]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Level Complete!"
@@ -126,99 +150,168 @@ label_settings = ExtResource("3_63q7v")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=355432664]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="LevelTitle" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1623989121]
+[node name="LevelTitle" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1623989121]
 layout_mode = 2
 text = "Level X"
 label_settings = ExtResource("4_okirb")
 horizontal_alignment = 1
 
-[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1969025469]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="TimeHeader" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1705688596]
-layout_mode = 2
-text = "Time:"
-label_settings = ExtResource("5_dcgol")
-horizontal_alignment = 1
-
-[node name="Time" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=382988069]
+[node name="Time" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=382988069]
 layout_mode = 2
 text = "00:00:00"
-label_settings = ExtResource("5_dcgol")
+label_settings = ExtResource("4_okirb")
 horizontal_alignment = 1
 
-[node name="ReferenceRect4" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=461002352]
-custom_minimum_size = Vector2(0, 16)
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1710529283]
 layout_mode = 2
+columns = 2
 
-[node name="RecordPrevious" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1201576225]
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1401575561]
 layout_mode = 2
-
-[node name="BestTimeHeader" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious" unique_id=929086931]
-layout_mode = 2
-text = "Best Time:"
+text = "Par:"
 label_settings = ExtResource("5_dcgol")
-horizontal_alignment = 1
 
-[node name="BestTime" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious" unique_id=467834041]
+[node name="ParLabel" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1057476170]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "00:00:00"
 label_settings = ExtResource("5_dcgol")
-horizontal_alignment = 1
+horizontal_alignment = 2
 
-[node name="RecordNew" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=2114207110]
-visible = false
+[node name="Label2" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=419785742]
 layout_mode = 2
+text = "Personal Best:"
+label_settings = ExtResource("5_dcgol")
 
-[node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew" unique_id=754714392]
+[node name="PersonalBestLabel" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1252901981]
 layout_mode = 2
-text = "New Record!"
+size_flags_horizontal = 3
+text = "00:00:00"
+label_settings = ExtResource("5_dcgol")
+horizontal_alignment = 2
+
+[node name="NewPersonalBestLabel" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=754714392]
+layout_mode = 2
+text = "New Personal Best!"
 label_settings = SubResource("LabelSettings_gk86b")
 horizontal_alignment = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=2060134386]
+[node name="NoHitsLabel" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=318573790]
+layout_mode = 2
+text = "No Hits!"
+label_settings = SubResource("LabelSettings_gk86b")
+horizontal_alignment = 1
+
+[node name="UnderParLabel" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=956310384]
+layout_mode = 2
+text = "Under Par!"
+label_settings = SubResource("LabelSettings_gk86b")
+horizontal_alignment = 1
+
+[node name="RecordNew" type="VBoxContainer" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2114207110]
+visible = false
+layout_mode = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2060134386]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer" unique_id=1799004241]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1799004241]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 
-[node name="QuitButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=86929354]
+[node name="QuitButton" type="Button" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=86929354]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Quit"
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=825888830]
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=825888830]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="RetryButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1060369420]
+[node name="RetryButton" type="Button" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1060369420]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Retry"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=513056468]
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=513056468]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="NextButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=663372733]
+[node name="NextButton" type="Button" parent="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=663372733]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Next"
 
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/HBoxContainer" unique_id=1958924601]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer/PanelContainer2" unique_id=221272120]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer" unique_id=1111720561]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=1411613148]
+layout_mode = 2
+text = "Leaderboard"
+label_settings = ExtResource("4_okirb")
+
+[node name="LeaderboardDisplayUI" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=114590988 node_paths=PackedStringArray("ui_controller") instance=ExtResource("7_l6nai")]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+ui_controller = NodePath("../../../../../../LeaderboardUIController")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer" unique_id=268341001]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LeaderboardBackButton" type="Button" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=975494244 node_paths=PackedStringArray("ui_controller")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("8_ttaee")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("9_4hhmb")
+ui_controller = NodePath("../../../../../../../LeaderboardUIController")
+direction = 0
+metadata/_custom_type_script = "uid://dqrkmtwrapgv6"
+
+[node name="LeaderboardSubmitUI" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1693484359 node_paths=PackedStringArray("ui_controller") instance=ExtResource("10_te4g7")]
+layout_mode = 2
+size_flags_horizontal = 3
+ui_controller = NodePath("../../../../../../../LeaderboardUIController")
+
+[node name="LeaderboardNextButton" type="Button" parent="CenterContainer/HBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2098348877 node_paths=PackedStringArray("ui_controller")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("11_jul68")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("9_4hhmb")
+ui_controller = NodePath("../../../../../../../LeaderboardUIController")
+metadata/_custom_type_script = "uid://dqrkmtwrapgv6"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=257310742]
 libraries/ = SubResource("AnimationLibrary_s2ji4")
 
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
-[connection signal="pressed" from="CenterContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
+[node name="LeaderboardUIController" type="Node" parent="." unique_id=366291404]
+script = ExtResource("12_ebmy7")
+page = 1
+formatter = SubResource("Resource_l6nai")
+auto_submit = true
+metadata/_custom_type_script = "uid://bfl1ayomav64p"
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

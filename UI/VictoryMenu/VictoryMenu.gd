@@ -1,27 +1,33 @@
 # VictoryMenu.gd
 extends CanvasLayer
 
-@onready var visibility_node = get_node("CenterContainer")
-@onready var level_title_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/LevelTitle")
-@onready var time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/Time")
-@onready var best_time_label = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious/BestTime")
-@onready var record_previous_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordPrevious")
-@onready var record_new_node = get_node("CenterContainer/Panel/MarginContainer/VBoxContainer/RecordNew")
+@export var visibility_node: Control
+@export var level_title_label: Label
+@export var time_label: Label
+@export var par_time_label: Label
+@export var best_time_label: Label
+@export var new_personal_best_label: Label
+@export var no_hits_label: Label
+@export var under_par_label: Label
+@export var leaderboard_ui_controller: LeaderboardUIController
 @export var input_allowed = false
+var level_list: LevelList = preload("res://Level/LevelList.tres")
 var level_number = 0
 var time: TimeScore = TimeScore.NONE
 var best_time: TimeScore = TimeScore.NONE
+var par: TimeScore = TimeScore.NONE
 
 signal next_level
 
 func _ready():
-	record_previous_node.set_visible(true)
-	record_new_node.set_visible(false)
-	visibility_node.set_visible(false)
+	new_personal_best_label.visible = false
+	no_hits_label.visible = false
+	under_par_label.visible = false
+	visibility_node.visible = false
 	input_allowed = false
-	var c = $ColorRect.get_modulate()
+	var c = $ColorRect.modulate
 	c.a = 0
-	$ColorRect.set_modulate(c)
+	$ColorRect.modulate = c
 
 func _process(_delta):
 	if input_allowed:
@@ -64,10 +70,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 # Getters and setters
 func set_time(value: TimeScore):
 	time = value
-	time_label.text = value.get_display_string()
+	time_label.text = time.get_display_string()
 	if time.get_total_milliseconds() < best_time.get_total_milliseconds():
-		record_previous_node.set_visible(false)
-		record_new_node.set_visible(true)
+		new_personal_best_label.visible = true
+		best_time_label.text = time.get_display_string()
+	if time.get_total_milliseconds() < par.get_total_milliseconds():
+		under_par_label.visible = true
+	
+	leaderboard_ui_controller.set_score_to_submit(time.get_total_milliseconds())
+
+func set_no_hits(value: bool):
+	no_hits_label.visible = value
 
 func set_level(value):
 	# Input level starting from 1
@@ -75,4 +88,7 @@ func set_level(value):
 	level_title_label.set_text("Level " + str(level_number))
 	best_time = Profile.get_level_best_time(level_number)
 	best_time_label.text = best_time.get_display_string()
+	par = level_list.get_level_par_time(level_number)
+	par_time_label.text = par.get_display_string()
 	
+	leaderboard_ui_controller.leaderboard = level_list.get_level_leaderboard(level_number)

@@ -122,6 +122,9 @@ func set_score_to_submit(score: int) -> void:
 	_has_score = true
 	if can_submit_score():
 		ready_to_submit.emit()
+		
+		if auto_submit:
+			submit_score()
 
 
 ## Submits the score that was set using [method set_score_to_submit].

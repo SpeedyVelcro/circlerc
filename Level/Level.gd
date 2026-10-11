@@ -33,8 +33,10 @@ func _on_Finish_activated():
 	$FinishTimer.start(1.5)
 	$HUDFadeTimer.start(1.5)
 	
-	Profile.submit_level_time(_current_level, time, _get_player().health >= _get_player().max_health)
+	var no_hits: bool = _get_player().health >= _get_player().max_health
+	Profile.submit_level_time(_current_level, time, no_hits)
 	$VictoryMenu.set_time(time)
+	$VictoryMenu.set_no_hits(no_hits)
 	
 	# Unlock next level
 	Profile.set_level_unlocked(_current_level + 1, true)
