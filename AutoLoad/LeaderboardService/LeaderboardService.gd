@@ -75,7 +75,7 @@ func get_current_user() -> LeaderboardUser:
 ## basically only returns [code]false[/code] if you set [member backend] to
 ## [enum Backend.NONE].
 ##
-## This only guarantees that fetching scores is supproted. To check if submitting
+## This only guarantees that fetching scores is supported. To check if submitting
 ## scores is supported, call [method can_submit].
 func is_supported() -> bool:
 	return _backend_adapter != null
