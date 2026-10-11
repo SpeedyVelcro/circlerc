@@ -6,6 +6,13 @@
 [ext_resource type="LabelSettings" uid="uid://co7ph7idf32mc" path="res://Font/PressStart2P/PressStart2PSmallLabelSettings.tres" id="5_l273y"]
 [ext_resource type="Texture2D" uid="uid://cuddwhnlkmva1" path="res://Art/CircleRC/Icon/objective_checked.svg" id="5_mswm2"]
 [ext_resource type="Texture2D" uid="uid://cps3prftl7466" path="res://Art/CircleRC/Icon/objective_unchecked.svg" id="6_36xea"]
+[ext_resource type="PackedScene" uid="uid://b03tiiaxsf0de" path="res://UI/Leaderboard/LeaderboardDisplayUI.tscn" id="7_aqy8u"]
+[ext_resource type="Script" uid="uid://bfl1ayomav64p" path="res://UI/Leaderboard/LeaderboardUIController.gd" id="8_uhbus"]
+[ext_resource type="Script" uid="uid://bofpkj0j6vftc" path="res://UI/Leaderboard/TimeScoreLeaderboardScoreFormatter.gd" id="9_1prdm"]
+
+[sub_resource type="Resource" id="Resource_yfss4"]
+script = ExtResource("9_1prdm")
+metadata/_custom_type_script = "uid://bofpkj0j6vftc"
 
 [node name="LevelSelect" type="PanelContainer" unique_id=615530423 node_paths=PackedStringArray("level_button_container", "level_number_label", "level_caption_label", "personal_best_time_label", "par_time_label", "par_check_texture_rect", "no_hit_check_texture_rect", "par_and_no_hit_check_texture_rect")]
 custom_minimum_size = Vector2(800, 480)
@@ -53,15 +60,14 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-columns = 8
+columns = 4
 
-[node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/VSplitContainer/HBoxContainer" unique_id=1085173914]
-custom_minimum_size = Vector2(32, 0)
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VSplitContainer/HBoxContainer" unique_id=2128966767]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer" unique_id=389485310]
-custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer" unique_id=1563030799]
 layout_mode = 2
@@ -161,6 +167,23 @@ text = "Play"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/VSplitContainer/HBoxContainer" unique_id=1054223484]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer" unique_id=726525587]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer2" unique_id=820780961]
+layout_mode = 2
+text = "Leaderboard"
+horizontal_alignment = 1
+
+[node name="LeaderboardDisplayUI" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer2" unique_id=114590988 node_paths=PackedStringArray("ui_controller") instance=ExtResource("7_aqy8u")]
+layout_mode = 2
+size_flags_vertical = 3
+ui_controller = NodePath("../../../../../LeaderboardUIController")
+
 [node name="ReferenceRect2" type="ReferenceRect" parent="MarginContainer/VSplitContainer" unique_id=499795602]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
@@ -177,6 +200,13 @@ text = "Back"
 [node name="ReferenceRect" type="ReferenceRect" parent="MarginContainer/VSplitContainer/HBoxContainer2" unique_id=1360633453]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="LeaderboardUIController" type="Node" parent="." unique_id=1562317212]
+script = ExtResource("8_uhbus")
+page = 1
+page_size = 8
+formatter = SubResource("Resource_yfss4")
+metadata/_custom_type_script = "uid://bfl1ayomav64p"
 
 [connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer2/ButtonBack" to="." method="_on_ButtonBack_pressed"]
