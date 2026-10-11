@@ -40,6 +40,9 @@ func _ready() -> void:
 	_loading_label.visible = false
 	_hidden_label.visible = false
 	_on_state_enter(_state)
+	
+	if not LeaderboardService.is_supported():
+		_state = State.UNSUPPORTED
 
 
 func _on_state_enter(state: State) -> void:
