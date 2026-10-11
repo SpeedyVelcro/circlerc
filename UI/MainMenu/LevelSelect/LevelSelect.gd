@@ -16,6 +16,7 @@ var selected_level = 1
 @export var par_and_no_hit_check_texture_rect: TextureRect
 @export var check_false_texture: Texture2D
 @export var check_true_texture: Texture2D
+@export var leaderboard_ui_controller: LeaderboardUIController
 
 signal back
 
@@ -61,6 +62,10 @@ func _on_ButtonLevel_pressed(level_number: int):
 	_set_par_check(Profile.is_level_best_time_under_par(level_number))
 	_set_no_hit_check(Profile.is_level_no_hit(level_number))
 	_set_par_and_no_hit_check(Profile.is_level_par_and_no_hit(level_number))
+	
+	leaderboard_ui_controller.leaderboard = level_list.get_level_leaderboard(level_number)
+	leaderboard_ui_controller.page = 1
+	leaderboard_ui_controller.update()
 
 
 # Signal connection

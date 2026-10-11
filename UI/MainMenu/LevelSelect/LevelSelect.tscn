@@ -14,7 +14,7 @@
 script = ExtResource("9_1prdm")
 metadata/_custom_type_script = "uid://bofpkj0j6vftc"
 
-[node name="LevelSelect" type="PanelContainer" unique_id=615530423 node_paths=PackedStringArray("level_button_container", "level_number_label", "level_caption_label", "personal_best_time_label", "par_time_label", "par_check_texture_rect", "no_hit_check_texture_rect", "par_and_no_hit_check_texture_rect")]
+[node name="LevelSelect" type="PanelContainer" unique_id=615530423 node_paths=PackedStringArray("level_button_container", "level_number_label", "level_caption_label", "personal_best_time_label", "par_time_label", "par_check_texture_rect", "no_hit_check_texture_rect", "par_and_no_hit_check_texture_rect", "leaderboard_ui_controller")]
 custom_minimum_size = Vector2(800, 480)
 offset_left = 240.0
 offset_top = 120.0
@@ -32,6 +32,7 @@ no_hit_check_texture_rect = NodePath("MarginContainer/VSplitContainer/HBoxContai
 par_and_no_hit_check_texture_rect = NodePath("MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/VBoxContainer/GridContainer/ParAndNoHitCheckTextureRect")
 check_false_texture = ExtResource("6_36xea")
 check_true_texture = ExtResource("5_mswm2")
+leaderboard_ui_controller = NodePath("LeaderboardUIController")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=892135]
 layout_mode = 2

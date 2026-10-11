@@ -8,6 +8,7 @@ extends Resource
 		par = value
 	get:
 		return par if par != null else TimeScore.NONE
+@export var leaderboard: LeaderboardReference
 
 
 func is_time_under_par(time: TimeScore) -> bool:
