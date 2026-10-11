@@ -36,6 +36,9 @@ enum State {
 # Override
 func _ready() -> void:
 	_readied = true
+	_scores_label.visible = false
+	_loading_label.visible = false
+	_hidden_label.visible = false
 	_on_state_enter(_state)
 
 

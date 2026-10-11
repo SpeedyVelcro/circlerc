@@ -29,6 +29,9 @@ var _readied := false
 # Override
 func _ready() -> void:
 	_readied = true
+	_status_failed_label.visible = false
+	_status_uploading_label.visible = false
+	_status_success_label.visible = false
 	_on_state_enter(_state)
 
 
