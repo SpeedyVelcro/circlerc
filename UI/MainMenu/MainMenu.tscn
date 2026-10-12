@@ -28,8 +28,8 @@ level_select_menu_root_control = NodePath("CenterContainer/LevelSelect")
 achievement_menu_root_control = NodePath("CenterContainer/AchievementMenu")
 social_media_root_control = NodePath("SocialMenu")
 background_layer = NodePath("Background")
-quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit")
-version_number_label = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5/VersionNumberLabel")
+quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/ButtonQuit")
+version_number_label = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VersionNumberLabel")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=506171900]
 layer = -128
@@ -70,10 +70,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer" unique_id=959775992]
 layout_mode = 2
-
-[node name="ReferenceRectStart" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1477377074]
-layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/separation = 32
 
 [node name="Title" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=634551284]
 layout_mode = 2
@@ -81,19 +78,11 @@ text = "CircleRC"
 label_settings = ExtResource("4_a712v")
 horizontal_alignment = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=539493236]
-custom_minimum_size = Vector2(0, 24)
-layout_mode = 2
-
 [node name="Or" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1733360816]
 layout_mode = 2
 text = "or"
 label_settings = ExtResource("5_1dhmk")
 horizontal_alignment = 1
-
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=674693793]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
 
 [node name="Subtitle" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1158243382]
 custom_minimum_size = Vector2(128, 0)
@@ -103,129 +92,95 @@ label_settings = ExtResource("6_jhcbk")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ReferenceRect3" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=854885918]
-custom_minimum_size = Vector2(0, 32)
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=381470953]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=935880416]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1159888242]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=591474826]
-custom_minimum_size = Vector2(0, 32)
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=714880812]
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=143524140]
+[node name="ButtonPlay" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=5732955]
+custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="ButtonPlay" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=5732955]
-custom_minimum_size = Vector2(96, 0)
-layout_mode = 2
-size_flags_vertical = 3
 theme = ExtResource("4")
+theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="ButtonLevelSelect" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1014107543]
-custom_minimum_size = Vector2(96, 0)
+[node name="ButtonLevelSelect" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1014107543]
+custom_minimum_size = Vector2(72, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4")
 text = "Level Select"
+autowrap_mode = 3
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2021425435]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=648726913]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=766328158]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="AchievementsButton" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=2054565582]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="ReferenceRect4" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=71599354]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1519504581]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1455587638]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="OptionsButton" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=702184865]
-layout_mode = 2
-text = "Options"
-
-[node name="AchievementsButton" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2054565582]
-layout_mode = 2
 text = "Achievements"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=123536219]
+[node name="OptionsButton" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=702184865]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text = "Options"
 
-[node name="ReferenceRect5" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=202285479]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1664829694]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1755044220]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ButtonCredits" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1278858544]
+[node name="ButtonCredits" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=1278858544]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4")
 text = "About"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1393377360]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ReferenceRect6" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1965815183]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=112007098]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-
-[node name="ReferenceRect" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=1506314495]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ButtonQuit" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=179408998]
+[node name="ButtonQuit" type="Button" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer" unique_id=179408998]
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4")
 text = "Quit"
 
-[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4" unique_id=235841848]
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1258662053]
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1862639605]
+layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1671010701]
+[node name="VersionNumberLabel" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer" unique_id=1080820774]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VersionNumberLabel" type="Label" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=1080820774]
-layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "v0.0.0"
+horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="ReferenceRectEnd" type="ReferenceRect" parent="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer5" unique_id=328562026]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="OptionsMenu" parent="CenterContainer" unique_id=475423097 instance=ExtResource("7_a712v")]
 visible = false
@@ -249,12 +204,12 @@ offset_top = -262.0
 offset_right = 100.0
 offset_bottom = 262.0
 
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/AchievementsButton" to="." method="_on_AchievementsButton_pressed"]
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
-[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/AchievementsButton" to="." method="_on_AchievementsButton_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/ButtonCredits" to="." method="_on_ButtonCredits_pressed"]
+[connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/ButtonQuit" to="." method="_on_ButtonQuit_pressed"]
 [connection signal="back" from="CenterContainer/OptionsMenu" to="." method="_on_options_menu_back"]
 [connection signal="back" from="CenterContainer/AboutMenu" to="." method="_on_about_menu_back"]
 [connection signal="back" from="CenterContainer/LevelSelect" to="." method="_on_level_select_back"]
