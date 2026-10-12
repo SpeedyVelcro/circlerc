@@ -109,6 +109,38 @@ border_width_bottom = 2
 [sub_resource type="StyleBoxFlat" id="7"]
 bg_color = Color(0, 0, 0, 0.298039)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jf8mr"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybiem"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o4nat"]
+border_width_left = 4
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjxb0"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
 [resource]
 Button/colors/font_color = Color(0.88, 0.88, 0.88, 1)
 Button/colors/font_color_disabled = Color(0.482353, 0.482353, 0.482353, 1)
@@ -173,8 +205,8 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = null
-VScrollBar/styles/grabber_highlight = null
-VScrollBar/styles/grabber_pressed = null
-VScrollBar/styles/scroll = null
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jf8mr")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ybiem")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_o4nat")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_xjxb0")
 VScrollBar/styles/scroll_focus = null
