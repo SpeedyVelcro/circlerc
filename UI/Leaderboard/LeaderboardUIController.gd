@@ -78,6 +78,9 @@ func update() -> void:
 	if not has_pending_changes():
 		return
 	
+	if not LeaderboardService.is_supported():
+		return
+	
 	_last_update_leaderboard = leaderboard
 	_last_update_page = page
 	_last_update_page_size = page_size

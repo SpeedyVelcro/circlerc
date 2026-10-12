@@ -191,7 +191,8 @@ func _on_ui_controller_started_loading() -> void:
 
 # Signal connection
 func _on_ui_controller_scores_hidden() -> void:
-	_state = State.HIDDEN
+	if _state != State.UNSUPPORTED:
+		_state = State.HIDDEN
 
 
 # Signal connection
