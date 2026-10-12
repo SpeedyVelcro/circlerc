@@ -179,6 +179,17 @@ extends VBoxContainer
 	get:
 		return secret_achievement_icon
 
+## Extra space between achievement icons and their adjacent elements.
+@export var icon_padding: int = 16:
+	set(value):
+		if value == icon_padding:
+			return
+		icon_padding = value
+		for node in _achievement_nodes:
+			node.icon_padding = value
+	get:
+		return icon_padding
+
 @export_category("Details")
 ## Text to display in place of the achievement name when [member Achievement.secret_name]
 ## is true.

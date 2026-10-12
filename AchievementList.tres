@@ -95,7 +95,7 @@ metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 [sub_resource type="Resource" id="Resource_dar0t"]
 script = ExtResource("1_efj3i")
 achievement_id = "flag-crash"
-name = "Oh for Crying Out Loud"
+name = "@#$~!!"
 description = "While the finish flag is hoisted, lose a level by crashing into the flag."
 icon = ExtResource("10_451v0")
 game_jolt_id = null

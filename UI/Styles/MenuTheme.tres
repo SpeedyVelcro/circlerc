@@ -37,12 +37,67 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jmdn"]
+bg_color = Color(0, 0, 0, 0.298039)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44p5x"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 0.262745)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6slx4"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.29803923)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uauh5"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 0.262745)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnpuq"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.29803923)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+
 [sub_resource type="StyleBoxFlat" id="5"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 0.823529)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n4y2n"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ooua1"]
+bg_color = Color(0.49747366, 0.49747372, 0.49747354, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="6"]
 bg_color = Color(0, 0, 0, 0.298039)
@@ -66,8 +121,15 @@ Button/styles/focus = null
 Button/styles/hover = SubResource("2")
 Button/styles/normal = SubResource("3")
 Button/styles/pressed = SubResource("4")
+FoldableContainer/styles/panel = SubResource("StyleBoxFlat_5jmdn")
+FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat_44p5x")
+FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxFlat_6slx4")
+FoldableContainer/styles/title_hover_panel = SubResource("StyleBoxFlat_uauh5")
+FoldableContainer/styles/title_panel = SubResource("StyleBoxFlat_bnpuq")
 Panel/styles/panel = SubResource("5")
 PanelContainer/styles/panel = SubResource("5")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_n4y2n")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ooua1")
 TextEdit/colors/background_color = Color(0, 0, 0, 0)
 TextEdit/colors/bookmark_color = Color(0.08, 0.49, 0.98, 1)
 TextEdit/colors/brace_mismatch_color = Color(1, 0.2, 0.2, 1)

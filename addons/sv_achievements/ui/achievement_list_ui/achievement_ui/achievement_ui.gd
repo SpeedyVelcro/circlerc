@@ -144,6 +144,14 @@ extends MarginContainer
 	get:
 		return secret_achievement_icon
 
+## Extra space between icon and adjacent elements.
+@export var icon_padding: int = 16:
+	set(value):
+		icon_padding = value
+		_update_icon_padding()
+	get:
+		return icon_padding
+
 @export_category("Details")
 ## Text to display in place of the achievement name when [member Achievement.secret_name]
 ## is true.
@@ -219,7 +227,8 @@ extends MarginContainer
 		return objective_list_indent_size
 
 @onready var _icon_texture_rect: TextureRect = $VBoxContainer/HBoxContainer/VBoxContainer/IconTextureRect
-@onready var _icon_spacer: Control = $VBoxContainer/IconSpacerReferenceRect
+@onready var _icon_spacer: Control = $VBoxContainer/HBoxContainer/VBoxContainer/IconSpacerReferenceRect
+@onready var _icon_horizontal_hbox_container: HBoxContainer = $VBoxContainer/HBoxContainer
 @onready var _icon_border_panel: Panel = $VBoxContainer/HBoxContainer/VBoxContainer/IconTextureRect/IconBorderPanel
 @onready var _name_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/NameLabel
 @onready var _description_label: Label = $VBoxContainer/HBoxContainer/VBoxContainer2/DescriptionLabel
@@ -242,6 +251,7 @@ func _ready() -> void:
 	
 	_update_name_label_settings()
 	_update_icon_size_override()
+	_update_icon_padding()
 	_update_sync_button_minimum_size()
 	
 	_display_achievement()
@@ -335,6 +345,14 @@ func _update_icon_size_override() -> void:
 	else:
 		_icon_texture_rect.custom_minimum_size = icon_size_override
 		_icon_texture_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+
+
+func _update_icon_padding() -> void:
+	if _icon_spacer == null or _icon_horizontal_hbox_container == null:
+		return # Not until ready
+	
+	_icon_horizontal_hbox_container.custom_minimum_size.y = icon_padding
+	_icon_horizontal_hbox_container.add_theme_constant_override("separation", icon_padding)
 
 
 func _update_details() -> void:

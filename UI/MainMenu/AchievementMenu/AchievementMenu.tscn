@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d20tt23fgbbir" path="res://Art/CircleRC/Achievement/Player.png" id="4_ayuir"]
 
 [node name="AchievementMenu" type="PanelContainer" unique_id=1159673253]
-custom_minimum_size = Vector2(912, 600)
+custom_minimum_size = Vector2(640, 600)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -47,9 +47,12 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 show_separators = true
+achievement_margin_size_override = 8
+icons_size_override = Vector2(50, 50)
 icon_border_stylebox_override = ExtResource("4_51swf")
 default_achievement_icon = ExtResource("4_ayuir")
 secret_achievement_icon = ExtResource("4_ayuir")
+icon_padding = 8
 
 [node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1856616308]
 layout_mode = 2
