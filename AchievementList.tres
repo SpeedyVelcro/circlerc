@@ -24,7 +24,8 @@ name = "Finish Line"
 objective = SubResource("Resource_7fu15")
 description = "Complete all 20 levels."
 icon = ExtResource("2_a6a6i")
-game_jolt_id = null
+newgrounds_id = 93259
+game_jolt_id = 314197
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
@@ -42,7 +43,8 @@ description = "Complete every level without taking any hits."
 icon = ExtResource("6_jwo0a")
 show_objectives = true
 show_progress_bar = false
-game_jolt_id = null
+newgrounds_id = 93260
+game_jolt_id = 314198
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
@@ -60,7 +62,8 @@ description = "Complete every level under par."
 icon = ExtResource("7_vtq4v")
 show_objectives = true
 show_progress_bar = false
-game_jolt_id = null
+newgrounds_id = 93261
+game_jolt_id = 314199
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
@@ -78,7 +81,8 @@ description = "Complete every level under par without taking any hits. For each 
 icon = ExtResource("8_td8n2")
 show_objectives = true
 show_progress_bar = false
-game_jolt_id = null
+newgrounds_id = 93262
+game_jolt_id = 314200
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
@@ -88,7 +92,8 @@ achievement_id = "stationary-crash"
 name = "Can't Park There Mate"
 description = "Have an enemy car crash into your car while you are completely still."
 icon = ExtResource("9_451v0")
-game_jolt_id = null
+newgrounds_id = 93263
+game_jolt_id = 314195
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
@@ -98,7 +103,7 @@ achievement_id = "flag-crash"
 name = "@#$~!!"
 description = "While the finish flag is hoisted, lose a level by crashing into the flag."
 icon = ExtResource("10_451v0")
-game_jolt_id = null
+game_jolt_id = 314196
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
