@@ -41,6 +41,7 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 current_tab = 1
+tab_0/hidden = true
 
 [node name="General" type="ScrollContainer" parent="MarginContainer/VBoxContainer/TabContainer" unique_id=599869640]
 visible = false

@@ -10,9 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://dvhpp058vg8j5" path="res://UI/MainMenu/About/About.tscn" id="8_1dhmk"]
 [ext_resource type="PackedScene" uid="uid://ychv3himwjoo" path="res://UI/MainMenu/LevelSelect/LevelSelect.tscn" id="9_jhcbk"]
 [ext_resource type="PackedScene" uid="uid://cxs2a4gwmr7bk" path="res://UI/MainMenu/AchievementMenu/AchievementMenu.tscn" id="10_32jca"]
+[ext_resource type="PackedScene" uid="uid://rjgppe3bqk43" path="res://UI/Integration/GameJoltMenu/GameJoltMenu.tscn" id="11_eoxer"]
 [ext_resource type="PackedScene" uid="uid://dsip72if3djl1" path="res://UI/MainMenu/SocialMenu/SocialMenu.tscn" id="11_srm2j"]
 
-[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "social_media_root_control", "background_layer", "quit_button", "version_number_label")]
+[node name="MainMenu" type="Control" unique_id=785984497 node_paths=PackedStringArray("start_menu_root_control", "options_menu_root_control", "about_menu_root_control", "level_select_menu_root_control", "achievement_menu_root_control", "social_media_root_control", "game_jolt_menu_root_control", "game_jolt_login_button_root_control", "background_layer", "quit_button", "version_number_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +28,8 @@ about_menu_root_control = NodePath("CenterContainer/AboutMenu")
 level_select_menu_root_control = NodePath("CenterContainer/LevelSelect")
 achievement_menu_root_control = NodePath("CenterContainer/AchievementMenu")
 social_media_root_control = NodePath("SocialMenu")
+game_jolt_menu_root_control = NodePath("CenterContainer/GameJoltMenu")
+game_jolt_login_button_root_control = NodePath("GameJoltLoginButtonMarginContainer")
 background_layer = NodePath("Background")
 quit_button = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/GridContainer/ButtonQuit")
 version_number_label = NodePath("CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VersionNumberLabel")
@@ -198,11 +201,49 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="GameJoltMenu" parent="CenterContainer" unique_id=1110790137 instance=ExtResource("11_eoxer")]
+visible = false
+layout_mode = 2
+attempt_skip = true
+
 [node name="SocialMenu" parent="." unique_id=134727907 instance=ExtResource("11_srm2j")]
 layout_mode = 1
 offset_top = -262.0
 offset_right = 100.0
 offset_bottom = 262.0
+
+[node name="GameJoltLoginButtonMarginContainer" type="MarginContainer" parent="." unique_id=1982869379]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -87.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="GameJoltLoginButtonMarginContainer" unique_id=934890405]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="GameJoltLoginButtonMarginContainer/PanelContainer" unique_id=53769513]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="GameJoltLoginButton" type="Button" parent="GameJoltLoginButtonMarginContainer/PanelContainer/MarginContainer" unique_id=2124662386]
+layout_mode = 2
+text = "Game Jolt Login"
 
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="CenterContainer/StartMenuPanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/ButtonLevelSelect" to="." method="_on_ButtonLevelSelect_pressed"]
@@ -214,3 +255,5 @@ offset_bottom = 262.0
 [connection signal="back" from="CenterContainer/AboutMenu" to="." method="_on_about_menu_back"]
 [connection signal="back" from="CenterContainer/LevelSelect" to="." method="_on_level_select_back"]
 [connection signal="back" from="CenterContainer/AchievementMenu" to="." method="_on_achievement_menu_back"]
+[connection signal="back" from="CenterContainer/GameJoltMenu" to="." method="_on_game_jolt_menu_back"]
+[connection signal="pressed" from="GameJoltLoginButtonMarginContainer/PanelContainer/MarginContainer/GameJoltLoginButton" to="." method="_on_game_jolt_login_button_pressed"]
