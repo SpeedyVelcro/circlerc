@@ -77,6 +77,25 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6dpc"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.61960787)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esg5o"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0, 0, 0, 0.619608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.482353, 0.482353, 0.482353, 1)
+
 [sub_resource type="StyleBoxFlat" id="5"]
 bg_color = Color(0.180392, 0.180392, 0.180392, 0.823529)
 border_width_left = 2
@@ -200,6 +219,8 @@ FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat
 FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxFlat_6slx4")
 FoldableContainer/styles/title_hover_panel = SubResource("StyleBoxFlat_uauh5")
 FoldableContainer/styles/title_panel = SubResource("StyleBoxFlat_bnpuq")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_q6dpc")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_esg5o")
 Panel/styles/panel = SubResource("5")
 PanelContainer/styles/panel = SubResource("5")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_n4y2n")
