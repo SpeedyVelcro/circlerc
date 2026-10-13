@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_aqy8u"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1116452
+newgrounds_id = 16247
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_6lumq"]
@@ -27,6 +28,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_uhbus"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121265
+newgrounds_id = 16321
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_n4y2n"]
@@ -46,6 +48,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_1prdm"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121266
+newgrounds_id = 16322
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_a72pe"]
@@ -65,6 +68,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_6vqqq"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121267
+newgrounds_id = 16323
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_ooua1"]
@@ -84,6 +88,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_d035a"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121268
+newgrounds_id = 16324
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_ujk5d"]
@@ -103,6 +108,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_gy8hj"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121269
+newgrounds_id = 16325
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_gk03p"]
@@ -122,6 +128,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_xgvry"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121270
+newgrounds_id = 16326
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_megyo"]
@@ -141,6 +148,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_7bhrk"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121271
+newgrounds_id = 16327
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_rgskd"]
@@ -160,6 +168,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_3mia4"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121273
+newgrounds_id = 16328
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_qpkem"]
@@ -179,6 +188,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_e66a3"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121273
+newgrounds_id = 16329
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_lygs7"]
@@ -198,6 +208,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_7imhq"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121274
+newgrounds_id = 16330
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_bi63i"]
@@ -217,6 +228,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_at6jv"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121275
+newgrounds_id = 16331
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_dvkna"]
@@ -236,6 +248,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_jvkcg"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121276
+newgrounds_id = 16332
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_j06r2"]
@@ -255,6 +268,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_c56ld"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121277
+newgrounds_id = 16333
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_tx3a5"]
@@ -274,6 +288,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_bk4xp"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121278
+newgrounds_id = 16334
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_kypot"]
@@ -293,6 +308,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_fcvvn"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121279
+newgrounds_id = 16335
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_wav6o"]
@@ -312,6 +328,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_8yc1t"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121280
+newgrounds_id = 16336
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_7sul1"]
@@ -331,6 +348,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_p74ud"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121281
+newgrounds_id = 16337
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_b06kj"]
@@ -350,6 +368,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_i8sy2"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121282
+newgrounds_id = 16338
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_skb8u"]
@@ -369,6 +388,7 @@ metadata/_custom_type_script = "uid://5w5n248yhyuq"
 [sub_resource type="Resource" id="Resource_bynoi"]
 script = ExtResource("2_3hrnn")
 game_jolt_id = 1121283
+newgrounds_id = 16339
 metadata/_custom_type_script = "uid://ccm1kmdnyfyv3"
 
 [sub_resource type="Resource" id="Resource_7fabp"]
