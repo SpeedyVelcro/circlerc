@@ -306,7 +306,7 @@ metadata/_custom_type_script = "uid://uiyqfikms2rp"
 [sub_resource type="Resource" id="Resource_xthgb"]
 script = ExtResource("1_q8xt6")
 scene_path = "uid://f4ln5sgvsswb"
-caption = "Take a Chance"
+caption = "Take a chance"
 par = SubResource("Resource_7sul1")
 leaderboard = SubResource("Resource_8yc1t")
 metadata/_custom_type_script = "uid://5w5n248yhyuq"
