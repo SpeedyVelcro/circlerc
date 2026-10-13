@@ -103,6 +103,7 @@ achievement_id = "flag-crash"
 name = "@#$~!!"
 description = "While the finish flag is hoisted, lose a level by crashing into the flag."
 icon = ExtResource("10_451v0")
+newgrounds_id = 93264
 game_jolt_id = 314196
 custom_api_info = null
 metadata/_custom_type_script = "uid://bfkrw11bj6wk"
