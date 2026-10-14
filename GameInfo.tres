@@ -22,18 +22,39 @@ metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [sub_resource type="Resource" id="Resource_dhlam"]
 script = ExtResource("3_ebyvh")
-title = "Motor, Small, Fast, Front, 04-01, LOOP.wav"
-description = "by InspectorJ (www.jshaw.co.uk) of Freesound.org
+title = "Motor sound effect"
+description = "\"Motor, Small, Fast, Front, 04-01, LOOP.wav\"
+by InspectorJ (www.jshaw.co.uk) of Freesound.org
 Licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
 Pitch-shifted in-engine"
 metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [sub_resource type="Resource" id="Resource_ebyvh"]
 script = ExtResource("3_ebyvh")
-title = "Plunger pop 02"
-description = "by Quistard (https://freesound.org/people/Quistard/)
+title = "Pip collection sound effect"
+description = "\"Plunger pop 02\"
+by Quistard (https://freesound.org/people/Quistard/)
 Licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
-Modified by SpeedyVelcro (Sped up and EQ). Modified version is distributed under the same license."
+Modified by SpeedyVelcro (Sped up and EQ).
+Changes licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_8l8aj"]
+script = ExtResource("3_ebyvh")
+title = "Party noise maker sound effect"
+description = "\"Party noise maker _ soundstack.wav new yeears eve, party, horn, party favor\"
+by soundstack (https://freesound.org/people/soundstack/)
+Licensed under CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+Cropped by SpeedyVelcro
+Changes licensed under CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
+metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
+
+[sub_resource type="Resource" id="Resource_wrbgn"]
+script = ExtResource("3_ebyvh")
+title = "Confetti cannon sound effect"
+description = "\"Balloon Pop / Christmas cracker / Confetti Cannon\"
+by Breviceps (https://freesound.org/people/Breviceps/)
+Licensed under CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)"
 metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [sub_resource type="Resource" id="Resource_4j3j2"]
@@ -51,7 +72,7 @@ metadata/_custom_type_script = "uid://bjgnxatvg3ldr"
 
 [sub_resource type="Resource" id="Resource_lfsme"]
 script = ExtResource("1_qesmc")
-entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_4j3j2"), SubResource("Resource_n4y2n")])
+entries = Array[ExtResource("3_kc2ba")]([SubResource("Resource_r1itu"), SubResource("Resource_kc2ba"), SubResource("Resource_dhlam"), SubResource("Resource_ebyvh"), SubResource("Resource_8l8aj"), SubResource("Resource_wrbgn"), SubResource("Resource_4j3j2"), SubResource("Resource_n4y2n")])
 metadata/_custom_type_script = "uid://n7jauopw8y1o"
 
 [sub_resource type="Resource" id="Resource_0ssw7"]
@@ -168,6 +189,8 @@ CircleRC uses third-party audio assets by the following creators:
 
 InspectorJ (www.jshaw.co.uk)
 Quistard (https://freesound.org/people/Quistard/)
+soundstack (https://freesound.org/people/soundstack/)
+Breviceps (https://freesound.org/people/Breviceps/)
 Kenney (kenney.nl)
 
 Specific audio assets and their license terms are enumerated in the about menu.

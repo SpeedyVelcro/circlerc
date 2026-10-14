@@ -47,7 +47,7 @@ func _on_FinishTimer_timeout():
 func next_level():
 	if _current_level >= level_list.get_number_of_levels():
 		# Final level so back to main menu
-		SceneTransition.fade("res://UI/MainMenu/MainMenu.tscn")
+		SceneTransition.fade("res://UI/EndCredits/EndCredits.tscn")
 	else:
 		# Go to next level
 		var next = level_list.get_level_scene_path(_current_level + 1)

@@ -1,0 +1,230 @@
+[gd_scene format=3 uid="uid://dyjwm3pch638s"]
+
+[ext_resource type="Theme" uid="uid://hdo6d6hesu2r" path="res://UI/Styles/MenuTheme.tres" id="1_g4lwj"]
+[ext_resource type="Texture2D" uid="uid://drufmlska5wad" path="res://Art/CircleRC/Tile/Back/Wood/BackWood.png" id="2_8l8aj"]
+[ext_resource type="Script" uid="uid://fkoo6qx5t6d0" path="res://UI/EndCredits/EndCredits.gd" id="2_wrbgn"]
+[ext_resource type="LabelSettings" uid="uid://md5x4l5fmt06" path="res://Font/PressStart2P/PressStart2PTitleLabelSettings.tres" id="3_wrbgn"]
+[ext_resource type="Theme" uid="uid://5fushkbkdcco" path="res://UI/Styles/MenuGrooveTheme.tres" id="4_fni3a"]
+[ext_resource type="AudioStream" uid="uid://blw60q3l6dnnx" path="res://Sound/Celebration/PartyNoiseMaker.wav" id="6_fni3a"]
+[ext_resource type="AudioStream" uid="uid://dd7t6vmnr7rr7" path="res://Sound/Celebration/ConfettiCannon.wav" id="7_6kqyj"]
+
+[sub_resource type="Curve" id="Curve_g4lwj"]
+_data = [Vector2(0, 0.67140317), 0.0, 0.0, 0, 0, Vector2(0.99999994, 0.99999994), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_318ov"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.47424507), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_masq0"]
+_data = [Vector2(0, 0.49911183), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yfss4"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="EndCredits" type="Control" unique_id=628255088 node_paths=PackedStringArray("left_particles", "right_particles", "credits_label", "confetti_cannon_audio_stream_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_g4lwj")
+script = ExtResource("2_wrbgn")
+left_particles = NodePath("Control/CPUParticles2D")
+right_particles = NodePath("Control2/CPUParticles2D2")
+credits_label = NodePath("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Control/RichTextLabel")
+confetti_cannon_audio_stream_player = NodePath("ConfettiCannonAudioStreamPlayer")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=8998637]
+layer = -128
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1579083470]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1185491692]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1280.0
+offset_top = -1280.0
+offset_right = 1280.0
+offset_bottom = 1280.0
+texture = ExtResource("2_8l8aj")
+stretch_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=804638934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1156722724]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=380728483]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=6959451]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1989571964]
+layout_mode = 2
+text = "Congratulations!"
+label_settings = ExtResource("3_wrbgn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1335445347]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1018791270]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1947459085]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "You have beaten the game!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=57372423]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Now go for a high score."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1069926987]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "If you're looking for a further challenge, check out the achievements menu...
+Try to get them all!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1851053226]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_fni3a")
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer" unique_id=1688927203]
+propagate_maximum_size = true
+clip_contents = true
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/Control" unique_id=1189881790]
+clip_contents = false
+layout_mode = 0
+offset_right = 364.0
+offset_bottom = 396.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 400)
+bbcode_enabled = true
+text = "Failed to load credits. Please report this to the developer. As a backup, you can read the credits from the about menu."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="MenuButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=315354193]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Menu"
+
+[node name="Control" type="Control" parent="." unique_id=1667451429]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Control" unique_id=1581379056]
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.95
+direction = Vector2(0.25, -1)
+spread = 15.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1300.0
+angular_velocity_min = -560.0
+angular_velocity_max = 503.42
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_g4lwj")
+split_scale = true
+scale_curve_x = SubResource("Curve_318ov")
+scale_curve_y = SubResource("Curve_masq0")
+color = Color(1, 0.13999999, 0.13999999, 1)
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_yfss4")
+
+[node name="Control2" type="Control" parent="." unique_id=542422826]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Control2" unique_id=544009004]
+emitting = false
+amount = 64
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.95
+direction = Vector2(-0.25, -1)
+spread = 15.0
+initial_velocity_min = 800.0
+initial_velocity_max = 1300.0
+angular_velocity_min = -560.0
+angular_velocity_max = 503.42
+scale_amount_min = 6.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_g4lwj")
+split_scale = true
+scale_curve_x = SubResource("Curve_318ov")
+scale_curve_y = SubResource("Curve_masq0")
+color = Color(1, 0.13999999, 0.13999999, 1)
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_yfss4")
+
+[node name="ParticlesDelayTimer" type="Timer" parent="." unique_id=635732509]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="CreditsDelayTimer" type="Timer" parent="." unique_id=564299249]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="PartyNoiseMakerAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=604485280]
+stream = ExtResource("6_fni3a")
+autoplay = true
+bus = &"Effects"
+
+[node name="ConfettiCannonAudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1872807362]
+stream = ExtResource("7_6kqyj")
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="timeout" from="ParticlesDelayTimer" to="." method="_on_particles_delay_timer_timeout"]
+[connection signal="timeout" from="CreditsDelayTimer" to="." method="_on_credits_delay_timer_timeout"]
