@@ -56,7 +56,7 @@ enabled=PackedStringArray("res://addons/gamejolt/plugin.cfg", "res://addons/newg
 
 [game_jolt]
 
-config/global/game_id=""
+config/global/game_id="1102290"
 config/global/private_key=""
 config/debug/enabled=false
 config/debug/user_name=""
