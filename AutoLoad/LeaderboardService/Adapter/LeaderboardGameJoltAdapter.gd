@@ -92,7 +92,7 @@ func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: 
 				(res_score["user_id"] is int or \
 				res_score["user_id"] is float or \
 				res_score["user_id"] is String):
-			leaderboard_score.user.id = int(res_score["user_id"])
+			leaderboard_score.user.user_id = int(res_score["user_id"])
 		
 		if res_score.has("guest") and \
 				res_score["guest"] is String and \
@@ -104,7 +104,7 @@ func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: 
 	
 	var scores: Array[LeaderboardScore] = []
 	
-	for i in range(res["scores"]):
+	for i in range(res["scores"].size()):
 		scores.append(translate_score.call(res["scores"][i], i + 1))
 	
 	if from_rank > scores.size():

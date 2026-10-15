@@ -8,7 +8,7 @@ extends LeaderboardUser
 @export var username: String = ""
 
 ## The user ID (only used if not a guest)
-@export var user_id: String = ""
+@export var user_id: int = -1
 
 ## The guest's submitted name (Only used if this is a guest)
 @export var guest_name: String = ""
@@ -34,7 +34,7 @@ func is_same_user(user: LeaderboardUser) -> bool:
 	# by the auth endpoint either. Doing this would be complicated and the username
 	# appears to be unique anyway (frankly I'm not even sure why the user ID
 	# exists) so we only check on user IDs if we have them both.
-	if user_id.is_empty() or user.user_id.is_empty():
+	if user_id < 0 or user.user_id < 0:
 		return username == user.username
 	else:
 		return user_id == user.user_id
