@@ -59,6 +59,8 @@ func get_scores(leaderboard: LeaderboardReference, from_rank: int = 1, to_rank: 
 		score.user = user
 		score.score = untranslated_score.value
 		score.rank = from_rank + skip + i
+		
+		translated.append(score)
 	
 	return translated
 
