@@ -27,7 +27,7 @@ func submit_score(leaderboard: LeaderboardReference, score: int, _formatted_scor
 		push_error("Failed to get rank of score %d from Game Jolt. Message: %s" % [score, _get_response_message(get_rank_res)])
 		rank_error = true
 	
-	if not get_rank_res.has["rank"]:
+	if not get_rank_res.has("rank"):
 		push_error("Response from Game Jolt is missing rank.")
 		rank_error = true
 	

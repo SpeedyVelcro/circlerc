@@ -74,8 +74,8 @@ signal reached_middle_page
 ## properties in order to avoid spamming HTTP requests (and possibly causing a
 ## race condition). Instead, you can set multiple properties and then call this
 ## method once you're done.
-func update() -> void:
-	if not has_pending_changes():
+func update(force := true) -> void:
+	if (not has_pending_changes()) and (not force):
 		return
 	
 	if not LeaderboardService.is_supported():
@@ -151,7 +151,8 @@ func submit_score() -> void:
 	if res.success:
 		submit_succeeded.emit()
 		await get_tree().create_timer(0.5).timeout # Certain backends (like the Game Jolt backend) seem to need a moment to update.
-		update() # So the player's score appears on the leaderboard.
+		const FORCE := true
+		update(FORCE) # So the player's score appears on the leaderboard.
 	else:
 		submit_failed.emit()
 	
