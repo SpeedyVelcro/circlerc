@@ -1,6 +1,12 @@
 extends VBoxContainer
 
-@export var ui_controller: LeaderboardUIController
+@export var ui_controller: LeaderboardUIController:
+	set(value):
+		_disconnect_signals()
+		ui_controller = value
+		_connect_signals()
+	get:
+		return ui_controller
 
 @onready var _submit_button: Button = $SubmitButton
 @onready var _status_failed_label: Label = $StatusFailedLabel
@@ -150,3 +156,8 @@ func _on_submit_button_pressed() -> void:
 		return
 	
 	ui_controller.submit_score()
+
+
+# Override
+func _exit_tree() -> void:
+	_disconnect_signals()
