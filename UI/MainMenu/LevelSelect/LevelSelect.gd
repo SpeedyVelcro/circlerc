@@ -33,10 +33,10 @@ func _ready():
 		lb.connect("pressed", Callable(self, "_on_ButtonLevel_pressed").bind(i + 1))
 		if not Profile.is_level_unlocked(i + 1):
 			lb.set_disabled(true)
-		if i == 0:
-			lb.set_pressed(true)
-			# Doing it in code doesn't emit the signal so we do that ourselves:
-			lb.emit_signal("pressed")
+		#if i == 0:
+		#	lb.set_pressed(true)
+		#	# Doing it in code doesn't emit the signal so we do that ourselves:
+		#	lb.emit_signal("pressed")
 
 
 func _set_par_check(value: bool) -> void:
@@ -76,3 +76,11 @@ func _on_ButtonBack_pressed():
 # Signal connection
 func _on_ButtonPlay_pressed():
 	SceneTransition.fade(level_list.get_level_scene_path(selected_level), 0.2, 1.0)
+
+
+func _on_visibility_changed() -> void:
+	if not visible:
+		return
+	
+	level_button_container.get_child(0).set_pressed(true)
+	level_button_container.get_child(0).emit_signal("pressed")

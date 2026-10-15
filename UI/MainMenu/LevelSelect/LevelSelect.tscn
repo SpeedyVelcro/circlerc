@@ -237,5 +237,6 @@ page_size = 8
 formatter = SubResource("Resource_yfss4")
 metadata/_custom_type_script = "uid://bfl1ayomav64p"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/HBoxContainer/ButtonPlay" to="." method="_on_ButtonPlay_pressed"]
 [connection signal="pressed" from="MarginContainer/VSplitContainer/HBoxContainer2/ButtonBack" to="." method="_on_ButtonBack_pressed"]
