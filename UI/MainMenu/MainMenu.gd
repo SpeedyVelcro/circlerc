@@ -16,6 +16,8 @@ extends Control
 
 var current_tweens: Array[Tween] = []
 
+static var _first_visit := true
+
 
 # Override
 func _ready():
@@ -25,10 +27,15 @@ func _ready():
 	version_number_label.text = VersionNumber.value
 	
 	if OS.has_feature("game_jolt"):
-		start_menu_root_control.visible = false
-		social_media_root_control.visible = false
-		game_jolt_menu_root_control.visible = true
-		background_layer.offset = Vector2(0.0, -512.0)
+		game_jolt_login_button_root_control.visible = true
+		if _first_visit:
+			game_jolt_menu_root_control.visible = true
+			game_jolt_login_button_root_control.visible = false
+			start_menu_root_control.visible = false
+			social_media_root_control.visible = false
+			background_layer.offset = Vector2(0.0, -512.0)
+	
+	_first_visit = false
 
 
 # Signal connection
