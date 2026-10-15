@@ -177,7 +177,7 @@ func _is_success(response: Dictionary) -> bool:
 
 
 func _get_message(response: Dictionary) -> String:
-	return str(response["message"]) if response.has["message"] else ""
+	return str(response["message"]) if response.has("message") else ""
 
 
 func _get_credentials_file_path() -> String:

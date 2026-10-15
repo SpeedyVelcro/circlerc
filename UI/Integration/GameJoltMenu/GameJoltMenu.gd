@@ -12,6 +12,7 @@ extends PanelContainer
 @export var fail_label: Label
 @export var login_fail_animation_player: AnimationPlayer
 @export var continue_button: Button
+@export var login_button: Button
 @export var auto_login_button: Button
 const CONTINUE_BUTTON_TEXT = "Continue"
 const SKIP_BUTTON_TEXT = "Skip"
@@ -26,13 +27,21 @@ func _ready():
 
 
 func _on_LoginButton_pressed():
+	login_button.disabled = true
+	auto_login_button.disabled = true
+	
 	var username = username_line_edit.get_text()
 	var token = token_line_edit.get_text()
 	GameJoltIntegration.login(username, token)
 
 func _on_AutoLoginButton_pressed():
+	login_button.disabled = true
+	auto_login_button.disabled = true
+	
 	if not GameJoltIntegration.login_auto():
 		login_fail_animation_player.play("login_fail")
+		login_button.disabled = false
+		auto_login_button.disabled = false
 
 func _on_LogoutButton_pressed():
 	GameJoltIntegration.logout()
@@ -45,6 +54,8 @@ func _on_GameJoltIntegration_session_open():
 
 func _on_GameJoltIntegration_session_open_fail():
 	login_fail_animation_player.play("login_fail")
+	login_button.disabled = false
+	auto_login_button.disabled = false
 
 func _on_ContinueButton_pressed():
 	go_back()
@@ -66,6 +77,8 @@ func show_login():
 	login_container.set_visible(true)
 	logout_container.set_visible(false)
 	continue_button.set_text(SKIP_BUTTON_TEXT)
+	login_button.disabled = false
+	auto_login_button.disabled = false
 	# UIFocusService.leave_focusable_ui()
 	# UIFocusService.enter_focusable_ui(username_line_edit)
 

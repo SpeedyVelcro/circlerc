@@ -36,7 +36,7 @@ _data = {
 &"login_fail": SubResource("1")
 }
 
-[node name="GameJoltMenu" type="PanelContainer" unique_id=1110790137 node_paths=PackedStringArray("username_line_edit", "token_line_edit", "login_container", "logout_container", "logout_button", "fail_label", "login_fail_animation_player", "continue_button", "auto_login_button")]
+[node name="GameJoltMenu" type="PanelContainer" unique_id=1110790137 node_paths=PackedStringArray("username_line_edit", "token_line_edit", "login_container", "logout_container", "logout_button", "fail_label", "login_fail_animation_player", "continue_button", "login_button", "auto_login_button")]
 custom_minimum_size = Vector2(400, 320)
 offset_left = 440.0
 offset_top = 179.0
@@ -52,6 +52,7 @@ logout_button = NodePath("MarginContainer/VBoxContainer/Logout/LogoutButton")
 fail_label = NodePath("MarginContainer/VBoxContainer/Login/HBoxContainer2/Control/FailLabel")
 login_fail_animation_player = NodePath("MarginContainer/VBoxContainer/Login/HBoxContainer2/Control/LoginFailAnimationPlayer")
 continue_button = NodePath("MarginContainer/VBoxContainer/ContinueButton")
+login_button = NodePath("MarginContainer/VBoxContainer/Login/HBoxContainer2/LoginButton")
 auto_login_button = NodePath("MarginContainer/VBoxContainer/Login/HBoxContainer2/AutoLoginButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=265434628]
