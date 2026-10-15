@@ -150,6 +150,8 @@ func submit_score() -> void:
 	
 	if res.success:
 		submit_succeeded.emit()
+		await get_tree().create_timer(0.5).timeout # Certain backends (like the Game Jolt backend) seem to need a moment to update.
+		update() # So the player's score appears on the leaderboard.
 	else:
 		submit_failed.emit()
 	
