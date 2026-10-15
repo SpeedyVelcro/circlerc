@@ -127,7 +127,7 @@ vram_compression/import_etc=true
 
 general/achievements="uid://cox8oaneu2ygv"
 general/completion_save_file_path="user://achievements.json"
-sync/achievement_api.newgrounds=3
-sync/achievement_api.game_jolt=2
+sync/achievement_api.newgrounds=2
+sync/achievement_api.game_jolt=3
 sync/enable_sync.newgrounds=true
 sync/enable_sync.game_jolt=true
