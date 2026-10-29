@@ -40,6 +40,7 @@ extends IndexedAchievementObjective
 		# the objectives
 		# TODO: This should be replaced with listening to NOTIFICATION_RESOURCE_DESERIALIZED
 		# one it is merged: https://github.com/godotengine/godot/pull/109752
+		# TODO: This breaks if the string is the default string.
 		_exports_have_been_set = true
 		objectives = objectives
 
@@ -52,7 +53,7 @@ func _append_generated_objectives() -> void:
 		return
 	
 	var _starting_level: int = 1 if all_levels else starting_level
-	var _number_of_levels: int = based_on_level_list.get_number_of_levels() if all_levels else starting_level
+	var _number_of_levels: int = based_on_level_list.get_number_of_levels() if all_levels else number_of_levels
 	
 	for n in range(_starting_level, _number_of_levels + 1):
 		var objective = AchievementObjective.new()

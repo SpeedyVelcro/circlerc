@@ -115,13 +115,16 @@ func submit_level_time(level_number : int, time : TimeScore, no_hit: bool) -> vo
 	if new_best or new_par or new_no_hit or new_no_hit_par:
 		save_profile()
 	
+	var finish_10_achievement := AchievementService.get_achievement("finish-10")
 	var finish_all_achievement := AchievementService.get_achievement("finish-all")
 	var no_hit_all_achievement := AchievementService.get_achievement("no-hit-all")
 	var par_all_achievement := AchievementService.get_achievement("par-all")
 	var no_hit_par_all_achievement := AchievementService.get_achievement("no-hit-par-all")
 	
-	if new_best:
-		finish_all_achievement.objective.objectives[level_number - 1].complete()
+	if level_number <= 10:
+		finish_10_achievement.objective.objectives[level_number - 1].complete()
+	
+	finish_all_achievement.objective.objectives[level_number - 1].complete()
 	
 	if new_no_hit:
 		no_hit_all_achievement.objective.objectives[level_number - 1].complete()
@@ -132,8 +135,7 @@ func submit_level_time(level_number : int, time : TimeScore, no_hit: bool) -> vo
 	if new_no_hit_par:
 		no_hit_par_all_achievement.objective.objectives[level_number - 1].complete()
 	
-	if new_best or new_par or new_no_hit or new_no_hit_par:
-		AchievementService.save_progress()
+	AchievementService.save_progress()
 
 
 # Getters and setters

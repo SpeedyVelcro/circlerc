@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bfkrw11bj6wk" path="res://addons/sv_achievements/data/achievement/achievement.gd" id="1_efj3i"]
 [ext_resource type="Texture2D" uid="uid://jbjbph6oq6gk" path="res://Art/CircleRC/Achievement/Finish.png" id="2_a6a6i"]
 [ext_resource type="Script" uid="uid://dux30a2ax0nyt" path="res://addons/sv_achievements/data/achievement_list/achievement_list.gd" id="2_exhbu"]
+[ext_resource type="Texture2D" uid="uid://bbt840rb5mgxd" path="res://Art/CircleRC/Achievement/achievement-10.png" id="2_x0rao"]
 [ext_resource type="Resource" uid="uid://bqe0t2gl7yun1" path="res://Level/LevelList.tres" id="3_p68im"]
 [ext_resource type="Script" uid="uid://ce7vq51letive" path="res://addons/sv_achievements/data/achievement_objective/achievement_objective.gd" id="4_jwo0a"]
 [ext_resource type="Script" uid="uid://km8twd04m88y" path="res://Data/LevelsAchievementObjective.gd" id="5_a6a6i"]
@@ -11,6 +12,25 @@
 [ext_resource type="Texture2D" uid="uid://dq6ntd4su1nv7" path="res://Art/CircleRC/Achievement/PlayerGold.png" id="8_td8n2"]
 [ext_resource type="Texture2D" uid="uid://dykk57wpls032" path="res://Art/CircleRC/Achievement/CarCrash.png" id="9_451v0"]
 [ext_resource type="Texture2D" uid="uid://dqi3qroirjrom" path="res://Art/CircleRC/Achievement/FlagCrash.png" id="10_451v0"]
+
+[sub_resource type="Resource" id="Resource_ujk5d"]
+script = ExtResource("5_a6a6i")
+all_levels = false
+number_of_levels = 10
+description_format_string = "Complete level %d."
+metadata/_custom_type_script = "uid://km8twd04m88y"
+
+[sub_resource type="Resource" id="Resource_n4y2n"]
+script = ExtResource("1_efj3i")
+achievement_id = "finish-10"
+name = "Semicircle"
+objective = SubResource("Resource_ujk5d")
+description = "Complete 10 levels."
+icon = ExtResource("2_x0rao")
+newgrounds_id = 93941
+game_jolt_id = 315364
+custom_api_info = null
+metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
 [sub_resource type="Resource" id="Resource_7fu15"]
 script = ExtResource("5_a6a6i")
@@ -110,5 +130,5 @@ metadata/_custom_type_script = "uid://bfkrw11bj6wk"
 
 [resource]
 script = ExtResource("2_exhbu")
-achievements = Array[ExtResource("1_efj3i")]([SubResource("Resource_7p0me"), SubResource("Resource_p68im"), SubResource("Resource_vtq4v"), SubResource("Resource_fibhw"), SubResource("Resource_x0rao"), SubResource("Resource_dar0t")])
+achievements = Array[ExtResource("1_efj3i")]([SubResource("Resource_n4y2n"), SubResource("Resource_7p0me"), SubResource("Resource_p68im"), SubResource("Resource_vtq4v"), SubResource("Resource_fibhw"), SubResource("Resource_x0rao"), SubResource("Resource_dar0t")])
 metadata/_custom_type_script = "uid://dux30a2ax0nyt"
