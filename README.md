@@ -27,10 +27,10 @@ The following directories have different licenses:
 These directories (or their subdirectories) have their own LICENSE.txt file which
 specifies the license of the files therein.
 
-Also note that the directory `Art/Icons` contains third-party brand icons. These are
+Also note that the directories `Art/Icons` and `Art/Platform` contains third-party brand icons. These are
 the property of their respective owners, who likely have their own terms for
-usage. They are used here in a descriptive capacity for linking social media
-pages and websites.
+usage. They are used here in a descriptive capacity for linking or directing to social media
+pages, platforms, and websites.
 
 ## Release Process
 The pipeline will automatically create releases and tags when you push

@@ -50,6 +50,11 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/video_quality=0.9
+movie_writer/movie_file="/home/speedyvelcro/source/circlerc/output.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gamejolt/plugin.cfg", "res://addons/newgrounds/plugin.cfg", "res://addons/sv_achievements/plugin.cfg", "res://addons/sv_options_menu/plugin.cfg")
