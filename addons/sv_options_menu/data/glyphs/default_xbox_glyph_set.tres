@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GlyphSet" format=3 uid="uid://cnj58unshmq2a"]
+
+[ext_resource type="Texture2D" uid="uid://bobmpvo4fq86h" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_a.svg" id="1_yurx0"]
+[ext_resource type="Script" uid="uid://d24m0rxnwejj4" path="res://addons/sv_options_menu/data/glyphs/glyph_set.gd" id="1_ywpc3"]
+[ext_resource type="Texture2D" uid="uid://bhg2jt21i4r1w" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_b.svg" id="2_bli0v"]
+[ext_resource type="Texture2D" uid="uid://dv56v886gmc4e" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_x.svg" id="3_jeogw"]
+[ext_resource type="Texture2D" uid="uid://cyx1jl5vidiud" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_y.svg" id="4_hk5ya"]
+
+[resource]
+script = ExtResource("1_ywpc3")
+joy_button_a_glyph = ExtResource("1_yurx0")
+joy_button_b_glyph = ExtResource("2_bli0v")
+joy_button_x_glyph = ExtResource("3_jeogw")
+joy_button_y_glyph = ExtResource("4_hk5ya")
+metadata/_custom_type_script = "uid://d24m0rxnwejj4"

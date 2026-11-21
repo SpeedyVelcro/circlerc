@@ -41,6 +41,7 @@ NGCloudSave="*uid://b7g1k2gu4cpve"
 LeaderboardService="*uid://bxtsltpogacbp"
 GameJoltIntegration="*uid://cjdxuubn1ftat"
 OnStart="*uid://8r0ccj4kti1"
+GlyphProvider="*uid://bm7a1cqpsve0e"
 
 [display]
 

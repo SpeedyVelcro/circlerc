@@ -4,6 +4,7 @@ extends VBoxContainer
 ## UI for editing all events in [InputMap] that have been declared editable in
 ## [property OptionsConfig.editable_input_actions]
 
+@export_group("Icon Buttons")
 ## Icon used for the delete button for bindings. Passed down the tree recursively
 ## to the children that need it.
 @export var delete_icon: Texture2D:
@@ -20,8 +21,28 @@ extends VBoxContainer
 		add_icon = value
 		for action_editor in _get_action_editors():
 			action_editor.add_icon = value
+	get:
+		return add_icon
+## [member Control.custom_minimum_size] for icon buttons such as the add and
+## delete buttons.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px") var icon_button_custom_minimum_size = Vector2(32.0, 32.0):
+	set(value):
+		icon_button_custom_minimum_size = value
+		for action_editor in _get_action_editors():
+			action_editor.icon_button_custom_minimum_size = value
+	get:
+		return icon_button_custom_minimum_size
+## [member Control.expand_icon] for icon buttons such as the add and delete
+## buttons.
+@export var icon_button_expand_icon := true:
+	set(value):
+		icon_button_expand_icon = value
+		for action_editor in _get_action_editors():
+			action_editor.icon_button_expand_icon = value
+	get:
+		return icon_button_expand_icon
 
-var _action_editor_scene = preload("res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/action_editor.tscn") 
+var _action_editor_scene = preload("res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/action_editor.tscn")
 
 
 # Override
@@ -48,6 +69,8 @@ func _populate_action_editors():
 		_action_editor.action = action
 		_action_editor.delete_icon = delete_icon
 		_action_editor.add_icon = add_icon
+		_action_editor.icon_button_custom_minimum_size = icon_button_custom_minimum_size
+		_action_editor.icon_button_expand_icon = icon_button_expand_icon
 		add_child(_action_editor)
 		
 		i += 1

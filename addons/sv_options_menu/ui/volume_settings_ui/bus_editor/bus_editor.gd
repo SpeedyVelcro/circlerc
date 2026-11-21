@@ -6,16 +6,46 @@ extends HBoxContainer
 
 ## Audio bus this user interface controls
 @export var bus: AudioBusReference
+
+@export_group("Mute Button")
 ## Icon displayed by the mute button when sound is on
-@export var mute_button_icon_unmuted: Texture2D
+@export var mute_button_icon_unmuted: Texture2D:
+	set(value):
+		mute_button_icon_unmuted = value
+		if _mute_button != null:
+			_set_mute_button_texture(_get_bus_mute_status())
+	get:
+		return mute_button_icon_unmuted
 ## Icon displayed by the mute button when muted
-@export var mute_button_icon_muted: Texture2D
+@export var mute_button_icon_muted: Texture2D:
+	set(value):
+		mute_button_icon_muted = value
+		if _mute_button != null:
+			_set_mute_button_texture(_get_bus_mute_status())
+	get:
+		return mute_button_icon_muted
+## [member Control.custom_minimum_size] for the mute button.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px") var mute_button_custom_minimum_size := Vector2(24.0, 24.0):
+	set(value):
+		mute_button_custom_minimum_size = value
+		if _mute_button != null:
+			_mute_button.custom_minimum_size = value
+	get:
+		return mute_button_custom_minimum_size
+## [member Control.expand_icon] for the mute button.
+@export var mute_button_expand_icon := true:
+	set(value):
+		mute_button_expand_icon = value
+		if _mute_button != null:
+			_mute_button.expand_icon = value
+	get:
+		return mute_button_expand_icon
 
 var _level: int:
-	get:
-		return round(_volume_slider.value)
 	set(value):
 		_volume_slider.set_value_no_signal(value)
+	get:
+		return round(_volume_slider.value)
 @onready var _mute_button: Button = $MuteButton
 @onready var _level_label: Label = $LevelLabel
 @onready var _volume_slider: Slider = $VolumeSlider
@@ -42,6 +72,8 @@ func _ready() -> void:
 	
 	_mute_button.set_pressed_no_signal(mute_status)
 	_set_mute_button_texture(mute_status)
+	_mute_button.custom_minimum_size = mute_button_custom_minimum_size
+	_mute_button.expand_icon = mute_button_expand_icon
 
 
 func _get_bus_volume_percent() -> int:

@@ -19,6 +19,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 toggle_mode = true
 icon = ExtResource("2_jipr7")
+icon_alignment = 1
 expand_icon = true
 
 [node name="VolumeSlider" type="HSlider" parent="." unique_id=1901329702]

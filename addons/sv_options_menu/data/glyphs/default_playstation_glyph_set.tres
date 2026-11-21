@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GlyphSet" format=3 uid="uid://b7o7t4f2b1g18"]
+
+[ext_resource type="Script" uid="uid://d24m0rxnwejj4" path="res://addons/sv_options_menu/data/glyphs/glyph_set.gd" id="1_k62a4"]
+[ext_resource type="Texture2D" uid="uid://dngd6lm1k5245" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_cross.svg" id="1_vfdx8"]
+[ext_resource type="Texture2D" uid="uid://bl6m4cka3bi33" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_circle.svg" id="2_h4nj8"]
+[ext_resource type="Texture2D" uid="uid://caxxexjyo7osm" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_square.svg" id="3_1uoj8"]
+[ext_resource type="Texture2D" uid="uid://b7mkohx5krymu" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_triangle.svg" id="4_ocv76"]
+
+[resource]
+script = ExtResource("1_k62a4")
+joy_button_a_glyph = ExtResource("1_vfdx8")
+joy_button_b_glyph = ExtResource("2_h4nj8")
+joy_button_x_glyph = ExtResource("3_1uoj8")
+joy_button_y_glyph = ExtResource("4_ocv76")
+metadata/_custom_type_script = "uid://d24m0rxnwejj4"

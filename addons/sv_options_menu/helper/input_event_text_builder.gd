@@ -55,7 +55,6 @@ static func _build_joypad_button_text(input_event: InputEventJoypadButton) -> St
 	return "Controller Button %d" % input_event.button_index # Fallback, just prints the button number
 
 static func _build_joypad_motion_text(input_event: InputEventJoypadMotion) -> String:
-	# TODO: Change depending on plugged in controller
 	match input_event.axis:
 		JOY_AXIS_LEFT_X:
 			if input_event.axis_value < 0.0:

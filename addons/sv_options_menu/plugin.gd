@@ -13,6 +13,8 @@ const OPTIONS_LIFECYCLE_AUTOLOAD_NAME = "OptionsLifecycle"
 const OPTIONS_SAVER_AUTOLOAD_NAME = "OptionsSaver"
 ## Name of the UIScaleLimiter autoload
 const UI_SCALE_LIMITER_AUTOLOAD_NAME = "UIScaleLimiter"
+## Name of GlyphProvider autoload
+const GLYPH_PROVIDER_AUTOLOAD_NAME = "GlyphProvider"
 
 # Override
 func _enter_tree():
@@ -23,6 +25,7 @@ func _enter_tree():
 	add_autoload_singleton(OPTIONS_LIFECYCLE_AUTOLOAD_NAME, "res://addons/sv_options_menu/autoload/options_lifecycle.gd")
 	add_autoload_singleton(OPTIONS_SAVER_AUTOLOAD_NAME, "res://addons/sv_options_menu/autoload/options_saver.gd")
 	add_autoload_singleton(UI_SCALE_LIMITER_AUTOLOAD_NAME, "res://addons/sv_options_menu/autoload/ui_scale_limiter.gd")
+	add_autoload_singleton(GLYPH_PROVIDER_AUTOLOAD_NAME, "res://addons/sv_options_menu/autoload/glyph_provider.gd")
 	
 	if not FileAccess.file_exists(OptionsConstants.OPTIONS_CONFIG_PATH):
 		var config := OptionsConfig.new()
@@ -37,5 +40,6 @@ func _exit_tree():
 	remove_autoload_singleton(OPTIONS_LIFECYCLE_AUTOLOAD_NAME)
 	remove_autoload_singleton(OPTIONS_SAVER_AUTOLOAD_NAME)
 	remove_autoload_singleton(UI_SCALE_LIMITER_AUTOLOAD_NAME)
+	remove_autoload_singleton(GLYPH_PROVIDER_AUTOLOAD_NAME)
 	
 	# We do not delete the OptionsConfig as that could lead to accidental data loss.

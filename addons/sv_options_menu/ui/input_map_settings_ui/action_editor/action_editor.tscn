@@ -29,6 +29,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = ExtResource("3_cjaaw")
+icon_alignment = 1
 expand_icon = true
 
 [connection signal="pressed" from="HFlowContainer/AddButton" to="." method="_on_add_button_pressed"]

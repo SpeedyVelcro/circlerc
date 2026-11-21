@@ -40,7 +40,7 @@ static func translate_action_to_options(action: String, locks: InputEventLocks =
 	var event_dictionaries: Array = []
 	var input_map_events := InputMap.action_get_events(action)
 	for input_map_event: InputEvent in input_map_events:
-		if locks.locked_events.any(func (e): return _input_events_match(input_map_event, e)):
+		if locks.locked_events.any(func (e): return InputEventHelper.is_same_binding(input_map_event, e)):
 			continue # Locked input events are always the same so don't need to be saved
 		
 		var dict = translate_input_event_to_options(input_map_event)
@@ -106,7 +106,7 @@ static func translate_options_to_action(options: Array, action: String, locks: I
 	# Clear existing events
 	var existing_events := InputMap.action_get_events(action)
 	for existing_event in existing_events:
-		if not locks.locked_events.any(func (e): return _input_events_match(existing_event, e)):
+		if not locks.locked_events.any(func (e): return InputEventHelper.is_same_binding(existing_event, e)):
 			InputMap.action_erase_event(action, existing_event)
 	
 	# Populate with new configurations
@@ -118,14 +118,14 @@ static func translate_options_to_action(options: Array, action: String, locks: I
 		if input_event == null:
 			push_error("Failed to deserialize an input event for action \"%s\"." % action)
 			continue
-		if locks.locked_events.any(func (e): return _input_events_match(input_event, e)):
+		if locks.locked_events.any(func (e): return InputEventHelper.is_same_binding(input_event, e)):
 			push_error("Options for action \"%s\" contains a locked input event. Skipping adding this to the input map." % action)
 			continue
 		InputMap.action_add_event(action, input_event)
 
 
 ## Translate a dictionary in options-form into an [InputEvent]. Reverse of
-## [method translate_input_event_to_otpions]. Returns null if the dictionary is
+## [method translate_input_event_to_options]. Returns null if the dictionary is
 ## malformed.
 static func translate_options_to_input_event(options: Dictionary) -> InputEvent:
 	if not options.has("type"):
@@ -232,39 +232,3 @@ static func translate_options_to_input_event(options: Dictionary) -> InputEvent:
 			input_event.shift_pressed = options["shift_pressed"]
 	
 	return input_event
-
-
-## Compares two input events, returning true if they are the same according only to properties
-## (and type) that are user-configurable.
-static func _input_events_match(a: InputEvent, b: InputEvent):
-	if a is InputEventKey:
-		if b is not InputEventKey:
-			return false
-		if a.get_keycode_with_modifiers() != a.get_keycode_with_modifiers():
-			return false
-		if a.location != b.location:
-			return false
-		return true
-	
-	if a is InputEventMouseButton:
-		if b is not InputEventMouseButton:
-			return false
-		if a.button_index != b.button_index:
-			return false
-		return true
-	
-	if a is InputEventJoypadButton:
-		if b is not InputEventJoypadButton:
-			return false
-		if a.button_index != b.button_index:
-			return false
-		return true
-	
-	if a is InputEventJoypadMotion:
-		if b is not InputEventJoypadMotion:
-			return false
-		if a.axis != b.axis:
-			return false
-		return true
-	
-	return false

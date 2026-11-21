@@ -1,3 +1,4 @@
+@tool
 class_name OptionsConfig
 extends Resource
 ## Configuration for SV Options Menu
@@ -25,6 +26,24 @@ enum DefaultResolutionHandling {
 	## Use the display size clamped to the maximum resolution, but also maintain
 	## the aspect ratio set by [member force_aspect_ratio]
 	FORCE_ASPECT
+}
+
+## Default window mode on startup. Used for [member default_window_mode]. Offers
+## the same values as [enum DisplayServer.WindowMode], but also provides an
+## option to use the value set in [ProjectSettings] as the default.
+enum DefaultWindowMode {
+	## Uses the window mode set in [ProjectSettings].
+	PROJECT_SETTINGS = -1,
+	## See [enum DisplayServer.WindowMode].
+	WINDOWED = DisplayServer.WINDOW_MODE_WINDOWED,
+	## See [enum DisplayServer.WindowMode].
+	MINIMIZED = DisplayServer.WINDOW_MODE_MINIMIZED,
+	## See [enum DisplayServer.WindowMode].
+	MAXIMIZED = DisplayServer.WINDOW_MODE_MAXIMIZED,
+	## See [enum DisplayServer.WindowMode].
+	FULLSCREEN = DisplayServer.WINDOW_MODE_FULLSCREEN,
+	## See [enum DisplayServer.WindowMode].
+	EXCLUSIVE_FULLSCREEN = DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 }
 
 ## Player-configured options will be saved to and loaded from the json file at
@@ -100,6 +119,13 @@ enum DefaultResolutionHandling {
 ## is [code]true[/code].
 @export var window_mode_option_path: String = "display/window_mode"
 
+## Default setting for window mode if [member manage_window_mode] is true.
+## Primarily useful if you want the default setting to be different from the
+## mode for the splash screen, which by necessity always uses the value in
+## [ProjectSettings] instead. Set to a value of [enum DefaultWindowMode], which
+## itself is similar to [enum DisplayServer.WindowMode].
+@export var default_window_mode: DefaultWindowMode = DefaultWindowMode.PROJECT_SETTINGS
+
 ## Determines whether SV Options Menu manages the screen the game displays on.
 ## The default value will be the primary screen.
 @export var manage_screen: bool = false
@@ -110,7 +136,7 @@ enum DefaultResolutionHandling {
 
 ## Determines whether SV Options Menu will manage VSync mode of the main game
 ## window. The default value will be [member ProjectSettings.display/window/vsync/vsync_mode].
-@export var manage_vsync: bool = true
+@export var manage_vsync: bool = false
 
 ## Path to store VSync mode. Used if [member manage_vsync] is [code]true[/code].
 @export var vsync_option_path: String = "display/vsync"
@@ -271,7 +297,7 @@ enum DefaultResolutionHandling {
 ## 720p-1080p range.
 @export_range(0.0, 1.0, 0.005) var ui_minimum_scale: float = 1.0
 
-@export_group("Controls")
+@export_group("Input")
 ## Use SV Options Menu to configure input maps
 @export var manage_input_map: bool = false
 
@@ -303,6 +329,32 @@ enum DefaultResolutionHandling {
 ## it using [method String.capitalize] instead.
 @export var input_action_labels: Dictionary[String, String]
 
+@export_subgroup("Glyphs")
+## Glyphs for keyboard, mouse, and any unrecognised controllers.
+##
+## It is not recommended to modify this after starting SV Options Menu, as
+## changes may not be reflected in the UI.
+@export var generic_glyphs: GlyphSet = preload("res://addons/sv_options_menu/data/glyphs/default_generic_glyph_set.tres").duplicate_deep(Resource.DEEP_DUPLICATE_INTERNAL)
+# The above preload().duplicate_deep() construct is an approach to make the
+# GlyphSet internal to the OptionsConfig when the user creates a new one. Note
+# that this requires an @tool annotation at the top of the script, otherwise
+# duplicate_deep() can't run in the editor and just returns null.
+
+## Glyphs that should be used instead of [member generic_glyphs] when particular
+## controllers with unique symbols are being used. For example, PS or XBox
+## controllers.
+##
+## The key is the name returned by [method Input.get_joy_name]. If you want
+## multiple controllers to have the same glyph set (e.g. multiple generations
+## of the same brand of controller), then you may wish to copy glyph sets
+## between entries and leave them as non-unique so you can update them together.
+## The (rather rudimentary) default glyph sets do this, so be mindful when
+## making changes to make them unique if you [i]don't[/i] want to change all of them.
+##
+## It is not recommended to modify this after starting SV Options Menu, as
+## changes may not be reflected in the UI.
+@export var unique_glyphs: Dictionary[String, GlyphSet] = _get_default_unique_glyphs()
+
 
 ## Gets the default options, which include all configured defaults among the
 ## properties of this object, as well as any bespoke defaults configured in
@@ -311,7 +363,13 @@ enum DefaultResolutionHandling {
 ## Both local and cloud options will appear on the returned object, as both
 ## local and cloud options are meant to use the same defaults as a fallback.
 func get_default_options() -> GameOptions:
-	var default_options: GameOptions = custom_default_options.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) if custom_default_options != null else GameOptions.new()
+	if Engine.is_editor_hint():
+		push_error("Not implemented in-editor.")
+		return GameOptions.new()
+	
+	var default_options: GameOptions = custom_default_options.duplicate_deep(Resource.DEEP_DUPLICATE_ALL) \
+			if custom_default_options != null \
+			else GameOptions.new()
 	
 	if manage_volume:
 		for bus: EditableBusConfig in editable_buses:
@@ -325,7 +383,9 @@ func get_default_options() -> GameOptions:
 		default_options.set_option(input_device_option_path, "Default") # See AudioServer.input_device
 	
 	if manage_window_mode:
-		default_options.set_option(window_mode_option_path, ProjectSettings.get_setting_with_override("display/window/size/mode"))
+		default_options.set_option(window_mode_option_path, ProjectSettings.get_setting_with_override("display/window/size/mode") \
+				if default_window_mode == DefaultWindowMode.PROJECT_SETTINGS \
+				else default_window_mode)
 	
 	if manage_screen:
 		default_options.set_option(screen_option_path, DisplayServer.SCREEN_PRIMARY)
@@ -385,6 +445,10 @@ func _audio_bus_to_volume_base_path(ref: AudioBusReference) -> Array:
 ## Calculates the default resolution if set to auto, otherwise returns the
 ## set default resolution.
 func calculate_default_resolution(for_display: int = DisplayServer.SCREEN_PRIMARY) -> Vector2i:
+	if Engine.is_editor_hint():
+		push_error("Not implemented in-editor.")
+		return Vector2i()
+	
 	if default_resolution_handling == DefaultResolutionHandling.STATIC:
 		if default_resolution.x > 0 and default_resolution.y > 0:
 			return default_resolution
@@ -414,6 +478,10 @@ func calculate_default_resolution(for_display: int = DisplayServer.SCREEN_PRIMAR
 
 ## Get the reference resolution. See [member ui_scaling_reference_resolution]
 func get_reference_resolution() -> Vector2i:
+	if Engine.is_editor_hint():
+		push_error("Not implemented in-editor.")
+		return Vector2i()
+	
 	var reference_resolution := ui_scaling_reference_resolution
 	
 	if reference_resolution.x <= 0 or reference_resolution.y <= 0:
@@ -422,3 +490,38 @@ func get_reference_resolution() -> Vector2i:
 		reference_resolution = Vector2i(x, y)
 	
 	return reference_resolution
+
+
+func _get_default_unique_glyphs() -> Dictionary[String, GlyphSet]:
+	var playstation: GlyphSet = preload("res://addons/sv_options_menu/data/glyphs/default_playstation_glyph_set.tres").duplicate_deep(DeepDuplicateMode.DEEP_DUPLICATE_INTERNAL)
+	var xbox: GlyphSet = preload("res://addons/sv_options_menu/data/glyphs/default_xbox_glyph_set.tres").duplicate_deep(DeepDuplicateMode.DEEP_DUPLICATE_INTERNAL)
+	
+	return {
+		"Xbox 360 Controller": xbox,
+		"Xbox Controller": xbox,
+		"Xbox One Controller": xbox,
+		"Xbox Series Controller": xbox,
+		"Xbox Elite Controller Series 2": xbox,
+		"Xbox One Elite 2 Controller": xbox,
+		"Microsoft Xbox 360 Controller": xbox,
+		"Microsoft Xbox One Controller": xbox,
+		"Microsoft Xbox One Elite": xbox,
+		"Microsoft Xbox One Elite 2": xbox,
+		"Microsoft Xbox Series Controller": xbox,
+		"Xbox One Elite Series 2": xbox,
+		"Xbox Elite Controller": xbox,
+		"PS1 Controller": playstation,
+		"PS2 Controller": playstation,
+		"PS3 Controller": playstation,
+		"PS4 Controller": playstation,
+		"PS5 Controller": playstation,
+		"PSX": playstation,
+		"Sony PlayStation Classic Controller": playstation,
+		"Sony PlayStation Controller": playstation,
+		"PS5 Access Controller": playstation, # Significantly different layout, but the generic PS glyphs are still closer then the generic generic glyphs.
+		"Sony DualShock 2": playstation,
+		"Sony DualShock 3": playstation,
+		"Sony DualShock 4": playstation,
+		"Sony DualShock 4 V2": playstation,
+		"DualSense Wireless Controller": playstation # Not documented in SDL_GameControllerDB, but this is the device name when I use my dualsense plugged in on Fedora KDE.
+	}

@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="GlyphSet" format=3 uid="uid://c3tib1il86mld"]
+
+[ext_resource type="Texture2D" uid="uid://4wg23vb51o00" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_down.svg" id="1_caei1"]
+[ext_resource type="Script" uid="uid://d24m0rxnwejj4" path="res://addons/sv_options_menu/data/glyphs/glyph_set.gd" id="1_j1o8e"]
+[ext_resource type="Texture2D" uid="uid://bswms2r31y20g" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_right.svg" id="2_dn5po"]
+[ext_resource type="Texture2D" uid="uid://c7che438wkk33" path="res://addons/sv_options_menu/icon/glyph/controller/back_button.svg" id="3_mrc2u"]
+[ext_resource type="Texture2D" uid="uid://b0150vyctjmal" path="res://addons/sv_options_menu/icon/glyph/controller/d_pad_down.svg" id="4_nsjyn"]
+[ext_resource type="Texture2D" uid="uid://b250o08fn1edv" path="res://addons/sv_options_menu/icon/glyph/controller/d_pad_left.svg" id="5_usec8"]
+[ext_resource type="Texture2D" uid="uid://bgt6xvjtdk34b" path="res://addons/sv_options_menu/icon/glyph/controller/d_pad_right.svg" id="6_silof"]
+[ext_resource type="Texture2D" uid="uid://b2auuaq4hqixu" path="res://addons/sv_options_menu/icon/glyph/controller/d_pad_up.svg" id="7_ofj07"]
+[ext_resource type="Texture2D" uid="uid://bw4bx3cgcn2vw" path="res://addons/sv_options_menu/icon/glyph/controller/home_button.svg" id="8_8mj8m"]
+[ext_resource type="Texture2D" uid="uid://dc3dcx7y607hm" path="res://addons/sv_options_menu/icon/glyph/controller/left_bumper.svg" id="9_5tbtw"]
+[ext_resource type="Texture2D" uid="uid://c87bntce0lkg0" path="res://addons/sv_options_menu/icon/glyph/controller/left_thumbstick_press.svg" id="10_53uoq"]
+[ext_resource type="Texture2D" uid="uid://lqthweu1ou4u" path="res://addons/sv_options_menu/icon/glyph/controller/right_bumper.svg" id="11_o4jj1"]
+[ext_resource type="Texture2D" uid="uid://b0gyymj7smvod" path="res://addons/sv_options_menu/icon/glyph/controller/right_thumbstick_press.svg" id="12_h7shw"]
+[ext_resource type="Texture2D" uid="uid://om804ciohjvp" path="res://addons/sv_options_menu/icon/glyph/controller/start_button.svg" id="13_e0hb6"]
+[ext_resource type="Texture2D" uid="uid://c243n6xfrq4bf" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_left.svg" id="14_eki7y"]
+[ext_resource type="Texture2D" uid="uid://bgfdd36bincgc" path="res://addons/sv_options_menu/icon/glyph/controller/face_button_up.svg" id="15_xoc0l"]
+[ext_resource type="Texture2D" uid="uid://dadb0d4hj0a00" path="res://addons/sv_options_menu/icon/glyph/controller/left_thumbstick_down.svg" id="16_0xqip"]
+[ext_resource type="Texture2D" uid="uid://y8axsprbaien" path="res://addons/sv_options_menu/icon/glyph/controller/left_thumbstick_left.svg" id="17_mu4do"]
+[ext_resource type="Texture2D" uid="uid://djdv1mqro88co" path="res://addons/sv_options_menu/icon/glyph/controller/left_thumbstick_right.svg" id="18_slpld"]
+[ext_resource type="Texture2D" uid="uid://dt1vry2edhikl" path="res://addons/sv_options_menu/icon/glyph/controller/left_thumbstick_up.svg" id="19_few03"]
+[ext_resource type="Texture2D" uid="uid://48fgvpl68tdf" path="res://addons/sv_options_menu/icon/glyph/controller/left_trigger.svg" id="20_h1sc3"]
+[ext_resource type="Texture2D" uid="uid://dliduqt7edpk7" path="res://addons/sv_options_menu/icon/glyph/controller/right_thumbstick_down.svg" id="21_jqss8"]
+[ext_resource type="Texture2D" uid="uid://dejjxtajf31vt" path="res://addons/sv_options_menu/icon/glyph/controller/right_thumbstick_left.svg" id="22_x5hgc"]
+[ext_resource type="Texture2D" uid="uid://bp4gfrbpa1uq4" path="res://addons/sv_options_menu/icon/glyph/controller/right_thumbstick_right.svg" id="23_sodug"]
+[ext_resource type="Texture2D" uid="uid://c7cpm3xg8x0ua" path="res://addons/sv_options_menu/icon/glyph/controller/right_thumbstick_up.svg" id="24_i5c37"]
+[ext_resource type="Texture2D" uid="uid://cnnay6igibga4" path="res://addons/sv_options_menu/icon/glyph/controller/right_trigger.svg" id="25_2ccnr"]
+[ext_resource type="Texture2D" uid="uid://dosjavbaaf78r" path="res://addons/sv_options_menu/icon/glyph/mouse/side_mouse_button_1.svg" id="26_txq38"]
+[ext_resource type="Texture2D" uid="uid://cxafdn3fgvurb" path="res://addons/sv_options_menu/icon/glyph/mouse/side_mouse_button_2.svg" id="27_ormcv"]
+[ext_resource type="Texture2D" uid="uid://dki6nhts4vna3" path="res://addons/sv_options_menu/icon/glyph/mouse/left_mouse_button.svg" id="28_wuapl"]
+[ext_resource type="Texture2D" uid="uid://bd1p5rr752466" path="res://addons/sv_options_menu/icon/glyph/mouse/middle_mouse_button.svg" id="29_gjcpp"]
+[ext_resource type="Texture2D" uid="uid://cvs6wfux12f6m" path="res://addons/sv_options_menu/icon/glyph/mouse/right_mouse_button.svg" id="30_ubdeh"]
+[ext_resource type="Texture2D" uid="uid://bcoxaspjix45p" path="res://addons/sv_options_menu/icon/glyph/mouse/scroll_wheel_down.svg" id="31_ja0xk"]
+[ext_resource type="Texture2D" uid="uid://bjw28qnhaeewf" path="res://addons/sv_options_menu/icon/glyph/mouse/scroll_wheel_left.svg" id="32_ditmy"]
+[ext_resource type="Texture2D" uid="uid://dvopoixmkqhbg" path="res://addons/sv_options_menu/icon/glyph/mouse/scroll_wheel_right.svg" id="33_ogifk"]
+[ext_resource type="Texture2D" uid="uid://gb0cctcj0vmc" path="res://addons/sv_options_menu/icon/glyph/mouse/scroll_wheel_up.svg" id="34_vxqne"]
+
+[resource]
+script = ExtResource("1_j1o8e")
+joy_button_a_glyph = ExtResource("1_caei1")
+joy_button_b_glyph = ExtResource("2_dn5po")
+joy_button_x_glyph = ExtResource("14_eki7y")
+joy_button_y_glyph = ExtResource("15_xoc0l")
+joy_button_back_glyph = ExtResource("3_mrc2u")
+joy_button_guide_glyph = ExtResource("8_8mj8m")
+joy_button_start_glyph = ExtResource("13_e0hb6")
+joy_button_left_stick_glyph = ExtResource("10_53uoq")
+joy_button_right_stick_glyph = ExtResource("12_h7shw")
+joy_button_left_shoulder_glyph = ExtResource("9_5tbtw")
+joy_button_right_shoulder_glyph = ExtResource("11_o4jj1")
+joy_button_dpad_up_glyph = ExtResource("7_ofj07")
+joy_button_dpad_down_glyph = ExtResource("4_nsjyn")
+joy_button_dpad_left_glyph = ExtResource("5_usec8")
+joy_button_dpad_right_glyph = ExtResource("6_silof")
+joy_left_axis_up_glyph = ExtResource("19_few03")
+joy_left_axis_down_glyph = ExtResource("16_0xqip")
+joy_left_axis_left_glyph = ExtResource("17_mu4do")
+joy_left_axis_right_glyph = ExtResource("18_slpld")
+joy_right_axis_up_glyph = ExtResource("24_i5c37")
+joy_right_axis_down_glyph = ExtResource("21_jqss8")
+joy_right_axis_left_glyph = ExtResource("22_x5hgc")
+joy_right_axis_right_glyph = ExtResource("23_sodug")
+joy_left_trigger_glyph = ExtResource("20_h1sc3")
+joy_right_trigger_glyph = ExtResource("25_2ccnr")
+mouse_button_left_glyph = ExtResource("28_wuapl")
+mouse_button_right_glyph = ExtResource("30_ubdeh")
+mouse_button_middle_glyph = ExtResource("29_gjcpp")
+mouse_wheel_up_glyph = ExtResource("34_vxqne")
+mouse_wheel_down_glyph = ExtResource("31_ja0xk")
+mouse_wheel_left_glyph = ExtResource("32_ditmy")
+mouse_wheel_right_glyph = ExtResource("33_ogifk")
+mouse_button_extra1_glyph = ExtResource("26_txq38")
+mouse_button_extra2_glyph = ExtResource("27_ormcv")
+metadata/_custom_type_script = "uid://d24m0rxnwejj4"

@@ -13,6 +13,8 @@ extends VBoxContainer
 		_populate_input_event_editors()
 	get:
 		return action
+
+@export_group("Icon Buttons")
 ## Icon used for the delete button on each input event. Passed down to
 ## each input event editor.
 @export var delete_icon: Texture2D:
@@ -29,12 +31,28 @@ extends VBoxContainer
 		_update_add_icon()
 	get:
 		return add_icon
+## [member Control.custom_minimum_size] for icon buttons such as the add and
+## delete buttons.
+@export_custom(PROPERTY_HINT_NONE, "suffix:px") var icon_button_custom_minimum_size = Vector2(32.0, 32.0):
+	set(value):
+		icon_button_custom_minimum_size = value
+		_update_icon_button_custom_minimum_size()
+	get:
+		return icon_button_custom_minimum_size
+## [member Button.expand_icon] for icon buttons such as the add and delete
+## buttons.
+@export var icon_button_expand_icon := true:
+	set(value):
+		icon_button_expand_icon = value
+		_update_icon_button_expand_icon()
+	get:
+		return icon_button_expand_icon
 
 @onready var _label: Label = $Label
 @onready var _input_event_container: Control = $HFlowContainer
 @onready var _add_button: Button = $HFlowContainer/AddButton
 
-var _input_event_editor_scene = preload("res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/event_editor/input_event_editor.tscn") 
+var _input_event_editor_scene = preload("res://addons/sv_options_menu/ui/input_map_settings_ui/action_editor/event_editor/input_event_editor.tscn")
 var _name_counter: int
 
 # Override
@@ -70,6 +88,24 @@ func _update_add_icon() -> void:
 	_add_button.icon = add_icon
 
 
+func _update_icon_button_custom_minimum_size() -> void:
+	if _add_button == null:
+		return # Not ready yet
+	
+	_add_button.custom_minimum_size = icon_button_custom_minimum_size
+	for input_event_editor in _get_input_event_editors():
+		input_event_editor.delete_button_custom_minimum_size = icon_button_custom_minimum_size
+
+
+func _update_icon_button_expand_icon() -> void:
+	if _add_button == null:
+		return # Not ready yet
+	
+	for input_event_editor in _get_input_event_editors():
+		input_event_editor.delete_button_expand_icon = icon_button_expand_icon
+		input_event_editor.binding_button_expand_icon = icon_button_expand_icon
+
+
 func _populate_input_event_editors():
 	if _input_event_container == null:
 		return # Not ready yet. Fail silently because this method will be re-run in _ready() anyway
@@ -94,6 +130,9 @@ func _populate_input_event_editors():
 		_input_event_editor.action = action
 		_input_event_editor.input_event = event
 		_input_event_editor.delete_icon = delete_icon
+		_input_event_editor.delete_button_custom_minimum_size = icon_button_custom_minimum_size
+		_input_event_editor.delete_button_expand_icon = icon_button_expand_icon
+		_input_event_editor.binding_button_expand_icon = icon_button_expand_icon
 		if options_config.locked_input_events.has(action):
 			if options_config.locked_input_events[action].locked_events.any(func (e: InputEvent): return e.as_text() == event.as_text()):
 				_input_event_editor.locked = true # TODO: the string comparison to check if we do this: is it robust enough?
@@ -117,6 +156,9 @@ func _on_add_button_pressed() -> void:
 	_input_event_editor.name = "InputEventEditor%d" % (_name_counter + 1) if _name_counter > 0 else "InputEventEditor"
 	_input_event_editor.action = action
 	_input_event_editor.delete_icon = delete_icon
+	_input_event_editor.delete_button_custom_minimum_size = icon_button_custom_minimum_size
+	_input_event_editor.delete_button_expand_icon = icon_button_expand_icon
+	_input_event_editor.binding_button_expand_icon = icon_button_expand_icon
 	_input_event_container.add_child(_input_event_editor)
 	_input_event_editor.listen()
 	
